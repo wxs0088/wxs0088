@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Django2.0.4与Vue联合实现Gitee(码云)三方登陆，以及什么是OAuth2.0认证和授权机制基本流程 | Apical</title><meta name="description" content="序幕码云(Gitee),一款强大的代码托管、质量检测、代码演示、团队协作等开发工具集成到云平台，为了构建更好的码云生态环境，推出了基于OAuth2的API V5版本。 码云三方登陆应用创建 首先，我们注册码云  创建完成之后点击个人头像，找到设置        在设置里找到第三方应用       点击创建应用       应用名称，应用描述，应用主页，回调地址根据自己定义修改       创建完毕"><meta name="keywords" content="Vue,Python,Django"><meta name="author" content="Apical"><meta name="copyright" content="Apical"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/title.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="dns-prefetch" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="crossorigin"/><link rel="dns-prefetch" href="https://fonts.googleapis.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="dns-prefetch" href="//busuanzi.ibruce.info"/><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Django2.0.4与Vue联合实现Gitee(码云)三方登陆，以及什么是OAuth2.0认证和授权机制基本流程"><meta name="twitter:description" content="序幕码云(Gitee),一款强大的代码托管、质量检测、代码演示、团队协作等开发工具集成到云平台，为了构建更好的码云生态环境，推出了基于OAuth2的API V5版本。 码云三方登陆应用创建 首先，我们注册码云  创建完成之后点击个人头像，找到设置        在设置里找到第三方应用       点击创建应用       应用名称，应用描述，应用主页，回调地址根据自己定义修改       创建完毕"><meta name="twitter:image" content="http://www.sirxs.cn/img/timg.jpg"><meta property="og:type" content="article"><meta property="og:title" content="Django2.0.4与Vue联合实现Gitee(码云)三方登陆，以及什么是OAuth2.0认证和授权机制基本流程"><meta property="og:url" content="http://www.sirxs.cn/2020/06/02/Blog/gitee%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/"><meta property="og:site_name" content="Apical"><meta property="og:description" content="序幕码云(Gitee),一款强大的代码托管、质量检测、代码演示、团队协作等开发工具集成到云平台，为了构建更好的码云生态环境，推出了基于OAuth2的API V5版本。 码云三方登陆应用创建 首先，我们注册码云  创建完成之后点击个人头像，找到设置        在设置里找到第三方应用       点击创建应用       应用名称，应用描述，应用主页，回调地址根据自己定义修改       创建完毕"><meta property="og:image" content="http://www.sirxs.cn/img/timg.jpg"><meta property="article:published_time" content="2020-06-02T12:46:18.000Z"><meta property="article:modified_time" content="2020-06-09T07:44:07.162Z"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>var autoChangeMode = '1'
+var t = Cookies.get("theme")
+if (autoChangeMode == '1'){
+  var isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+  var isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+  var isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined){
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport){
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour < 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+  }
+  } else if (t == 'light') activateLightMode()
+  else activateDarkMode()
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="canonical" href="http://www.sirxs.cn/2020/06/02/Blog/gitee%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/"><link rel="prev" title="递归详解" href="http://www.sirxs.cn/2020/06/03/Blog/%E9%80%92%E5%BD%92%E8%AF%A6%E8%A7%A3/"><link rel="next" title="Django2.0.4与Vue联合实现钉钉三方扫码登陆" href="http://www.sirxs.cn/2020/06/02/Blog/%E9%92%89%E9%92%89%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"cookieDomain":"https://jerryc.me/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: {"languages":{"author":"作者: Apical","link":"链接: ","source":"来源: Apical","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: {"text":"I,LOVE,YOU,富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善","fontSize":"15px"},
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: undefined,
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  highlightShrink: 'false',
+  isFontAwesomeV5: false,
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+  
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isSidebar: true  
+  }</script><noscript><style>
+#page-header {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">55</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/board/"><i class="fa-fw fa fa-comment"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> 清单</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div></div></div></div><i class="fa fa-arrow-right on" id="toggle-sidebar" aria-hidden="true">     </i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#序幕"><span class="toc-number">1.</span> <span class="toc-text">序幕</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#码云三方登陆"><span class="toc-number">2.</span> <span class="toc-text">码云三方登陆</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#应用创建"><span class="toc-number">2.1.</span> <span class="toc-text">应用创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#代码实现"><span class="toc-number">2.2.</span> <span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OAuth2-0认证和授权机制基本流程"><span class="toc-number">3.</span> <span class="toc-text">OAuth2.0认证和授权机制基本流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><div class="post-bg" id="nav" style="background-image: url(/img/timg.jpg)"><div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">Apical</a></span><span class="pull_right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/board/"><i class="fa-fw fa fa-comment"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list" aria-hidden="true"></i><span> 清单</span><i class="fa fa-chevron-down menus-expand" aria-hidden="true"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span></span></div><div id="post-info"><div id="post-title"><div class="posttitle">Django2.0.4与Vue联合实现Gitee(码云)三方登陆，以及什么是OAuth2.0认证和授权机制基本流程</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-06-02 20:46:18"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2020-06-02</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-06-09 15:44:07"><i class="fa fa-history" aria-hidden="true"></i> 更新于 2020-06-09</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/">编程 · 技术</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="post-meta__icon fa fa-file-word-o" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">977</span><span class="post-meta__separator">|</span><i class="post-meta__icon fa fa-clock-o" aria-hidden="true"></i><span>阅读时长: 3 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="fa fa-eye post-meta__icon" aria-hidden="true"> </i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"><span class="post-meta__separator">|</span><i class="post-meta__icon fa fa-comment-o" aria-hidden="true"></i><span>评论数:</span><a href="/2020/06/02/Blog/gitee%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2020/06/02/Blog/gitee%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/" itemprop="commentCount"></span></a></span></div></div></div></div><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p><a href="https://baike.baidu.com/item/开源中国" target="_blank" rel="noopener">码云(Gitee)</a>,一款强大的代码托管、质量检测、代码演示、团队协作等开发工具集成到云平台，为了构建更好的码云生态环境，推出了基于OAuth2的API V5版本。</p>
+<h3 id="码云三方登陆"><a href="#码云三方登陆" class="headerlink" title="码云三方登陆"></a>码云三方登陆</h3><h4 id="应用创建"><a href="#应用创建" class="headerlink" title="应用创建"></a>应用创建</h4><ol>
+<li><p>首先，我们注册<a href="https://gitee.com/" target="_blank" rel="noopener">码云</a></p>
+</li>
+<li><p>创建完成之后点击<code>个人头像</code>，找到<code>设置</code></p>
+</li>
+</ol>
+<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee1.png" alt="gitee"></p>
+<ol start="3">
+<li>在<code>设置</code>里找到<code>第三方应用</code></li>
+</ol>
+<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee2.jpg" alt="gitee"></p>
+<ol start="4">
+<li>点击<code>创建应用</code></li>
+</ol>
+<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee3.png" alt="gitee"></p>
+<ol start="5">
+<li><code>应用名称</code>，<code>应用描述</code>，<code>应用主页</code>，<code>回调地址</code>根据自己定义修改</li>
+</ol>
+<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee6.png" alt="gitee"></p>
+<ol start="6">
+<li>创建完毕之后，会给你<code>APPID</code>与<code>APPkey</code>，这两样要记住</li>
+</ol>
+<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee7.png" alt="gitee"></p>
+<ol start="7">
+<li>之后的路程可以参照<a href="https://gitee.com/api/v5/oauth_doc#/" target="_blank" rel="noopener">Gitee开发文档</a></li>
+</ol>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><ol>
+<li><p>Vue</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">函数名()&#123;</span><br><span class="line">        var appid &#x3D; &#39;APPID&#39;</span><br><span class="line">        var redirect_uri &#x3D; &#39;码云回调地址&#39;</span><br><span class="line">        &#x2F;&#x2F; 构造url</span><br><span class="line">        var url &#x3D; &#39;https:&#x2F;&#x2F;gitee.com&#x2F;oauth&#x2F;authorize?client_id&#x3D;&#39;+appid+&#39;&amp;redirect_uri&#x3D;&#39;+redirect_uri+&#39;&amp;response_type&#x3D;code&#39;</span><br><span class="line">        &#x2F;&#x2F; 进行跳转</span><br><span class="line">        window.location.href &#x3D; url;</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>Django</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MayunBack</span><span class="params">(View)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span><span class="params">(self,request)</span>:</span></span><br><span class="line">        <span class="comment"># 获取code参数</span></span><br><span class="line">        code = request.GET.get(<span class="string">"code"</span>,<span class="literal">None</span>)</span><br><span class="line">        <span class="comment"># 发起调用，获取access_token</span></span><br><span class="line">        res = requests.post(<span class="string">"https://gitee.com/oauth/token?grant_type=authorization_code&amp;code=%s&amp;client_id=APPID&amp;redirect_uri=http://localhost:8000/gitee_back&amp;client_secret=APPKEY"</span> % code)</span><br><span class="line">        print(res.text)</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(res.text)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在获取到<code>access_token</code>之后，我们来获取Gitee的授权用户名，进入<a href="https://gitee.com/api/v5/oauth_doc#/" target="_blank" rel="noopener">Gitee开发文档</a>，点击<code>API文档</code></p>
+</li>
+</ol>
+<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee4.png" alt="gitee"></p>
+<ol start="4">
+<li>找到<code>获取授权用户的资料</code>并打开，点击右上角<code>申请授权</code>，就可以获取到授权用户的用户名了</li>
+</ol>
+<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee5.png" alt="gitee"></p>
+<ol start="5">
+<li><p>代码获取(将上面获取到的access_token传入url)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">res_token = requests.get(<span class="string">"https://gitee.com/api/v5/user?access_token="</span>+access_token)</span><br><span class="line">    res_token_dict = json.loads(res_token.text)</span><br><span class="line">    name = res_token_dict[<span class="string">'name'</span>]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="OAuth2-0认证和授权机制基本流程"><a href="#OAuth2-0认证和授权机制基本流程" class="headerlink" title="OAuth2.0认证和授权机制基本流程"></a>OAuth2.0认证和授权机制基本流程</h3><p><strong>OAuth2.0</strong></p>
+<p>第三方登录是应用开发中的常用功能，通过第三方登录，我们可以更加容易的吸引用户来到我们的应用中。现在，很多网站都提供了第三方登录的功能，在他们的官网中，都提供了如何接入第三方登录的文档。但是，不同的网站文档差别极大，各种第三方文档也是千奇百怪，同时，很多网站提供的SDK用法也是各不相同。对于不了解第三方登录的新手来说，实现一个支持多网站第三方登录的功能可以说是极其痛苦。</p>
+<p>实际上，大多数网站提供的第三方登录都遵循OAuth协议，虽然大多数网站的细节处理都是不一致的，甚至会基于OAuth协议进行扩展，但大体上其流程是一定的。今天，我们就来看看基于OAuth2的第三方登陆功能是这样一个流程。</p>
+<p><strong>OAuth2.0的基本流程</strong></p>
+<p>OAuth协议目前已经升级到了2.0，大部分的网站也是支持OAuth2.0的，因此让我们先看看OAuth2。</p>
+<p><img src="https://pic2.zhimg.com/80/5e27c9064ca22c7e54a1d395d679f8b5_720w.jpg" alt="oau"></p>
+<p>上图中所涉及到的对象分别为：</p>
+<ul>
+<li>Client 第三方应用，我们的应用就是一个Client</li>
+<li>Resource Owner 资源所有者，即用户</li>
+<li>Authorization Server 授权服务器，即提供第三方登录服务的服务器，如Github</li>
+<li>Resource Server 拥有资源信息的服务器，通常和授权服务器属于同一应用</li>
+</ul>
+<p>根据上图的信息，我们可以知道OAuth2的基本流程为：</p>
+<ol>
+<li>第三方应用请求用户授权。</li>
+<li>用户同意授权，并返回一个凭证（code）</li>
+<li>第三方应用通过第二步的凭证（code）向授权服务器请求授权</li>
+<li>授权服务器验证凭证（code）通过后，同意授权，并返回一个资源访问的凭证（Access Token）。</li>
+<li>第三方应用通过第四步的凭证（Access Token）向资源服务器请求相关资源。</li>
+<li>资源服务器验证凭证（Access Token）通过后，将第三方应用请求的资源返回。</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>总之，码云登陆接入相对于新浪而言简单了许多</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Apical</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://www.sirxs.cn/2020/06/02/Blog/gitee%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/">http://www.sirxs.cn/2020/06/02/Blog/gitee%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://www.sirxs.cn" target="_blank">Apical</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Vue/">Vue</a><a class="post-meta__tags" href="/tags/Python/">Python</a><a class="post-meta__tags" href="/tags/Django/">Django</a></div><div class="post_share"><div class="social-share" data-image="/img/notepic.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-button button--primary button--animated"> <i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="/img/wechat.jpg" alt="微信"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="post-qr-code__img" src="/img/alipay.jpg" alt="支付寶"/><div class="post-qr-code__desc">支付寶</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2020/06/03/Blog/%E9%80%92%E5%BD%92%E8%AF%A6%E8%A7%A3/"><img class="prev_cover" src="/img/timg.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">递归详解</div></div></a></div><div class="next-post pull_right"><a href="/2020/06/02/Blog/%E9%92%89%E9%92%89%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/"><img class="next_cover" src="/img/timg.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Django2.0.4与Vue联合实现钉钉三方扫码登陆</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/06/08/Blog/qiniu/" title="使用python3.7+Vue.js2.0+Django2.0.4异步前端通过api上传文件到七牛云云端存储"><img class="relatedPosts_cover" src="/img/timg.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-06-08</div><div class="relatedPosts_title">使用python3.7+Vue.js2.0+Django2.0.4异步前端通过api上传文件到七牛云云端存储</div></div></a></div><div class="relatedPosts_item"><a href="/2020/06/02/Blog/新浪微博三方登陆/" title="Django2.0.4与Vue联合实现新浪微博三方登陆"><img class="relatedPosts_cover" src="/img/timg.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-06-02</div><div class="relatedPosts_title">Django2.0.4与Vue联合实现新浪微博三方登陆</div></div></a></div><div class="relatedPosts_item"><a href="/2020/06/02/Blog/钉钉三方登陆/" title="Django2.0.4与Vue联合实现钉钉三方扫码登陆"><img class="relatedPosts_cover" src="/img/timg.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-06-02</div><div class="relatedPosts_title">Django2.0.4与Vue联合实现钉钉三方扫码登陆</div></div></a></div><div class="relatedPosts_item"><a href="/2020/05/10/Blog/fourteen/" title="Django + Uwsgi + Nginx 的生产环境部署"><img class="relatedPosts_cover" src="/img/timg.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-10</div><div class="relatedPosts_title">Django + Uwsgi + Nginx 的生产环境部署</div></div></a></div><div class="relatedPosts_item"><a href="/2020/05/08/Blog/eleven/" title="Redis分布式锁"><img class="relatedPosts_cover" src="/img/timg.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-08</div><div class="relatedPosts_title">Redis分布式锁</div></div></a></div><div class="relatedPosts_item"><a href="/2020/05/07/Blog/ten/" title="Webshell"><img class="relatedPosts_cover" src="/img/timg.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-05-07</div><div class="relatedPosts_title">Webshell</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+  var from = from
+  var setting = set.split(',').filter(function(item){
+  return from.indexOf(item) > -1
+  });
+  setting = setting.length == 0 ? from :setting;
+  return setting
+}
+
+var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+var requiredFields = requestSetting(['nick','mail','link'],'nick,mail,link')
+
+window.valine = new Valine({
+  el:'#vcomment',
+  appId: '8AE0gUyNlCyAxUXwKDHW21m5-gzGzoHsz',
+  appKey: 'qiC5e7kTJOWFJ7x9SwaJeH5f',
+  notify: false,
+  verify: false,
+  placeholder: 'Please leave your message',
+  avatar: 'mp',
+  meta: guestInfo,
+  pageSize: '10',
+  lang: 'zh-CN',
+  recordIP: false,
+  serverURLs: '',
+  emojiCDN: '',
+  emojiMaps: "",
+  enableQQ: false,
+  requiredFields: requiredFields
+});</script></div></article></main><footer id="footer" style="background-image: url(/img/timg.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 ❤ Apical</div><div class="footer_custom_text">Hello, welcome to my <a href="https://www.sirxs.cn/">blog</a>!</div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">简</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="/js/third-party/ClickShowText.js"></script><script src="/js/search/local-search.js"></script></body></html>
