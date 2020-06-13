@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>使用python3.7+Vue.js2.0+Django2.0.4实现支付宝模拟支付功能</title>
+      <title>（支付宝模拟支付）使用python3.7+Vue.js2.0+Django2.0.4实现支付宝模拟支付功能</title>
       <link href="/2020/06/13/Blog/Alipay_Sandbox/"/>
       <url>/2020/06/13/Blog/Alipay_Sandbox/</url>
       
@@ -89,7 +89,7 @@
     
     
     <entry>
-      <title>使用python3.7+Vue.js2.0+Django2.0.4实现又拍云云存储的异步文件上传功能</title>
+      <title>（又拍云云存储）使用python3.7+Vue.js2.0+Django2.0.4实现又拍云云存储的异步文件上传功能</title>
       <link href="/2020/06/09/Blog/upyun/"/>
       <url>/2020/06/09/Blog/upyun/</url>
       
@@ -143,7 +143,7 @@
     
     
     <entry>
-      <title>使用python3.7+Vue.js2.0+Django2.0.4异步前端通过api上传文件到七牛云云端存储</title>
+      <title>（七牛云云端存储）使用python3.7+Vue.js2.0+Django2.0.4异步前端通过api上传文件到七牛云云端存储</title>
       <link href="/2020/06/08/Blog/qiniu/"/>
       <url>/2020/06/08/Blog/qiniu/</url>
       
