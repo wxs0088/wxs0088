@@ -47,9 +47,9 @@
             
             <tag> Vue </tag>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -99,9 +99,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -128,9 +128,9 @@
             
             <tag> Vue </tag>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -155,9 +155,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -184,9 +184,9 @@
             
             <tag> Vue </tag>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -213,9 +213,34 @@
             
             <tag> Vue </tag>
             
+            <tag> Django </tag>
+            
             <tag> Python </tag>
             
-            <tag> Django </tag>
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis持久化</title>
+      <link href="/2020/06/08/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/"/>
+      <url>/2020/06/08/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<p>知识是珍贵宝石的结晶,文化是宝石放出的光泽。——泰戈尔</p><hr><h1 id="RDB持久化"><a href="#RDB持久化" class="headerlink" title="RDB持久化"></a>RDB持久化</h1><h4 id="开启方式"><a href="#开启方式" class="headerlink" title="开启方式"></a>开启方式</h4><p>在<code>Redis</code>安装目录下找到<code>redis.windows.conf</code>这个文件，并打开</p><p><img src="https://wangxs020202.gitee.io/images/note/redis9.png" alt="redis"></p><p>下图就是RDB开启方式</p><p><img src="https://wangxs020202.gitee.io/images/note/RDB.png" alt="RDB"></p><p>RDB持久化是把当前进程数据生成快照保存到硬盘的过程，触发RDB持久化过程分为手动触发和自动触发</p><h4 id="1）触发机制"><a href="#1）触发机制" class="headerlink" title="1）触发机制"></a>1）触发机制</h4><p>手动触发分别对应save和bgsave命令</p><p>save命令：阻塞当前Redis服务器，直到RDB过程完成为止，对于内存 比较大的实例会造成长时间阻塞，线上环境不建议使用</p><p>bgsave命令：Redis进程执行fork操作创建子进程，RDB持久化过程由子 进程负责，完成后自动结束。阻塞只发生在fork阶段，一般时间很短</p><h4 id="2）自动触发RDB的持久"><a href="#2）自动触发RDB的持久" class="headerlink" title="2）自动触发RDB的持久"></a>2）自动触发RDB的持久</h4><p>使用save相关配置，如“save m n”。表示m秒内数据集存在n次修改 时，自动触发bgsave。</p><p>如果从节点执行全量复制操作，主节点自动执行bgsave生成RDB文件并发送给从节点，更多细节见6.3节介绍的复制原理。</p><p>执行debug reload命令重新加载Redis时，也会自动触发save操作。</p><p>默认情况下执行shutdown命令时，如果没有开启AOF持久化功能则 自动执行bgsave。</p><p>bgsave是主流的触发RDB持久化方式</p><p><img src="https://wangxs020202.gitee.io/images/me/webp.png" alt="img"></p><p>执行bgsave命令，Redis父进程判断当前是否存在正在执行的子进 程，如RDB/AOF子进程，如果存在bgsave命令直接返回。</p><p>父进程执行fork操作创建子进程，fork操作过程中父进程会阻塞，通 过info stats命令查看latest_fork_usec选项，可以获取最近一个fork操作的耗时，单位为微秒</p><p>父进程fork完成后，bgsave命令返回“Background saving started”信息并不再阻塞父进程，可以继续响应其他命令。</p><p>子进程创建RDB文件，根据父进程内存生成临时快照文件，完成后 对原有文件进行原子替换。执行lastsave命令可以获取最后一次生成RDB的 时间，对应info统计的rdb_last_save_time选项。</p><p>进程发送信号给父进程表示完成，父进程更新统计信息，具体见 info Persistence下的rdb_*相关选项。</p><p>RDB文件的处理</p><p>保存：RDB文件保存在dir配置指定的目录下，文件名通过dbfilename配 置指定。可以通过执行config set dir{newDir}和config set dbfilename{newFileName}运行期动态执行，当下次运行时RDB文件会保存到新目录。</p><h1 id="RDB的优缺点"><a href="#RDB的优缺点" class="headerlink" title="RDB的优缺点"></a>RDB的优缺点</h1><h4 id="RDB的优点："><a href="#RDB的优点：" class="headerlink" title="RDB的优点："></a>RDB的优点：</h4><p>RDB是一个紧凑压缩的二进制文件，代表Redis在某个时间点上的数据 快照。非常适用于备份，全量复制等场景。比如每6小时执行bgsave备份， 并把RDB文件拷贝到远程机器或者文件系统中（如hdfs），用于灾难恢复。</p><p>Redis加载RDB恢复数据远远快于AOF的方式。</p><h4 id="RDB的缺点："><a href="#RDB的缺点：" class="headerlink" title="RDB的缺点："></a>RDB的缺点：</h4><p>RDB方式数据没办法做到实时持久化/秒级持久化。因为bgsave每次运 行都要执行fork操作创建子进程，属于重量级操作，频繁执行成本过高。</p><p>RDB文件使用特定二进制格式保存，Redis版本演进过程中有多个格式 的RDB版本，存在老版本Redis服务无法兼容新版RDB格式的问题。</p><p>针对RDB不适合实时持久化的问题，Redis提供了AOF持久化方式来解决。</p><h1 id="AOF持久化"><a href="#AOF持久化" class="headerlink" title="AOF持久化"></a>AOF持久化</h1><h4 id="开启方式-1"><a href="#开启方式-1" class="headerlink" title="开启方式"></a>开启方式</h4><p><img src="https://wangxs020202.gitee.io/images/note/AOF.png" alt="AOF"></p><p>AOF（append only file）持久化：以独立日志的方式记录每次写命令， 重启时再重新执行AOF文件中的命令达到恢复数据的目的。AOF的主要作用 是解决了数据持久化的实时性，目前已经是Redis持久化的主流方式</p><h4 id="1）使用AOF"><a href="#1）使用AOF" class="headerlink" title="1）使用AOF"></a>1）使用AOF</h4><p>开启AOF功能需要设置配置：appendonly yes，默认不开启。AOF文件名 通过appendfilename配置设置，默认文件名是appendonly.aof。保存路径同 RDB持久化方式一致，通过dir配置指定。AOF的工作流程操作：命令写入 （append）、文件同步（sync）、文件重写（rewrite）、重启加载 （load）</p><p><img src="https://wangxs020202.gitee.io/images/me/webp1.png" alt="img"></p><h4 id="1）所有的写入命令会追加到aof-buf（缓冲区）中。"><a href="#1）所有的写入命令会追加到aof-buf（缓冲区）中。" class="headerlink" title="1）所有的写入命令会追加到aof_buf（缓冲区）中。"></a>1）所有的写入命令会追加到aof_buf（缓冲区）中。</h4><h4 id="2）AOF缓冲区根据对应的策略向硬盘做同步操作。"><a href="#2）AOF缓冲区根据对应的策略向硬盘做同步操作。" class="headerlink" title="2）AOF缓冲区根据对应的策略向硬盘做同步操作。"></a>2）AOF缓冲区根据对应的策略向硬盘做同步操作。</h4><p>AOF为什么把命令追加到aof_buf中？Redis使用单线程响应命令，如 果每次写AOF文件命令都直接追加到硬盘，那么性能完全取决于当前硬盘负 载。先写入缓冲区aof_buf中，还有另一个好处，Redis可以提供多种缓冲区同步硬盘的策略，在性能和安全性方面做出平衡</p><h4 id="3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。"><a href="#3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。" class="headerlink" title="3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。"></a>3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。</h4><p>重写后的AOF文件为什么可以变小？有如下原因：</p><p>1.进程内已经超时的数据不再写入文件。</p><p>2.旧的AOF文件含有无效命令，如del key1、hdel key2、srem keys、set a111、set a222等。重写使用进程内数据直接生成，这样新的AOF文件只保</p><p>留最终数据的写入命令。</p><p>3.多条写命令可以合并为一个，如：lpush list a、lpush list b、lpush list c可以转化为：lpush list a b c。为了防止单条命令过大造成客户端缓冲区溢 出，对于list、set、hash、zset等类型操作，以64个元素为界拆分为多条。</p><p>AOF重写降低了文件占用空间，除此之外，另一个目的是：更小的AOF 文件可以更快地被Redis加载</p><p>AOF重写过程可以手动触发和自动触发：</p><p>手动触发：直接调用bgrewriteaof命令。</p><p>自动触发：根据auto-aof-rewrite-min-size和auto-aof-rewrite-percentage参数确定自动触发时机</p><p>auto-aof-rewrite-min-size：表示运行AOF重写时文件最小体积，默认 为64MB。</p><p>auto-aof-rewrite-percentage：代表当前AOF文件空间 （aof_current_size）和上一次重写后AOF文件空间（aof_base_size）的比值。</p><p>自动触发时机=aof_current_size&gt;auto-aof-rewrite-minsize&amp;&amp;（aof_current_size-aof_base_size）/aof_base_size&gt;=auto-aof-rewritepercentage</p><p>其中aof_current_size和aof_base_size可以在info Persistence统计信息中查看。</p><p><img src="https://wangxs020202.gitee.io/images/me/webp2.png" alt="img"></p><h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。"><a href="#4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。" class="headerlink" title="4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。"></a>4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。</h4><p><img src="https://wangxs020202.gitee.io/images/me/webp3.png" alt="img"></p><p>流程说明：</p><p>1）AOF持久化开启且存在AOF文件时，优先加载AOF文件，打印如下日志：</p><p>* DB loaded from append only file: 5.841 seconds</p><p>2）AOF关闭或者AOF文件不存在时，加载RDB文件，打印如下日志：</p><p>* DB loaded from disk: 5.586 seconds</p><p>3）加载AOF/RDB文件成功后，Redis启动成功。</p><p>4）AOF/RDB文件存在错误时，Redis启动失败并打印错误信息。</p><p>重点回顾</p><p>1）Redis提供了两种持久化方式：RDB和AOF。</p><p>2）RDB使用一次性生成内存快照的方式，产生的文件紧凑压缩比更 高，因此读取RDB恢复速度更快。由于每次生成RDB开销较大，无法做到实</p><p>时持久化，一般用于数据冷备和复制传输。</p><p>3）save命令会阻塞主线程不建议使用，bgsave命令通过fork操作创建子 进程生成RDB避免阻塞。</p><p>4）AOF通过追加写命令到文件实现持久化，通过appendfsync参数可以 控制实时/秒级持久化。因为需要不断追加写命令，所以AOF文件体积逐渐变大，需要定期执行重写操作来降低文件体积。</p><p>5）AOF重写可以通过auto-aof-rewrite-min-size和auto-aof-rewritepercentage参数控制自动触发，也可以使用bgrewriteaof命令手动触发。</p><p>6）子进程执行期间使用copy-on-write机制与父进程共享内存，避免内 存消耗翻倍。AOF重写期间还需要维护重写缓冲区，保存新的写入命令避免数据丢失。</p><p>7）持久化阻塞主线程场景有：fork阻塞和AOF追加阻塞。fork阻塞时间 跟内存量和系统有关，AOF追加阻塞说明硬盘资源紧张。</p><p>8）单机下部署多个实例时，为了防止出现多个子进程执行重写操作， 建议做隔离控制，避免CPU和IO资源竞争。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
             
         </tags>
       
@@ -242,34 +267,9 @@
             
             <tag> Vue </tag>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
             
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Redis持久化</title>
-      <link href="/2020/06/08/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/"/>
-      <url>/2020/06/08/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/</url>
-      
-        <content type="html"><![CDATA[<p>知识是珍贵宝石的结晶,文化是宝石放出的光泽。——泰戈尔</p><hr><h1 id="RDB持久化"><a href="#RDB持久化" class="headerlink" title="RDB持久化"></a>RDB持久化</h1><h4 id="开启方式"><a href="#开启方式" class="headerlink" title="开启方式"></a>开启方式</h4><p>在<code>Redis</code>安装目录下找到<code>redis.windows.conf</code>这个文件，并打开</p><p><img src="https://wangxs020202.gitee.io/images/note/redis9.png" alt="redis"></p><p>下图就是RDB开启方式</p><p><img src="https://wangxs020202.gitee.io/images/note/RDB.png" alt="RDB"></p><p>RDB持久化是把当前进程数据生成快照保存到硬盘的过程，触发RDB持久化过程分为手动触发和自动触发</p><h4 id="1）触发机制"><a href="#1）触发机制" class="headerlink" title="1）触发机制"></a>1）触发机制</h4><p>手动触发分别对应save和bgsave命令</p><p>save命令：阻塞当前Redis服务器，直到RDB过程完成为止，对于内存 比较大的实例会造成长时间阻塞，线上环境不建议使用</p><p>bgsave命令：Redis进程执行fork操作创建子进程，RDB持久化过程由子 进程负责，完成后自动结束。阻塞只发生在fork阶段，一般时间很短</p><h4 id="2）自动触发RDB的持久"><a href="#2）自动触发RDB的持久" class="headerlink" title="2）自动触发RDB的持久"></a>2）自动触发RDB的持久</h4><p>使用save相关配置，如“save m n”。表示m秒内数据集存在n次修改 时，自动触发bgsave。</p><p>如果从节点执行全量复制操作，主节点自动执行bgsave生成RDB文件并发送给从节点，更多细节见6.3节介绍的复制原理。</p><p>执行debug reload命令重新加载Redis时，也会自动触发save操作。</p><p>默认情况下执行shutdown命令时，如果没有开启AOF持久化功能则 自动执行bgsave。</p><p>bgsave是主流的触发RDB持久化方式</p><p><img src="https://wangxs020202.gitee.io/images/me/webp.png" alt="img"></p><p>执行bgsave命令，Redis父进程判断当前是否存在正在执行的子进 程，如RDB/AOF子进程，如果存在bgsave命令直接返回。</p><p>父进程执行fork操作创建子进程，fork操作过程中父进程会阻塞，通 过info stats命令查看latest_fork_usec选项，可以获取最近一个fork操作的耗时，单位为微秒</p><p>父进程fork完成后，bgsave命令返回“Background saving started”信息并不再阻塞父进程，可以继续响应其他命令。</p><p>子进程创建RDB文件，根据父进程内存生成临时快照文件，完成后 对原有文件进行原子替换。执行lastsave命令可以获取最后一次生成RDB的 时间，对应info统计的rdb_last_save_time选项。</p><p>进程发送信号给父进程表示完成，父进程更新统计信息，具体见 info Persistence下的rdb_*相关选项。</p><p>RDB文件的处理</p><p>保存：RDB文件保存在dir配置指定的目录下，文件名通过dbfilename配 置指定。可以通过执行config set dir{newDir}和config set dbfilename{newFileName}运行期动态执行，当下次运行时RDB文件会保存到新目录。</p><h1 id="RDB的优缺点"><a href="#RDB的优缺点" class="headerlink" title="RDB的优缺点"></a>RDB的优缺点</h1><h4 id="RDB的优点："><a href="#RDB的优点：" class="headerlink" title="RDB的优点："></a>RDB的优点：</h4><p>RDB是一个紧凑压缩的二进制文件，代表Redis在某个时间点上的数据 快照。非常适用于备份，全量复制等场景。比如每6小时执行bgsave备份， 并把RDB文件拷贝到远程机器或者文件系统中（如hdfs），用于灾难恢复。</p><p>Redis加载RDB恢复数据远远快于AOF的方式。</p><h4 id="RDB的缺点："><a href="#RDB的缺点：" class="headerlink" title="RDB的缺点："></a>RDB的缺点：</h4><p>RDB方式数据没办法做到实时持久化/秒级持久化。因为bgsave每次运 行都要执行fork操作创建子进程，属于重量级操作，频繁执行成本过高。</p><p>RDB文件使用特定二进制格式保存，Redis版本演进过程中有多个格式 的RDB版本，存在老版本Redis服务无法兼容新版RDB格式的问题。</p><p>针对RDB不适合实时持久化的问题，Redis提供了AOF持久化方式来解决。</p><h1 id="AOF持久化"><a href="#AOF持久化" class="headerlink" title="AOF持久化"></a>AOF持久化</h1><h4 id="开启方式-1"><a href="#开启方式-1" class="headerlink" title="开启方式"></a>开启方式</h4><p><img src="https://wangxs020202.gitee.io/images/note/AOF.png" alt="AOF"></p><p>AOF（append only file）持久化：以独立日志的方式记录每次写命令， 重启时再重新执行AOF文件中的命令达到恢复数据的目的。AOF的主要作用 是解决了数据持久化的实时性，目前已经是Redis持久化的主流方式</p><h4 id="1）使用AOF"><a href="#1）使用AOF" class="headerlink" title="1）使用AOF"></a>1）使用AOF</h4><p>开启AOF功能需要设置配置：appendonly yes，默认不开启。AOF文件名 通过appendfilename配置设置，默认文件名是appendonly.aof。保存路径同 RDB持久化方式一致，通过dir配置指定。AOF的工作流程操作：命令写入 （append）、文件同步（sync）、文件重写（rewrite）、重启加载 （load）</p><p><img src="https://wangxs020202.gitee.io/images/me/webp1.png" alt="img"></p><h4 id="1）所有的写入命令会追加到aof-buf（缓冲区）中。"><a href="#1）所有的写入命令会追加到aof-buf（缓冲区）中。" class="headerlink" title="1）所有的写入命令会追加到aof_buf（缓冲区）中。"></a>1）所有的写入命令会追加到aof_buf（缓冲区）中。</h4><h4 id="2）AOF缓冲区根据对应的策略向硬盘做同步操作。"><a href="#2）AOF缓冲区根据对应的策略向硬盘做同步操作。" class="headerlink" title="2）AOF缓冲区根据对应的策略向硬盘做同步操作。"></a>2）AOF缓冲区根据对应的策略向硬盘做同步操作。</h4><p>AOF为什么把命令追加到aof_buf中？Redis使用单线程响应命令，如 果每次写AOF文件命令都直接追加到硬盘，那么性能完全取决于当前硬盘负 载。先写入缓冲区aof_buf中，还有另一个好处，Redis可以提供多种缓冲区同步硬盘的策略，在性能和安全性方面做出平衡</p><h4 id="3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。"><a href="#3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。" class="headerlink" title="3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。"></a>3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。</h4><p>重写后的AOF文件为什么可以变小？有如下原因：</p><p>1.进程内已经超时的数据不再写入文件。</p><p>2.旧的AOF文件含有无效命令，如del key1、hdel key2、srem keys、set a111、set a222等。重写使用进程内数据直接生成，这样新的AOF文件只保</p><p>留最终数据的写入命令。</p><p>3.多条写命令可以合并为一个，如：lpush list a、lpush list b、lpush list c可以转化为：lpush list a b c。为了防止单条命令过大造成客户端缓冲区溢 出，对于list、set、hash、zset等类型操作，以64个元素为界拆分为多条。</p><p>AOF重写降低了文件占用空间，除此之外，另一个目的是：更小的AOF 文件可以更快地被Redis加载</p><p>AOF重写过程可以手动触发和自动触发：</p><p>手动触发：直接调用bgrewriteaof命令。</p><p>自动触发：根据auto-aof-rewrite-min-size和auto-aof-rewrite-percentage参数确定自动触发时机</p><p>auto-aof-rewrite-min-size：表示运行AOF重写时文件最小体积，默认 为64MB。</p><p>auto-aof-rewrite-percentage：代表当前AOF文件空间 （aof_current_size）和上一次重写后AOF文件空间（aof_base_size）的比值。</p><p>自动触发时机=aof_current_size&gt;auto-aof-rewrite-minsize&amp;&amp;（aof_current_size-aof_base_size）/aof_base_size&gt;=auto-aof-rewritepercentage</p><p>其中aof_current_size和aof_base_size可以在info Persistence统计信息中查看。</p><p><img src="https://wangxs020202.gitee.io/images/me/webp2.png" alt="img"></p><h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。"><a href="#4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。" class="headerlink" title="4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。"></a>4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。</h4><p><img src="https://wangxs020202.gitee.io/images/me/webp3.png" alt="img"></p><p>流程说明：</p><p>1）AOF持久化开启且存在AOF文件时，优先加载AOF文件，打印如下日志：</p><p>* DB loaded from append only file: 5.841 seconds</p><p>2）AOF关闭或者AOF文件不存在时，加载RDB文件，打印如下日志：</p><p>* DB loaded from disk: 5.586 seconds</p><p>3）加载AOF/RDB文件成功后，Redis启动成功。</p><p>4）AOF/RDB文件存在错误时，Redis启动失败并打印错误信息。</p><p>重点回顾</p><p>1）Redis提供了两种持久化方式：RDB和AOF。</p><p>2）RDB使用一次性生成内存快照的方式，产生的文件紧凑压缩比更 高，因此读取RDB恢复速度更快。由于每次生成RDB开销较大，无法做到实</p><p>时持久化，一般用于数据冷备和复制传输。</p><p>3）save命令会阻塞主线程不建议使用，bgsave命令通过fork操作创建子 进程生成RDB避免阻塞。</p><p>4）AOF通过追加写命令到文件实现持久化，通过appendfsync参数可以 控制实时/秒级持久化。因为需要不断追加写命令，所以AOF文件体积逐渐变大，需要定期执行重写操作来降低文件体积。</p><p>5）AOF重写可以通过auto-aof-rewrite-min-size和auto-aof-rewritepercentage参数控制自动触发，也可以使用bgrewriteaof命令手动触发。</p><p>6）子进程执行期间使用copy-on-write机制与父进程共享内存，避免内 存消耗翻倍。AOF重写期间还需要维护重写缓冲区，保存新的写入命令避免数据丢失。</p><p>7）持久化阻塞主线程场景有：fork阻塞和AOF追加阻塞。fork阻塞时间 跟内存量和系统有关，AOF追加阻塞说明硬盘资源紧张。</p><p>8）单机下部署多个实例时，为了防止出现多个子进程执行重写操作， 建议做隔离控制，避免CPU和IO资源竞争。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
+            <tag> Python </tag>
             
         </tags>
       
@@ -363,9 +363,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -390,9 +390,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -419,9 +419,9 @@
             
             <tag> Vue </tag>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -448,9 +448,9 @@
             
             <tag> Vue </tag>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -477,9 +477,9 @@
             
             <tag> Vue </tag>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -561,6 +561,25 @@
     
     
     <entry>
+      <title>《绿皮书》：拿到奥斯卡最佳影片，就因为“涉黑”?</title>
+      <link href="/2020/05/30/Movie/Green%20Book/"/>
+      <url>/2020/05/30/Movie/Green%20Book/</url>
+      
+        <content type="html"><![CDATA[<p><em>不管是在上届届奥斯卡颁奖典礼之前，还是在颁奖典礼之后，对于《绿皮书》能够拿到最佳影片奖，很多人都不会感到稀奇。貌似打上届届奥斯卡获奖提名名单一曝光，《绿皮书》就已经内定，不管是同样大热门的《罗马》，还是其他六部电影，都像是可怜的陪跑运动员，没有丝毫挣扎的可能性。</em></p><p><img src="https://wangxs020202.gitee.io/images/me/green.png" alt="move"></p><p>不管是在上届届奥斯卡颁奖典礼之前，还是在颁奖典礼之后，对于《绿皮书》能够拿到最佳影片奖，很多人都不会感到稀奇。</p><p>貌似打上届届奥斯卡获奖提名名单一曝光，《绿皮书》就已经内定，不管是同样大热门的《罗马》，还是其他六部电影，都像是可怜的陪跑运动员，没有丝毫挣扎的可能性。</p><p>《黑豹》看似有着纯正的黑皮肤，但是说到底，它也只是一部漫威超级英雄电影。</p><p><img src="https://wangxs020202.gitee.io/images/me/heibao.jpg" alt="move"></p><p>《绿皮书》是一种均衡，它不仅为学院的评委们提供了一组最大公约数，而且，它也让观众在观看的瞬间品尝到了百香果的滋味，用舌头尝，是甜，用牙齿咬，是脆。</p><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>《绿皮书》是由彼得·法拉利执导，维果·莫特森、马赫沙拉·阿里主演的剧情片，于2018年9月11日在多伦多国际电影节首映；2019年3月1日在中国内地上映。</p><p>该片改编自真人真事，讲述了保镖托尼被聘用为世界上优秀的爵士钢琴家唐开车。钢琴家将从纽约开始举办巡回演奏，俩人之间一段跨越种族、阶级的友谊的故事。</p><h3 id="剧情"><a href="#剧情" class="headerlink" title="剧情"></a>剧情</h3><p>托尼由于夜总会关门装修，也亟需一份工作。有个朋友建议他去参加一位音乐博士为了寻找司机所举办的面试。当他到达豪华公寓后，发现这位博士是个名叫唐的黑人古典乐钢琴家，钢琴家正需要一个司机，负责在他举办南方巡演时的接送工作。</p><p><img src="https://wangxs020202.gitee.io/images/me/green1.png" alt="move"></p><p>当然，两人心里都十分清楚，在二十世纪六十年代种族隔离严重的南部地区，他们很容易身陷麻烦之中，但托尼需要钱，而唐需要一个能照顾他的专业司机。给托尼付钱的唱片公司给了他一本“绿皮书”指南，上面列着当地黑人可以吃饭睡觉的地方，因为很多旅馆和餐厅都是只限白人。</p><p>顺便送上1080p片源，请使用迅雷下载(复制打开迅雷即可)</p><p>magnet:?xt=urn:btih:EE565D3FC1721A9DF468CC6DC4A3467CBF6EE54B</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 新剧 · 电影 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Celery</title>
       <link href="/2020/05/30/Note/celery/"/>
       <url>/2020/05/30/Note/celery/</url>
@@ -579,30 +598,11 @@
             
             <tag> Django </tag>
             
-            <tag> Redis </tag>
-            
             <tag> Celery </tag>
             
+            <tag> Redis </tag>
+            
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>《绿皮书》：拿到奥斯卡最佳影片，就因为“涉黑”?</title>
-      <link href="/2020/05/30/Movie/Green%20Book/"/>
-      <url>/2020/05/30/Movie/Green%20Book/</url>
-      
-        <content type="html"><![CDATA[<p><em>不管是在上届届奥斯卡颁奖典礼之前，还是在颁奖典礼之后，对于《绿皮书》能够拿到最佳影片奖，很多人都不会感到稀奇。貌似打上届届奥斯卡获奖提名名单一曝光，《绿皮书》就已经内定，不管是同样大热门的《罗马》，还是其他六部电影，都像是可怜的陪跑运动员，没有丝毫挣扎的可能性。</em></p><p><img src="https://wangxs020202.gitee.io/images/me/green.png" alt="move"></p><p>不管是在上届届奥斯卡颁奖典礼之前，还是在颁奖典礼之后，对于《绿皮书》能够拿到最佳影片奖，很多人都不会感到稀奇。</p><p>貌似打上届届奥斯卡获奖提名名单一曝光，《绿皮书》就已经内定，不管是同样大热门的《罗马》，还是其他六部电影，都像是可怜的陪跑运动员，没有丝毫挣扎的可能性。</p><p>《黑豹》看似有着纯正的黑皮肤，但是说到底，它也只是一部漫威超级英雄电影。</p><p><img src="https://wangxs020202.gitee.io/images/me/heibao.jpg" alt="move"></p><p>《绿皮书》是一种均衡，它不仅为学院的评委们提供了一组最大公约数，而且，它也让观众在观看的瞬间品尝到了百香果的滋味，用舌头尝，是甜，用牙齿咬，是脆。</p><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>《绿皮书》是由彼得·法拉利执导，维果·莫特森、马赫沙拉·阿里主演的剧情片，于2018年9月11日在多伦多国际电影节首映；2019年3月1日在中国内地上映。</p><p>该片改编自真人真事，讲述了保镖托尼被聘用为世界上优秀的爵士钢琴家唐开车。钢琴家将从纽约开始举办巡回演奏，俩人之间一段跨越种族、阶级的友谊的故事。</p><h3 id="剧情"><a href="#剧情" class="headerlink" title="剧情"></a>剧情</h3><p>托尼由于夜总会关门装修，也亟需一份工作。有个朋友建议他去参加一位音乐博士为了寻找司机所举办的面试。当他到达豪华公寓后，发现这位博士是个名叫唐的黑人古典乐钢琴家，钢琴家正需要一个司机，负责在他举办南方巡演时的接送工作。</p><p><img src="https://wangxs020202.gitee.io/images/me/green1.png" alt="move"></p><p>当然，两人心里都十分清楚，在二十世纪六十年代种族隔离严重的南部地区，他们很容易身陷麻烦之中，但托尼需要钱，而唐需要一个能照顾他的专业司机。给托尼付钱的唱片公司给了他一本“绿皮书”指南，上面列着当地黑人可以吃饭睡觉的地方，因为很多旅馆和餐厅都是只限白人。</p><p>顺便送上1080p片源，请使用迅雷下载(复制打开迅雷即可)</p><p>magnet:?xt=urn:btih:EE565D3FC1721A9DF468CC6DC4A3467CBF6EE54B</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 新剧 · 电影 </category>
-          
-      </categories>
-      
       
     </entry>
     
@@ -759,11 +759,11 @@
     
     
     <entry>
-      <title>redis优化</title>
-      <link href="/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/"/>
-      <url>/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/</url>
+      <title>redis雪崩，击穿，穿透</title>
+      <link href="/2020/05/23/Note/redis%E9%9B%AA%E5%B4%A9%EF%BC%8C%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%A9%BF%E9%80%8F/"/>
+      <url>/2020/05/23/Note/redis%E9%9B%AA%E5%B4%A9%EF%BC%8C%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%A9%BF%E9%80%8F/</url>
       
-        <content type="html"><![CDATA[<p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a><strong>数据持久化</strong></h3><p><a href="https://www.sirxs.cn/2020/05/21/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/">数据持久化</a></p><h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a><strong>内存优化</strong></h3><p>设置<em>maxmemory</em>。设置Redis使用的最大物理内存，即Redis在占用<em>maxmemory</em>大小的内存之后就开始拒绝后续的写入请求，该参数可以确保Redis因为使用了大量内存严重影响速度或者发生<em>OOM</em>。此外，可以使用<code>info</code>命令查看Redis占用的内存及其它信息。</p><p>让键名保持简短。键的长度越长，<code>Redis</code>需要存储的数据也就越多</p><p>使用短结构。主要Redis的<em>list</em>、<em>hash</em>、<em>set</em>、<em>zset</em>这四种数据结构的存储优化。在<em>Redis3.2</em>之前，如果列表、散列或者有序集合的长度或者体积较小，<em>Redis</em>会选择一种名为<em>ziplist</em>的数据结构来存储它们。该结构是列表、散列和有序集合三种不同类型的对象的一种非结构化表示，与Redis在通常情况下使用双向链表来表示列表、使用散列表示散列、使用散列加跳跃表表示有序集合相比，它更加紧凑，避免了存储额外的指针和元数据（比如字符串值的剩余可用空间和结束符”\0”）。但是压缩列表需要在存储的时候进行序列化，读取的时候进行反序列化。以散列为例，在<code>redis.conf</code>中，可以进行如下设置</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hash-max-ziplist-entries <span class="number">512</span></span><br><span class="line">hash-max-ziplist-value <span class="number">64</span></span><br></pre></td></tr></table></figure><h3 id="拓展读写能力"><a href="#拓展读写能力" class="headerlink" title="拓展读写能力"></a><strong>拓展读写能力</strong></h3><p>扩展读性能。在<code>redis.conf</code>中添加<code>slaveof host port</code>即可将其配置为另一台Redis服务器的从服务器。注意，在从服务器连接主服务器的时候，从服务器之前的数据会被清空。可以用这种方式建立从服务器树，扩展其读能力。但这种方式并未做故障转移，高可用Redis部署方案可以参考<a href="https://www.jianshu.com/p/afb678794a0e" target="_blank" rel="noopener">Redis Sentinel</a>,<a href="https://link.jianshu.com?t=http%3A%2F%2Fredis.io%2Ftopics%2Fcluster-tutorial" target="_blank" rel="noopener">Redis Cluster</a>和<a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2FCodisLabs%2Fcodis" target="_blank" rel="noopener">Codis</a>。</p><p>扩展写性能。(1)使用集群分片技术，比如Redis Cluster;(2)单机上运行多个Redis实例。由于Redis是单线程设计，在涉及到cpu bound的操作的时候，可能速度会大大降低。如果服务器的cpu、io资源充足，可以在同一台机器上运行多个Redis服务器。</p><h3 id="应用程序优化"><a href="#应用程序优化" class="headerlink" title="应用程序优化"></a><strong>应用程序优化</strong></h3><p>应用程序优化部分主要是客户端和Redis交互的一些建议。主要思想是<strong>尽可能减少操作Redis往返的通信次数</strong>。</p><p>Redis提供了<em>Slow Log</em>功能，可以自动记录耗时较长的命令，<code>redis.conf</code>中的配置如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#执行时间慢于10000毫秒的命令计入Slow Log</span></span><br><span class="line">slowlog-log-slower-than <span class="number">10000</span>  </span><br><span class="line"><span class="comment">#最大纪录多少条Slow Log</span></span><br><span class="line">slowlog-max-len <span class="number">128</span></span><br></pre></td></tr></table></figure><p>使用<code>SLOWLOG GET n</code>命令，可以输出最近n条慢查询日志。使用<code>SLOWLOG RESET</code>命令，可以重置<em>Slow Log</em>。</p>]]></content>
+        <content type="html"><![CDATA[<p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>对于系统 A，假设每天高峰期每秒 5000 个请求，本来缓存在高峰期可以扛住每秒 4000 个请求，但是缓存机器意外发生了全盘宕机。缓存挂了，此时 1 秒 5000 个请求全部落数据库，数据库必然扛不住，它会报一下警，然后就挂了。此时，如果没有采用什么特别的方案来处理这个故障，DBA 很着急，重启数据库，但是数据库立马又被新的流量给打死了。</p><p>(</p><p>1、缓存中大批量热点数据过期后系统涌入大量查询请求</p><p>2、因为大部分数据在Redis层已经失效，请求渗透到数据库层</p><p>3、大批量请求犹如洪水一般涌入，引起数据库压力造成查询堵塞甚至宕机。</p><p>)</p><p><img src="https://wangxs020202.gitee.io/images/me/xuebeng.jpg" alt="img"></p><p>缓存雪崩的事前事中事后的解决方案如下。</p><ul><li>事前：redis 高可用，主从+哨兵，redis cluster，避免全盘崩溃。</li><li>事中：本地 ehcache 缓存 + hystrix 限流&amp;降级，避免 MySQL 被打死。</li><li>事后：redis 持久化，一旦重启，自动从磁盘上加载数据，快速恢复缓存数据。</li></ul><p>(</p><p>1、事前：redis 高可用，主从+哨兵，redis cluster，避免全盘崩溃</p><p>2、事中：本地 ehcache 缓存 + hystrix 限流&amp;降级，避免 MySQL 被打死。</p><p>3、事后：redis 持久化，一旦重启，自动从磁盘上加载数据，快速恢复缓存数据。</p><p>4、用户发送一个请求，系统 A 收到请求后，先查本地 ehcache 缓存，如果没查到再查 redis。如果 ehcache 和 redis 都没有，再查数据库，将数据库中的结果，写入 ehcache 和 redis 中。</p><p>5、 限流组件，可以设置每秒的请求，有多少能通过组件，剩余的未通过的请求，怎么办？走降级！可以返回一些默认的值，或者友情提示，或者空白的值。这样可以保证数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。 -只要数据库不死，就是说，对用户来说，2/5 的请求都是可以被处理的。 - 只要有 2/5 的请求可以被处理，就意味着你的系统没死，对用户来说，可能就是点击几次刷不出来页面，但是多点几次，就可以刷出来一次。</p><p>)</p><p><img src="https://wangxs020202.gitee.io/images/me/xuebeng1.jpg" alt="img"></p><p>好处：</p><ul><li>数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。</li><li>只要数据库不死，就是说，对用户来说，2/5 的请求都是可以被处理的。</li><li>只要有 2/5 的请求可以被处理，就意味着你的系统没死，对用户来说，可能就是点击几次刷不出来页面，但是多点几次，就可以刷出来一次。</li></ul><p><strong>缓存穿透</strong></p><p>对于系统A，假设一秒 5000 个请求，结果其中 4000 个请求是黑客发出的恶意攻击。</p><p>黑客发出的那 4000 个攻击，缓存中查不到，每次你去数据库里查，也查不到。</p><p>举个栗子。数据库 id 是从 1 开始的，结果黑客发过来的请求 id 全部都是负数。这样的话，缓存中不会有，请求每次都“<strong>视缓存于无物</strong>”，直接查询数据库。这种恶意攻击场景的缓存穿透就会直接把数据库给打死。</p><p><img src="https://wangxs020202.gitee.io/images/me/chuantou.jpg" alt="img"></p><p>解决方式很简单。</p><p>每次系统 A 从数据库中只要没查到，就写一个空值到缓存里去，比如 <code>set -999 UNKNOWN</code>。然后设置一个过期时间，这样的话，下次有相同的 key 来访问的时候，在缓存失效之前，都可以直接从缓存中取数据。</p><p><strong>缓存击穿</strong></p><p>缓存击穿，就是说某个 key 非常热点，访问非常频繁，处于集中式高并发访问的情况，当这个 key 在失效的瞬间，大量的请求就击穿了缓存，直接请求数据库，就像是在一道屏障上凿开了一个洞。</p><p>解决方式。</p><p>1、可以将热点数据设置为永远不过期；或者基于 redis or zookeeper 实现互斥锁，等待第一个请求构建完缓存之后，再释放锁，进而其它请求才能通过该 key 访问数据。</p><p>2、有很多种方法可以有效地解决缓存穿透问题，最常见的则是采用布隆过滤器，将所有可能存在的数据哈希到一个足够大的bitmap中，一个一定不存在的数据会被这个bitmap拦截掉，从而避免了对底层存储系统的查询压力。</p><p>3、另外也有一个更为简单粗暴的方法，如果一个查询返回的数据为空（不管是数据不存在，还是系统故障），我们仍然把这个空结果进行缓存，但它的过期时间会很短，最长不超过五分钟。</p>]]></content>
       
       
       <categories>
@@ -809,11 +809,36 @@
     
     
     <entry>
-      <title>redis雪崩，击穿，穿透</title>
-      <link href="/2020/05/23/Note/redis%E9%9B%AA%E5%B4%A9%EF%BC%8C%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%A9%BF%E9%80%8F/"/>
-      <url>/2020/05/23/Note/redis%E9%9B%AA%E5%B4%A9%EF%BC%8C%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%A9%BF%E9%80%8F/</url>
+      <title>redis优化</title>
+      <link href="/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/"/>
+      <url>/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/</url>
       
-        <content type="html"><![CDATA[<p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>对于系统 A，假设每天高峰期每秒 5000 个请求，本来缓存在高峰期可以扛住每秒 4000 个请求，但是缓存机器意外发生了全盘宕机。缓存挂了，此时 1 秒 5000 个请求全部落数据库，数据库必然扛不住，它会报一下警，然后就挂了。此时，如果没有采用什么特别的方案来处理这个故障，DBA 很着急，重启数据库，但是数据库立马又被新的流量给打死了。</p><p>(</p><p>1、缓存中大批量热点数据过期后系统涌入大量查询请求</p><p>2、因为大部分数据在Redis层已经失效，请求渗透到数据库层</p><p>3、大批量请求犹如洪水一般涌入，引起数据库压力造成查询堵塞甚至宕机。</p><p>)</p><p><img src="https://wangxs020202.gitee.io/images/me/xuebeng.jpg" alt="img"></p><p>缓存雪崩的事前事中事后的解决方案如下。</p><ul><li>事前：redis 高可用，主从+哨兵，redis cluster，避免全盘崩溃。</li><li>事中：本地 ehcache 缓存 + hystrix 限流&amp;降级，避免 MySQL 被打死。</li><li>事后：redis 持久化，一旦重启，自动从磁盘上加载数据，快速恢复缓存数据。</li></ul><p>(</p><p>1、事前：redis 高可用，主从+哨兵，redis cluster，避免全盘崩溃</p><p>2、事中：本地 ehcache 缓存 + hystrix 限流&amp;降级，避免 MySQL 被打死。</p><p>3、事后：redis 持久化，一旦重启，自动从磁盘上加载数据，快速恢复缓存数据。</p><p>4、用户发送一个请求，系统 A 收到请求后，先查本地 ehcache 缓存，如果没查到再查 redis。如果 ehcache 和 redis 都没有，再查数据库，将数据库中的结果，写入 ehcache 和 redis 中。</p><p>5、 限流组件，可以设置每秒的请求，有多少能通过组件，剩余的未通过的请求，怎么办？走降级！可以返回一些默认的值，或者友情提示，或者空白的值。这样可以保证数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。 -只要数据库不死，就是说，对用户来说，2/5 的请求都是可以被处理的。 - 只要有 2/5 的请求可以被处理，就意味着你的系统没死，对用户来说，可能就是点击几次刷不出来页面，但是多点几次，就可以刷出来一次。</p><p>)</p><p><img src="https://wangxs020202.gitee.io/images/me/xuebeng1.jpg" alt="img"></p><p>好处：</p><ul><li>数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。</li><li>只要数据库不死，就是说，对用户来说，2/5 的请求都是可以被处理的。</li><li>只要有 2/5 的请求可以被处理，就意味着你的系统没死，对用户来说，可能就是点击几次刷不出来页面，但是多点几次，就可以刷出来一次。</li></ul><p><strong>缓存穿透</strong></p><p>对于系统A，假设一秒 5000 个请求，结果其中 4000 个请求是黑客发出的恶意攻击。</p><p>黑客发出的那 4000 个攻击，缓存中查不到，每次你去数据库里查，也查不到。</p><p>举个栗子。数据库 id 是从 1 开始的，结果黑客发过来的请求 id 全部都是负数。这样的话，缓存中不会有，请求每次都“<strong>视缓存于无物</strong>”，直接查询数据库。这种恶意攻击场景的缓存穿透就会直接把数据库给打死。</p><p><img src="https://wangxs020202.gitee.io/images/me/chuantou.jpg" alt="img"></p><p>解决方式很简单。</p><p>每次系统 A 从数据库中只要没查到，就写一个空值到缓存里去，比如 <code>set -999 UNKNOWN</code>。然后设置一个过期时间，这样的话，下次有相同的 key 来访问的时候，在缓存失效之前，都可以直接从缓存中取数据。</p><p><strong>缓存击穿</strong></p><p>缓存击穿，就是说某个 key 非常热点，访问非常频繁，处于集中式高并发访问的情况，当这个 key 在失效的瞬间，大量的请求就击穿了缓存，直接请求数据库，就像是在一道屏障上凿开了一个洞。</p><p>解决方式。</p><p>1、可以将热点数据设置为永远不过期；或者基于 redis or zookeeper 实现互斥锁，等待第一个请求构建完缓存之后，再释放锁，进而其它请求才能通过该 key 访问数据。</p><p>2、有很多种方法可以有效地解决缓存穿透问题，最常见的则是采用布隆过滤器，将所有可能存在的数据哈希到一个足够大的bitmap中，一个一定不存在的数据会被这个bitmap拦截掉，从而避免了对底层存储系统的查询压力。</p><p>3、另外也有一个更为简单粗暴的方法，如果一个查询返回的数据为空（不管是数据不存在，还是系统故障），我们仍然把这个空结果进行缓存，但它的过期时间会很短，最长不超过五分钟。</p>]]></content>
+        <content type="html"><![CDATA[<p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a><strong>数据持久化</strong></h3><p><a href="https://www.sirxs.cn/2020/05/21/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/">数据持久化</a></p><h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a><strong>内存优化</strong></h3><p>设置<em>maxmemory</em>。设置Redis使用的最大物理内存，即Redis在占用<em>maxmemory</em>大小的内存之后就开始拒绝后续的写入请求，该参数可以确保Redis因为使用了大量内存严重影响速度或者发生<em>OOM</em>。此外，可以使用<code>info</code>命令查看Redis占用的内存及其它信息。</p><p>让键名保持简短。键的长度越长，<code>Redis</code>需要存储的数据也就越多</p><p>使用短结构。主要Redis的<em>list</em>、<em>hash</em>、<em>set</em>、<em>zset</em>这四种数据结构的存储优化。在<em>Redis3.2</em>之前，如果列表、散列或者有序集合的长度或者体积较小，<em>Redis</em>会选择一种名为<em>ziplist</em>的数据结构来存储它们。该结构是列表、散列和有序集合三种不同类型的对象的一种非结构化表示，与Redis在通常情况下使用双向链表来表示列表、使用散列表示散列、使用散列加跳跃表表示有序集合相比，它更加紧凑，避免了存储额外的指针和元数据（比如字符串值的剩余可用空间和结束符”\0”）。但是压缩列表需要在存储的时候进行序列化，读取的时候进行反序列化。以散列为例，在<code>redis.conf</code>中，可以进行如下设置</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hash-max-ziplist-entries <span class="number">512</span></span><br><span class="line">hash-max-ziplist-value <span class="number">64</span></span><br></pre></td></tr></table></figure><h3 id="拓展读写能力"><a href="#拓展读写能力" class="headerlink" title="拓展读写能力"></a><strong>拓展读写能力</strong></h3><p>扩展读性能。在<code>redis.conf</code>中添加<code>slaveof host port</code>即可将其配置为另一台Redis服务器的从服务器。注意，在从服务器连接主服务器的时候，从服务器之前的数据会被清空。可以用这种方式建立从服务器树，扩展其读能力。但这种方式并未做故障转移，高可用Redis部署方案可以参考<a href="https://www.jianshu.com/p/afb678794a0e" target="_blank" rel="noopener">Redis Sentinel</a>,<a href="https://link.jianshu.com?t=http%3A%2F%2Fredis.io%2Ftopics%2Fcluster-tutorial" target="_blank" rel="noopener">Redis Cluster</a>和<a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2FCodisLabs%2Fcodis" target="_blank" rel="noopener">Codis</a>。</p><p>扩展写性能。(1)使用集群分片技术，比如Redis Cluster;(2)单机上运行多个Redis实例。由于Redis是单线程设计，在涉及到cpu bound的操作的时候，可能速度会大大降低。如果服务器的cpu、io资源充足，可以在同一台机器上运行多个Redis服务器。</p><h3 id="应用程序优化"><a href="#应用程序优化" class="headerlink" title="应用程序优化"></a><strong>应用程序优化</strong></h3><p>应用程序优化部分主要是客户端和Redis交互的一些建议。主要思想是<strong>尽可能减少操作Redis往返的通信次数</strong>。</p><p>Redis提供了<em>Slow Log</em>功能，可以自动记录耗时较长的命令，<code>redis.conf</code>中的配置如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#执行时间慢于10000毫秒的命令计入Slow Log</span></span><br><span class="line">slowlog-log-slower-than <span class="number">10000</span>  </span><br><span class="line"><span class="comment">#最大纪录多少条Slow Log</span></span><br><span class="line">slowlog-max-len <span class="number">128</span></span><br></pre></td></tr></table></figure><p>使用<code>SLOWLOG GET n</code>命令，可以输出最近n条慢查询日志。使用<code>SLOWLOG RESET</code>命令，可以重置<em>Slow Log</em>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>redis数据淘汰机制</title>
+      <link href="/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/"/>
+      <url>/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/</url>
+      
+        <content type="html"><![CDATA[<p>书痴者文必工，艺痴者技必良。——蒲松龄 </p><hr><h1 id="Redis-内存淘汰机制"><a href="#Redis-内存淘汰机制" class="headerlink" title="Redis 内存淘汰机制"></a>Redis 内存淘汰机制</h1><h3 id="一、五种数据淘汰机制的具体实现"><a href="#一、五种数据淘汰机制的具体实现" class="headerlink" title="一、五种数据淘汰机制的具体实现"></a><strong>一、五种数据淘汰机制的具体实现</strong></h3><ul><li>volatile-lru：使用LRU算法进行数据淘汰（淘汰上次使用时间最早的，且使用次数最少的key），只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li><li>allkeys-lru：使用LRU算法进行数据淘汰，所有的key都可以被淘汰，从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰</li><li>volatile-random：随机淘汰数据，只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li><li>allkeys-random：随机淘汰数据，所有的key都可以被淘汰，从数据集（server.db[i].dict）中任意选择数据淘汰</li><li>volatile-ttl：淘汰剩余有效期最短的key，从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li><li></li></ul><h3 id="二、设置redis的最大存储空间"><a href="#二、设置redis的最大存储空间" class="headerlink" title="二、设置redis的最大存储空间"></a><strong>二、设置redis的最大存储空间</strong></h3><p>内存的淘汰机制的初衷是为了更好地使用内存，用一定的缓存miss来换取内存的使用效率。</p><p><strong>首先要配置maxmemory值</strong></p><p>1.客户端发起了需要申请更多内存的命令（如set）。</p><p>2.Redis检查内存使用情况，如果已使用的内存大于maxmemory则开始根据用户配置的不同淘汰策略来淘汰内存（key），从而换取一定的内存。</p><p>3.如果上面都没问题，则这个命令执行成功。</p><p>maxmemory为0的时候表示我们对Redis的内存使用没有限制。</p><p>配置方法：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxmemory-policy volatile-lru   <span class="comment">#默认是noeviction，即不进行数据淘汰</span></span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -853,31 +878,6 @@
     
     
     <entry>
-      <title>redis数据淘汰机制</title>
-      <link href="/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/"/>
-      <url>/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/</url>
-      
-        <content type="html"><![CDATA[<p>书痴者文必工，艺痴者技必良。——蒲松龄 </p><hr><h1 id="Redis-内存淘汰机制"><a href="#Redis-内存淘汰机制" class="headerlink" title="Redis 内存淘汰机制"></a>Redis 内存淘汰机制</h1><h3 id="一、五种数据淘汰机制的具体实现"><a href="#一、五种数据淘汰机制的具体实现" class="headerlink" title="一、五种数据淘汰机制的具体实现"></a><strong>一、五种数据淘汰机制的具体实现</strong></h3><ul><li>volatile-lru：使用LRU算法进行数据淘汰（淘汰上次使用时间最早的，且使用次数最少的key），只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li><li>allkeys-lru：使用LRU算法进行数据淘汰，所有的key都可以被淘汰，从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰</li><li>volatile-random：随机淘汰数据，只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li><li>allkeys-random：随机淘汰数据，所有的key都可以被淘汰，从数据集（server.db[i].dict）中任意选择数据淘汰</li><li>volatile-ttl：淘汰剩余有效期最短的key，从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li><li></li></ul><h3 id="二、设置redis的最大存储空间"><a href="#二、设置redis的最大存储空间" class="headerlink" title="二、设置redis的最大存储空间"></a><strong>二、设置redis的最大存储空间</strong></h3><p>内存的淘汰机制的初衷是为了更好地使用内存，用一定的缓存miss来换取内存的使用效率。</p><p><strong>首先要配置maxmemory值</strong></p><p>1.客户端发起了需要申请更多内存的命令（如set）。</p><p>2.Redis检查内存使用情况，如果已使用的内存大于maxmemory则开始根据用户配置的不同淘汰策略来淘汰内存（key），从而换取一定的内存。</p><p>3.如果上面都没问题，则这个命令执行成功。</p><p>maxmemory为0的时候表示我们对Redis的内存使用没有限制。</p><p>配置方法：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxmemory-policy volatile-lru   <span class="comment">#默认是noeviction，即不进行数据淘汰</span></span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Redis五大数据类型</title>
       <link href="/2020/05/21/Note/redis/"/>
       <url>/2020/05/21/Note/redis/</url>
@@ -895,31 +895,6 @@
         <tags>
             
             <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>逆地理编码</title>
-      <link href="/2020/05/19/Blog/1/"/>
-      <url>/2020/05/19/Blog/1/</url>
-      
-        <content type="html"><![CDATA[<h3 id="根据经纬度获取地理位置（逆地理编码）"><a href="#根据经纬度获取地理位置（逆地理编码）" class="headerlink" title="根据经纬度获取地理位置（逆地理编码）"></a>根据经纬度获取地理位置（逆地理编码）</h3><h4 id="获取高德key"><a href="#获取高德key" class="headerlink" title="获取高德key"></a>获取高德key</h4><table><thead><tr><th>url</th><th><a href="https://restapi.amap.com/v3/geocode/regeo?parameters" target="_blank" rel="noopener">https://restapi.amap.com/v3/geocode/regeo?parameters</a></th></tr></thead><tbody><tr><td>请求方式</td><td>GET</td></tr></tbody></table><h4 id="通过key与经纬度来获取地理位置"><a href="#通过key与经纬度来获取地理位置" class="headerlink" title="通过key与经纬度来获取地理位置"></a>通过key与经纬度来获取地理位置</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#run"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          $.<span class="keyword">get</span>(&#123;</span><br><span class="line">              url: <span class="string">"https://restapi.amap.com/v3/place/around"</span>,</span><br><span class="line">              dataType: <span class="string">"json"</span>,</span><br><span class="line">              data: &#123;<span class="attr">key</span>:<span class="string">"04c0e3f51ca3ef8a45ec00ac9e57150c"</span>,<span class="attr">location</span>:<span class="string">"120.045846,30.231004"</span>,<span class="attr">radius</span>:<span class="number">100</span>,<span class="attr">types</span>:<span class="string">"190000"</span>,<span class="attr">extensions</span>:<span class="string">"all"</span>&#125;,</span><br><span class="line">              success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                  <span class="built_in">console</span>.log(data);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 · 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Vue </tag>
             
         </tags>
       
@@ -953,6 +928,31 @@
     
     
     <entry>
+      <title>逆地理编码</title>
+      <link href="/2020/05/19/Blog/1/"/>
+      <url>/2020/05/19/Blog/1/</url>
+      
+        <content type="html"><![CDATA[<h3 id="根据经纬度获取地理位置（逆地理编码）"><a href="#根据经纬度获取地理位置（逆地理编码）" class="headerlink" title="根据经纬度获取地理位置（逆地理编码）"></a>根据经纬度获取地理位置（逆地理编码）</h3><h4 id="获取高德key"><a href="#获取高德key" class="headerlink" title="获取高德key"></a>获取高德key</h4><table><thead><tr><th>url</th><th><a href="https://restapi.amap.com/v3/geocode/regeo?parameters" target="_blank" rel="noopener">https://restapi.amap.com/v3/geocode/regeo?parameters</a></th></tr></thead><tbody><tr><td>请求方式</td><td>GET</td></tr></tbody></table><h4 id="通过key与经纬度来获取地理位置"><a href="#通过key与经纬度来获取地理位置" class="headerlink" title="通过key与经纬度来获取地理位置"></a>通过key与经纬度来获取地理位置</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#run"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          $.<span class="keyword">get</span>(&#123;</span><br><span class="line">              url: <span class="string">"https://restapi.amap.com/v3/place/around"</span>,</span><br><span class="line">              dataType: <span class="string">"json"</span>,</span><br><span class="line">              data: &#123;<span class="attr">key</span>:<span class="string">"04c0e3f51ca3ef8a45ec00ac9e57150c"</span>,<span class="attr">location</span>:<span class="string">"120.045846,30.231004"</span>,<span class="attr">radius</span>:<span class="number">100</span>,<span class="attr">types</span>:<span class="string">"190000"</span>,<span class="attr">extensions</span>:<span class="string">"all"</span>&#125;,</span><br><span class="line">              success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                  <span class="built_in">console</span>.log(data);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">      &#125;)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 · 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>RBAC权限管理</title>
       <link href="/2020/05/18/Note/RBAC%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/"/>
       <url>/2020/05/18/Note/RBAC%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/</url>
@@ -969,9 +969,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -1015,9 +1015,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -1173,9 +1173,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -1497,31 +1497,6 @@
     
     
     <entry>
-      <title>字典之keys()、values()和 items()方法</title>
-      <link href="/2020/04/08/Blog/six/"/>
-      <url>/2020/04/08/Blog/six/</url>
-      
-        <content type="html"><![CDATA[<h2 id="字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys-、values-和item-。"><a href="#字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys-、values-和item-。" class="headerlink" title="字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys()、values()和item()。"></a>字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys()、values()和item()。</h2><h2 id="这些方法返回的值不是真正的列表，它们不能被修改，没有append-方法。但这些数据类型可以用于for循环。"><a href="#这些方法返回的值不是真正的列表，它们不能被修改，没有append-方法。但这些数据类型可以用于for循环。" class="headerlink" title="这些方法返回的值不是真正的列表，它们不能被修改，没有append()方法。但这些数据类型可以用于for循环。"></a>这些方法返回的值不是真正的列表，它们不能被修改，没有append()方法。但这些数据类型可以用于for循环。</h2><p>values()方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item in spam.values(): </span><br><span class="line"></span><br><span class="line">    print(item)  # red 18  取的是值</span><br></pre></td></tr></table></figure><p>keys()方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item2 in spam.keys():    </span><br><span class="line"></span><br><span class="line">    print(item2)  # color age  取的时键</span><br></pre></td></tr></table></figure><p>items()方法 这个方法最特别</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">单个参数</span><br><span class="line"></span><br><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item1 in spam.items():</span><br><span class="line">    print(item1)  # (&#39;color&#39;, &#39;red&#39;)(&#39;age&#39;, 18) items 元组的形式  取出键 值对</span><br><span class="line">    </span><br><span class="line">两个参数</span><br><span class="line"></span><br><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for k,v in spam.items():   </span><br><span class="line"></span><br><span class="line">    print(k,v)   # color red age 18   若有两个参数则将key 与 value 单独去取</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 · 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Docker镜像安装与启动</title>
       <link href="/2020/04/08/Note/docker%E9%95%9C%E5%83%8F/"/>
       <url>/2020/04/08/Note/docker%E9%95%9C%E5%83%8F/</url>
@@ -1539,6 +1514,31 @@
         <tags>
             
             <tag> Vue </tag>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>字典之keys()、values()和 items()方法</title>
+      <link href="/2020/04/08/Blog/six/"/>
+      <url>/2020/04/08/Blog/six/</url>
+      
+        <content type="html"><![CDATA[<h2 id="字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys-、values-和item-。"><a href="#字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys-、values-和item-。" class="headerlink" title="字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys()、values()和item()。"></a>字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys()、values()和item()。</h2><h2 id="这些方法返回的值不是真正的列表，它们不能被修改，没有append-方法。但这些数据类型可以用于for循环。"><a href="#这些方法返回的值不是真正的列表，它们不能被修改，没有append-方法。但这些数据类型可以用于for循环。" class="headerlink" title="这些方法返回的值不是真正的列表，它们不能被修改，没有append()方法。但这些数据类型可以用于for循环。"></a>这些方法返回的值不是真正的列表，它们不能被修改，没有append()方法。但这些数据类型可以用于for循环。</h2><p>values()方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item in spam.values(): </span><br><span class="line"></span><br><span class="line">    print(item)  # red 18  取的是值</span><br></pre></td></tr></table></figure><p>keys()方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item2 in spam.keys():    </span><br><span class="line"></span><br><span class="line">    print(item2)  # color age  取的时键</span><br></pre></td></tr></table></figure><p>items()方法 这个方法最特别</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">单个参数</span><br><span class="line"></span><br><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item1 in spam.items():</span><br><span class="line">    print(item1)  # (&#39;color&#39;, &#39;red&#39;)(&#39;age&#39;, 18) items 元组的形式  取出键 值对</span><br><span class="line">    </span><br><span class="line">两个参数</span><br><span class="line"></span><br><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for k,v in spam.items():   </span><br><span class="line"></span><br><span class="line">    print(k,v)   # color red age 18   若有两个参数则将key 与 value 单独去取</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 · 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
             
             <tag> Python </tag>
             
