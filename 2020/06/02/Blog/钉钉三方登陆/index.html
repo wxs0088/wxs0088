@@ -103,23 +103,23 @@ if (autoChangeMode === '1') {
 <ol start="2">
 <li>登陆成功，进入<code>应用开发</code></li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/ding1.png" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/ding1.png" alt="gitee"></p>
 <ol start="3">
 <li>找到<code>移动接入应用</code>，进入<code>登陆</code></li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/ding2.png" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/ding2.png" alt="gitee"></p>
 <ol start="4">
 <li><code>创建扫码登录应用授权</code></li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/ding3.png" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/ding3.png" alt="gitee"></p>
 <ol start="5">
 <li><code>LOGO地址</code>就是你钉钉三方登陆的图片地址。<code>回调域名</code>可以自己设置</li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/ding4.png" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/ding4.png" alt="gitee"></p>
 <ol start="6">
 <li>创建成功之后，会给你专属<code>APPID</code>,<code>APPKEY</code></li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/ding5.png" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/ding5.png" alt="gitee"></p>
 <h3 id="代码接入"><a href="#代码接入" class="headerlink" title="代码接入"></a>代码接入</h3><ol>
 <li><p>Vue</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">函数名()&#123;</span><br><span class="line">        var appid &#x3D; &#39;APPID&#39;</span><br><span class="line">    	var redirect_uri &#x3D; &#39;钉钉回调地址&#39;</span><br><span class="line">    	&#x2F;&#x2F; 构成url</span><br><span class="line">		var url &#x3D; &#39;https:&#x2F;&#x2F;oapi.dingtalk.com&#x2F;connect&#x2F;qrconnect?appid&#x3D;&#39;+appid+&#39;&amp;response_type&#x3D;code&amp;scope&#x3D;snsapi_login&amp;state&#x3D;STATE&amp;redirect_uri&#x3D;&#39;+redirect_uri</span><br><span class="line">		&#x2F;&#x2F; 跳转</span><br><span class="line">		window.location.href &#x3D; url;</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure>

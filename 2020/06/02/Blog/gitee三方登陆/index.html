@@ -103,23 +103,23 @@ if (autoChangeMode === '1') {
 <li><p>创建完成之后点击<code>个人头像</code>，找到<code>设置</code></p>
 </li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee1.png" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/gitee1.png" alt="gitee"></p>
 <ol start="3">
 <li>在<code>设置</code>里找到<code>第三方应用</code></li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee2.jpg" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/gitee2.jpg" alt="gitee"></p>
 <ol start="4">
 <li>点击<code>创建应用</code></li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee3.png" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/gitee3.png" alt="gitee"></p>
 <ol start="5">
 <li><code>应用名称</code>，<code>应用描述</code>，<code>应用主页</code>，<code>回调地址</code>根据自己定义修改</li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee6.png" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/gitee6.png" alt="gitee"></p>
 <ol start="6">
 <li>创建完毕之后，会给你<code>APPID</code>与<code>APPkey</code>，这两样要记住</li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee7.png" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/gitee7.png" alt="gitee"></p>
 <ol start="7">
 <li>之后的路程可以参照<a href="https://gitee.com/api/v5/oauth_doc#/" target="_blank" rel="noopener">Gitee开发文档</a></li>
 </ol>
@@ -138,11 +138,11 @@ if (autoChangeMode === '1') {
 <li><p>在获取到<code>access_token</code>之后，我们来获取Gitee的授权用户名，进入<a href="https://gitee.com/api/v5/oauth_doc#/" target="_blank" rel="noopener">Gitee开发文档</a>，点击<code>API文档</code></p>
 </li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee4.png" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/gitee4.png" alt="gitee"></p>
 <ol start="4">
 <li>找到<code>获取授权用户的资料</code>并打开，点击右上角<code>申请授权</code>，就可以获取到授权用户的用户名了</li>
 </ol>
-<p>   <img src="https://wangxs020202.gitee.io/images/note/gitee5.png" alt="gitee"></p>
+<p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/gitee5.png" alt="gitee"></p>
 <ol start="5">
 <li><p>代码获取(将上面获取到的access_token传入url)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">res_token = requests.get(<span class="string">"https://gitee.com/api/v5/user?access_token="</span>+access_token)</span><br><span class="line">    res_token_dict = json.loads(res_token.text)</span><br><span class="line">    name = res_token_dict[<span class="string">'name'</span>]</span><br></pre></td></tr></table></figure>
@@ -154,7 +154,7 @@ if (autoChangeMode === '1') {
 <p>实际上，大多数网站提供的第三方登录都遵循OAuth协议，虽然大多数网站的细节处理都是不一致的，甚至会基于OAuth协议进行扩展，但大体上其流程是一定的。今天，我们就来看看基于OAuth2的第三方登陆功能是这样一个流程。</p>
 <p><strong>OAuth2.0的基本流程</strong></p>
 <p>OAuth协议目前已经升级到了2.0，大部分的网站也是支持OAuth2.0的，因此让我们先看看OAuth2。</p>
-<p><img src="https://pic2.zhimg.com/80/5e27c9064ca22c7e54a1d395d679f8b5_720w.jpg" alt="oau"></p>
+<p><img src= "/img/loading.gif" data-src="https://pic2.zhimg.com/80/5e27c9064ca22c7e54a1d395d679f8b5_720w.jpg" alt="oau"></p>
 <p>上图中所涉及到的对象分别为：</p>
 <ul>
 <li>Client 第三方应用，我们的应用就是一个Client</li>
