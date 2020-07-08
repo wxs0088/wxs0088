@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Vue </tag>
             
             <tag> Flask </tag>
             
@@ -74,11 +74,11 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Django </tag>
             
             <tag> Python </tag>
+            
+            <tag> Vue </tag>
             
         </tags>
       
@@ -155,11 +155,11 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Django </tag>
             
             <tag> Python </tag>
+            
+            <tag> Vue </tag>
             
         </tags>
       
@@ -211,11 +211,11 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Django </tag>
             
             <tag> Python </tag>
+            
+            <tag> Vue </tag>
             
         </tags>
       
@@ -240,13 +240,32 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Django </tag>
             
             <tag> Python </tag>
             
+            <tag> Vue </tag>
+            
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>个人微信公众号申请以及添加机器人</title>
+      <link href="/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
+      <url>/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="开场"><a href="#开场" class="headerlink" title="开场"></a>开场</h3><p>微信（<a href="https://baike.baidu.com/item/WeChat" target="_blank" rel="noopener">WeChat</a>）是<a href="https://baike.baidu.com/item/腾讯公司" target="_blank" rel="noopener">腾讯公司</a>于2011年1月21日推出的一个为<a href="https://baike.baidu.com/item/智能终端" target="_blank" rel="noopener">智能终端</a>提供<a href="https://baike.baidu.com/item/即时通讯/111144" target="_blank" rel="noopener">即时通讯</a>服务的免费<a href="https://baike.baidu.com/item/应用程序" target="_blank" rel="noopener">应用程序</a> ，由<a href="https://baike.baidu.com/item/张小龙/24795" target="_blank" rel="noopener">张小龙</a>所带领的腾讯<a href="https://baike.baidu.com/item/广州/72101" target="_blank" rel="noopener">广州</a>研发中心产品团队打造 。微信支持跨通信<a href="https://baike.baidu.com/item/运营商/4530550" target="_blank" rel="noopener">运营商</a>、跨<a href="https://baike.baidu.com/item/操作系统/192" target="_blank" rel="noopener">操作系统</a>平台通过网络快速发送免费（需消耗少量网络流量）<a href="https://baike.baidu.com/item/语音短信/8430295" target="_blank" rel="noopener">语音短信</a>、<a href="https://baike.baidu.com/item/视频/321962" target="_blank" rel="noopener">视频</a>、<a href="https://baike.baidu.com/item/图片/372416" target="_blank" rel="noopener">图片</a>和文字，同时，也可以使用通过共享<a href="https://baike.baidu.com/item/流媒体/98740" target="_blank" rel="noopener">流媒体</a>内容的资料和基于位置的社交插件“<a href="https://baike.baidu.com/item/摇一摇/14079911" target="_blank" rel="noopener">摇一摇</a>”、“<a href="https://baike.baidu.com/item/漂流瓶/5706027" target="_blank" rel="noopener">漂流瓶</a>”、“<a href="https://baike.baidu.com/item/朋友圈/17341022" target="_blank" rel="noopener">朋友圈</a>”、”<a href="https://baike.baidu.com/item/公众平台/3274590" target="_blank" rel="noopener">公众平台</a>“、”<a href="https://baike.baidu.com/item/语音记事本" target="_blank" rel="noopener">语音记事本</a>“等服务插件。</p><p>微信公众平台，简称公众号。利用公众账号平台进行自媒体活动，简单来说就是进行一对多的媒体性行为活动，如商家通过申请公众微信服务号通过二次开发展示商家微官网、微会员、微推送、<a href="https://baike.baidu.com/item/微支付/10360089" target="_blank" rel="noopener">微支付</a>、微活动、微报名、微分享、<a href="https://baike.baidu.com/item/微名片/9824840" target="_blank" rel="noopener">微名片</a>等，已经形成了一种主流的线上线下微信互动营销方式。</p><h3 id="申请微信公众号"><a href="#申请微信公众号" class="headerlink" title="申请微信公众号"></a>申请微信公众号</h3><ol><li><p>打开微信公众平台官网：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a> 右上角点击“立即注册”；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/7b4101870f94370b73d5cd6aec92f22e.jpg" alt="wechar"></p></li><li><p>选择帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/9bbe5e53e78ec43d06afc8029f805d4f.png" alt="wechar"></p></li><li><p>填写邮箱，登录您的邮箱，查看激活邮件，填写邮箱验证码激活；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/07fcbb9c84b54592a84c1e41c7427593.png" alt="wechar"></p></li></ol><p>   <img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/8adfac5a79153e3419f430e8a179a8c4.png" alt="wechar"></p><ol start="4"><li><p>了解订阅号、服务号和企业微信的区别后，选择想要的帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/e88a2daa703d10c3f65f654f9e494b4a.jpg" alt="wechar"></p></li><li><p>下图为订阅号、服务号和企业微信的在手机端展示效果</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/5fe805b2f2114cb1f4e5bc89192363a6.jpg" alt="wechar"></p></li><li><p>信息登记，选择个人类型之后，填写身份证信息</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/c6f85f4e01d0f26b8c1a3d3be8e768ad.png" alt="wechar"></p></li><li><p>填写帐号信息，包括公众号名称、功能介绍，选择运营地区</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/d64f5ba1ae908f4d918fd9ddc948b642.png" alt="wechar"></p></li><li><p>恭喜注册成功！可以开始使用公众号了~</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/08b8812718edff4c23e5e21dc0f8e94d.jpg" alt="wechar"></p></li></ol><h3 id="给公众号添加机器人"><a href="#给公众号添加机器人" class="headerlink" title="给公众号添加机器人"></a>给公众号添加机器人</h3><ol><li><p>打开图灵机器人官网：<a href="http://www.turingapi.com/" target="_blank" rel="noopener">http://www.turingapi.com/</a>，进行<code>注册登陆</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling1.png" alt="gitee"></p></li><li><p>进入之后，点击<code>创建机器人</code>，每个人最多免费申请五个机器人。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling2.png" alt="gitee"></p></li><li><p>填写信息</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling3.png" alt="gitee"></p></li><li><p>创建成功之后进入创建好的机器人的<code>终端设置</code>，找到<code>添加微信公众号</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling4.png" alt="gitee"></p></li><li><p>使用之前创建公众号的管理员微信扫描，授权</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling5.png" alt="gitee"></p></li><li><p>使用效果还是挺不错的</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling6.png" alt="gitee"></p></li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>使用个人公众号有什么好处：</p><ul><li><p><strong>赞赏作者</strong></p></li><li><p><strong>广告收入</strong></p><p>很多商家都需要打广告，以前他们都是在 电视、公交车打广告，现在手机是最多人使用的，微信公众号也是最多人看的，把广告打在公众号里面，可能效果会更好，因此很多商家都会找有粉丝的公众号合作，给钱在公众号上写文章，如果他们找到你，要在你公众号投放广告，广告费就非常不错了，目前广告是公众号做着变现的最主流的方式，流量就是钱，比如，目前做的比较好的咪蒙的广告费用，一篇文章就要100万元左右。</p></li><li><p><strong>电商</strong></p><p>微信最近公众号改版后，可在公众号文章直接插入商品，可通过分销产品，公众号主获得商品提成，如果你不想帮别人打广告，可以自己做电商广告，比如我卖茶叶的，我可以自己做商品，在自己公众号打广告，这种就叫做自媒体电商，如果你的粉丝足够大，电商收入肯定非常高。</p></li><li><p><strong>知识付费</strong></p><p>很多公众号主，获得了很多忠实的粉丝，他的成功经验可以做成付费课程，通过做付费课程变现也是很常见的方式，知识付费就是包括出书、线下沙龙、线上知识、付费社群等方式。</p></li><li><p><strong>卖公众号</strong></p><p>卖公众号这种一般都是批量做号的公司做的，他们都是形成了标准化运作，只有IP主号粉丝在，不断的养号做号，把粉丝聚集起来，迁移卖给别人，这种交易模式现在很成熟，一般一个十万粉丝的质量号，能够卖三十万左右，具体看号的类型和质量，总之，卖公众号也是非常赚钱的，其实本质上，就是卖粉丝，这也是非常重要的变现方式。</p></li></ul><p><strong>当然了我们可能做不到那么好，但是成功都是慢慢积累的，如果你掌握了这个技能，并且好好运营，成功也是在情理之中的。</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 · 日记 </category>
+          
+      </categories>
+      
       
     </entry>
     
@@ -294,32 +313,13 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Django </tag>
             
             <tag> Python </tag>
             
+            <tag> Vue </tag>
+            
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>个人微信公众号申请以及添加机器人</title>
-      <link href="/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
-      <url>/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="开场"><a href="#开场" class="headerlink" title="开场"></a>开场</h3><p>微信（<a href="https://baike.baidu.com/item/WeChat" target="_blank" rel="noopener">WeChat</a>）是<a href="https://baike.baidu.com/item/腾讯公司" target="_blank" rel="noopener">腾讯公司</a>于2011年1月21日推出的一个为<a href="https://baike.baidu.com/item/智能终端" target="_blank" rel="noopener">智能终端</a>提供<a href="https://baike.baidu.com/item/即时通讯/111144" target="_blank" rel="noopener">即时通讯</a>服务的免费<a href="https://baike.baidu.com/item/应用程序" target="_blank" rel="noopener">应用程序</a> ，由<a href="https://baike.baidu.com/item/张小龙/24795" target="_blank" rel="noopener">张小龙</a>所带领的腾讯<a href="https://baike.baidu.com/item/广州/72101" target="_blank" rel="noopener">广州</a>研发中心产品团队打造 。微信支持跨通信<a href="https://baike.baidu.com/item/运营商/4530550" target="_blank" rel="noopener">运营商</a>、跨<a href="https://baike.baidu.com/item/操作系统/192" target="_blank" rel="noopener">操作系统</a>平台通过网络快速发送免费（需消耗少量网络流量）<a href="https://baike.baidu.com/item/语音短信/8430295" target="_blank" rel="noopener">语音短信</a>、<a href="https://baike.baidu.com/item/视频/321962" target="_blank" rel="noopener">视频</a>、<a href="https://baike.baidu.com/item/图片/372416" target="_blank" rel="noopener">图片</a>和文字，同时，也可以使用通过共享<a href="https://baike.baidu.com/item/流媒体/98740" target="_blank" rel="noopener">流媒体</a>内容的资料和基于位置的社交插件“<a href="https://baike.baidu.com/item/摇一摇/14079911" target="_blank" rel="noopener">摇一摇</a>”、“<a href="https://baike.baidu.com/item/漂流瓶/5706027" target="_blank" rel="noopener">漂流瓶</a>”、“<a href="https://baike.baidu.com/item/朋友圈/17341022" target="_blank" rel="noopener">朋友圈</a>”、”<a href="https://baike.baidu.com/item/公众平台/3274590" target="_blank" rel="noopener">公众平台</a>“、”<a href="https://baike.baidu.com/item/语音记事本" target="_blank" rel="noopener">语音记事本</a>“等服务插件。</p><p>微信公众平台，简称公众号。利用公众账号平台进行自媒体活动，简单来说就是进行一对多的媒体性行为活动，如商家通过申请公众微信服务号通过二次开发展示商家微官网、微会员、微推送、<a href="https://baike.baidu.com/item/微支付/10360089" target="_blank" rel="noopener">微支付</a>、微活动、微报名、微分享、<a href="https://baike.baidu.com/item/微名片/9824840" target="_blank" rel="noopener">微名片</a>等，已经形成了一种主流的线上线下微信互动营销方式。</p><h3 id="申请微信公众号"><a href="#申请微信公众号" class="headerlink" title="申请微信公众号"></a>申请微信公众号</h3><ol><li><p>打开微信公众平台官网：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a> 右上角点击“立即注册”；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/7b4101870f94370b73d5cd6aec92f22e.jpg" alt="wechar"></p></li><li><p>选择帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/9bbe5e53e78ec43d06afc8029f805d4f.png" alt="wechar"></p></li><li><p>填写邮箱，登录您的邮箱，查看激活邮件，填写邮箱验证码激活；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/07fcbb9c84b54592a84c1e41c7427593.png" alt="wechar"></p></li></ol><p>   <img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/8adfac5a79153e3419f430e8a179a8c4.png" alt="wechar"></p><ol start="4"><li><p>了解订阅号、服务号和企业微信的区别后，选择想要的帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/e88a2daa703d10c3f65f654f9e494b4a.jpg" alt="wechar"></p></li><li><p>下图为订阅号、服务号和企业微信的在手机端展示效果</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/5fe805b2f2114cb1f4e5bc89192363a6.jpg" alt="wechar"></p></li><li><p>信息登记，选择个人类型之后，填写身份证信息</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/c6f85f4e01d0f26b8c1a3d3be8e768ad.png" alt="wechar"></p></li><li><p>填写帐号信息，包括公众号名称、功能介绍，选择运营地区</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/d64f5ba1ae908f4d918fd9ddc948b642.png" alt="wechar"></p></li><li><p>恭喜注册成功！可以开始使用公众号了~</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/08b8812718edff4c23e5e21dc0f8e94d.jpg" alt="wechar"></p></li></ol><h3 id="给公众号添加机器人"><a href="#给公众号添加机器人" class="headerlink" title="给公众号添加机器人"></a>给公众号添加机器人</h3><ol><li><p>打开图灵机器人官网：<a href="http://www.turingapi.com/" target="_blank" rel="noopener">http://www.turingapi.com/</a>，进行<code>注册登陆</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling1.png" alt="gitee"></p></li><li><p>进入之后，点击<code>创建机器人</code>，每个人最多免费申请五个机器人。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling2.png" alt="gitee"></p></li><li><p>填写信息</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling3.png" alt="gitee"></p></li><li><p>创建成功之后进入创建好的机器人的<code>终端设置</code>，找到<code>添加微信公众号</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling4.png" alt="gitee"></p></li><li><p>使用之前创建公众号的管理员微信扫描，授权</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling5.png" alt="gitee"></p></li><li><p>使用效果还是挺不错的</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling6.png" alt="gitee"></p></li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>使用个人公众号有什么好处：</p><ul><li><p><strong>赞赏作者</strong></p></li><li><p><strong>广告收入</strong></p><p>很多商家都需要打广告，以前他们都是在 电视、公交车打广告，现在手机是最多人使用的，微信公众号也是最多人看的，把广告打在公众号里面，可能效果会更好，因此很多商家都会找有粉丝的公众号合作，给钱在公众号上写文章，如果他们找到你，要在你公众号投放广告，广告费就非常不错了，目前广告是公众号做着变现的最主流的方式，流量就是钱，比如，目前做的比较好的咪蒙的广告费用，一篇文章就要100万元左右。</p></li><li><p><strong>电商</strong></p><p>微信最近公众号改版后，可在公众号文章直接插入商品，可通过分销产品，公众号主获得商品提成，如果你不想帮别人打广告，可以自己做电商广告，比如我卖茶叶的，我可以自己做商品，在自己公众号打广告，这种就叫做自媒体电商，如果你的粉丝足够大，电商收入肯定非常高。</p></li><li><p><strong>知识付费</strong></p><p>很多公众号主，获得了很多忠实的粉丝，他的成功经验可以做成付费课程，通过做付费课程变现也是很常见的方式，知识付费就是包括出书、线下沙龙、线上知识、付费社群等方式。</p></li><li><p><strong>卖公众号</strong></p><p>卖公众号这种一般都是批量做号的公司做的，他们都是形成了标准化运作，只有IP主号粉丝在，不断的养号做号，把粉丝聚集起来，迁移卖给别人，这种交易模式现在很成熟，一般一个十万粉丝的质量号，能够卖三十万左右，具体看号的类型和质量，总之，卖公众号也是非常赚钱的，其实本质上，就是卖粉丝，这也是非常重要的变现方式。</p></li></ul><p><strong>当然了我们可能做不到那么好，但是成功都是慢慢积累的，如果你掌握了这个技能，并且好好运营，成功也是在情理之中的。</strong></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 生活 · 日记 </category>
-          
-      </categories>
-      
       
     </entry>
     
@@ -446,11 +446,11 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Django </tag>
             
             <tag> Python </tag>
+            
+            <tag> Vue </tag>
             
         </tags>
       
@@ -475,11 +475,11 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Django </tag>
             
             <tag> Python </tag>
+            
+            <tag> Vue </tag>
             
         </tags>
       
@@ -504,11 +504,11 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Django </tag>
             
             <tag> Python </tag>
+            
+            <tag> Vue </tag>
             
         </tags>
       
@@ -544,6 +544,25 @@
     
     
     <entry>
+      <title>Thunder无版权</title>
+      <link href="/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/"/>
+      <url>/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、序幕"><a href="#一、序幕" class="headerlink" title="一、序幕"></a>一、序幕</h3><p>再现当今各大影视平台推出的各种VIP制度，使我们是我们这些‘穷人’已无法生存。</p><p>于是出现了<a href="https://baike.baidu.com/item/BT种子" target="_blank" rel="noopener">BT种子</a>，在这个BT种子泛滥的时代，影视VIP已经在有的人心中抹去。</p><p>说道BT种子好像很多男人都很喜欢比如：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/%E4%B8%8B%E8%BD%BD.jpg" alt="img"></p><p>这个。。。。真是太棒了！！！</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p><p>有了BT种子我们还需要有一个解析工具<a href="https://baike.baidu.com/item/迅雷/33354" target="_blank" rel="noopener">迅雷(Thunder)</a>，迅雷应该是大多数人的电脑或者手机里必备的软件吧！！</p><p>但是：</p><p><img src= "/img/loading.gif" data-src="https://pic4.zhimg.com/80/v2-d5d664989af1c5915c32241df9f71f83_720w.jpg" alt="img"></p><p>这个是不是很讨厌。。</p><hr><h3 id="二、问题"><a href="#二、问题" class="headerlink" title="二、问题"></a>二、问题</h3><p>同样，今天我一如既往的在网上搜索BT种子：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p><p>来到迅雷解析：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder1.png" alt="img"></p><p>这。。。这又不是什么搞颜色的视频，为啥也没有版权？？</p><p>之后，我在网上一顿操作，找到了解决办法！！</p><hr><h3 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h3><ul><li><p>首先我们先下载BT种子到桌面</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder2.png" alt="img"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p></li><li><p>之后我们来到百度云盘（可以是网页版的，也可以是端游版的，我用的是网页版的）</p></li><li><p>找到离线下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder4.png" alt="img"></p></li><li><p>进去，点击新建BT任务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder5.png" alt="img"></p></li><li><p>找到你的BT种子位置，并打开</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder6.png" alt="img"></p></li><li><p>之后选择视频文件，开始下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder7.png" alt="img"></p></li><li><p>可以看到下载速度是非常快的（我用的是网页版的，客户端应该会更快）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder8.png" alt="img"></p></li><li><p>下载完成，点击播放</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder9.png" alt="img"></p></li><li><p>就可以开开心心的看电影了（悄悄拿上纸巾）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder10.png" alt="img"></p></li></ul><p>是不是帮你们解决了没有女朋友的问题呢</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 · 日记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JWT</title>
       <link href="/2020/05/31/Note/jwt/"/>
       <url>/2020/05/31/Note/jwt/</url>
@@ -565,25 +584,6 @@
             <tag> JWT </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Thunder无版权</title>
-      <link href="/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/"/>
-      <url>/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、序幕"><a href="#一、序幕" class="headerlink" title="一、序幕"></a>一、序幕</h3><p>再现当今各大影视平台推出的各种VIP制度，使我们是我们这些‘穷人’已无法生存。</p><p>于是出现了<a href="https://baike.baidu.com/item/BT种子" target="_blank" rel="noopener">BT种子</a>，在这个BT种子泛滥的时代，影视VIP已经在有的人心中抹去。</p><p>说道BT种子好像很多男人都很喜欢比如：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/%E4%B8%8B%E8%BD%BD.jpg" alt="img"></p><p>这个。。。。真是太棒了！！！</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p><p>有了BT种子我们还需要有一个解析工具<a href="https://baike.baidu.com/item/迅雷/33354" target="_blank" rel="noopener">迅雷(Thunder)</a>，迅雷应该是大多数人的电脑或者手机里必备的软件吧！！</p><p>但是：</p><p><img src= "/img/loading.gif" data-src="https://pic4.zhimg.com/80/v2-d5d664989af1c5915c32241df9f71f83_720w.jpg" alt="img"></p><p>这个是不是很讨厌。。</p><hr><h3 id="二、问题"><a href="#二、问题" class="headerlink" title="二、问题"></a>二、问题</h3><p>同样，今天我一如既往的在网上搜索BT种子：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p><p>来到迅雷解析：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder1.png" alt="img"></p><p>这。。。这又不是什么搞颜色的视频，为啥也没有版权？？</p><p>之后，我在网上一顿操作，找到了解决办法！！</p><hr><h3 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h3><ul><li><p>首先我们先下载BT种子到桌面</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder2.png" alt="img"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p></li><li><p>之后我们来到百度云盘（可以是网页版的，也可以是端游版的，我用的是网页版的）</p></li><li><p>找到离线下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder4.png" alt="img"></p></li><li><p>进去，点击新建BT任务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder5.png" alt="img"></p></li><li><p>找到你的BT种子位置，并打开</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder6.png" alt="img"></p></li><li><p>之后选择视频文件，开始下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder7.png" alt="img"></p></li><li><p>可以看到下载速度是非常快的（我用的是网页版的，客户端应该会更快）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder8.png" alt="img"></p></li><li><p>下载完成，点击播放</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder9.png" alt="img"></p></li><li><p>就可以开开心心的看电影了（悄悄拿上纸巾）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder10.png" alt="img"></p></li></ul><p>是不是帮你们解决了没有女朋友的问题呢</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 生活 · 日记 </category>
-          
-      </categories>
-      
       
     </entry>
     
@@ -627,9 +627,9 @@
             
             <tag> Django </tag>
             
-            <tag> Redis </tag>
-            
             <tag> Celery </tag>
+            
+            <tag> Redis </tag>
             
         </tags>
       
@@ -713,31 +713,6 @@
     
     
     <entry>
-      <title>git相关命令</title>
-      <link href="/2020/05/27/Note/git%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/"/>
-      <url>/2020/05/27/Note/git%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、Git的相关命令以及在公司中git的用处"><a href="#一、Git的相关命令以及在公司中git的用处" class="headerlink" title="一、Git的相关命令以及在公司中git的用处"></a>一、Git的相关命令以及在公司中git的用处</h3><p>总所周知<a href="https://www.runoob.com/git/git-tutorial.html" target="_blank" rel="noopener">Git</a> 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。它不仅仅是个版本控制系统，它也是个内容管理系统(CMS)，工作管理系统等。</p><p>一般我们每到一家公司都会创建属于自己的分支（前提是你们公司使用git开发），因为如果不创建自己的分支我们所写的代码就没有办法保存。所以第一个命令</p><p>查看本地分支</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure><p>通常在克隆下来的代码中只有master的分支，不要慌，我们创建一个develop分支，用于代码的测试</p><p>git创建分支</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b 自己的分支名称（develop）</span><br></pre></td></tr></table></figure><p>创建完develop分支后创建自己的分支，有的同学会问为什么不在develop分支上直接写代码呢？—-原因很简单如果你在develop分支上写完代码提交的时候发现别人也修改了develop分支上的代码，会发生冲突，你说用你的好还是用他的好！！</p><p>git分支开发就像漫威宇宙一样，一个主宇宙，多个分宇宙。当其中一个分宇宙发生变化是不会影响到主宇宙和其他分宇宙。</p><p>我们在本地创建自己分支后也要在线上创建分支</p><p>在线上创建分支</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin 分支名称</span><br></pre></td></tr></table></figure><p>当你一顿操作完之后，就要开始写代码了</p><p>先查看当前分支，然后切换到自己的分支</p><p>切换分支 </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout  分支名称</span><br></pre></td></tr></table></figure><p>写完代码之后提交到自己的分支（素质三连）</p><p>将本地代码暂存</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -A</span><br></pre></td></tr></table></figure><p>将本地代码提交 </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">'提交内容'</span></span><br></pre></td></tr></table></figure><p>推送本地到线上 </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin  分支名称</span><br></pre></td></tr></table></figure><p>最后是合并代码（这个操作一般不是我们操作）</p><p>合并分支代码</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge 分支名称</span><br></pre></td></tr></table></figure><h3 id="二、Git-快速入门"><a href="#二、Git-快速入门" class="headerlink" title="二、Git 快速入门"></a>二、Git 快速入门</h3><p>Git 完整命令手册地址：<a href="https://git-scm.com/docs" target="_blank" rel="noopener">https://git-scm.com/docs</a></p><p>联合开发注意文章：<a href="[https://www.sirxs.cn/2020/04/21/Note/git%E8%81%94%E5%90%88%E5%BC%80%E5%8F%91/](https://www.sirxs.cn/2020/04/21/Note/git联合开发/)"><a href="https://www.sirxs.cn/2020/04/21/Note/git联合开发/">https://www.sirxs.cn/2020/04/21/Note/git%E8%81%94%E5%90%88%E5%BC%80%E5%8F%91/</a></a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Git </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>使用QQ邮箱发送验证码</title>
       <link href="/2020/05/27/Blog/%E4%BD%BF%E7%94%A8QQ%E9%82%AE%E7%AE%B1%E5%8F%91%E9%80%81%E9%AA%8C%E8%AF%81%E7%A0%81/"/>
       <url>/2020/05/27/Blog/%E4%BD%BF%E7%94%A8QQ%E9%82%AE%E7%AE%B1%E5%8F%91%E9%80%81%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
@@ -755,6 +730,31 @@
         <tags>
             
             <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>git相关命令</title>
+      <link href="/2020/05/27/Note/git%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/"/>
+      <url>/2020/05/27/Note/git%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、Git的相关命令以及在公司中git的用处"><a href="#一、Git的相关命令以及在公司中git的用处" class="headerlink" title="一、Git的相关命令以及在公司中git的用处"></a>一、Git的相关命令以及在公司中git的用处</h3><p>总所周知<a href="https://www.runoob.com/git/git-tutorial.html" target="_blank" rel="noopener">Git</a> 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。它不仅仅是个版本控制系统，它也是个内容管理系统(CMS)，工作管理系统等。</p><p>一般我们每到一家公司都会创建属于自己的分支（前提是你们公司使用git开发），因为如果不创建自己的分支我们所写的代码就没有办法保存。所以第一个命令</p><p>查看本地分支</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure><p>通常在克隆下来的代码中只有master的分支，不要慌，我们创建一个develop分支，用于代码的测试</p><p>git创建分支</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b 自己的分支名称（develop）</span><br></pre></td></tr></table></figure><p>创建完develop分支后创建自己的分支，有的同学会问为什么不在develop分支上直接写代码呢？—-原因很简单如果你在develop分支上写完代码提交的时候发现别人也修改了develop分支上的代码，会发生冲突，你说用你的好还是用他的好！！</p><p>git分支开发就像漫威宇宙一样，一个主宇宙，多个分宇宙。当其中一个分宇宙发生变化是不会影响到主宇宙和其他分宇宙。</p><p>我们在本地创建自己分支后也要在线上创建分支</p><p>在线上创建分支</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin 分支名称</span><br></pre></td></tr></table></figure><p>当你一顿操作完之后，就要开始写代码了</p><p>先查看当前分支，然后切换到自己的分支</p><p>切换分支 </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout  分支名称</span><br></pre></td></tr></table></figure><p>写完代码之后提交到自己的分支（素质三连）</p><p>将本地代码暂存</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -A</span><br></pre></td></tr></table></figure><p>将本地代码提交 </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">'提交内容'</span></span><br></pre></td></tr></table></figure><p>推送本地到线上 </p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin  分支名称</span><br></pre></td></tr></table></figure><p>最后是合并代码（这个操作一般不是我们操作）</p><p>合并分支代码</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge 分支名称</span><br></pre></td></tr></table></figure><h3 id="二、Git-快速入门"><a href="#二、Git-快速入门" class="headerlink" title="二、Git 快速入门"></a>二、Git 快速入门</h3><p>Git 完整命令手册地址：<a href="https://git-scm.com/docs" target="_blank" rel="noopener">https://git-scm.com/docs</a></p><p>联合开发注意文章：<a href="[https://www.sirxs.cn/2020/04/21/Note/git%E8%81%94%E5%90%88%E5%BC%80%E5%8F%91/](https://www.sirxs.cn/2020/04/21/Note/git联合开发/)"><a href="https://www.sirxs.cn/2020/04/21/Note/git联合开发/">https://www.sirxs.cn/2020/04/21/Note/git%E8%81%94%E5%90%88%E5%BC%80%E5%8F%91/</a></a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
             
         </tags>
       
@@ -863,25 +863,6 @@
     
     
     <entry>
-      <title>《小丑》 （美国2019年托德·菲利普斯执导电影）</title>
-      <link href="/2020/05/22/Movie/joker/"/>
-      <url>/2020/05/22/Movie/joker/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="电影背景"><a href="#电影背景" class="headerlink" title="电影背景"></a>电影背景</h3><p>《<a href="https://baike.baidu.com/item/%E5%B0%8F%E4%B8%91/22867904?fr=aladdin" target="_blank" rel="noopener">小丑</a>》是由托德·菲利普斯执导，杰昆·菲尼克斯、莎姬·贝兹、罗伯特·德尼罗、弗兰西丝·康罗伊、布莱特·卡伦等联袂出演的犯罪剧情片。2019年8月31日在威尼斯电影节主竞赛单元首映。</p><p>《小丑》的故事背景设定在1980年代，讲述小丑的起源故事 。该片是华纳和DC所独立开发的影片，与DC扩展宇宙并无关联。</p><p>该片于2019年10月4日在美国上映，随即以9620万美元的收入登顶北美周末票房榜，创下北美影史10月份上映影片首周末最高票房纪录。截至2019年11月8日，《小丑》全球票房将超过9.57亿美元，成为了影史上最赚钱的漫改电影</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/joker1.jpg" alt="move"></p><h3 id="剧情简介"><a href="#剧情简介" class="headerlink" title="剧情简介"></a>剧情简介</h3><p>亚瑟·弗莱克是一个和母亲住在老旧公寓里，需要靠社会福利组织帮助，不断服用精神疾病药物的小丑。他想成为一个脱口秀演员，但并不成功。人们只是嘲笑他。他在地铁上爆发式地犯下了谋杀案。他的世界，就此一点一滴地开始崩塌了</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/joker2.jpg" alt="move"></p><h3 id="创作背景"><a href="#创作背景" class="headerlink" title="创作背景"></a>创作背景</h3><p>导演兼编剧的托德·菲利普斯透露，《小丑》取材并不遵循任何漫画。托德·菲利普斯按照自己的认知，创造了一个故事，没有从漫画书中汲取任何灵感。讲述了小丑这样的角色是如何产生的，这就是托德·菲利普斯感兴趣的地方。<br>该片的故事背景设定在1980年代。托德·菲利普斯打造一个纯粹全新的小丑起源故事</p><h3 id="个人评价"><a href="#个人评价" class="headerlink" title="个人评价"></a>个人评价</h3><p>《小丑》电影2019剧情简介 菲尼克斯演绎不一样的丑爷。</p><p>《小丑》新剧照正面亮相！由杰昆·菲尼克斯主演、托德·菲利普斯执导的DC漫改电影《小丑》登上了《il Venerdì》8月刊封面。</p><p>新剧照中，小丑妆容粗糙，蓝色的眼部装饰上面蜿蜒着高低不一的红色眉毛，猩红的嘴唇难掩从鼻翼两侧延伸出的法令纹。区别于以往的嚣张和邪恶，该剧照中小丑的双眼暗含平静的力量，这或许与该片讲述的是小丑亚瑟·弗莱克的起源故事有关。其实，DC反派小丑的形象已被多次搬上大银幕，杰昆·菲尼克斯版的小丑能否超越希斯·莱杰这座“大山”，演绎属于自己的丑爷经典？</p><p>《小丑》虽然被定为R级电影，但强大的阵容依然是高票房的加持力量。主演杰昆·菲尼克斯曾多次获得奥斯卡提名，并将被多伦多电影节组委会授予年度演员荣誉奖。导演托德·菲利普斯曾执导《宿醉》系列，编剧斯科特·西尔弗曾担任“姆爷”埃米纳姆的自传电影《8英里》的编剧。</p><p>该片讲述了小丑亚瑟·弗莱克的起源故事。上世纪80年代，一位生活陷入困境的喜剧演员渐渐走向精神的崩溃，在哥谭市开始了疯狂的犯罪生涯，最终成为了蝙蝠侠的宿敌“小丑”。</p><p>顺便送上1080p片源，请使用迅雷下载(复制打开迅雷即可)</p><p>magnet:?xt=urn:btih:F9D6CD6E5D93FC013D079981387D8E556FF139A4</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 新剧 · 电影 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>redis数据淘汰机制</title>
       <link href="/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/"/>
       <url>/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/</url>
@@ -901,6 +882,25 @@
             <tag> Redis </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>《小丑》 （美国2019年托德·菲利普斯执导电影）</title>
+      <link href="/2020/05/22/Movie/joker/"/>
+      <url>/2020/05/22/Movie/joker/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="电影背景"><a href="#电影背景" class="headerlink" title="电影背景"></a>电影背景</h3><p>《<a href="https://baike.baidu.com/item/%E5%B0%8F%E4%B8%91/22867904?fr=aladdin" target="_blank" rel="noopener">小丑</a>》是由托德·菲利普斯执导，杰昆·菲尼克斯、莎姬·贝兹、罗伯特·德尼罗、弗兰西丝·康罗伊、布莱特·卡伦等联袂出演的犯罪剧情片。2019年8月31日在威尼斯电影节主竞赛单元首映。</p><p>《小丑》的故事背景设定在1980年代，讲述小丑的起源故事 。该片是华纳和DC所独立开发的影片，与DC扩展宇宙并无关联。</p><p>该片于2019年10月4日在美国上映，随即以9620万美元的收入登顶北美周末票房榜，创下北美影史10月份上映影片首周末最高票房纪录。截至2019年11月8日，《小丑》全球票房将超过9.57亿美元，成为了影史上最赚钱的漫改电影</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/joker1.jpg" alt="move"></p><h3 id="剧情简介"><a href="#剧情简介" class="headerlink" title="剧情简介"></a>剧情简介</h3><p>亚瑟·弗莱克是一个和母亲住在老旧公寓里，需要靠社会福利组织帮助，不断服用精神疾病药物的小丑。他想成为一个脱口秀演员，但并不成功。人们只是嘲笑他。他在地铁上爆发式地犯下了谋杀案。他的世界，就此一点一滴地开始崩塌了</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/joker2.jpg" alt="move"></p><h3 id="创作背景"><a href="#创作背景" class="headerlink" title="创作背景"></a>创作背景</h3><p>导演兼编剧的托德·菲利普斯透露，《小丑》取材并不遵循任何漫画。托德·菲利普斯按照自己的认知，创造了一个故事，没有从漫画书中汲取任何灵感。讲述了小丑这样的角色是如何产生的，这就是托德·菲利普斯感兴趣的地方。<br>该片的故事背景设定在1980年代。托德·菲利普斯打造一个纯粹全新的小丑起源故事</p><h3 id="个人评价"><a href="#个人评价" class="headerlink" title="个人评价"></a>个人评价</h3><p>《小丑》电影2019剧情简介 菲尼克斯演绎不一样的丑爷。</p><p>《小丑》新剧照正面亮相！由杰昆·菲尼克斯主演、托德·菲利普斯执导的DC漫改电影《小丑》登上了《il Venerdì》8月刊封面。</p><p>新剧照中，小丑妆容粗糙，蓝色的眼部装饰上面蜿蜒着高低不一的红色眉毛，猩红的嘴唇难掩从鼻翼两侧延伸出的法令纹。区别于以往的嚣张和邪恶，该剧照中小丑的双眼暗含平静的力量，这或许与该片讲述的是小丑亚瑟·弗莱克的起源故事有关。其实，DC反派小丑的形象已被多次搬上大银幕，杰昆·菲尼克斯版的小丑能否超越希斯·莱杰这座“大山”，演绎属于自己的丑爷经典？</p><p>《小丑》虽然被定为R级电影，但强大的阵容依然是高票房的加持力量。主演杰昆·菲尼克斯曾多次获得奥斯卡提名，并将被多伦多电影节组委会授予年度演员荣誉奖。导演托德·菲利普斯曾执导《宿醉》系列，编剧斯科特·西尔弗曾担任“姆爷”埃米纳姆的自传电影《8英里》的编剧。</p><p>该片讲述了小丑亚瑟·弗莱克的起源故事。上世纪80年代，一位生活陷入困境的喜剧演员渐渐走向精神的崩溃，在哥谭市开始了疯狂的犯罪生涯，最终成为了蝙蝠侠的宿敌“小丑”。</p><p>顺便送上1080p片源，请使用迅雷下载(复制打开迅雷即可)</p><p>magnet:?xt=urn:btih:F9D6CD6E5D93FC013D079981387D8E556FF139A4</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 新剧 · 电影 </category>
+          
+      </categories>
+      
       
     </entry>
     
@@ -1096,36 +1096,9 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Python </tag>
             
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Webshell</title>
-      <link href="/2020/05/07/Blog/ten/"/>
-      <url>/2020/05/07/Blog/ten/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Webshell"><a href="#Webshell" class="headerlink" title="Webshell"></a>Webshell</h4><p>“web”的含义是显然需要服务器开放web服务，“shell”的含义是取得对服务器某种程度上操作权限。webshell常常被称为通过网站端口对网站服务器的某种程度上操作的权限。</p><p>一方面，webshell被站长常常用于网站管理、<a href="https://baike.baidu.com/item/服务器管理" target="_blank" rel="noopener">服务器管理</a>等等，根据<a href="https://baike.baidu.com/item/FSO权限" target="_blank" rel="noopener">FSO权限</a>的不同，作用有在线编辑网页脚本、上传下载文件、查看数据库、执行任意程序命令等。</p><p>另一方面，被入侵者利用，从而达到控制网站服务器的目的。这些<a href="https://baike.baidu.com/item/网页脚本" target="_blank" rel="noopener">网页脚本</a>常称为WEB脚本木马，比较流行的<a href="https://baike.baidu.com/item/asp" target="_blank" rel="noopener">asp</a>或<a href="https://baike.baidu.com/item/php" target="_blank" rel="noopener">php</a>木马，也有基于<a href="https://baike.baidu.com/item/.NET" target="_blank" rel="noopener">.NET</a>的脚本木马与JSP脚本木马。国内常用的WebShell有海阳ASP木马，Phpspy，c99shell等。</p><p><code>web</code>端使用<code>Xterm.js</code>或者其他的<code>WebShell</code>组件和<code>websocket</code></p><p>后端只需要支持<code>WebSocket</code>和<code>SSH</code>协议的远程登录模块即可</p><h4 id="web端实现"><a href="#web端实现" class="headerlink" title="web端实现"></a>web端实现</h4><p>1.安装</p><p><code>npm install xterm@3.1.0 --save</code>  指定版本安装，最新版的xterm文件的改动很大，使用下面的方法会报错</p><p>2.导包</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'xterm/dist/xterm.css'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Terminal &#125; <span class="keyword">from</span> <span class="string">'xterm'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 布局组件 可以不用</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> fit <span class="keyword">from</span> <span class="string">'xterm/lib/addons/fit/fit'</span>;</span><br><span class="line">Terminal.applyAddon(fit);</span><br></pre></td></tr></table></figure><p>3.在页面中的显示</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div id=<span class="string">"terminal"</span> style=<span class="string">"width: 500px;height:300px;"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure><p>4.数据操作</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">mounted () &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//实例化一个websocket，用于和django江湖</span></span><br><span class="line">      <span class="keyword">this</span>.terminalSocket = <span class="keyword">new</span> WebSocket(<span class="string">"ws://127.0.0.1:8000/web/"</span>);</span><br><span class="line">      <span class="comment">//获取到后端传回的信息</span></span><br><span class="line">      <span class="keyword">this</span>.terminalSocket.onmessage = <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(res.data);</span><br><span class="line">          <span class="comment">// var message = JSON.parse(res.data);</span></span><br><span class="line">          <span class="comment">//将传回来的数据显示在xterm里</span></span><br><span class="line">          <span class="keyword">this</span>.term.writeln(<span class="string">"\r\n"</span>+res.data);</span><br><span class="line">          <span class="comment">//重置要发送的信息</span></span><br><span class="line">          <span class="keyword">this</span>.order = <span class="string">""</span></span><br><span class="line">          <span class="comment">//换行，显示下一个开头</span></span><br><span class="line">          <span class="keyword">this</span>.term.write(<span class="string">"\r\n$ "</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    <span class="comment">//ws连接的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onopen = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('websocket is Connected...')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">//ws关闭的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onclose = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('websocket is Closed...')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">//ws错误的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onerror = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('damn Websocket is broken!')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// this.term.attach(this.terminalSocket)</span></span><br><span class="line">    <span class="comment">// 绑定xterm到ws流中 &#125;,</span></span><br><span class="line">      </span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">      <span class="keyword">let</span> terminalContainer = <span class="built_in">document</span>.getElementById(<span class="string">'terminal'</span>)</span><br><span class="line">      <span class="comment">//创建xterm实例</span></span><br><span class="line">      <span class="keyword">this</span>.term = <span class="keyword">new</span> Terminal(&#123;</span><br><span class="line">        cursorBlink: <span class="literal">true</span>, <span class="comment">// 显示光标</span></span><br><span class="line">        cursorStyle: <span class="string">"underline"</span> <span class="comment">// 光标样式</span></span><br><span class="line">        &#125;)                     <span class="comment">// 创建一个新的Terminal对象</span></span><br><span class="line">      </span><br><span class="line">      <span class="keyword">this</span>.term.open(terminalContainer)              <span class="comment">// 将term挂载到dom节点上</span></span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure><p>5.web端完整代码</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"console"</span> id=<span class="string">"terminal"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">import</span> &#123; Terminal &#125; <span class="keyword">from</span> <span class="string">'xterm'</span></span><br><span class="line">    <span class="keyword">import</span> * <span class="keyword">as</span> attach <span class="keyword">from</span> <span class="string">'xterm/lib/addons/attach/attach'</span></span><br><span class="line">    <span class="keyword">import</span> * <span class="keyword">as</span> fit <span class="keyword">from</span> <span class="string">'xterm/lib/addons/fit/fit'</span></span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    name: <span class="string">'webssh'</span>,</span><br><span class="line">    data () &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        </span><br><span class="line">        term: <span class="literal">null</span>,</span><br><span class="line">        terminalSocket: <span class="literal">null</span>,</span><br><span class="line">        order:<span class="string">''</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">    &#125;,</span><br><span class="line">    mounted () &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//实例化一个websocket，用于和django江湖</span></span><br><span class="line">      <span class="keyword">this</span>.terminalSocket = <span class="keyword">new</span> WebSocket(<span class="string">"ws://127.0.0.1:8000/web/"</span>);</span><br><span class="line">      <span class="comment">//获取到后端传回的信息</span></span><br><span class="line">      <span class="keyword">this</span>.terminalSocket.onmessage = <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(res.data);</span><br><span class="line">          <span class="comment">// var message = JSON.parse(res.data);</span></span><br><span class="line">          <span class="comment">//将传回来的数据显示在xterm里</span></span><br><span class="line">          <span class="keyword">this</span>.term.writeln(<span class="string">"\r\n"</span>+res.data);</span><br><span class="line">          <span class="comment">//重置要发送的信息</span></span><br><span class="line">          <span class="keyword">this</span>.order = <span class="string">""</span></span><br><span class="line">          <span class="comment">//换行，显示下一个开头</span></span><br><span class="line">          <span class="keyword">this</span>.term.write(<span class="string">"\r\n$ "</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    <span class="comment">//ws连接的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onopen = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('websocket is Connected...')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">//ws关闭的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onclose = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('websocket is Closed...')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">//ws错误的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onerror = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('damn Websocket is broken!')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// this.term.attach(this.terminalSocket)</span></span><br><span class="line">    <span class="comment">// 绑定xterm到ws流中 &#125;,</span></span><br><span class="line">      </span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">      <span class="keyword">let</span> terminalContainer = <span class="built_in">document</span>.getElementById(<span class="string">'terminal'</span>)</span><br><span class="line">      <span class="comment">//创建xterm实例</span></span><br><span class="line">      <span class="keyword">this</span>.term = <span class="keyword">new</span> Terminal(&#123;</span><br><span class="line">        cursorBlink: <span class="literal">true</span>, <span class="comment">// 显示光标</span></span><br><span class="line">        cursorStyle: <span class="string">"underline"</span> <span class="comment">// 光标样式</span></span><br><span class="line">        &#125;)                     <span class="comment">// 创建一个新的Terminal对象</span></span><br><span class="line">      </span><br><span class="line">      <span class="keyword">this</span>.term.open(terminalContainer)              <span class="comment">// 将term挂载到dom节点上</span></span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">      <span class="comment">//在xterm上显示命令行提示</span></span><br><span class="line">      <span class="keyword">this</span>.term.write(<span class="string">'$ '</span>)</span><br><span class="line">      <span class="comment">//监听xterm的键盘事件</span></span><br><span class="line">      <span class="keyword">this</span>.term.on(<span class="string">'key'</span>, (key, ev)=&gt;&#123; </span><br><span class="line">        <span class="comment">// key是输入的字符 ev是键盘按键事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"key=========="</span>, ev.keyCode);</span><br><span class="line">        <span class="keyword">this</span>.term.write(key) <span class="comment">// 将输入的字符打印到黑板中</span></span><br><span class="line">        <span class="keyword">if</span> (ev.keyCode == <span class="number">13</span>) &#123; <span class="comment">// 输入回车</span></span><br><span class="line">            <span class="comment">// console.log("输入回车")</span></span><br><span class="line">            <span class="comment">// this.term.write('$ ')</span></span><br><span class="line">            <span class="comment">// console.log(this.order)</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">//使用webscoket将数据发送到django</span></span><br><span class="line">            <span class="keyword">this</span>.terminalSocket.send(<span class="keyword">this</span>.order)</span><br><span class="line">            <span class="comment">// this.order=''</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"里面的order"</span>,<span class="keyword">this</span>.order)</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ev.keyCode == <span class="number">8</span>)&#123;<span class="comment">//删除按钮</span></span><br><span class="line">          <span class="comment">//截取字符串[0,lenth-1]</span></span><br><span class="line">          <span class="keyword">this</span>.order = <span class="keyword">this</span>.order.substr(<span class="number">0</span>,<span class="keyword">this</span>.order.length<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">          <span class="comment">//清空当前一条的命令</span></span><br><span class="line">          <span class="keyword">this</span>.term.write(<span class="string">"\x1b[2K\r"</span>)</span><br><span class="line">          <span class="comment">//简化当前的新的命令显示上</span></span><br><span class="line">          <span class="keyword">this</span>.term.write(<span class="string">"$ "</span>+<span class="keyword">this</span>.order)</span><br><span class="line"></span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">"截取的字符串"</span>+<span class="keyword">this</span>.order)</span><br><span class="line">          <span class="keyword">typeof</span> <span class="keyword">this</span>.order</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;<span class="comment">// 将每次输入的字符拼凑起来</span></span><br><span class="line">        <span class="keyword">this</span>.order += key</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"外面的order"</span>,<span class="keyword">this</span>.order)&#125;</span><br><span class="line">        </span><br><span class="line">    &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">     </span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure><h3 id="服务器端实现"><a href="#服务器端实现" class="headerlink" title="服务器端实现"></a>服务器端实现</h3><h4 id="使用paramiko与服务器建立交互"><a href="#使用paramiko与服务器建立交互" class="headerlink" title="使用paramiko与服务器建立交互"></a>使用paramiko与服务器建立交互</h4><p>1.安装</p><p><code>pip install paramiko</code></p><p>2.利用<code>paramiko</code>进行<code>ssh</code>远程登录</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建SSH客户端</span></span><br><span class="line">client = paramiko.SSHClient()</span><br><span class="line"><span class="comment"># SSH客户端Host策略,目的是接受不在本地Known_host文件下的主机。</span></span><br><span class="line">client.set_missing_host_key_policy(paramiko.AutoAddPolicy())</span><br><span class="line"><span class="comment"># SSH客户端开启连接</span></span><br><span class="line">client.connect(</span><br><span class="line">    hostname=<span class="string">"192.168.184.144"</span>,port=<span class="number">22</span>,username=<span class="string">'xterm'</span>,password=<span class="string">'123123'</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># stdout 为正确输出，stderr为错误输出,每次执行完成只有一个变量中有值</span></span><br><span class="line">stdin, stdout, stderr = client.exec_command(<span class="string">"ls"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行ls命令的结果</span></span><br><span class="line">print(stdout.read().decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure><p>3.结合<code>websocket</code>实现实时操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#wsserver.py</span></span><br><span class="line"><span class="keyword">from</span> channels.generic.websocket <span class="keyword">import</span> WebsocketConsumer</span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebSSHService</span><span class="params">(WebsocketConsumer)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connect</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.accept()</span><br><span class="line">        self.sh = paramiko.SSHClient()  <span class="comment"># 1 创建SSH对象</span></span><br><span class="line">        self.sh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  <span class="comment"># 2 允许连接不在know_hosts文件中的主机</span></span><br><span class="line">        self.sh.connect(<span class="string">"192.168.184.144"</span>, username=<span class="string">"root"</span>, password=<span class="string">"beijing2018"</span>)  <span class="comment"># 3 连接服务器</span></span><br><span class="line">        print(<span class="string">"连接成功"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">receive</span><span class="params">(self, text_data=None, bytes_data=None)</span>:</span></span><br><span class="line">        print(str(text_data))  <span class="comment"># 打印收到的数据</span></span><br><span class="line">        print(type(text_data))</span><br><span class="line"></span><br><span class="line">        stdin, stdout, stderr = self.sh.exec_command(text_data)</span><br><span class="line"></span><br><span class="line">        right_info = stdout.read()</span><br><span class="line">        err_info = stderr.read()</span><br><span class="line">        print(right_info)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> right_info:</span><br><span class="line">            new_data = right_info.decode(<span class="string">"utf-8"</span>).replace(<span class="string">"\n"</span>,<span class="string">"\r\n"</span>)</span><br><span class="line">            print(new_data)</span><br><span class="line">            self.send(new_data)</span><br><span class="line">        <span class="keyword">elif</span> err_info:</span><br><span class="line">            new_data = err_info.decode(<span class="string">"utf-8"</span>).replace(<span class="string">"\n"</span>, <span class="string">"\r\n"</span>)</span><br><span class="line">            print(new_data)</span><br><span class="line">            self.send(new_data)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(self.send(<span class="string">"命令执行成功"</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">disconnect</span><span class="params">(self, code)</span>:</span></span><br><span class="line">        print(<span class="string">f'sorry<span class="subst">&#123;self&#125;</span>,你被女朋友抛弃了'</span>)</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 · 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
             <tag> Vue </tag>
-            
-            <tag> Python </tag>
             
         </tags>
       
@@ -1159,6 +1132,33 @@
     
     
     <entry>
+      <title>Webshell</title>
+      <link href="/2020/05/07/Blog/ten/"/>
+      <url>/2020/05/07/Blog/ten/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Webshell"><a href="#Webshell" class="headerlink" title="Webshell"></a>Webshell</h4><p>“web”的含义是显然需要服务器开放web服务，“shell”的含义是取得对服务器某种程度上操作权限。webshell常常被称为通过网站端口对网站服务器的某种程度上操作的权限。</p><p>一方面，webshell被站长常常用于网站管理、<a href="https://baike.baidu.com/item/服务器管理" target="_blank" rel="noopener">服务器管理</a>等等，根据<a href="https://baike.baidu.com/item/FSO权限" target="_blank" rel="noopener">FSO权限</a>的不同，作用有在线编辑网页脚本、上传下载文件、查看数据库、执行任意程序命令等。</p><p>另一方面，被入侵者利用，从而达到控制网站服务器的目的。这些<a href="https://baike.baidu.com/item/网页脚本" target="_blank" rel="noopener">网页脚本</a>常称为WEB脚本木马，比较流行的<a href="https://baike.baidu.com/item/asp" target="_blank" rel="noopener">asp</a>或<a href="https://baike.baidu.com/item/php" target="_blank" rel="noopener">php</a>木马，也有基于<a href="https://baike.baidu.com/item/.NET" target="_blank" rel="noopener">.NET</a>的脚本木马与JSP脚本木马。国内常用的WebShell有海阳ASP木马，Phpspy，c99shell等。</p><p><code>web</code>端使用<code>Xterm.js</code>或者其他的<code>WebShell</code>组件和<code>websocket</code></p><p>后端只需要支持<code>WebSocket</code>和<code>SSH</code>协议的远程登录模块即可</p><h4 id="web端实现"><a href="#web端实现" class="headerlink" title="web端实现"></a>web端实现</h4><p>1.安装</p><p><code>npm install xterm@3.1.0 --save</code>  指定版本安装，最新版的xterm文件的改动很大，使用下面的方法会报错</p><p>2.导包</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'xterm/dist/xterm.css'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Terminal &#125; <span class="keyword">from</span> <span class="string">'xterm'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 布局组件 可以不用</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> fit <span class="keyword">from</span> <span class="string">'xterm/lib/addons/fit/fit'</span>;</span><br><span class="line">Terminal.applyAddon(fit);</span><br></pre></td></tr></table></figure><p>3.在页面中的显示</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;div id=<span class="string">"terminal"</span> style=<span class="string">"width: 500px;height:300px;"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure><p>4.数据操作</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">mounted () &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//实例化一个websocket，用于和django江湖</span></span><br><span class="line">      <span class="keyword">this</span>.terminalSocket = <span class="keyword">new</span> WebSocket(<span class="string">"ws://127.0.0.1:8000/web/"</span>);</span><br><span class="line">      <span class="comment">//获取到后端传回的信息</span></span><br><span class="line">      <span class="keyword">this</span>.terminalSocket.onmessage = <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(res.data);</span><br><span class="line">          <span class="comment">// var message = JSON.parse(res.data);</span></span><br><span class="line">          <span class="comment">//将传回来的数据显示在xterm里</span></span><br><span class="line">          <span class="keyword">this</span>.term.writeln(<span class="string">"\r\n"</span>+res.data);</span><br><span class="line">          <span class="comment">//重置要发送的信息</span></span><br><span class="line">          <span class="keyword">this</span>.order = <span class="string">""</span></span><br><span class="line">          <span class="comment">//换行，显示下一个开头</span></span><br><span class="line">          <span class="keyword">this</span>.term.write(<span class="string">"\r\n$ "</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    <span class="comment">//ws连接的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onopen = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('websocket is Connected...')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">//ws关闭的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onclose = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('websocket is Closed...')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">//ws错误的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onerror = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('damn Websocket is broken!')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// this.term.attach(this.terminalSocket)</span></span><br><span class="line">    <span class="comment">// 绑定xterm到ws流中 &#125;,</span></span><br><span class="line">      </span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">      <span class="keyword">let</span> terminalContainer = <span class="built_in">document</span>.getElementById(<span class="string">'terminal'</span>)</span><br><span class="line">      <span class="comment">//创建xterm实例</span></span><br><span class="line">      <span class="keyword">this</span>.term = <span class="keyword">new</span> Terminal(&#123;</span><br><span class="line">        cursorBlink: <span class="literal">true</span>, <span class="comment">// 显示光标</span></span><br><span class="line">        cursorStyle: <span class="string">"underline"</span> <span class="comment">// 光标样式</span></span><br><span class="line">        &#125;)                     <span class="comment">// 创建一个新的Terminal对象</span></span><br><span class="line">      </span><br><span class="line">      <span class="keyword">this</span>.term.open(terminalContainer)              <span class="comment">// 将term挂载到dom节点上</span></span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure><p>5.web端完整代码</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"console"</span> id=<span class="string">"terminal"</span>&gt;&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">import</span> &#123; Terminal &#125; <span class="keyword">from</span> <span class="string">'xterm'</span></span><br><span class="line">    <span class="keyword">import</span> * <span class="keyword">as</span> attach <span class="keyword">from</span> <span class="string">'xterm/lib/addons/attach/attach'</span></span><br><span class="line">    <span class="keyword">import</span> * <span class="keyword">as</span> fit <span class="keyword">from</span> <span class="string">'xterm/lib/addons/fit/fit'</span></span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    name: <span class="string">'webssh'</span>,</span><br><span class="line">    data () &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        </span><br><span class="line">        term: <span class="literal">null</span>,</span><br><span class="line">        terminalSocket: <span class="literal">null</span>,</span><br><span class="line">        order:<span class="string">''</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">      </span><br><span class="line">      </span><br><span class="line">    &#125;,</span><br><span class="line">    mounted () &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//实例化一个websocket，用于和django江湖</span></span><br><span class="line">      <span class="keyword">this</span>.terminalSocket = <span class="keyword">new</span> WebSocket(<span class="string">"ws://127.0.0.1:8000/web/"</span>);</span><br><span class="line">      <span class="comment">//获取到后端传回的信息</span></span><br><span class="line">      <span class="keyword">this</span>.terminalSocket.onmessage = <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(res.data);</span><br><span class="line">          <span class="comment">// var message = JSON.parse(res.data);</span></span><br><span class="line">          <span class="comment">//将传回来的数据显示在xterm里</span></span><br><span class="line">          <span class="keyword">this</span>.term.writeln(<span class="string">"\r\n"</span>+res.data);</span><br><span class="line">          <span class="comment">//重置要发送的信息</span></span><br><span class="line">          <span class="keyword">this</span>.order = <span class="string">""</span></span><br><span class="line">          <span class="comment">//换行，显示下一个开头</span></span><br><span class="line">          <span class="keyword">this</span>.term.write(<span class="string">"\r\n$ "</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    <span class="comment">//ws连接的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onopen = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('websocket is Connected...')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">//ws关闭的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onclose = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('websocket is Closed...')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">//ws错误的时候</span></span><br><span class="line">    <span class="comment">// this.terminalSocket.onerror = function()&#123;</span></span><br><span class="line">    <span class="comment">//     console.log('damn Websocket is broken!')</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// this.term.attach(this.terminalSocket)</span></span><br><span class="line">    <span class="comment">// 绑定xterm到ws流中 &#125;,</span></span><br><span class="line">      </span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">      <span class="keyword">let</span> terminalContainer = <span class="built_in">document</span>.getElementById(<span class="string">'terminal'</span>)</span><br><span class="line">      <span class="comment">//创建xterm实例</span></span><br><span class="line">      <span class="keyword">this</span>.term = <span class="keyword">new</span> Terminal(&#123;</span><br><span class="line">        cursorBlink: <span class="literal">true</span>, <span class="comment">// 显示光标</span></span><br><span class="line">        cursorStyle: <span class="string">"underline"</span> <span class="comment">// 光标样式</span></span><br><span class="line">        &#125;)                     <span class="comment">// 创建一个新的Terminal对象</span></span><br><span class="line">      </span><br><span class="line">      <span class="keyword">this</span>.term.open(terminalContainer)              <span class="comment">// 将term挂载到dom节点上</span></span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">      <span class="comment">//在xterm上显示命令行提示</span></span><br><span class="line">      <span class="keyword">this</span>.term.write(<span class="string">'$ '</span>)</span><br><span class="line">      <span class="comment">//监听xterm的键盘事件</span></span><br><span class="line">      <span class="keyword">this</span>.term.on(<span class="string">'key'</span>, (key, ev)=&gt;&#123; </span><br><span class="line">        <span class="comment">// key是输入的字符 ev是键盘按键事件</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"key=========="</span>, ev.keyCode);</span><br><span class="line">        <span class="keyword">this</span>.term.write(key) <span class="comment">// 将输入的字符打印到黑板中</span></span><br><span class="line">        <span class="keyword">if</span> (ev.keyCode == <span class="number">13</span>) &#123; <span class="comment">// 输入回车</span></span><br><span class="line">            <span class="comment">// console.log("输入回车")</span></span><br><span class="line">            <span class="comment">// this.term.write('$ ')</span></span><br><span class="line">            <span class="comment">// console.log(this.order)</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">//使用webscoket将数据发送到django</span></span><br><span class="line">            <span class="keyword">this</span>.terminalSocket.send(<span class="keyword">this</span>.order)</span><br><span class="line">            <span class="comment">// this.order=''</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"里面的order"</span>,<span class="keyword">this</span>.order)</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ev.keyCode == <span class="number">8</span>)&#123;<span class="comment">//删除按钮</span></span><br><span class="line">          <span class="comment">//截取字符串[0,lenth-1]</span></span><br><span class="line">          <span class="keyword">this</span>.order = <span class="keyword">this</span>.order.substr(<span class="number">0</span>,<span class="keyword">this</span>.order.length<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">          <span class="comment">//清空当前一条的命令</span></span><br><span class="line">          <span class="keyword">this</span>.term.write(<span class="string">"\x1b[2K\r"</span>)</span><br><span class="line">          <span class="comment">//简化当前的新的命令显示上</span></span><br><span class="line">          <span class="keyword">this</span>.term.write(<span class="string">"$ "</span>+<span class="keyword">this</span>.order)</span><br><span class="line"></span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">"截取的字符串"</span>+<span class="keyword">this</span>.order)</span><br><span class="line">          <span class="keyword">typeof</span> <span class="keyword">this</span>.order</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;<span class="comment">// 将每次输入的字符拼凑起来</span></span><br><span class="line">        <span class="keyword">this</span>.order += key</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"外面的order"</span>,<span class="keyword">this</span>.order)&#125;</span><br><span class="line">        </span><br><span class="line">    &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">     </span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure><h3 id="服务器端实现"><a href="#服务器端实现" class="headerlink" title="服务器端实现"></a>服务器端实现</h3><h4 id="使用paramiko与服务器建立交互"><a href="#使用paramiko与服务器建立交互" class="headerlink" title="使用paramiko与服务器建立交互"></a>使用paramiko与服务器建立交互</h4><p>1.安装</p><p><code>pip install paramiko</code></p><p>2.利用<code>paramiko</code>进行<code>ssh</code>远程登录</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建SSH客户端</span></span><br><span class="line">client = paramiko.SSHClient()</span><br><span class="line"><span class="comment"># SSH客户端Host策略,目的是接受不在本地Known_host文件下的主机。</span></span><br><span class="line">client.set_missing_host_key_policy(paramiko.AutoAddPolicy())</span><br><span class="line"><span class="comment"># SSH客户端开启连接</span></span><br><span class="line">client.connect(</span><br><span class="line">    hostname=<span class="string">"192.168.184.144"</span>,port=<span class="number">22</span>,username=<span class="string">'xterm'</span>,password=<span class="string">'123123'</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># stdout 为正确输出，stderr为错误输出,每次执行完成只有一个变量中有值</span></span><br><span class="line">stdin, stdout, stderr = client.exec_command(<span class="string">"ls"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行ls命令的结果</span></span><br><span class="line">print(stdout.read().decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure><p>3.结合<code>websocket</code>实现实时操作</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#wsserver.py</span></span><br><span class="line"><span class="keyword">from</span> channels.generic.websocket <span class="keyword">import</span> WebsocketConsumer</span><br><span class="line"><span class="keyword">import</span> paramiko</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebSSHService</span><span class="params">(WebsocketConsumer)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">connect</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.accept()</span><br><span class="line">        self.sh = paramiko.SSHClient()  <span class="comment"># 1 创建SSH对象</span></span><br><span class="line">        self.sh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  <span class="comment"># 2 允许连接不在know_hosts文件中的主机</span></span><br><span class="line">        self.sh.connect(<span class="string">"192.168.184.144"</span>, username=<span class="string">"root"</span>, password=<span class="string">"beijing2018"</span>)  <span class="comment"># 3 连接服务器</span></span><br><span class="line">        print(<span class="string">"连接成功"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">receive</span><span class="params">(self, text_data=None, bytes_data=None)</span>:</span></span><br><span class="line">        print(str(text_data))  <span class="comment"># 打印收到的数据</span></span><br><span class="line">        print(type(text_data))</span><br><span class="line"></span><br><span class="line">        stdin, stdout, stderr = self.sh.exec_command(text_data)</span><br><span class="line"></span><br><span class="line">        right_info = stdout.read()</span><br><span class="line">        err_info = stderr.read()</span><br><span class="line">        print(right_info)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> right_info:</span><br><span class="line">            new_data = right_info.decode(<span class="string">"utf-8"</span>).replace(<span class="string">"\n"</span>,<span class="string">"\r\n"</span>)</span><br><span class="line">            print(new_data)</span><br><span class="line">            self.send(new_data)</span><br><span class="line">        <span class="keyword">elif</span> err_info:</span><br><span class="line">            new_data = err_info.decode(<span class="string">"utf-8"</span>).replace(<span class="string">"\n"</span>, <span class="string">"\r\n"</span>)</span><br><span class="line">            print(new_data)</span><br><span class="line">            self.send(new_data)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(self.send(<span class="string">"命令执行成功"</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">disconnect</span><span class="params">(self, code)</span>:</span></span><br><span class="line">        print(<span class="string">f'sorry<span class="subst">&#123;self&#125;</span>,你被女朋友抛弃了'</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 · 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Websocket即时通讯</title>
       <link href="/2020/05/06/Blog/nine/"/>
       <url>/2020/05/06/Blog/nine/</url>
@@ -1175,9 +1175,9 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Vue </tag>
             
         </tags>
       
@@ -1238,31 +1238,6 @@
     
     
     <entry>
-      <title>Vue中从数据库查询单的数据进行运算</title>
-      <link href="/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/"/>
-      <url>/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="Vue中从数据库查询单的数据进行运算"><a href="#Vue中从数据库查询单的数据进行运算" class="headerlink" title="Vue中从数据库查询单的数据进行运算"></a>Vue中从数据库查询单的数据进行运算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> &lt;tr&gt;</span><br><span class="line">    &lt;th&gt;商品序号&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品名称&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品价格&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;购买数量&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;总价格&lt;&#x2F;th&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br><span class="line">&lt;tr v-for&#x3D;&quot;(item,index) in carlist&quot; :key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;index +1&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.gname&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.price&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.num&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;商品价格*商品数量&lt;&#x2F;td&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br></pre></td></tr></table></figure><p>就像如此总价格需要<strong>商品价格*商品数量</strong> 进行乘法运算 但在模版渲染里乘法符号是个字符串，所有需要在方法里面定义和计算</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">all:function()&#123;</span><br><span class="line">    let list &#x3D; this.carlist;</span><br><span class="line">    for(let i&#x3D;0,l&#x3D;list.length;i&lt;l;i++)&#123;</span><br><span class="line">        var total &#x3D; list[i][&#39;price&#39;] * list[i][&#39;num&#39;]</span><br><span class="line">        this.allmoney &#x3D; total</span><br><span class="line">        &#125;</span><br><span class="line">        return total</span><br><span class="line">    &#125;           </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>之后 将 商品价格*商品数量 换成 all()</p><p>因为这里调用的是<strong>方法</strong>使用需要加上（）</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Vue </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Navicat Premium15安装与激活</title>
       <link href="/2020/04/28/Blog/seven/"/>
       <url>/2020/04/28/Blog/seven/</url>
@@ -1288,6 +1263,31 @@
     
     
     <entry>
+      <title>Vue中从数据库查询单的数据进行运算</title>
+      <link href="/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/"/>
+      <url>/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="Vue中从数据库查询单的数据进行运算"><a href="#Vue中从数据库查询单的数据进行运算" class="headerlink" title="Vue中从数据库查询单的数据进行运算"></a>Vue中从数据库查询单的数据进行运算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> &lt;tr&gt;</span><br><span class="line">    &lt;th&gt;商品序号&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品名称&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品价格&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;购买数量&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;总价格&lt;&#x2F;th&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br><span class="line">&lt;tr v-for&#x3D;&quot;(item,index) in carlist&quot; :key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;index +1&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.gname&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.price&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.num&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;商品价格*商品数量&lt;&#x2F;td&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br></pre></td></tr></table></figure><p>就像如此总价格需要<strong>商品价格*商品数量</strong> 进行乘法运算 但在模版渲染里乘法符号是个字符串，所有需要在方法里面定义和计算</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">all:function()&#123;</span><br><span class="line">    let list &#x3D; this.carlist;</span><br><span class="line">    for(let i&#x3D;0,l&#x3D;list.length;i&lt;l;i++)&#123;</span><br><span class="line">        var total &#x3D; list[i][&#39;price&#39;] * list[i][&#39;num&#39;]</span><br><span class="line">        this.allmoney &#x3D; total</span><br><span class="line">        &#125;</span><br><span class="line">        return total</span><br><span class="line">    &#125;           </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>之后 将 商品价格*商品数量 换成 all()</p><p>因为这里调用的是<strong>方法</strong>使用需要加上（）</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git联合开发注意事项</title>
       <link href="/2020/04/21/Note/git%E8%81%94%E5%90%88%E5%BC%80%E5%8F%91/"/>
       <url>/2020/04/21/Note/git%E8%81%94%E5%90%88%E5%BC%80%E5%8F%91/</url>
@@ -1304,9 +1304,9 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Vue </tag>
             
             <tag> Git </tag>
             
@@ -1486,9 +1486,9 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Vue </tag>
             
         </tags>
       
@@ -1551,6 +1551,31 @@
     
     
     <entry>
+      <title>总结Vue自定义过滤器</title>
+      <link href="/2020/04/08/Note/%E8%BF%87%E6%BB%A4%E5%99%A8/"/>
+      <url>/2020/04/08/Note/%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr><p>有的时候，有些数据是半动态的，即数据的一部分是变化的，一部分是固定不变或者也可能能动态，但是这种动态是相对比较少的。那么我可以使用过滤器来对数据进行一步优化过滤。在vue中提供了Vue.filter(‘flterName’,fn)来定义一个过滤器，过滤器可以在HTML代码中使用，如对动态拿到的数据进行过滤，</p><hr><p>1.定义过滤器</p><p>第一个参数是过滤器的名字</p><p>第二个参数是过滤器的功能函数。如果不定义，vue也不知道你这个字符串是什么，有什么作用。</p><p>2.过滤器功能函数</p><p>第一个参数是传入的要过滤数据，即原数据。</p><p>第二个参数开始就是html调用过滤器的时候传入的参数。</p><h4 id="错误运用过滤器"><a href="#错误运用过滤器" class="headerlink" title="错误运用过滤器"></a>错误运用过滤器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">  &#x2F;&#x2F; 自定用户义方法</span><br><span class="line">  user_filter(value) &#123;</span><br><span class="line">    &#x2F;&#x2F; 通过key(用户id)取用户名</span><br><span class="line">    return this.myuser[value]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure><h4 id="正确使用过滤器"><a href="#正确使用过滤器" class="headerlink" title="正确使用过滤器"></a>正确使用过滤器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">  &#x2F;&#x2F; 自定用户义方法</span><br><span class="line">  user_filter(value) &#123;</span><br><span class="line">    &#x2F;&#x2F; 通过key(用户id)取用户名</span><br><span class="line">    return window.that.myuser[value]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker镜像安装与启动</title>
       <link href="/2020/04/08/Note/docker%E9%95%9C%E5%83%8F/"/>
       <url>/2020/04/08/Note/docker%E9%95%9C%E5%83%8F/</url>
@@ -1567,32 +1592,7 @@
       
         <tags>
             
-            <tag> Vue </tag>
-            
             <tag> Python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>总结Vue自定义过滤器</title>
-      <link href="/2020/04/08/Note/%E8%BF%87%E6%BB%A4%E5%99%A8/"/>
-      <url>/2020/04/08/Note/%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr><p>有的时候，有些数据是半动态的，即数据的一部分是变化的，一部分是固定不变或者也可能能动态，但是这种动态是相对比较少的。那么我可以使用过滤器来对数据进行一步优化过滤。在vue中提供了Vue.filter(‘flterName’,fn)来定义一个过滤器，过滤器可以在HTML代码中使用，如对动态拿到的数据进行过滤，</p><hr><p>1.定义过滤器</p><p>第一个参数是过滤器的名字</p><p>第二个参数是过滤器的功能函数。如果不定义，vue也不知道你这个字符串是什么，有什么作用。</p><p>2.过滤器功能函数</p><p>第一个参数是传入的要过滤数据，即原数据。</p><p>第二个参数开始就是html调用过滤器的时候传入的参数。</p><h4 id="错误运用过滤器"><a href="#错误运用过滤器" class="headerlink" title="错误运用过滤器"></a>错误运用过滤器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">  &#x2F;&#x2F; 自定用户义方法</span><br><span class="line">  user_filter(value) &#123;</span><br><span class="line">    &#x2F;&#x2F; 通过key(用户id)取用户名</span><br><span class="line">    return this.myuser[value]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure><h4 id="正确使用过滤器"><a href="#正确使用过滤器" class="headerlink" title="正确使用过滤器"></a>正确使用过滤器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">  &#x2F;&#x2F; 自定用户义方法</span><br><span class="line">  user_filter(value) &#123;</span><br><span class="line">    &#x2F;&#x2F; 通过key(用户id)取用户名</span><br><span class="line">    return window.that.myuser[value]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
             
             <tag> Vue </tag>
             
