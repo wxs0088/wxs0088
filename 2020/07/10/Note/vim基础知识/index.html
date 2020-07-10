@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Win10系统下安装编辑器之神Vim | Apical</title><meta name="description" content="序幕相对于pycharm，Sublime、Vscode等编辑器，vim一直是处于编辑器的最顶端，奉行 Unix 传统的“Do one thing and do it well”哲学。 本次我们在Win10平台构建一套以Vim为核心的Python开发环境。 下载安装与使用 首先进入giv官网下载gvim8，注意根据系统类型选择32或者64位，这里我们选择64位的   下载完成后，将下载好的压缩包解压"><meta name="keywords" content="Vim"><meta name="author" content="Apical"><meta name="copyright" content="Apical"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/title.png"><link rel="canonical" href="http://www.sirxs.cn/2020/07/10/Note/vim%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="Win10系统下安装编辑器之神Vim"><meta property="og:url" content="http://www.sirxs.cn/2020/07/10/Note/vim%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><meta property="og:site_name" content="Apical"><meta property="og:description" content="序幕相对于pycharm，Sublime、Vscode等编辑器，vim一直是处于编辑器的最顶端，奉行 Unix 传统的“Do one thing and do it well”哲学。 本次我们在Win10平台构建一套以Vim为核心的Python开发环境。 下载安装与使用 首先进入giv官网下载gvim8，注意根据系统类型选择32或者64位，这里我们选择64位的   下载完成后，将下载好的压缩包解压"><meta property="og:image" content="http://www.sirxs.cn/img/notepic.jpg"><meta property="article:published_time" content="2020-07-10T08:59:18.000Z"><meta property="article:modified_time" content="2020-07-10T01:49:05.863Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="next" title="（在线客服系统）Python3.7+Flask1.1.1结合Socket.io与Vue2.9.6联合实现在线客服系统" href="http://www.sirxs.cn/2020/06/28/Blog/websocket/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":1,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: {"languages":{"author":"作者: Apical","link":"链接: ","source":"来源: Apical","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: {"text":"I,LOVE,YOU,富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善","fontSize":"15px"},
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true
+  }</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="/css/background.css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">66</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/board/"><i class="fa-fw fa fa-comment"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-camera"></i><span> 照片</span></a></li></ul></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#序幕"><span class="toc-number">1.</span> <span class="toc-text">序幕</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载安装与使用"><span class="toc-number">2.</span> <span class="toc-text">下载安装与使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结语"><span class="toc-number">3.</span> <span class="toc-text">结语</span></a></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(/img/notepic.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Apical</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/board/"><i class="fa-fw fa fa-comment"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-list"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/photos/"><i class="fa-fw fa fa-camera"></i><span> 照片</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Win10系统下安装编辑器之神Vim</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-07-10 16:59:18"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-07-10</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-07-10 09:49:05"><i class="fas fa-history fa-fw"></i> 更新于 2020-07-10</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E6%80%BB%E7%BB%93-%C2%B7-%E7%AC%94%E8%AE%B0/">总结 · 笔记</a></span></div><div class="meta-secondline"> <span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta__icon"></i><span>字数总计:</span><span class="word-count">1.9k</span><span class="post-meta__separator">|</span><i class="far fa-clock fa-fw post-meta__icon"></i><span>阅读时长: 6 分钟</span></span></div><div class="meta-thirdline"><span class="post-meta-pv-cv"><span class="post-meta__separator">|</span><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span><span class="post-meta-commentcount"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p>相对于pycharm，Sublime、Vscode等编辑器，vim一直是处于编辑器的最顶端，奉行 Unix 传统的“Do one thing and do it well”哲学。</p>
+<p>本次我们在Win10平台构建一套以Vim为核心的Python开发环境。</p>
+<h3 id="下载安装与使用"><a href="#下载安装与使用" class="headerlink" title="下载安装与使用"></a>下载安装与使用</h3><ol>
+<li><p>首先进入<a href="https://tuxproject.de/projects/vim/x64/" target="_blank" rel="noopener">giv官网</a>下载gvim8，注意根据系统类型选择32或者64位，这里我们选择64位的</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim1.png" alt="vim"></p>
+</li>
+<li><p>下载完成后，将下载好的压缩包解压，并且将文件放到C:/vim目录下</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim2.png" alt="vim"></p>
+</li>
+<li><p>紧接着我们配置下环境变量，这样我们就可以在电脑的任意位置启动vim</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim3.png" alt="vim"></p>
+</li>
+<li><p>之后在当前的用户目录，建立一个_vimrc文件，这是vim的配置文件，所有的设置都在这里编写</p>
+<p>将以下内容添加到_vimrc文件中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">" An example for a vimrc file.</span></span><br><span class="line"><span class="string">"</span></span><br><span class="line"><span class="string">" Maintainer:	Bram Moolenaar &lt;Bram@vim.org&gt;</span></span><br><span class="line"><span class="string">"</span> Last change:	<span class="number">2019</span> Dec <span class="number">17</span></span><br><span class="line"><span class="string">"</span></span><br><span class="line"><span class="string">"</span> To use it, copy it to</span><br><span class="line"><span class="string">"	       for Unix:  ~/.vimrc</span></span><br><span class="line"><span class="string">"</span>	      <span class="keyword">for</span> Amiga:  s:.vimrc</span><br><span class="line"><span class="string">"	 for MS-Windows:  $VIM_vimrc</span></span><br><span class="line"><span class="string">"</span>	      <span class="keyword">for</span> Haiku:  ~/config/settings/vim/vimrc</span><br><span class="line"><span class="string">"	    for OpenVMS:  sys$login:.vimrc</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span> When started <span class="keyword">as</span> <span class="string">"evim"</span>, evim.vim will already have done these settings, bail</span><br><span class="line"><span class="string">" out.</span></span><br><span class="line"><span class="string">if v:progname =~? "</span>evim<span class="string">"</span></span><br><span class="line"><span class="string">  finish</span></span><br><span class="line"><span class="string">endif</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">"</span> Get the defaults that most users want.</span><br><span class="line">source $VIMRUNTIME/defaults.vim</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> has(<span class="string">"vms"</span>)</span><br><span class="line">  set nobackup		<span class="string">" do not keep a backup file, use versions instead</span></span><br><span class="line"><span class="string">else</span></span><br><span class="line"><span class="string">  set backup		"</span> keep a backup file (restore to previous version)</span><br><span class="line">  <span class="keyword">if</span> has(<span class="string">'persistent_undo'</span>)</span><br><span class="line">    set undofile	<span class="string">" keep an undo file (undo changes after closing)</span></span><br><span class="line"><span class="string">  endif</span></span><br><span class="line"><span class="string">endif</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">if &amp;t_Co &gt; 2 || has("</span>gui_running<span class="string">")</span></span><br><span class="line"><span class="string">  "</span> Switch on highlighting the last used search pattern.</span><br><span class="line">  set hlsearch</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line"><span class="string">" Put these in an autocmd group, so that we can delete them easily.</span></span><br><span class="line"><span class="string">augroup vimrcEx</span></span><br><span class="line"><span class="string">  au!</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  "</span> For all text files set <span class="string">'textwidth'</span> to <span class="number">78</span> characters.</span><br><span class="line">  autocmd FileType text setlocal textwidth=<span class="number">78</span></span><br><span class="line">augroup END</span><br><span class="line"></span><br><span class="line"><span class="string">" Add optional packages.</span></span><br><span class="line"><span class="string">"</span></span><br><span class="line"><span class="string">" The matchit plugin makes the % command work better, but it is not backwards</span></span><br><span class="line"><span class="string">"</span> compatible.</span><br><span class="line"><span class="string">" The ! means the package won't be loaded right away but when plugins are</span></span><br><span class="line"><span class="string">"</span> loaded during initialization.</span><br><span class="line"><span class="keyword">if</span> has(<span class="string">'syntax'</span>) &amp;&amp; has(<span class="string">'eval'</span>)</span><br><span class="line">  packadd! matchit</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line">set encoding=utf<span class="number">-8</span></span><br><span class="line">set fileencodings=utf<span class="number">-8</span>,chinese,latin<span class="number">-1</span></span><br><span class="line"><span class="keyword">if</span> has(<span class="string">"win32"</span>)</span><br><span class="line">    set fileencoding=chinese</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    set fileencoding=utf<span class="number">-8</span></span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line">set autoindent</span><br><span class="line">set nu!</span><br><span class="line">set shiftwidth=<span class="number">4</span></span><br><span class="line"></span><br><span class="line">source $VIMRUNTIME/delmenu.vim</span><br><span class="line">source $VIMRUNTIME/menu.vim</span><br><span class="line"></span><br><span class="line">language messages zh_CN.utf<span class="number">-8</span></span><br><span class="line"></span><br><span class="line">colo koehler</span><br><span class="line">set guifont=monaco:h11:cANSI</span><br><span class="line"></span><br><span class="line">set ts=<span class="number">4</span></span><br><span class="line">set expandtab</span><br><span class="line"></span><br><span class="line">map &lt;F5&gt; :! python.exe %</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这些都是一些最基本的配置，比如设置编码解决中文乱码问题、自动缩进以及缩进宽度、菜单栏中文字体问题、主题和字体、以及四个空格代替制表符等等，注意一点这个配置里我将运行python脚本的快捷键设置成了F5。</p>
+<p>这时进入windows命令行，输入gvim启动编辑器，然后键入命令:version，看到版本号就没有问题了</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim4.png" alt="vim"></p>
+</li>
+<li><p>虽然现在Vim已经可以正常使用了，但是没有插件的加成，开发效率就不是那么高，所以我们现在来安装一些常用的插件。安装<a href="https://github.com/tpope/vim-pathogen" target="_blank" rel="noopener">pathogen.vim插件</a>（一个vim插件管理器， 直接Clone或者下载压缩包将Clone或者解压后的pathogen.vim文件放到C:/vim/autoload目录下</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim5.png" alt="vim"></p>
+</li>
+<li><p>修改用户目录下的_vimrc配置文件，将下面的配置加进去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">execute pathogen#infect()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样就可以安装其他所有的插件了，紧接着我们安装一个<a href="https://www.vim.org/scripts/script.php?script_id=69" target="_blank" rel="noopener">项目管理插件</a>(project)，它可以帮助我们把项目整体导入vim编辑器内，通过点击文件进行修改，这样就不用每次编辑都要在命令行输入命令才能编辑了，大体上，这个插件可以帮我们快速修改整个项目。</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim6.png" alt="vim"></p>
+</li>
+<li><p>将解压后的doc目录中的project文件拷贝到vim安装目录的doc目录下将plugin目录下的project.vim拷贝到vim安装目录的plugin目录下在命令行输入gvim启动编辑器。输入:Project，随后输入\C (是反斜杠和大写C，因为是输入命令，所以不会在编辑内显示，但是执行成功后会弹出窗口)</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim7.png" alt="vim"></p>
+</li>
+<li><p>Enter the Name of the Entry: 输入项目名，Enter the Absolute Directory to，Load: 输入项目的文件目录路径（项目目录需要事先存在），Enter the CD parameter: 这个和项目目录路径一样即可，Enter the File Filter: 设置管理的文件类型，<em>.py,</em>.txt等等，可以设置多个，不设置（直接回车）默认为所有类型</p>
+<p>再次使用：打开vim后输入:Project<br>使用回车打开或关闭标签。<br>添加或者修改文件后可以使用\R进行刷新项目。</p>
+<p>这样我们就可以在vim里管理我们的项目了。</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim8.png" alt="vim"></p>
+</li>
+<li><p>好了，项目导入后就可以愉快的开发了，但是我们发现vim默认没有代码补全，怎么办呢，聪明如你一定已经猜到可以用插件搞定，使用<a href="https://github.com/rkulla/pydiction" target="_blank" rel="noopener">pydiction</a>Clone或者下载压缩包之后，发现里面有after文件夹、complete-dict、pydiction.py</p>
+<p>将after里面的python_pydiction.vim文件拷贝到 vim安装目录下的ftpplugin里面，将complete-dict、pydiction.py 拷贝到ftpplugin目录下。</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim9.png" alt="vim"></p>
+<p>随后在_vimrc里面添加 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">filetype plugin on</span><br><span class="line">let g:pydiction_location=<span class="string">'C:vimftplugincomplete-dict'</span></span><br><span class="line">let g:pydiction_menu_height = <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>这就搞定了，使用方法是，敲入两个字母之后使用tab键进行补全，效果是下面这样：</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim10.png" alt="vim"></p>
+</li>
+<li><p>还不错吧，有的时候，你甚至想用vim来编辑前端的页面，没有任何问题，使用<a href="https://vim.sourceforge.io/scripts/script.php?script_id=1879" target="_blank" rel="noopener">autocomplpop插件</a></p>
+<p>解压后，将plugin下的脚本文件(.vim)、doc下的帮助文件(.txt)和autoload下的(.vim)文件分别拷贝至vim的 plugin、doc和autoload目录</p>
+<p>这个插件甚至不需要配置，只需要在输入/insert模式下即可自动根据当前文档内的内容进行自动补全</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim11.png" alt="vim"></p>
+</li>
+<li><p>是不是感觉还不错？有了那么一点黑客的赶脚了。</p>
+<p>Vim 有两种模式——Normal 模式和 Insert 模，所有命令都是在 Normal 模式下执行。启动 Vim 后，默认进入 Normal 模式，可以按 i 键进入 Insert 模式，或者 s 删除当前字符并进入 Insert 模式，退出 Insert 模式进入 Normal 按 ESC 。</p>
+<p>基本用法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">i insert 输入</span><br><span class="line">v 行选中</span><br><span class="line">ctrl+v 列选中G 至文末</span><br><span class="line">gg 至文首</span><br><span class="line">:q 未修改退出</span><br><span class="line">:q! 强制不保存退出</span><br><span class="line">:x / :wq 保存并退出</span><br><span class="line">J 合并多行</span><br><span class="line">d 删除当前所选</span><br><span class="line">dd 删除多行并存在剪贴板中（剪切）</span><br><span class="line">y 复制当前所选</span><br><span class="line">yy 复制整行</span><br><span class="line">p 粘贴</span><br><span class="line">u 撤销操作</span><br><span class="line">w 光标移动到下一个单词处</span><br><span class="line">b 光标移动到上一个单词处</span><br><span class="line">^ 光标移动到行首</span><br><span class="line">$ 光标移动到行尾</span><br><span class="line">kjhl 或者上下左右键移动光标</span><br><span class="line">shift+上下键 翻页</span><br><span class="line">shift+左右 光标乙至上/下一个单词（以空格/标点区分单词）词首</span><br><span class="line">u 撤销上一步操作</span><br><span class="line">zo/zn/zc 折叠/展开代码块</span><br><span class="line">:vsp 新建工作区</span><br><span class="line">ctrl+w 松手后再按 方向键 切换工作区</span><br><span class="line">:MR 选择最近打开的文件（需安装插件）</span><br><span class="line">F12 运行当前文件</span><br><span class="line"><span class="comment"># 搜索光标处短语</span></span><br><span class="line">:set paste 进入粘贴模式</span><br><span class="line">:%s/target/something/g 替换全部 target 字段</span><br><span class="line">:s/target/something/g 替换选中区域 target 字段</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参考命令图解</p>
+<p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/vim12.png" alt="vim"></p>
+</li>
+</ol>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>现而今，Mac os和开源软件渐渐流行起来，此时的人们才发现：可扩展性才是软件的核心竞争力。在JetBrains横行的今天，Vscode为什么被评为最好的IDE？就是因为它在IDE中最具可扩展性。同理，将近30多年的历史浪潮中Vim没有被时代淘汰，反而愈发健壮，拥趸遍布全世界，也正是因为在数不清的编辑器中，Vim具有无可匹敌的可扩展性，当然了，这个世界除了编辑器之神，还有另外一种信仰：Emacs，它的教徒丝毫不少于Vim，它的影响力已经是超越编辑器的存在，有机会再分享关于Emacs的传说。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Apical</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://www.sirxs.cn/2020/07/10/Note/vim%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">http://www.sirxs.cn/2020/07/10/Note/vim%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://www.sirxs.cn" target="_blank">Apical</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Vim/">Vim</a></div><div class="post_share"><div class="social-share" data-image="/img/timg.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><html><body><div id="wpac-rating" align="center"></div><script type="text/javascript">wpac_init = window.wpac_init || [];
+wpac_init.push({widget: 'Rating', id: 26104});  //- 这里将xxxxx改成自己的id
+(function() {
+if ('WIDGETPACK_LOADED' in window) return;
+WIDGETPACK_LOADED = true;
+var mc = document.createElement('script');
+mc.type = 'text/javascript';
+mc.async = true;
+mc.src = 'https://embed.widgetpack.com/widget.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+})();
+//- 下面的那行小字 如果你不需要可以把17~21行注释掉</script><div id="copy" align="center">ღ喜欢记得五星好评哦~</div></body></html><div class="post-reward"><button class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="post-qr-code__img" src="/img/wechat.jpg" alt="微信" onclick="window.open('/img/wechat.jpg')"/><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="post-qr-code__img" src="/img/alipay.jpg" alt="支付宝" onclick="window.open('/img/alipay.jpg')"/><div class="post-qr-code__desc">支付宝</div></li></ul></div></button></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/06/28/Blog/websocket/"><img class="next-cover" data-src="/img/timg.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">（在线客服系统）Python3.7+Flask1.1.1结合Socket.io与Vue2.9.6联合实现在线客服系统</div></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var requestSetting = function (from,set) {
+  var from = from
+  var setting = set.split(',').filter(function(item){
+  return from.indexOf(item) > -1
+  });
+  setting = setting.length == 0 ? from :setting;
+  return setting
+}
+
+var guestInfo = requestSetting(['nick','mail','link'],'nick,mail,link')
+var requiredFields = requestSetting(['nick','mail'],'nick,mail')
+
+window.valine = new Valine({
+  el:'#vcomment',
+  appId: '8AE0gUyNlCyAxUXwKDHW21m5-gzGzoHsz',
+  appKey: 'qiC5e7kTJOWFJ7x9SwaJeH5f',
+  placeholder: '请留下你的评论丫',
+  avatar: 'monsterid',
+  meta: guestInfo,
+  pageSize: '10',
+  lang: 'zh-CN',
+  recordIP: false,
+  serverURLs: '',
+  emojiCDN: '',
+  emojiMaps: "",
+  enableQQ: false,
+  requiredFields: requiredFields
+});</script></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020  <i id="heartbeat" class="fa fas fa-heartbeat"></i> Apical</div></div><head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css">
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Apical" type="application/atom+xml">
+</head></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><button id="readmode" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" title="缩小字体"><i class="fas fa-minus"></i></button><button class="translate_chn_to_cht" id="translateLink" title="简繁转换">繁</button><button id="darkmode" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fas fa-comments"></i></a><button class="close" id="mobile-toc-button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script id="ribbon_piao" mobile="false" src="/js/third-party/piao.js"></script><script src="/js/third-party/activate-power-mode.js"></script><script>POWERMODE.colorful = false;
+POWERMODE.shake = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/third-party/click_heart.js"></script><script src="/js/third-party/ClickShowText.js"></script><script src="/js/search/local-search.js"></script></body></html>
