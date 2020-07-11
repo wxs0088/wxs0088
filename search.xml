@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>使用ShareLatex和Python3打造属于自己的特色简历</title>
+      <link href="/2020/07/11/Note/%E4%BD%BF%E7%94%A8ShareLatex%E5%88%B6%E4%BD%9C%E7%AE%80%E5%8E%86/"/>
+      <url>/2020/07/11/Note/%E4%BD%BF%E7%94%A8ShareLatex%E5%88%B6%E4%BD%9C%E7%AE%80%E5%8E%86/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p><strong>履历</strong>(英式英语：<a href="https://zh.wikipedia.org/w/index.php?title=Curriculum_Vitae&action=edit&redlink=1" target="_blank" rel="noopener">Curriculum Vitae</a>，简称<strong>CV</strong>；美式英语：<a href="https://zh.wikipedia.org/w/index.php?title=Résumé&action=edit&redlink=1" target="_blank" rel="noopener">Résumé</a>)，是对个人教育、工作经历的书面介绍，是求职者通向面试阶段的重要一环。</p><p>说起简历模板，大家一定不会陌生，随便在百度搜关键词“简历模板”，林林总总的会出现一大片，但是这些简历模板往往都会有一个共同点，就是太Low、“土味”重、没有时代感、味同嚼蜡，蜡都要顺着嘴角流下来了，以一个求职者的视角来看待这些简历都会无奈心烦，更别说招聘者了。所以新时代的简历应该具备独特性、新颖、与众不同并且不落窠臼。</p><p>Resume是在申请求职时最常使用的文件，为你的教育程度、工作经历以及工作技能做简单且明了的摘要，同时，也会依个人、申请职位的需求，列出求职目标。由于是个人“摘要”，Resume通常为一页，最多不超过二页，以求简洁。</p><p>而在CV中，则会详细的列举出个人的经验与相关技能，尤其是个人的学术背景，如：教学经验、研究成果、获奖纪录、相关出版物⋯⋯等细节，也因此，CV的篇幅会比Resume长上许多，通常会超过二页。</p><h3 id="开始操作"><a href="#开始操作" class="headerlink" title="开始操作"></a>开始操作</h3><ol><li><p>首先进入<a href="https://www.sharelatex.com/" target="_blank" rel="noopener">ShareLatex</a>，注册账号并登陆。</p></li><li><p>之后通过邮箱激活，选择新建序幕，并选简历</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha1.png" alt="sha"></p></li><li><p>紧接着我们会发现有许多简历模板，但是都用LaTeX语法写的</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha2.png" alt="sha"></p></li><li><p>随后点开其中一个，就可以进行定制化的编辑</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha3.png" alt="sha"></p></li><li><p>编辑之后，可以点击重新编译查看效果，如果编辑好之后就可以在线下载pdf，非常方便</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha4.png" alt="sha"></p></li><li><p>但是由于LaTeX语法我们没有学过，而且编辑成本比较高，最重要的对于一些英文不好的很难编辑。</p></li><li><p>其实<code>6</code>的问题很好解决。我们可以下载这上面的原始pdf简历，再通过Python脚本将其转换为我们所熟悉的Word文档模式，这样就可以随便进行编辑</p></li><li><p>通过Pdfminer3k以及Python-Docx两个库，使用python可以实现</p></li><li><p>首先安装依赖</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pdfminer3k</span><br><span class="line">pip3 install python-docx</span><br></pre></td></tr></table></figure></li><li><p>通过Pdfminer3k读取pdf内容，再使用Python-Docx写入word文档</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pdfminer.pdfinterp <span class="keyword">import</span> PDFResourceManager</span><br><span class="line"><span class="keyword">from</span> pdfminer.pdfinterp <span class="keyword">import</span> process_pdf</span><br><span class="line"><span class="keyword">from</span> pdfminer.converter <span class="keyword">import</span> TextConverter</span><br><span class="line"><span class="keyword">from</span> pdfminer.layout <span class="keyword">import</span> LAParams</span><br><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> StringIO</span><br><span class="line"><span class="keyword">from</span> docx <span class="keyword">import</span> Document</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">file = open(<span class="string">"pdf文件地址"</span>, <span class="string">'rb'</span>)</span><br><span class="line"></span><br><span class="line">resource_manager = PDFResourceManager()</span><br><span class="line">return_str = StringIO()</span><br><span class="line">lap_params = LAParams()</span><br><span class="line"></span><br><span class="line">device = TextConverter(resource_manager, return_str, laparams=lap_params)</span><br><span class="line">process_pdf(resource_manager, device, file)</span><br><span class="line">device.close()</span><br><span class="line"></span><br><span class="line">content = return_str.getvalue()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_control_characters</span><span class="params">(content)</span>:</span></span><br><span class="line">    mpa = dict.fromkeys(range(<span class="number">32</span>))</span><br><span class="line">    <span class="keyword">return</span> content.translate(mpa)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">doc = Document()</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> content.split(<span class="string">'\n'</span>):</span><br><span class="line">    paragraph = doc.add_paragraph()</span><br><span class="line">    paragraph.add_run(remove_control_characters(line))</span><br><span class="line">doc.save(<span class="string">"mypdf.docx"</span>)</span><br></pre></td></tr></table></figure></li><li><p>但是，这样弄出来的简历，没有样式而且麻烦</p></li><li><p>我们可以通过注册登陆<a href="https://smallpdf.com/" target="_blank" rel="noopener">https://smallpdf.com/</a>此网站，进行在线转换</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha5.png" alt="sha"></p></li><li><p>直接拖拽上传即可。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha6.png" alt="sha"></p></li></ol><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>一个不落俗套的简历模板可以让你的求职如虎添翼，也可以让你的简历从招聘者邮箱中的海量简历中脱颖而出，但是简历模板也仅仅是求职中的一个重要细节之一，比起简历模板，简历中的工作经历以及技术经验则更加重要，切不可本末倒置。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> ShareLatex </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Win10系统下安装编辑器之神Vim</title>
       <link href="/2020/07/10/Note/vim%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
       <url>/2020/07/10/Note/vim%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</url>
@@ -303,25 +330,6 @@
     
     
     <entry>
-      <title>个人微信公众号申请以及添加机器人</title>
-      <link href="/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
-      <url>/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="开场"><a href="#开场" class="headerlink" title="开场"></a>开场</h3><p>微信（<a href="https://baike.baidu.com/item/WeChat" target="_blank" rel="noopener">WeChat</a>）是<a href="https://baike.baidu.com/item/腾讯公司" target="_blank" rel="noopener">腾讯公司</a>于2011年1月21日推出的一个为<a href="https://baike.baidu.com/item/智能终端" target="_blank" rel="noopener">智能终端</a>提供<a href="https://baike.baidu.com/item/即时通讯/111144" target="_blank" rel="noopener">即时通讯</a>服务的免费<a href="https://baike.baidu.com/item/应用程序" target="_blank" rel="noopener">应用程序</a> ，由<a href="https://baike.baidu.com/item/张小龙/24795" target="_blank" rel="noopener">张小龙</a>所带领的腾讯<a href="https://baike.baidu.com/item/广州/72101" target="_blank" rel="noopener">广州</a>研发中心产品团队打造 。微信支持跨通信<a href="https://baike.baidu.com/item/运营商/4530550" target="_blank" rel="noopener">运营商</a>、跨<a href="https://baike.baidu.com/item/操作系统/192" target="_blank" rel="noopener">操作系统</a>平台通过网络快速发送免费（需消耗少量网络流量）<a href="https://baike.baidu.com/item/语音短信/8430295" target="_blank" rel="noopener">语音短信</a>、<a href="https://baike.baidu.com/item/视频/321962" target="_blank" rel="noopener">视频</a>、<a href="https://baike.baidu.com/item/图片/372416" target="_blank" rel="noopener">图片</a>和文字，同时，也可以使用通过共享<a href="https://baike.baidu.com/item/流媒体/98740" target="_blank" rel="noopener">流媒体</a>内容的资料和基于位置的社交插件“<a href="https://baike.baidu.com/item/摇一摇/14079911" target="_blank" rel="noopener">摇一摇</a>”、“<a href="https://baike.baidu.com/item/漂流瓶/5706027" target="_blank" rel="noopener">漂流瓶</a>”、“<a href="https://baike.baidu.com/item/朋友圈/17341022" target="_blank" rel="noopener">朋友圈</a>”、”<a href="https://baike.baidu.com/item/公众平台/3274590" target="_blank" rel="noopener">公众平台</a>“、”<a href="https://baike.baidu.com/item/语音记事本" target="_blank" rel="noopener">语音记事本</a>“等服务插件。</p><p>微信公众平台，简称公众号。利用公众账号平台进行自媒体活动，简单来说就是进行一对多的媒体性行为活动，如商家通过申请公众微信服务号通过二次开发展示商家微官网、微会员、微推送、<a href="https://baike.baidu.com/item/微支付/10360089" target="_blank" rel="noopener">微支付</a>、微活动、微报名、微分享、<a href="https://baike.baidu.com/item/微名片/9824840" target="_blank" rel="noopener">微名片</a>等，已经形成了一种主流的线上线下微信互动营销方式。</p><h3 id="申请微信公众号"><a href="#申请微信公众号" class="headerlink" title="申请微信公众号"></a>申请微信公众号</h3><ol><li><p>打开微信公众平台官网：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a> 右上角点击“立即注册”；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/7b4101870f94370b73d5cd6aec92f22e.jpg" alt="wechar"></p></li><li><p>选择帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/9bbe5e53e78ec43d06afc8029f805d4f.png" alt="wechar"></p></li><li><p>填写邮箱，登录您的邮箱，查看激活邮件，填写邮箱验证码激活；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/07fcbb9c84b54592a84c1e41c7427593.png" alt="wechar"></p></li></ol><p>   <img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/8adfac5a79153e3419f430e8a179a8c4.png" alt="wechar"></p><ol start="4"><li><p>了解订阅号、服务号和企业微信的区别后，选择想要的帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/e88a2daa703d10c3f65f654f9e494b4a.jpg" alt="wechar"></p></li><li><p>下图为订阅号、服务号和企业微信的在手机端展示效果</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/5fe805b2f2114cb1f4e5bc89192363a6.jpg" alt="wechar"></p></li><li><p>信息登记，选择个人类型之后，填写身份证信息</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/c6f85f4e01d0f26b8c1a3d3be8e768ad.png" alt="wechar"></p></li><li><p>填写帐号信息，包括公众号名称、功能介绍，选择运营地区</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/d64f5ba1ae908f4d918fd9ddc948b642.png" alt="wechar"></p></li><li><p>恭喜注册成功！可以开始使用公众号了~</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/08b8812718edff4c23e5e21dc0f8e94d.jpg" alt="wechar"></p></li></ol><h3 id="给公众号添加机器人"><a href="#给公众号添加机器人" class="headerlink" title="给公众号添加机器人"></a>给公众号添加机器人</h3><ol><li><p>打开图灵机器人官网：<a href="http://www.turingapi.com/" target="_blank" rel="noopener">http://www.turingapi.com/</a>，进行<code>注册登陆</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling1.png" alt="gitee"></p></li><li><p>进入之后，点击<code>创建机器人</code>，每个人最多免费申请五个机器人。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling2.png" alt="gitee"></p></li><li><p>填写信息</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling3.png" alt="gitee"></p></li><li><p>创建成功之后进入创建好的机器人的<code>终端设置</code>，找到<code>添加微信公众号</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling4.png" alt="gitee"></p></li><li><p>使用之前创建公众号的管理员微信扫描，授权</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling5.png" alt="gitee"></p></li><li><p>使用效果还是挺不错的</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling6.png" alt="gitee"></p></li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>使用个人公众号有什么好处：</p><ul><li><p><strong>赞赏作者</strong></p></li><li><p><strong>广告收入</strong></p><p>很多商家都需要打广告，以前他们都是在 电视、公交车打广告，现在手机是最多人使用的，微信公众号也是最多人看的，把广告打在公众号里面，可能效果会更好，因此很多商家都会找有粉丝的公众号合作，给钱在公众号上写文章，如果他们找到你，要在你公众号投放广告，广告费就非常不错了，目前广告是公众号做着变现的最主流的方式，流量就是钱，比如，目前做的比较好的咪蒙的广告费用，一篇文章就要100万元左右。</p></li><li><p><strong>电商</strong></p><p>微信最近公众号改版后，可在公众号文章直接插入商品，可通过分销产品，公众号主获得商品提成，如果你不想帮别人打广告，可以自己做电商广告，比如我卖茶叶的，我可以自己做商品，在自己公众号打广告，这种就叫做自媒体电商，如果你的粉丝足够大，电商收入肯定非常高。</p></li><li><p><strong>知识付费</strong></p><p>很多公众号主，获得了很多忠实的粉丝，他的成功经验可以做成付费课程，通过做付费课程变现也是很常见的方式，知识付费就是包括出书、线下沙龙、线上知识、付费社群等方式。</p></li><li><p><strong>卖公众号</strong></p><p>卖公众号这种一般都是批量做号的公司做的，他们都是形成了标准化运作，只有IP主号粉丝在，不断的养号做号，把粉丝聚集起来，迁移卖给别人，这种交易模式现在很成熟，一般一个十万粉丝的质量号，能够卖三十万左右，具体看号的类型和质量，总之，卖公众号也是非常赚钱的，其实本质上，就是卖粉丝，这也是非常重要的变现方式。</p></li></ul><p><strong>当然了我们可能做不到那么好，但是成功都是慢慢积累的，如果你掌握了这个技能，并且好好运营，成功也是在情理之中的。</strong></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 生活 · 日记 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>（七牛云云端存储）使用python3.7+Vue.js2.0+Django2.0.4异步前端通过api上传文件到七牛云云端存储</title>
       <link href="/2020/06/08/Blog/qiniu/"/>
       <url>/2020/06/08/Blog/qiniu/</url>
@@ -345,6 +353,25 @@
             <tag> Python </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>个人微信公众号申请以及添加机器人</title>
+      <link href="/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
+      <url>/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="开场"><a href="#开场" class="headerlink" title="开场"></a>开场</h3><p>微信（<a href="https://baike.baidu.com/item/WeChat" target="_blank" rel="noopener">WeChat</a>）是<a href="https://baike.baidu.com/item/腾讯公司" target="_blank" rel="noopener">腾讯公司</a>于2011年1月21日推出的一个为<a href="https://baike.baidu.com/item/智能终端" target="_blank" rel="noopener">智能终端</a>提供<a href="https://baike.baidu.com/item/即时通讯/111144" target="_blank" rel="noopener">即时通讯</a>服务的免费<a href="https://baike.baidu.com/item/应用程序" target="_blank" rel="noopener">应用程序</a> ，由<a href="https://baike.baidu.com/item/张小龙/24795" target="_blank" rel="noopener">张小龙</a>所带领的腾讯<a href="https://baike.baidu.com/item/广州/72101" target="_blank" rel="noopener">广州</a>研发中心产品团队打造 。微信支持跨通信<a href="https://baike.baidu.com/item/运营商/4530550" target="_blank" rel="noopener">运营商</a>、跨<a href="https://baike.baidu.com/item/操作系统/192" target="_blank" rel="noopener">操作系统</a>平台通过网络快速发送免费（需消耗少量网络流量）<a href="https://baike.baidu.com/item/语音短信/8430295" target="_blank" rel="noopener">语音短信</a>、<a href="https://baike.baidu.com/item/视频/321962" target="_blank" rel="noopener">视频</a>、<a href="https://baike.baidu.com/item/图片/372416" target="_blank" rel="noopener">图片</a>和文字，同时，也可以使用通过共享<a href="https://baike.baidu.com/item/流媒体/98740" target="_blank" rel="noopener">流媒体</a>内容的资料和基于位置的社交插件“<a href="https://baike.baidu.com/item/摇一摇/14079911" target="_blank" rel="noopener">摇一摇</a>”、“<a href="https://baike.baidu.com/item/漂流瓶/5706027" target="_blank" rel="noopener">漂流瓶</a>”、“<a href="https://baike.baidu.com/item/朋友圈/17341022" target="_blank" rel="noopener">朋友圈</a>”、”<a href="https://baike.baidu.com/item/公众平台/3274590" target="_blank" rel="noopener">公众平台</a>“、”<a href="https://baike.baidu.com/item/语音记事本" target="_blank" rel="noopener">语音记事本</a>“等服务插件。</p><p>微信公众平台，简称公众号。利用公众账号平台进行自媒体活动，简单来说就是进行一对多的媒体性行为活动，如商家通过申请公众微信服务号通过二次开发展示商家微官网、微会员、微推送、<a href="https://baike.baidu.com/item/微支付/10360089" target="_blank" rel="noopener">微支付</a>、微活动、微报名、微分享、<a href="https://baike.baidu.com/item/微名片/9824840" target="_blank" rel="noopener">微名片</a>等，已经形成了一种主流的线上线下微信互动营销方式。</p><h3 id="申请微信公众号"><a href="#申请微信公众号" class="headerlink" title="申请微信公众号"></a>申请微信公众号</h3><ol><li><p>打开微信公众平台官网：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a> 右上角点击“立即注册”；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/7b4101870f94370b73d5cd6aec92f22e.jpg" alt="wechar"></p></li><li><p>选择帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/9bbe5e53e78ec43d06afc8029f805d4f.png" alt="wechar"></p></li><li><p>填写邮箱，登录您的邮箱，查看激活邮件，填写邮箱验证码激活；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/07fcbb9c84b54592a84c1e41c7427593.png" alt="wechar"></p></li></ol><p>   <img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/8adfac5a79153e3419f430e8a179a8c4.png" alt="wechar"></p><ol start="4"><li><p>了解订阅号、服务号和企业微信的区别后，选择想要的帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/e88a2daa703d10c3f65f654f9e494b4a.jpg" alt="wechar"></p></li><li><p>下图为订阅号、服务号和企业微信的在手机端展示效果</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/5fe805b2f2114cb1f4e5bc89192363a6.jpg" alt="wechar"></p></li><li><p>信息登记，选择个人类型之后，填写身份证信息</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/c6f85f4e01d0f26b8c1a3d3be8e768ad.png" alt="wechar"></p></li><li><p>填写帐号信息，包括公众号名称、功能介绍，选择运营地区</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/d64f5ba1ae908f4d918fd9ddc948b642.png" alt="wechar"></p></li><li><p>恭喜注册成功！可以开始使用公众号了~</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/08b8812718edff4c23e5e21dc0f8e94d.jpg" alt="wechar"></p></li></ol><h3 id="给公众号添加机器人"><a href="#给公众号添加机器人" class="headerlink" title="给公众号添加机器人"></a>给公众号添加机器人</h3><ol><li><p>打开图灵机器人官网：<a href="http://www.turingapi.com/" target="_blank" rel="noopener">http://www.turingapi.com/</a>，进行<code>注册登陆</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling1.png" alt="gitee"></p></li><li><p>进入之后，点击<code>创建机器人</code>，每个人最多免费申请五个机器人。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling2.png" alt="gitee"></p></li><li><p>填写信息</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling3.png" alt="gitee"></p></li><li><p>创建成功之后进入创建好的机器人的<code>终端设置</code>，找到<code>添加微信公众号</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling4.png" alt="gitee"></p></li><li><p>使用之前创建公众号的管理员微信扫描，授权</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling5.png" alt="gitee"></p></li><li><p>使用效果还是挺不错的</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling6.png" alt="gitee"></p></li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>使用个人公众号有什么好处：</p><ul><li><p><strong>赞赏作者</strong></p></li><li><p><strong>广告收入</strong></p><p>很多商家都需要打广告，以前他们都是在 电视、公交车打广告，现在手机是最多人使用的，微信公众号也是最多人看的，把广告打在公众号里面，可能效果会更好，因此很多商家都会找有粉丝的公众号合作，给钱在公众号上写文章，如果他们找到你，要在你公众号投放广告，广告费就非常不错了，目前广告是公众号做着变现的最主流的方式，流量就是钱，比如，目前做的比较好的咪蒙的广告费用，一篇文章就要100万元左右。</p></li><li><p><strong>电商</strong></p><p>微信最近公众号改版后，可在公众号文章直接插入商品，可通过分销产品，公众号主获得商品提成，如果你不想帮别人打广告，可以自己做电商广告，比如我卖茶叶的，我可以自己做商品，在自己公众号打广告，这种就叫做自媒体电商，如果你的粉丝足够大，电商收入肯定非常高。</p></li><li><p><strong>知识付费</strong></p><p>很多公众号主，获得了很多忠实的粉丝，他的成功经验可以做成付费课程，通过做付费课程变现也是很常见的方式，知识付费就是包括出书、线下沙龙、线上知识、付费社群等方式。</p></li><li><p><strong>卖公众号</strong></p><p>卖公众号这种一般都是批量做号的公司做的，他们都是形成了标准化运作，只有IP主号粉丝在，不断的养号做号，把粉丝聚集起来，迁移卖给别人，这种交易模式现在很成熟，一般一个十万粉丝的质量号，能够卖三十万左右，具体看号的类型和质量，总之，卖公众号也是非常赚钱的，其实本质上，就是卖粉丝，这也是非常重要的变现方式。</p></li></ul><p><strong>当然了我们可能做不到那么好，但是成功都是慢慢积累的，如果你掌握了这个技能，并且好好运营，成功也是在情理之中的。</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 · 日记 </category>
+          
+      </categories>
+      
       
     </entry>
     
@@ -569,25 +596,6 @@
     
     
     <entry>
-      <title>Thunder无版权</title>
-      <link href="/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/"/>
-      <url>/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、序幕"><a href="#一、序幕" class="headerlink" title="一、序幕"></a>一、序幕</h3><p>再现当今各大影视平台推出的各种VIP制度，使我们是我们这些‘穷人’已无法生存。</p><p>于是出现了<a href="https://baike.baidu.com/item/BT种子" target="_blank" rel="noopener">BT种子</a>，在这个BT种子泛滥的时代，影视VIP已经在有的人心中抹去。</p><p>说道BT种子好像很多男人都很喜欢比如：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/%E4%B8%8B%E8%BD%BD.jpg" alt="img"></p><p>这个。。。。真是太棒了！！！</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p><p>有了BT种子我们还需要有一个解析工具<a href="https://baike.baidu.com/item/迅雷/33354" target="_blank" rel="noopener">迅雷(Thunder)</a>，迅雷应该是大多数人的电脑或者手机里必备的软件吧！！</p><p>但是：</p><p><img src= "/img/loading.gif" data-src="https://pic4.zhimg.com/80/v2-d5d664989af1c5915c32241df9f71f83_720w.jpg" alt="img"></p><p>这个是不是很讨厌。。</p><hr><h3 id="二、问题"><a href="#二、问题" class="headerlink" title="二、问题"></a>二、问题</h3><p>同样，今天我一如既往的在网上搜索BT种子：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p><p>来到迅雷解析：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder1.png" alt="img"></p><p>这。。。这又不是什么搞颜色的视频，为啥也没有版权？？</p><p>之后，我在网上一顿操作，找到了解决办法！！</p><hr><h3 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h3><ul><li><p>首先我们先下载BT种子到桌面</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder2.png" alt="img"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p></li><li><p>之后我们来到百度云盘（可以是网页版的，也可以是端游版的，我用的是网页版的）</p></li><li><p>找到离线下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder4.png" alt="img"></p></li><li><p>进去，点击新建BT任务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder5.png" alt="img"></p></li><li><p>找到你的BT种子位置，并打开</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder6.png" alt="img"></p></li><li><p>之后选择视频文件，开始下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder7.png" alt="img"></p></li><li><p>可以看到下载速度是非常快的（我用的是网页版的，客户端应该会更快）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder8.png" alt="img"></p></li><li><p>下载完成，点击播放</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder9.png" alt="img"></p></li><li><p>就可以开开心心的看电影了（悄悄拿上纸巾）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder10.png" alt="img"></p></li></ul><p>是不是帮你们解决了没有女朋友的问题呢</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 生活 · 日记 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>JWT</title>
       <link href="/2020/05/31/Note/jwt/"/>
       <url>/2020/05/31/Note/jwt/</url>
@@ -615,25 +623,19 @@
     
     
     <entry>
-      <title>VSCode插件-Draw.io</title>
-      <link href="/2020/05/30/Blog/vscode%E6%8F%92%E4%BB%B6-Draw.io/"/>
-      <url>/2020/05/30/Blog/vscode%E6%8F%92%E4%BB%B6-Draw.io/</url>
+      <title>Thunder无版权</title>
+      <link href="/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/"/>
+      <url>/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近呢，每次写代码之前都必须要画流程图，再画的时候很是烦恼，使用<a href="https://www.processon.com/" target="_blank" rel="noopener">ProcessOn</a>效果很好，但是有文件数量限制，如果想要增加数量的话还必须花钱，这就很烦恼，于是我找到一款非常棒的VSCode的插件–Draw.io</p><hr><p>作为一款开源的主流代码编辑器，VSCode 在发布之后一直受到不少开发者的喜爱。</p><p>VSCode，它不仅有提升开发体验的界面、轻量化的编辑器，还有丰富而强大的插件，超多的插件让水友调侃道，这个世界上没有VSCode做不到的事。</p><p>今天我就给大家介绍一款实用的 VSCode 插件：VSCode Drawio。</p><p>这个draw.io其实我也不太了解，上网找了下资料大概和<a href="https://www.processon.com/" target="_blank" rel="noopener">ProcessOn</a>一样的支持在线绘图的网站工具</p><hr><h3 id="接下来进入主题—VSCode-Drawio"><a href="#接下来进入主题—VSCode-Drawio" class="headerlink" title="接下来进入主题—VSCode Drawio"></a>接下来进入主题—<em>VSCode Drawio</em></h3><p>话不多说先看它的效果吧</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/drawio.gif" alt="drawio"></p><p>怎么样是不是心动了</p><p>赶快去VSCode里面下载吧</p><h3 id="下载方式"><a href="#下载方式" class="headerlink" title="下载方式"></a>下载方式</h3><p>打开你的VSCode，在拓展商店里搜索Draw.io，下载即可</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/drawio.png" alt="drawio"></p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、序幕"><a href="#一、序幕" class="headerlink" title="一、序幕"></a>一、序幕</h3><p>再现当今各大影视平台推出的各种VIP制度，使我们是我们这些‘穷人’已无法生存。</p><p>于是出现了<a href="https://baike.baidu.com/item/BT种子" target="_blank" rel="noopener">BT种子</a>，在这个BT种子泛滥的时代，影视VIP已经在有的人心中抹去。</p><p>说道BT种子好像很多男人都很喜欢比如：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/%E4%B8%8B%E8%BD%BD.jpg" alt="img"></p><p>这个。。。。真是太棒了！！！</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p><p>有了BT种子我们还需要有一个解析工具<a href="https://baike.baidu.com/item/迅雷/33354" target="_blank" rel="noopener">迅雷(Thunder)</a>，迅雷应该是大多数人的电脑或者手机里必备的软件吧！！</p><p>但是：</p><p><img src= "/img/loading.gif" data-src="https://pic4.zhimg.com/80/v2-d5d664989af1c5915c32241df9f71f83_720w.jpg" alt="img"></p><p>这个是不是很讨厌。。</p><hr><h3 id="二、问题"><a href="#二、问题" class="headerlink" title="二、问题"></a>二、问题</h3><p>同样，今天我一如既往的在网上搜索BT种子：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p><p>来到迅雷解析：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder1.png" alt="img"></p><p>这。。。这又不是什么搞颜色的视频，为啥也没有版权？？</p><p>之后，我在网上一顿操作，找到了解决办法！！</p><hr><h3 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h3><ul><li><p>首先我们先下载BT种子到桌面</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder2.png" alt="img"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p></li><li><p>之后我们来到百度云盘（可以是网页版的，也可以是端游版的，我用的是网页版的）</p></li><li><p>找到离线下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder4.png" alt="img"></p></li><li><p>进去，点击新建BT任务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder5.png" alt="img"></p></li><li><p>找到你的BT种子位置，并打开</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder6.png" alt="img"></p></li><li><p>之后选择视频文件，开始下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder7.png" alt="img"></p></li><li><p>可以看到下载速度是非常快的（我用的是网页版的，客户端应该会更快）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder8.png" alt="img"></p></li><li><p>下载完成，点击播放</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder9.png" alt="img"></p></li><li><p>就可以开开心心的看电影了（悄悄拿上纸巾）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder10.png" alt="img"></p></li></ul><p>是不是帮你们解决了没有女朋友的问题呢</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p>]]></content>
       
       
       <categories>
           
-          <category> 编程 · 技术 </category>
+          <category> 生活 · 日记 </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> VSCode </tag>
-            
-        </tags>
       
     </entry>
     
@@ -653,6 +655,31 @@
           
       </categories>
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>VSCode插件-Draw.io</title>
+      <link href="/2020/05/30/Blog/vscode%E6%8F%92%E4%BB%B6-Draw.io/"/>
+      <url>/2020/05/30/Blog/vscode%E6%8F%92%E4%BB%B6-Draw.io/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近呢，每次写代码之前都必须要画流程图，再画的时候很是烦恼，使用<a href="https://www.processon.com/" target="_blank" rel="noopener">ProcessOn</a>效果很好，但是有文件数量限制，如果想要增加数量的话还必须花钱，这就很烦恼，于是我找到一款非常棒的VSCode的插件–Draw.io</p><hr><p>作为一款开源的主流代码编辑器，VSCode 在发布之后一直受到不少开发者的喜爱。</p><p>VSCode，它不仅有提升开发体验的界面、轻量化的编辑器，还有丰富而强大的插件，超多的插件让水友调侃道，这个世界上没有VSCode做不到的事。</p><p>今天我就给大家介绍一款实用的 VSCode 插件：VSCode Drawio。</p><p>这个draw.io其实我也不太了解，上网找了下资料大概和<a href="https://www.processon.com/" target="_blank" rel="noopener">ProcessOn</a>一样的支持在线绘图的网站工具</p><hr><h3 id="接下来进入主题—VSCode-Drawio"><a href="#接下来进入主题—VSCode-Drawio" class="headerlink" title="接下来进入主题—VSCode Drawio"></a>接下来进入主题—<em>VSCode Drawio</em></h3><p>话不多说先看它的效果吧</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/drawio.gif" alt="drawio"></p><p>怎么样是不是心动了</p><p>赶快去VSCode里面下载吧</p><h3 id="下载方式"><a href="#下载方式" class="headerlink" title="下载方式"></a>下载方式</h3><p>打开你的VSCode，在拓展商店里搜索Draw.io，下载即可</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/drawio.png" alt="drawio"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 · 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> VSCode </tag>
+            
+        </tags>
       
     </entry>
     
@@ -838,31 +865,6 @@
     
     
     <entry>
-      <title>redis优化</title>
-      <link href="/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/"/>
-      <url>/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a><strong>数据持久化</strong></h3><p><a href="https://www.sirxs.cn/2020/05/21/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/">数据持久化</a></p><h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a><strong>内存优化</strong></h3><p>设置<em>maxmemory</em>。设置Redis使用的最大物理内存，即Redis在占用<em>maxmemory</em>大小的内存之后就开始拒绝后续的写入请求，该参数可以确保Redis因为使用了大量内存严重影响速度或者发生<em>OOM</em>。此外，可以使用<code>info</code>命令查看Redis占用的内存及其它信息。</p><p>让键名保持简短。键的长度越长，<code>Redis</code>需要存储的数据也就越多</p><p>使用短结构。主要Redis的<em>list</em>、<em>hash</em>、<em>set</em>、<em>zset</em>这四种数据结构的存储优化。在<em>Redis3.2</em>之前，如果列表、散列或者有序集合的长度或者体积较小，<em>Redis</em>会选择一种名为<em>ziplist</em>的数据结构来存储它们。该结构是列表、散列和有序集合三种不同类型的对象的一种非结构化表示，与Redis在通常情况下使用双向链表来表示列表、使用散列表示散列、使用散列加跳跃表表示有序集合相比，它更加紧凑，避免了存储额外的指针和元数据（比如字符串值的剩余可用空间和结束符”\0”）。但是压缩列表需要在存储的时候进行序列化，读取的时候进行反序列化。以散列为例，在<code>redis.conf</code>中，可以进行如下设置</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hash-max-ziplist-entries <span class="number">512</span></span><br><span class="line">hash-max-ziplist-value <span class="number">64</span></span><br></pre></td></tr></table></figure><h3 id="拓展读写能力"><a href="#拓展读写能力" class="headerlink" title="拓展读写能力"></a><strong>拓展读写能力</strong></h3><p>扩展读性能。在<code>redis.conf</code>中添加<code>slaveof host port</code>即可将其配置为另一台Redis服务器的从服务器。注意，在从服务器连接主服务器的时候，从服务器之前的数据会被清空。可以用这种方式建立从服务器树，扩展其读能力。但这种方式并未做故障转移，高可用Redis部署方案可以参考<a href="https://www.jianshu.com/p/afb678794a0e" target="_blank" rel="noopener">Redis Sentinel</a>,<a href="https://link.jianshu.com?t=http%3A%2F%2Fredis.io%2Ftopics%2Fcluster-tutorial" target="_blank" rel="noopener">Redis Cluster</a>和<a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2FCodisLabs%2Fcodis" target="_blank" rel="noopener">Codis</a>。</p><p>扩展写性能。(1)使用集群分片技术，比如Redis Cluster;(2)单机上运行多个Redis实例。由于Redis是单线程设计，在涉及到cpu bound的操作的时候，可能速度会大大降低。如果服务器的cpu、io资源充足，可以在同一台机器上运行多个Redis服务器。</p><h3 id="应用程序优化"><a href="#应用程序优化" class="headerlink" title="应用程序优化"></a><strong>应用程序优化</strong></h3><p>应用程序优化部分主要是客户端和Redis交互的一些建议。主要思想是<strong>尽可能减少操作Redis往返的通信次数</strong>。</p><p>Redis提供了<em>Slow Log</em>功能，可以自动记录耗时较长的命令，<code>redis.conf</code>中的配置如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#执行时间慢于10000毫秒的命令计入Slow Log</span></span><br><span class="line">slowlog-log-slower-than <span class="number">10000</span>  </span><br><span class="line"><span class="comment">#最大纪录多少条Slow Log</span></span><br><span class="line">slowlog-max-len <span class="number">128</span></span><br></pre></td></tr></table></figure><p>使用<code>SLOWLOG GET n</code>命令，可以输出最近n条慢查询日志。使用<code>SLOWLOG RESET</code>命令，可以重置<em>Slow Log</em>。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>redis雪崩，击穿，穿透</title>
       <link href="/2020/05/23/Note/redis%E9%9B%AA%E5%B4%A9%EF%BC%8C%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%A9%BF%E9%80%8F/"/>
       <url>/2020/05/23/Note/redis%E9%9B%AA%E5%B4%A9%EF%BC%8C%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%A9%BF%E9%80%8F/</url>
@@ -888,11 +890,11 @@
     
     
     <entry>
-      <title>redis数据淘汰机制</title>
-      <link href="/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/"/>
-      <url>/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/</url>
+      <title>redis优化</title>
+      <link href="/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/"/>
+      <url>/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>书痴者文必工，艺痴者技必良。——蒲松龄 </p><hr><h1 id="Redis-内存淘汰机制"><a href="#Redis-内存淘汰机制" class="headerlink" title="Redis 内存淘汰机制"></a>Redis 内存淘汰机制</h1><h3 id="一、五种数据淘汰机制的具体实现"><a href="#一、五种数据淘汰机制的具体实现" class="headerlink" title="一、五种数据淘汰机制的具体实现"></a><strong>一、五种数据淘汰机制的具体实现</strong></h3><ul><li>volatile-lru：使用LRU算法进行数据淘汰（淘汰上次使用时间最早的，且使用次数最少的key），只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li><li>allkeys-lru：使用LRU算法进行数据淘汰，所有的key都可以被淘汰，从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰</li><li>volatile-random：随机淘汰数据，只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li><li>allkeys-random：随机淘汰数据，所有的key都可以被淘汰，从数据集（server.db[i].dict）中任意选择数据淘汰</li><li>volatile-ttl：淘汰剩余有效期最短的key，从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li><li></li></ul><h3 id="二、设置redis的最大存储空间"><a href="#二、设置redis的最大存储空间" class="headerlink" title="二、设置redis的最大存储空间"></a><strong>二、设置redis的最大存储空间</strong></h3><p>内存的淘汰机制的初衷是为了更好地使用内存，用一定的缓存miss来换取内存的使用效率。</p><p><strong>首先要配置maxmemory值</strong></p><p>1.客户端发起了需要申请更多内存的命令（如set）。</p><p>2.Redis检查内存使用情况，如果已使用的内存大于maxmemory则开始根据用户配置的不同淘汰策略来淘汰内存（key），从而换取一定的内存。</p><p>3.如果上面都没问题，则这个命令执行成功。</p><p>maxmemory为0的时候表示我们对Redis的内存使用没有限制。</p><p>配置方法：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxmemory-policy volatile-lru   <span class="comment">#默认是noeviction，即不进行数据淘汰</span></span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a><strong>数据持久化</strong></h3><p><a href="https://www.sirxs.cn/2020/05/21/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/">数据持久化</a></p><h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a><strong>内存优化</strong></h3><p>设置<em>maxmemory</em>。设置Redis使用的最大物理内存，即Redis在占用<em>maxmemory</em>大小的内存之后就开始拒绝后续的写入请求，该参数可以确保Redis因为使用了大量内存严重影响速度或者发生<em>OOM</em>。此外，可以使用<code>info</code>命令查看Redis占用的内存及其它信息。</p><p>让键名保持简短。键的长度越长，<code>Redis</code>需要存储的数据也就越多</p><p>使用短结构。主要Redis的<em>list</em>、<em>hash</em>、<em>set</em>、<em>zset</em>这四种数据结构的存储优化。在<em>Redis3.2</em>之前，如果列表、散列或者有序集合的长度或者体积较小，<em>Redis</em>会选择一种名为<em>ziplist</em>的数据结构来存储它们。该结构是列表、散列和有序集合三种不同类型的对象的一种非结构化表示，与Redis在通常情况下使用双向链表来表示列表、使用散列表示散列、使用散列加跳跃表表示有序集合相比，它更加紧凑，避免了存储额外的指针和元数据（比如字符串值的剩余可用空间和结束符”\0”）。但是压缩列表需要在存储的时候进行序列化，读取的时候进行反序列化。以散列为例，在<code>redis.conf</code>中，可以进行如下设置</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hash-max-ziplist-entries <span class="number">512</span></span><br><span class="line">hash-max-ziplist-value <span class="number">64</span></span><br></pre></td></tr></table></figure><h3 id="拓展读写能力"><a href="#拓展读写能力" class="headerlink" title="拓展读写能力"></a><strong>拓展读写能力</strong></h3><p>扩展读性能。在<code>redis.conf</code>中添加<code>slaveof host port</code>即可将其配置为另一台Redis服务器的从服务器。注意，在从服务器连接主服务器的时候，从服务器之前的数据会被清空。可以用这种方式建立从服务器树，扩展其读能力。但这种方式并未做故障转移，高可用Redis部署方案可以参考<a href="https://www.jianshu.com/p/afb678794a0e" target="_blank" rel="noopener">Redis Sentinel</a>,<a href="https://link.jianshu.com?t=http%3A%2F%2Fredis.io%2Ftopics%2Fcluster-tutorial" target="_blank" rel="noopener">Redis Cluster</a>和<a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2FCodisLabs%2Fcodis" target="_blank" rel="noopener">Codis</a>。</p><p>扩展写性能。(1)使用集群分片技术，比如Redis Cluster;(2)单机上运行多个Redis实例。由于Redis是单线程设计，在涉及到cpu bound的操作的时候，可能速度会大大降低。如果服务器的cpu、io资源充足，可以在同一台机器上运行多个Redis服务器。</p><h3 id="应用程序优化"><a href="#应用程序优化" class="headerlink" title="应用程序优化"></a><strong>应用程序优化</strong></h3><p>应用程序优化部分主要是客户端和Redis交互的一些建议。主要思想是<strong>尽可能减少操作Redis往返的通信次数</strong>。</p><p>Redis提供了<em>Slow Log</em>功能，可以自动记录耗时较长的命令，<code>redis.conf</code>中的配置如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#执行时间慢于10000毫秒的命令计入Slow Log</span></span><br><span class="line">slowlog-log-slower-than <span class="number">10000</span>  </span><br><span class="line"><span class="comment">#最大纪录多少条Slow Log</span></span><br><span class="line">slowlog-max-len <span class="number">128</span></span><br></pre></td></tr></table></figure><p>使用<code>SLOWLOG GET n</code>命令，可以输出最近n条慢查询日志。使用<code>SLOWLOG RESET</code>命令，可以重置<em>Slow Log</em>。</p>]]></content>
       
       
       <categories>
@@ -926,6 +928,31 @@
           
       </categories>
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>redis数据淘汰机制</title>
+      <link href="/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/"/>
+      <url>/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>书痴者文必工，艺痴者技必良。——蒲松龄 </p><hr><h1 id="Redis-内存淘汰机制"><a href="#Redis-内存淘汰机制" class="headerlink" title="Redis 内存淘汰机制"></a>Redis 内存淘汰机制</h1><h3 id="一、五种数据淘汰机制的具体实现"><a href="#一、五种数据淘汰机制的具体实现" class="headerlink" title="一、五种数据淘汰机制的具体实现"></a><strong>一、五种数据淘汰机制的具体实现</strong></h3><ul><li>volatile-lru：使用LRU算法进行数据淘汰（淘汰上次使用时间最早的，且使用次数最少的key），只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li><li>allkeys-lru：使用LRU算法进行数据淘汰，所有的key都可以被淘汰，从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰</li><li>volatile-random：随机淘汰数据，只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li><li>allkeys-random：随机淘汰数据，所有的key都可以被淘汰，从数据集（server.db[i].dict）中任意选择数据淘汰</li><li>volatile-ttl：淘汰剩余有效期最短的key，从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li><li></li></ul><h3 id="二、设置redis的最大存储空间"><a href="#二、设置redis的最大存储空间" class="headerlink" title="二、设置redis的最大存储空间"></a><strong>二、设置redis的最大存储空间</strong></h3><p>内存的淘汰机制的初衷是为了更好地使用内存，用一定的缓存miss来换取内存的使用效率。</p><p><strong>首先要配置maxmemory值</strong></p><p>1.客户端发起了需要申请更多内存的命令（如set）。</p><p>2.Redis检查内存使用情况，如果已使用的内存大于maxmemory则开始根据用户配置的不同淘汰策略来淘汰内存（key），从而换取一定的内存。</p><p>3.如果上面都没问题，则这个命令执行成功。</p><p>maxmemory为0的时候表示我们对Redis的内存使用没有限制。</p><p>配置方法：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxmemory-policy volatile-lru   <span class="comment">#默认是noeviction，即不进行数据淘汰</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
       
     </entry>
     
@@ -1263,31 +1290,6 @@
     
     
     <entry>
-      <title>Navicat Premium15安装与激活</title>
-      <link href="/2020/04/28/Blog/seven/"/>
-      <url>/2020/04/28/Blog/seven/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天看到同学们连接数据库的可视化工具变得高大上了，由navicat for mysql 变为 <strong>Navicat Premium</strong>，所以我就搞上了</p><h3 id="一、进入官方进行下载"><a href="#一、进入官方进行下载" class="headerlink" title="一、进入官方进行下载"></a>一、进入官方进行下载</h3><p>目前官网已经更新到Navicat Premium15了，本教程为NavicatPremium的安装与使用教程。</p><p>官方下载地址为：<a href="https://www.navicat.com.cn/download/navicat-premium" target="_blank" rel="noopener">https://www.navicat.com.cn/download/navicat-premium</a></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium1.png" alt="Navicat-Premium"></p><p>Navicat Premium分为Windows、MacOS、Linux版，我的电脑是Windows10 64bit， 所以下载的为Windows10 64bit版的，随便选择一个位置下载即可。</p><h3 id="二、下载完成进行安装"><a href="#二、下载完成进行安装" class="headerlink" title="二、下载完成进行安装"></a>二、下载完成进行安装</h3><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium2.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium3.png" alt="Navicat-Premium"></p><p>选择安装位置，可自己选择安装位置（要记清安装的位置，后面有用）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium4.png" alt="Navicat-Premium"></p><p>此处为快捷方式的创建位置，下一步即可</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium5.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium6.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium7.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium8.png" alt="Navicat-Premium"></p><p>tip:安装完成后先不要启动软件（切记），此时为试用版（14天），下面为破解过程，仅供个人学习和使用，有能力的同学请支持正版。</p><h3 id="Navicat-Premium15破解"><a href="#Navicat-Premium15破解" class="headerlink" title="Navicat Premium15破解"></a>Navicat Premium15破解</h3><p>首先需要下载注册工具</p><p>下载地址：<a href="http://wangshuo.jb51.net:81/201903/tools/NavicatKeygen_jb51.rar" target="_blank" rel="noopener">http://wangshuo.jb51.net:81/201903/tools/NavicatKeygen_jb51.rar</a></p><p>解压密码：<a href="http://www.jb51.net" target="_blank" rel="noopener">www.jb51.net</a></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium9.png" alt="Navicat-Premium"></p><p>若链接失效可自己搜索下载该工具，注意需要是新版的5.6.0或以上（博主目前能找到的最新的为5.6.0），亲测可注册navicat premium15及以下版本</p><p>双击运行注册工具（本人在未断网未关闭防火墙情况下成功），选择对应的navicat版本，此处为v15,点击Path选择刚才安装navicat目录下的navicat.exe文件</p><p>此处有部分朋友反应解压时工具会被自动删除，因为工具的特殊性，可能会被防护软件监测为病毒删除</p><p>为了保险起见可关闭网络和防火强，若安装了其他防护软件如电脑管家也要一并关闭，并将windows的实时保护关闭</p><p><strong>注意此时不能开启navicat premium（切记此处不可忽略）</strong></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium10.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium11.png" alt="Navicat-Premium"></p><p>出现此界面表示成功</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium12.png" alt="Navicat-Premium"></p><p>选择对应的版本和语言，输入Your Name和Your Organization（可随意输入，也可以不修改使用默认的）,点击生成注册码，然后运行Navicat将注册码复制到软注册栏</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium13.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium14.png" alt="Navicat-Premium"></p><h3 id="点击激活"><a href="#点击激活" class="headerlink" title="点击激活"></a>点击激活</h3><p>此处部分人的激活码后面显示的是红叉，可能是由于上面步骤操作不规范</p><p>未显示cracked就启动了navicate、版本选择不匹配，Patch未选择等原因，可删除软件和安装目录后重新按照步骤安装</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium15.png" alt="Navicat-Premium"></p><p>选择手动激活</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium16.png" alt="Navicat-Premium"></p><p>将请求码复制到注册工具的Request Code中，点击Generate</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium17.png" alt="Navicat-Premium"></p><p>返回activation code即为成功</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium18.png" alt="Navicat-Premium"></p><p>此时手动激活页面的激活码会被自动填充，点击激活即可</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium19.png" alt="Navicat-Premium"></p><p>至此，Navicat Premium15的激活已经完成</p><p>若激活失败可以卸载Navicat Premium删除安装目录后重新尝试几次</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium20.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium21.png" alt="Navicat-Premium"></p><p>激活完成就可以开始使用Navicat了 (~ v *)</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium22.png" alt="Navicat-Premium"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 · 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Navicat </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Vue中从数据库查询单的数据进行运算</title>
       <link href="/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/"/>
       <url>/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/</url>
@@ -1305,6 +1307,31 @@
         <tags>
             
             <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Navicat Premium15安装与激活</title>
+      <link href="/2020/04/28/Blog/seven/"/>
+      <url>/2020/04/28/Blog/seven/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>今天看到同学们连接数据库的可视化工具变得高大上了，由navicat for mysql 变为 <strong>Navicat Premium</strong>，所以我就搞上了</p><h3 id="一、进入官方进行下载"><a href="#一、进入官方进行下载" class="headerlink" title="一、进入官方进行下载"></a>一、进入官方进行下载</h3><p>目前官网已经更新到Navicat Premium15了，本教程为NavicatPremium的安装与使用教程。</p><p>官方下载地址为：<a href="https://www.navicat.com.cn/download/navicat-premium" target="_blank" rel="noopener">https://www.navicat.com.cn/download/navicat-premium</a></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium1.png" alt="Navicat-Premium"></p><p>Navicat Premium分为Windows、MacOS、Linux版，我的电脑是Windows10 64bit， 所以下载的为Windows10 64bit版的，随便选择一个位置下载即可。</p><h3 id="二、下载完成进行安装"><a href="#二、下载完成进行安装" class="headerlink" title="二、下载完成进行安装"></a>二、下载完成进行安装</h3><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium2.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium3.png" alt="Navicat-Premium"></p><p>选择安装位置，可自己选择安装位置（要记清安装的位置，后面有用）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium4.png" alt="Navicat-Premium"></p><p>此处为快捷方式的创建位置，下一步即可</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium5.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium6.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium7.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium8.png" alt="Navicat-Premium"></p><p>tip:安装完成后先不要启动软件（切记），此时为试用版（14天），下面为破解过程，仅供个人学习和使用，有能力的同学请支持正版。</p><h3 id="Navicat-Premium15破解"><a href="#Navicat-Premium15破解" class="headerlink" title="Navicat Premium15破解"></a>Navicat Premium15破解</h3><p>首先需要下载注册工具</p><p>下载地址：<a href="http://wangshuo.jb51.net:81/201903/tools/NavicatKeygen_jb51.rar" target="_blank" rel="noopener">http://wangshuo.jb51.net:81/201903/tools/NavicatKeygen_jb51.rar</a></p><p>解压密码：<a href="http://www.jb51.net" target="_blank" rel="noopener">www.jb51.net</a></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium9.png" alt="Navicat-Premium"></p><p>若链接失效可自己搜索下载该工具，注意需要是新版的5.6.0或以上（博主目前能找到的最新的为5.6.0），亲测可注册navicat premium15及以下版本</p><p>双击运行注册工具（本人在未断网未关闭防火墙情况下成功），选择对应的navicat版本，此处为v15,点击Path选择刚才安装navicat目录下的navicat.exe文件</p><p>此处有部分朋友反应解压时工具会被自动删除，因为工具的特殊性，可能会被防护软件监测为病毒删除</p><p>为了保险起见可关闭网络和防火强，若安装了其他防护软件如电脑管家也要一并关闭，并将windows的实时保护关闭</p><p><strong>注意此时不能开启navicat premium（切记此处不可忽略）</strong></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium10.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium11.png" alt="Navicat-Premium"></p><p>出现此界面表示成功</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium12.png" alt="Navicat-Premium"></p><p>选择对应的版本和语言，输入Your Name和Your Organization（可随意输入，也可以不修改使用默认的）,点击生成注册码，然后运行Navicat将注册码复制到软注册栏</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium13.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium14.png" alt="Navicat-Premium"></p><h3 id="点击激活"><a href="#点击激活" class="headerlink" title="点击激活"></a>点击激活</h3><p>此处部分人的激活码后面显示的是红叉，可能是由于上面步骤操作不规范</p><p>未显示cracked就启动了navicate、版本选择不匹配，Patch未选择等原因，可删除软件和安装目录后重新按照步骤安装</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium15.png" alt="Navicat-Premium"></p><p>选择手动激活</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium16.png" alt="Navicat-Premium"></p><p>将请求码复制到注册工具的Request Code中，点击Generate</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium17.png" alt="Navicat-Premium"></p><p>返回activation code即为成功</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium18.png" alt="Navicat-Premium"></p><p>此时手动激活页面的激活码会被自动填充，点击激活即可</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium19.png" alt="Navicat-Premium"></p><p>至此，Navicat Premium15的激活已经完成</p><p>若激活失败可以卸载Navicat Premium删除安装目录后重新尝试几次</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium20.png" alt="Navicat-Premium"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium21.png" alt="Navicat-Premium"></p><p>激活完成就可以开始使用Navicat了 (~ v *)</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/Navicat-Premium22.png" alt="Navicat-Premium"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 · 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Navicat </tag>
             
         </tags>
       
@@ -1470,6 +1497,31 @@
     
     
     <entry>
+      <title>Git 相关</title>
+      <link href="/2020/04/10/Blog/two/"/>
+      <url>/2020/04/10/Blog/two/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="Git-相关操作"><a href="#Git-相关操作" class="headerlink" title="Git 相关操作"></a>Git 相关操作</h3><hr><p>1、git清空密码</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --system --unset credential.helper</span><br></pre></td></tr></table></figure><p>2、git保存密码</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><p>3、没有加入暂存区 后退一步</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout</span><br></pre></td></tr></table></figure><p>4、加入暂存区 后退一步</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset</span><br></pre></td></tr></table></figure><p>5、查看提交日志</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure><p>6、返回相对应的日志号</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard + git log 中的日志号</span><br></pre></td></tr></table></figure><p>7、设置国内源 and 查看原</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm set registry https:&#x2F;&#x2F;registry.npm.taobao.orgnpm config list</span><br></pre></td></tr></table></figure><p>8、查看当前git分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure><p>9、拉取Git项目</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure><p>10、素质三联</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -Agit commit -m &quot;&quot;git push -u origin master</span><br></pre></td></tr></table></figure><hr><h3 id="一、版本控制系统"><a href="#一、版本控制系统" class="headerlink" title="一、版本控制系统"></a>一、版本控制系统</h3><hr><p>1、意义 记录文件内容变化，以便将来查阅特定版本修订情况的系统 可以讲文件回溯到某个修改之前的状态。 版本控制不仅对源码做控制，可以对任意类型文件进行版本控制</p><p>2、常用的版本工具 CVS SVN Git-分布式 首先安装 文本编辑器软件，使用notepad++ 作为文本编辑器</p><p>3、git本地版本管理</p><h2 id="4、git本地仓库与远程仓库通信"><a href="#4、git本地仓库与远程仓库通信" class="headerlink" title="4、git本地仓库与远程仓库通信"></a>4、git本地仓库与远程仓库通信</h2><h3 id="二、git本地版本管理"><a href="#二、git本地版本管理" class="headerlink" title="二、git本地版本管理"></a>二、git本地版本管理</h3><hr><p>1、配置我们的身份</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;John Doe&quot;$ git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure><p>2、初始化一个git仓库 选择一个文件夹 作为我们的仓库 然后初始化它</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure><p>3、查看git当前的状态</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure><p>我们目录下的文件 有两种状态： 未追踪untracked文件 已追踪tracked文件 已追踪 表示 这个文件已经添加到git仓库中 未追踪 表示 文件还没有添加到仓库中</p><p>4、添加未追踪的文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 文件</span><br></pre></td></tr></table></figure><p>5、把 add的文件 进行commit提交 添加到仓库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit </span><br><span class="line">git commit -m &quot;提交的说明&quot; 不会打开文本编辑器</span><br></pre></td></tr></table></figure><p>总结：一个新文件 要先 add 在 commit 两步才能提交到仓库</p><p>6、忽略文件</p><p>项目中 不是所有的文件 都需要追踪的，比如一些临时文件，日志就不用追踪</p><p>因此我们可以写一个.gitingore文件</p><p>7、我们的git可以分为三个区域</p><p>工作区：我们从仓库中 提取某个版本 作为工作内容，对文件可以修改、删除等操作</p><p>暂存区：工作区中的文件内容发生改变，我们要把这个改变先保存起来，放到暂存区 等待提交</p><p>仓库区：所有的已经提交commit的数据</p><p>如果一个被追踪的文件 发生了修改则操作过程：</p><p>第一、git add 文件/* 会把文件从工作区 拷贝一份 放到暂存区</p><p>第二、git commit 文件 会把暂存区存放的所有文件 都提交到仓库</p><hr><h3 id="三、本地仓库与-远程仓库"><a href="#三、本地仓库与-远程仓库" class="headerlink" title="三、本地仓库与 远程仓库"></a>三、本地仓库与 远程仓库</h3><hr><p>1、从远程仓库 clone 到本地</p><p>这个过程 会自动把远程仓库的所有内容 都拷贝一份到本地，并生成创建一个对应的本地仓库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone 链接</span><br></pre></td></tr></table></figure><p>本地仓库名默认就是 bookweb</p><p>2、推送项目到远程仓库</p><p>git push 推送 推送本地仓库内容 到远程仓库</p><p>3、push的时候因为要 登录远程仓库，所有需要认证</p><p>第一次的时候需要你输入 github的 账号 密码</p><p>我们在输入完以后可以通过 命令</p><p>①设置记住密码（默认15分钟）：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper cache</span><br></pre></td></tr></table></figure><p>②如果想自己设置时间，可以这样做(1小时后失效)：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper &#39;cache --timeout&#x3D;3600&#39;</span><br></pre></td></tr></table></figure><p>③长期存储密码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><p>4、代码冲突的问题</p><p>想在开发都是 团队协同开发有可能多人同时修改了文件中的某一处</p><p>解决冲突： 第一步 首先要先 git pull 先把远程的新的提交 拉过来，到本地仓库。</p><p>5、标签tag 了解</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给一个提交版本 添加 标签  用来表示该提交git tag -a 标签名  -m &quot;描述标签&quot;git tag -a v1 -m &quot;版本1&quot;</span><br></pre></td></tr></table></figure><p>6、git分支</p><p>查看分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure><p>创建分支 <code>git branch 分支名</code> 切换分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支</span><br></pre></td></tr></table></figure><p>合并分支：</p><p>注意 谁合并谁 先切换到谁<br>master要合并dev 先切换到master</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout mastergit merge dev</span><br></pre></td></tr></table></figure><p>删除分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d dev</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 · 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>总结购物车优惠卷生成</title>
       <link href="/2020/04/10/Note/%E4%BC%98%E6%83%A0%E5%8D%B7/"/>
       <url>/2020/04/10/Note/%E4%BC%98%E6%83%A0%E5%8D%B7/</url>
@@ -1489,31 +1541,6 @@
             <tag> Vue </tag>
             
             <tag> Python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Git 相关</title>
-      <link href="/2020/04/10/Blog/two/"/>
-      <url>/2020/04/10/Blog/two/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="Git-相关操作"><a href="#Git-相关操作" class="headerlink" title="Git 相关操作"></a>Git 相关操作</h3><hr><p>1、git清空密码</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --system --unset credential.helper</span><br></pre></td></tr></table></figure><p>2、git保存密码</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><p>3、没有加入暂存区 后退一步</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout</span><br></pre></td></tr></table></figure><p>4、加入暂存区 后退一步</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset</span><br></pre></td></tr></table></figure><p>5、查看提交日志</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure><p>6、返回相对应的日志号</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard + git log 中的日志号</span><br></pre></td></tr></table></figure><p>7、设置国内源 and 查看原</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm set registry https:&#x2F;&#x2F;registry.npm.taobao.orgnpm config list</span><br></pre></td></tr></table></figure><p>8、查看当前git分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure><p>9、拉取Git项目</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure><p>10、素质三联</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -Agit commit -m &quot;&quot;git push -u origin master</span><br></pre></td></tr></table></figure><hr><h3 id="一、版本控制系统"><a href="#一、版本控制系统" class="headerlink" title="一、版本控制系统"></a>一、版本控制系统</h3><hr><p>1、意义 记录文件内容变化，以便将来查阅特定版本修订情况的系统 可以讲文件回溯到某个修改之前的状态。 版本控制不仅对源码做控制，可以对任意类型文件进行版本控制</p><p>2、常用的版本工具 CVS SVN Git-分布式 首先安装 文本编辑器软件，使用notepad++ 作为文本编辑器</p><p>3、git本地版本管理</p><h2 id="4、git本地仓库与远程仓库通信"><a href="#4、git本地仓库与远程仓库通信" class="headerlink" title="4、git本地仓库与远程仓库通信"></a>4、git本地仓库与远程仓库通信</h2><h3 id="二、git本地版本管理"><a href="#二、git本地版本管理" class="headerlink" title="二、git本地版本管理"></a>二、git本地版本管理</h3><hr><p>1、配置我们的身份</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;John Doe&quot;$ git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure><p>2、初始化一个git仓库 选择一个文件夹 作为我们的仓库 然后初始化它</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure><p>3、查看git当前的状态</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure><p>我们目录下的文件 有两种状态： 未追踪untracked文件 已追踪tracked文件 已追踪 表示 这个文件已经添加到git仓库中 未追踪 表示 文件还没有添加到仓库中</p><p>4、添加未追踪的文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 文件</span><br></pre></td></tr></table></figure><p>5、把 add的文件 进行commit提交 添加到仓库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit </span><br><span class="line">git commit -m &quot;提交的说明&quot; 不会打开文本编辑器</span><br></pre></td></tr></table></figure><p>总结：一个新文件 要先 add 在 commit 两步才能提交到仓库</p><p>6、忽略文件</p><p>项目中 不是所有的文件 都需要追踪的，比如一些临时文件，日志就不用追踪</p><p>因此我们可以写一个.gitingore文件</p><p>7、我们的git可以分为三个区域</p><p>工作区：我们从仓库中 提取某个版本 作为工作内容，对文件可以修改、删除等操作</p><p>暂存区：工作区中的文件内容发生改变，我们要把这个改变先保存起来，放到暂存区 等待提交</p><p>仓库区：所有的已经提交commit的数据</p><p>如果一个被追踪的文件 发生了修改则操作过程：</p><p>第一、git add 文件/* 会把文件从工作区 拷贝一份 放到暂存区</p><p>第二、git commit 文件 会把暂存区存放的所有文件 都提交到仓库</p><hr><h3 id="三、本地仓库与-远程仓库"><a href="#三、本地仓库与-远程仓库" class="headerlink" title="三、本地仓库与 远程仓库"></a>三、本地仓库与 远程仓库</h3><hr><p>1、从远程仓库 clone 到本地</p><p>这个过程 会自动把远程仓库的所有内容 都拷贝一份到本地，并生成创建一个对应的本地仓库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone 链接</span><br></pre></td></tr></table></figure><p>本地仓库名默认就是 bookweb</p><p>2、推送项目到远程仓库</p><p>git push 推送 推送本地仓库内容 到远程仓库</p><p>3、push的时候因为要 登录远程仓库，所有需要认证</p><p>第一次的时候需要你输入 github的 账号 密码</p><p>我们在输入完以后可以通过 命令</p><p>①设置记住密码（默认15分钟）：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper cache</span><br></pre></td></tr></table></figure><p>②如果想自己设置时间，可以这样做(1小时后失效)：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper &#39;cache --timeout&#x3D;3600&#39;</span><br></pre></td></tr></table></figure><p>③长期存储密码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><p>4、代码冲突的问题</p><p>想在开发都是 团队协同开发有可能多人同时修改了文件中的某一处</p><p>解决冲突： 第一步 首先要先 git pull 先把远程的新的提交 拉过来，到本地仓库。</p><p>5、标签tag 了解</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给一个提交版本 添加 标签  用来表示该提交git tag -a 标签名  -m &quot;描述标签&quot;git tag -a v1 -m &quot;版本1&quot;</span><br></pre></td></tr></table></figure><p>6、git分支</p><p>查看分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure><p>创建分支 <code>git branch 分支名</code> 切换分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支</span><br></pre></td></tr></table></figure><p>合并分支：</p><p>注意 谁合并谁 先切换到谁<br>master要合并dev 先切换到master</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout mastergit merge dev</span><br></pre></td></tr></table></figure><p>删除分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d dev</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 · 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Git </tag>
             
         </tags>
       
