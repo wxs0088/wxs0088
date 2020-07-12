@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.sirxs.cn/"/>
-  <updated>2020-07-11T12:44:13.132Z</updated>
+  <updated>2020-07-12T13:42:52.800Z</updated>
   <id>http://www.sirxs.cn/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Python 为什么推荐蛇形命名法？</title>
+    <link href="http://www.sirxs.cn/2020/07/12/Note/python%E5%8F%98%E9%87%8F/"/>
+    <id>http://www.sirxs.cn/2020/07/12/Note/python%E5%8F%98%E9%87%8F/</id>
+    <published>2020-07-12T08:59:18.000Z</published>
+    <updated>2020-07-12T13:42:52.800Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p>关于变量的命名，这又是一个容易引发程序员论战的话题。如何命名才能更具有可读性、易写性与明义性呢？众说纷纭。</p><p>今天，我们将聚焦于变量命名中的连接方式，来切入这块是非之地，想要回答的问题是——<strong>Python 为什么要推荐蛇形命名法？</strong></p><h3 id="探讨"><a href="#探讨" class="headerlink" title="探讨"></a>探讨</h3><p>首先一点，对于<strong>单个字符或者单词</strong>（例如：a、A、PYTHON、Cat），当它们被用作变量名时，大致有全小写、全大写和首字母大写这几种情况。编程语言中出现这些情况时，它们基本上跟英语的表达习惯是相同的。</p><p>但是，编程语言为了令变量名表达出更丰富的含义，通常需要使用<strong>多个单词或符号。</strong>英语习惯使用空格来间隔开单词，然而这种用法在编程语言中会带来一些麻烦，所以程序员们就创造出了另外的方法：</p><ul><li>蛇形命名法（snake case）</li><li>驼峰命名法（camel case）</li><li>匈牙利命名法（HN case）</li><li>帕斯卡命名法（Pascal case）</li><li>脊柱命名法（spinal case）</li><li>自由命名法（studly caps）</li><li>驼峰蛇形命名法</li></ul><p>总体而言，这些命名法都是要<strong>克服单词间的空格，从而把不同单词串连起来，</strong>最终达到创造出一种新的“单词”的效果。</p><p>我画了一张思维导图，大略区分了这几种命名法：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/mm1.png" alt="img"></p><p>如果按照受众量与知名程度排名，毫无疑问排前两位的是驼峰命名法和蛇形命名法。</p><p>我们简单比较一下它们的优缺点：</p><ul><li>可读性：蛇形命名法用下划线拉大词距，更清楚易读；驼峰命名法的变量名紧凑，节省行宽</li><li>易写性：驼峰命名法以大小写为区分，不引入额外的标识符；蛇形命名法统一小写，输入相对方便</li><li>明义性：对于某些缩写成的专有名词，例如HTTP、RGB、DNS等等，一般习惯全用大写表示，但是如果严格遵循这两种命名法的话，须得只留首字母大写或者全小写，这样对原意都会造成一些“破坏”，有时候甚至让人感觉到别扭。如果保留全大写，IDE可能识别不准，反而会出现波浪提示</li></ul><p>由此可见，它们各有优缺点，但哪一方都不具有压倒性。我个人稍微偏好于蛇形命名法，但是在需要用驼峰命名的时候（比如写 Java 时），也能无障碍切换。</p><p>需要指出的是，Python 也推荐使用驼峰式命名，那是在类名、Type 变量、异常 exception 名这些情况。而在<strong>包名、模块名、方法名和普通变量名</strong>等情况，则是推荐用蛇形命名（lower_case_with_underscores）。</p><p>那么，为什么 Python 会推荐用蛇形命名法呢？</p><p><strong>最大的原因是历史原因。</strong>蛇形命名方式起源于 1960 年代，那时它甚至还没有特定的名称。Python 从 C 语言中借鉴过来后，给它起名为“lower_case_with_underscores”，即带下划线的小写命名。</p><p>直到 21 世纪初的几年，在 Intel 和 Ruby 社区中，才有人开始以“snake_case”即蛇形命名来称呼它。</p><p>现今有不少编程语言在某些场景下会推荐使用蛇形命名法，而 Python 则是其中最早这么做的之一，并且是使用场景最多的语言之一。</p><p>维基百科上统计了一份清单，可以看出 Python 对它的偏好：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/mm2.png" alt="img"></p><p>其次，还有一个比较重要的原因，<strong>那就是 Python 对下划线“_”的独特偏爱。</strong></p><p>比如类似于 <em>xx、<strong>xx、xx_、</strong>xx_</em> 等等的写法就随处可见，甚至还有孤零零一个下划线 _ 作为变量的特殊情况。这样看来，下划线作为单词间的连接，恰恰是这种传统习惯的一部分。</p><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>最后，我还看到过一种解释：<strong>因为 Python 是蟒蛇啊，理所当然是用蛇形命名……</strong></p><p>对于这三个解释，你们是如何感想的呢？对于蛇形命名法，大家是喜欢还是不喜欢呢？欢迎留言交流。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="总结 · 笔记" scheme="http://www.sirxs.cn/categories/%E6%80%BB%E7%BB%93-%C2%B7-%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用ShareLatex和Python3打造属于自己的特色简历</title>
     <link href="http://www.sirxs.cn/2020/07/11/Note/%E4%BD%BF%E7%94%A8ShareLatex%E5%88%B6%E4%BD%9C%E7%AE%80%E5%8E%86/"/>
     <id>http://www.sirxs.cn/2020/07/11/Note/%E4%BD%BF%E7%94%A8ShareLatex%E5%88%B6%E4%BD%9C%E7%AE%80%E5%8E%86/</id>
     <published>2020-07-11T08:59:18.000Z</published>
-    <updated>2020-07-11T12:44:13.132Z</updated>
+    <updated>2020-07-12T13:44:23.866Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p><strong>履历</strong>(英式英语：<a href="https://zh.wikipedia.org/w/index.php?title=Curriculum_Vitae&action=edit&redlink=1" target="_blank" rel="noopener">Curriculum Vitae</a>，简称<strong>CV</strong>；美式英语：<a href="https://zh.wikipedia.org/w/index.php?title=Résumé&action=edit&redlink=1" target="_blank" rel="noopener">Résumé</a>)，是对个人教育、工作经历的书面介绍，是求职者通向面试阶段的重要一环。</p><p>说起简历模板，大家一定不会陌生，随便在百度搜关键词“简历模板”，林林总总的会出现一大片，但是这些简历模板往往都会有一个共同点，就是太Low、“土味”重、没有时代感、味同嚼蜡，蜡都要顺着嘴角流下来了，以一个求职者的视角来看待这些简历都会无奈心烦，更别说招聘者了。所以新时代的简历应该具备独特性、新颖、与众不同并且不落窠臼。</p><p>Resume是在申请求职时最常使用的文件，为你的教育程度、工作经历以及工作技能做简单且明了的摘要，同时，也会依个人、申请职位的需求，列出求职目标。由于是个人“摘要”，Resume通常为一页，最多不超过二页，以求简洁。</p><p>而在CV中，则会详细的列举出个人的经验与相关技能，尤其是个人的学术背景，如：教学经验、研究成果、获奖纪录、相关出版物⋯⋯等细节，也因此，CV的篇幅会比Resume长上许多，通常会超过二页。</p><h3 id="开始操作"><a href="#开始操作" class="headerlink" title="开始操作"></a>开始操作</h3><ol><li><p>首先进入<a href="https://www.sharelatex.com/" target="_blank" rel="noopener">ShareLatex</a>，注册账号并登陆。</p></li><li><p>之后通过邮箱激活，选择新建序幕，并选简历</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha1.png" alt="sha"></p></li><li><p>紧接着我们会发现有许多简历模板，但是都用LaTeX语法写的</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha2.png" alt="sha"></p></li><li><p>随后点开其中一个，就可以进行定制化的编辑</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha3.png" alt="sha"></p></li><li><p>编辑之后，可以点击重新编译查看效果，如果编辑好之后就可以在线下载pdf，非常方便</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha4.png" alt="sha"></p></li><li><p>但是由于LaTeX语法我们没有学过，而且编辑成本比较高，最重要的对于一些英文不好的很难编辑。</p></li><li><p>其实<code>6</code>的问题很好解决。我们可以下载这上面的原始pdf简历，再通过Python脚本将其转换为我们所熟悉的Word文档模式，这样就可以随便进行编辑</p></li><li><p>通过Pdfminer3k以及Python-Docx两个库，使用python可以实现</p></li><li><p>首先安装依赖</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pdfminer3k</span><br><span class="line">pip3 install python-docx</span><br></pre></td></tr></table></figure></li><li><p>通过Pdfminer3k读取pdf内容，再使用Python-Docx写入word文档</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pdfminer.pdfinterp <span class="keyword">import</span> PDFResourceManager</span><br><span class="line"><span class="keyword">from</span> pdfminer.pdfinterp <span class="keyword">import</span> process_pdf</span><br><span class="line"><span class="keyword">from</span> pdfminer.converter <span class="keyword">import</span> TextConverter</span><br><span class="line"><span class="keyword">from</span> pdfminer.layout <span class="keyword">import</span> LAParams</span><br><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> StringIO</span><br><span class="line"><span class="keyword">from</span> docx <span class="keyword">import</span> Document</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">file = open(<span class="string">"pdf文件地址"</span>, <span class="string">'rb'</span>)</span><br><span class="line"></span><br><span class="line">resource_manager = PDFResourceManager()</span><br><span class="line">return_str = StringIO()</span><br><span class="line">lap_params = LAParams()</span><br><span class="line"></span><br><span class="line">device = TextConverter(resource_manager, return_str, laparams=lap_params)</span><br><span class="line">process_pdf(resource_manager, device, file)</span><br><span class="line">device.close()</span><br><span class="line"></span><br><span class="line">content = return_str.getvalue()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_control_characters</span><span class="params">(content)</span>:</span></span><br><span class="line">    mpa = dict.fromkeys(range(<span class="number">32</span>))</span><br><span class="line">    <span class="keyword">return</span> content.translate(mpa)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">doc = Document()</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> content.split(<span class="string">'\n'</span>):</span><br><span class="line">    paragraph = doc.add_paragraph()</span><br><span class="line">    paragraph.add_run(remove_control_characters(line))</span><br><span class="line">doc.save(<span class="string">"mypdf.docx"</span>)</span><br></pre></td></tr></table></figure></li><li><p>但是，这样弄出来的简历，没有样式而且麻烦</p></li><li><p>我们可以通过注册登陆<a href="https://smallpdf.com/" target="_blank" rel="noopener">https://smallpdf.com/</a>此网站，进行在线转换</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha5.png" alt="sha"></p></li><li><p>直接拖拽上传即可。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha6.png" alt="sha"></p></li></ol><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>一个不落俗套的简历模板可以让你的求职如虎添翼，也可以让你的简历从招聘者邮箱中的海量简历中脱颖而出，但是简历模板也仅仅是求职中的一个重要细节之一，比起简历模板，简历中的工作经历以及技术经验则更加重要，切不可本末倒置。</p>]]></content>
     
@@ -92,9 +118,9 @@
       <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
-    
       <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
+      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
     
       <category term="Flask" scheme="http://www.sirxs.cn/tags/Flask/"/>
     
@@ -148,11 +174,11 @@
       <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
-    
       <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
     
       <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
+      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
     
   </entry>
   
@@ -232,11 +258,11 @@
       <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
-    
       <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
     
       <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
+      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
     
   </entry>
   
@@ -290,11 +316,11 @@
       <category term="总结 · 笔记" scheme="http://www.sirxs.cn/categories/%E6%80%BB%E7%BB%93-%C2%B7-%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
-    
       <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
     
       <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
+      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
     
   </entry>
   
@@ -320,11 +346,11 @@
       <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
-    
       <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
     
       <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
+      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
     
   </entry>
   
@@ -376,11 +402,11 @@
       <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
-    
       <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
     
       <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
+      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
     
   </entry>
   
@@ -538,41 +564,11 @@
       <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
-    
       <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
     
       <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Django2.0.4与Vue联合实现钉钉三方扫码登陆</title>
-    <link href="http://www.sirxs.cn/2020/06/02/Blog/%E9%92%89%E9%92%89%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/"/>
-    <id>http://www.sirxs.cn/2020/06/02/Blog/%E9%92%89%E9%92%89%E4%B8%89%E6%96%B9%E7%99%BB%E9%99%86/</id>
-    <published>2020-06-02T05:54:10.000Z</published>
-    <updated>2020-06-09T07:46:20.731Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p><a href="https://baike.baidu.com/item/钉钉" target="_blank" rel="noopener">钉钉</a>，学生党的噩梦，是<a href="https://baike.baidu.com/item/阿里巴巴集团/9087864" target="_blank" rel="noopener">阿里巴巴集团</a>专为<a href="https://baike.baidu.com/item/中国企业/12412310" target="_blank" rel="noopener">中国企业</a>打造的<a href="https://baike.baidu.com/item/免费/131326" target="_blank" rel="noopener">免费</a>沟通和协同的多端平台，帮助中国企业通过系统化的解决方案，全方位提升中国企业沟通和协同效率</p><h3 id="创建应用"><a href="#创建应用" class="headerlink" title="创建应用"></a>创建应用</h3><ol><li>首先注册<a href="https://ding-doc.dingtalk.com/" target="_blank" rel="noopener">钉钉开发者平台</a>，成功之后登陆</li></ol><ol start="2"><li>登陆成功，进入<code>应用开发</code></li></ol><p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/ding1.png" alt="gitee"></p><ol start="3"><li>找到<code>移动接入应用</code>，进入<code>登陆</code></li></ol><p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/ding2.png" alt="gitee"></p><ol start="4"><li><code>创建扫码登录应用授权</code></li></ol><p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/ding3.png" alt="gitee"></p><ol start="5"><li><code>LOGO地址</code>就是你钉钉三方登陆的图片地址。<code>回调域名</code>可以自己设置</li></ol><p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/ding4.png" alt="gitee"></p><ol start="6"><li>创建成功之后，会给你专属<code>APPID</code>,<code>APPKEY</code></li></ol><p>   <img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/ding5.png" alt="gitee"></p><h3 id="代码接入"><a href="#代码接入" class="headerlink" title="代码接入"></a>代码接入</h3><ol><li><p>Vue</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">函数名()&#123;</span><br><span class="line">        var appid &#x3D; &#39;APPID&#39;</span><br><span class="line">    var redirect_uri &#x3D; &#39;钉钉回调地址&#39;</span><br><span class="line">    &#x2F;&#x2F; 构成url</span><br><span class="line">var url &#x3D; &#39;https:&#x2F;&#x2F;oapi.dingtalk.com&#x2F;connect&#x2F;qrconnect?appid&#x3D;&#39;+appid+&#39;&amp;response_type&#x3D;code&amp;scope&#x3D;snsapi_login&amp;state&#x3D;STATE&amp;redirect_uri&#x3D;&#39;+redirect_uri</span><br><span class="line">&#x2F;&#x2F; 跳转</span><br><span class="line">window.location.href &#x3D; url;</span><br><span class="line">      &#125;,</span><br></pre></td></tr></table></figure></li></ol><ol start="2"><li><p>Django</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#构造钉钉回调</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ding_back</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="comment">#获取code</span></span><br><span class="line">    code = request.GET.get(<span class="string">"code"</span>)</span><br><span class="line">    t = time.time()</span><br><span class="line">    <span class="comment">#时间戳</span></span><br><span class="line">    timestamp = str((int(round(t * <span class="number">1000</span>))))</span><br><span class="line">    appSecret =<span class="string">'钉钉APPkey'</span></span><br><span class="line">    <span class="comment">#构造签名</span></span><br><span class="line">    signature = base64.b64encode(hmac.new(appSecret.encode(<span class="string">'utf-8'</span>),timestamp.encode(<span class="string">'utf-8'</span>), digestmod=sha256).digest())</span><br><span class="line">    <span class="comment">#请求接口，换取钉钉用户名</span></span><br><span class="line">    payload = &#123;<span class="string">'tmp_auth_code'</span>:code&#125;</span><br><span class="line">    headers = &#123;<span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>&#125;</span><br><span class="line">    res = requests.post(<span class="string">'https://oapi.dingtalk.com/sns/getuserinfo_bycode?signature='</span>+urllib.parse.quote(signature.decode(<span class="string">"utf-8"</span>))+<span class="string">"&amp;timestamp="</span>+timestamp+<span class="string">"&amp;accessKey=钉钉APPID"</span>,data=json.dumps(payload),headers=headers)</span><br><span class="line">    <span class="comment">#将JSON 字符串解码为 Python 对象   </span></span><br><span class="line">    res_dict = json.loads(res.text)</span><br><span class="line">    <span class="comment">#获取用户名</span></span><br><span class="line">    name = res_dict[<span class="string">'user_info'</span>][<span class="string">'nick'</span>]</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(name)</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
-    
-    
       <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
-    
-      <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
-    
-      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
     
   </entry>
   
