@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>MongoDB 导入Json和Bson</title>
+      <link href="/2020/07/14/Note/7.14/"/>
+      <url>/2020/07/14/Note/7.14/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p>在很久以前，我们学习了MongoDB的安装与一些简单的命令。<a href="https://www.sirxs.cn/2020/06/04/Note/MongoDB/">MongoDB与相关命令</a>，点击此处跳转。</p><p>我们知道MongoDB可以导出数据为JSON和BSON。BSON是一种特殊的JSON文件，又称为Binary JSON。我们想导入到另一个MongoDB的数据库里时怎么处理呢。</p><p>今天我们就来说一说MongoDB 如何导入Json和Bson。</p><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ol><li><p>首先，我们需要进入MongoDB的<code>bin</code>目录下，直接输入<code>cmd</code>进入终端窗口</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/mon.png" alt="mon"></p></li><li><p>紧接着，在终端窗口输入下面的代码</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/mon2.png" alt="mon"></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">linux下可以使用：mongorestore -d &lt;db_name&gt; &lt;bson_folder&gt;</span><br><span class="line">windows下可以使用：mongorestore.exe -d &lt;db_name&gt; &lt;bson_folder&gt;</span><br><span class="line"><span class="comment">#db_name：数据库名</span></span><br><span class="line"><span class="comment">#bson_folder：bson或json文件路径</span></span><br></pre></td></tr></table></figure></li><li><p>之后进入终端窗口，进入<code>MongoDB</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/mon3.png" alt="mon"></p></li><li><p>进入<code>mongo</code>之后，输入<code>show dbs</code>，查看以有的数据库</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/mon4.png" alt="mon"></p><p><strong>可以看到我们已经导入的数据库</strong></p></li><li><p>紧接着进入导入的数据库，并查询所有表</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/mon5.png" alt="mon"></p></li><li><p>最后查询这个表</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/mon6.png" alt="mon"></p><p><strong>可以看到我们导入的数据都出现了</strong></p></li></ol><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p><strong>MongoDB</strong>作为是一种<a href="https://zh.wikipedia.org/wiki/面向文檔的數據庫" target="_blank" rel="noopener">面向文档</a>的<a href="https://zh.wikipedia.org/wiki/数据库管理系统" target="_blank" rel="noopener">数据库管理系统</a>，用<a href="https://zh.wikipedia.org/wiki/C%2B%2B" target="_blank" rel="noopener">C++</a>等语言撰写而成，在我们遇到存储大量的数据是会是很好的数据库，以解决应用程序开发社区中的大量现实问题。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MongoDB </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>通过高德API和Python3实现通过IP获取地区</title>
       <link href="/2020/07/13/Blog/ip%E6%9F%A5%E5%9C%B0%E5%8C%BA/"/>
       <url>/2020/07/13/Blog/ip%E6%9F%A5%E5%9C%B0%E5%8C%BA/</url>
@@ -915,31 +940,6 @@
     
     
     <entry>
-      <title>redis优化</title>
-      <link href="/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/"/>
-      <url>/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a><strong>数据持久化</strong></h3><p><a href="https://www.sirxs.cn/2020/05/21/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/">数据持久化</a></p><h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a><strong>内存优化</strong></h3><p>设置<em>maxmemory</em>。设置Redis使用的最大物理内存，即Redis在占用<em>maxmemory</em>大小的内存之后就开始拒绝后续的写入请求，该参数可以确保Redis因为使用了大量内存严重影响速度或者发生<em>OOM</em>。此外，可以使用<code>info</code>命令查看Redis占用的内存及其它信息。</p><p>让键名保持简短。键的长度越长，<code>Redis</code>需要存储的数据也就越多</p><p>使用短结构。主要Redis的<em>list</em>、<em>hash</em>、<em>set</em>、<em>zset</em>这四种数据结构的存储优化。在<em>Redis3.2</em>之前，如果列表、散列或者有序集合的长度或者体积较小，<em>Redis</em>会选择一种名为<em>ziplist</em>的数据结构来存储它们。该结构是列表、散列和有序集合三种不同类型的对象的一种非结构化表示，与Redis在通常情况下使用双向链表来表示列表、使用散列表示散列、使用散列加跳跃表表示有序集合相比，它更加紧凑，避免了存储额外的指针和元数据（比如字符串值的剩余可用空间和结束符”\0”）。但是压缩列表需要在存储的时候进行序列化，读取的时候进行反序列化。以散列为例，在<code>redis.conf</code>中，可以进行如下设置</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hash-max-ziplist-entries <span class="number">512</span></span><br><span class="line">hash-max-ziplist-value <span class="number">64</span></span><br></pre></td></tr></table></figure><h3 id="拓展读写能力"><a href="#拓展读写能力" class="headerlink" title="拓展读写能力"></a><strong>拓展读写能力</strong></h3><p>扩展读性能。在<code>redis.conf</code>中添加<code>slaveof host port</code>即可将其配置为另一台Redis服务器的从服务器。注意，在从服务器连接主服务器的时候，从服务器之前的数据会被清空。可以用这种方式建立从服务器树，扩展其读能力。但这种方式并未做故障转移，高可用Redis部署方案可以参考<a href="https://www.jianshu.com/p/afb678794a0e" target="_blank" rel="noopener">Redis Sentinel</a>,<a href="https://link.jianshu.com?t=http%3A%2F%2Fredis.io%2Ftopics%2Fcluster-tutorial" target="_blank" rel="noopener">Redis Cluster</a>和<a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2FCodisLabs%2Fcodis" target="_blank" rel="noopener">Codis</a>。</p><p>扩展写性能。(1)使用集群分片技术，比如Redis Cluster;(2)单机上运行多个Redis实例。由于Redis是单线程设计，在涉及到cpu bound的操作的时候，可能速度会大大降低。如果服务器的cpu、io资源充足，可以在同一台机器上运行多个Redis服务器。</p><h3 id="应用程序优化"><a href="#应用程序优化" class="headerlink" title="应用程序优化"></a><strong>应用程序优化</strong></h3><p>应用程序优化部分主要是客户端和Redis交互的一些建议。主要思想是<strong>尽可能减少操作Redis往返的通信次数</strong>。</p><p>Redis提供了<em>Slow Log</em>功能，可以自动记录耗时较长的命令，<code>redis.conf</code>中的配置如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#执行时间慢于10000毫秒的命令计入Slow Log</span></span><br><span class="line">slowlog-log-slower-than <span class="number">10000</span>  </span><br><span class="line"><span class="comment">#最大纪录多少条Slow Log</span></span><br><span class="line">slowlog-max-len <span class="number">128</span></span><br></pre></td></tr></table></figure><p>使用<code>SLOWLOG GET n</code>命令，可以输出最近n条慢查询日志。使用<code>SLOWLOG RESET</code>命令，可以重置<em>Slow Log</em>。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>redis主从</title>
       <link href="/2020/05/23/Note/redis%E4%B8%BB%E4%BB%8E/"/>
       <url>/2020/05/23/Note/redis%E4%B8%BB%E4%BB%8E/</url>
@@ -965,11 +965,11 @@
     
     
     <entry>
-      <title>redis数据淘汰机制</title>
-      <link href="/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/"/>
-      <url>/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/</url>
+      <title>redis优化</title>
+      <link href="/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/"/>
+      <url>/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>书痴者文必工，艺痴者技必良。——蒲松龄 </p><hr><h1 id="Redis-内存淘汰机制"><a href="#Redis-内存淘汰机制" class="headerlink" title="Redis 内存淘汰机制"></a>Redis 内存淘汰机制</h1><h3 id="一、五种数据淘汰机制的具体实现"><a href="#一、五种数据淘汰机制的具体实现" class="headerlink" title="一、五种数据淘汰机制的具体实现"></a><strong>一、五种数据淘汰机制的具体实现</strong></h3><ul><li>volatile-lru：使用LRU算法进行数据淘汰（淘汰上次使用时间最早的，且使用次数最少的key），只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li><li>allkeys-lru：使用LRU算法进行数据淘汰，所有的key都可以被淘汰，从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰</li><li>volatile-random：随机淘汰数据，只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li><li>allkeys-random：随机淘汰数据，所有的key都可以被淘汰，从数据集（server.db[i].dict）中任意选择数据淘汰</li><li>volatile-ttl：淘汰剩余有效期最短的key，从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li><li></li></ul><h3 id="二、设置redis的最大存储空间"><a href="#二、设置redis的最大存储空间" class="headerlink" title="二、设置redis的最大存储空间"></a><strong>二、设置redis的最大存储空间</strong></h3><p>内存的淘汰机制的初衷是为了更好地使用内存，用一定的缓存miss来换取内存的使用效率。</p><p><strong>首先要配置maxmemory值</strong></p><p>1.客户端发起了需要申请更多内存的命令（如set）。</p><p>2.Redis检查内存使用情况，如果已使用的内存大于maxmemory则开始根据用户配置的不同淘汰策略来淘汰内存（key），从而换取一定的内存。</p><p>3.如果上面都没问题，则这个命令执行成功。</p><p>maxmemory为0的时候表示我们对Redis的内存使用没有限制。</p><p>配置方法：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxmemory-policy volatile-lru   <span class="comment">#默认是noeviction，即不进行数据淘汰</span></span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a><strong>数据持久化</strong></h3><p><a href="https://www.sirxs.cn/2020/05/21/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/">数据持久化</a></p><h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a><strong>内存优化</strong></h3><p>设置<em>maxmemory</em>。设置Redis使用的最大物理内存，即Redis在占用<em>maxmemory</em>大小的内存之后就开始拒绝后续的写入请求，该参数可以确保Redis因为使用了大量内存严重影响速度或者发生<em>OOM</em>。此外，可以使用<code>info</code>命令查看Redis占用的内存及其它信息。</p><p>让键名保持简短。键的长度越长，<code>Redis</code>需要存储的数据也就越多</p><p>使用短结构。主要Redis的<em>list</em>、<em>hash</em>、<em>set</em>、<em>zset</em>这四种数据结构的存储优化。在<em>Redis3.2</em>之前，如果列表、散列或者有序集合的长度或者体积较小，<em>Redis</em>会选择一种名为<em>ziplist</em>的数据结构来存储它们。该结构是列表、散列和有序集合三种不同类型的对象的一种非结构化表示，与Redis在通常情况下使用双向链表来表示列表、使用散列表示散列、使用散列加跳跃表表示有序集合相比，它更加紧凑，避免了存储额外的指针和元数据（比如字符串值的剩余可用空间和结束符”\0”）。但是压缩列表需要在存储的时候进行序列化，读取的时候进行反序列化。以散列为例，在<code>redis.conf</code>中，可以进行如下设置</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hash-max-ziplist-entries <span class="number">512</span></span><br><span class="line">hash-max-ziplist-value <span class="number">64</span></span><br></pre></td></tr></table></figure><h3 id="拓展读写能力"><a href="#拓展读写能力" class="headerlink" title="拓展读写能力"></a><strong>拓展读写能力</strong></h3><p>扩展读性能。在<code>redis.conf</code>中添加<code>slaveof host port</code>即可将其配置为另一台Redis服务器的从服务器。注意，在从服务器连接主服务器的时候，从服务器之前的数据会被清空。可以用这种方式建立从服务器树，扩展其读能力。但这种方式并未做故障转移，高可用Redis部署方案可以参考<a href="https://www.jianshu.com/p/afb678794a0e" target="_blank" rel="noopener">Redis Sentinel</a>,<a href="https://link.jianshu.com?t=http%3A%2F%2Fredis.io%2Ftopics%2Fcluster-tutorial" target="_blank" rel="noopener">Redis Cluster</a>和<a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2FCodisLabs%2Fcodis" target="_blank" rel="noopener">Codis</a>。</p><p>扩展写性能。(1)使用集群分片技术，比如Redis Cluster;(2)单机上运行多个Redis实例。由于Redis是单线程设计，在涉及到cpu bound的操作的时候，可能速度会大大降低。如果服务器的cpu、io资源充足，可以在同一台机器上运行多个Redis服务器。</p><h3 id="应用程序优化"><a href="#应用程序优化" class="headerlink" title="应用程序优化"></a><strong>应用程序优化</strong></h3><p>应用程序优化部分主要是客户端和Redis交互的一些建议。主要思想是<strong>尽可能减少操作Redis往返的通信次数</strong>。</p><p>Redis提供了<em>Slow Log</em>功能，可以自动记录耗时较长的命令，<code>redis.conf</code>中的配置如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#执行时间慢于10000毫秒的命令计入Slow Log</span></span><br><span class="line">slowlog-log-slower-than <span class="number">10000</span>  </span><br><span class="line"><span class="comment">#最大纪录多少条Slow Log</span></span><br><span class="line">slowlog-max-len <span class="number">128</span></span><br></pre></td></tr></table></figure><p>使用<code>SLOWLOG GET n</code>命令，可以输出最近n条慢查询日志。使用<code>SLOWLOG RESET</code>命令，可以重置<em>Slow Log</em>。</p>]]></content>
       
       
       <categories>
@@ -1003,6 +1003,31 @@
           
       </categories>
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>redis数据淘汰机制</title>
+      <link href="/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/"/>
+      <url>/2020/05/22/Note/Redis%20%E5%86%85%E5%AD%98%E6%B7%98%E6%B1%B0%E6%9C%BA%E5%88%B6/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>书痴者文必工，艺痴者技必良。——蒲松龄 </p><hr><h1 id="Redis-内存淘汰机制"><a href="#Redis-内存淘汰机制" class="headerlink" title="Redis 内存淘汰机制"></a>Redis 内存淘汰机制</h1><h3 id="一、五种数据淘汰机制的具体实现"><a href="#一、五种数据淘汰机制的具体实现" class="headerlink" title="一、五种数据淘汰机制的具体实现"></a><strong>一、五种数据淘汰机制的具体实现</strong></h3><ul><li>volatile-lru：使用LRU算法进行数据淘汰（淘汰上次使用时间最早的，且使用次数最少的key），只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li><li>allkeys-lru：使用LRU算法进行数据淘汰，所有的key都可以被淘汰，从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰</li><li>volatile-random：随机淘汰数据，只淘汰设定了有效期的key，从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li><li>allkeys-random：随机淘汰数据，所有的key都可以被淘汰，从数据集（server.db[i].dict）中任意选择数据淘汰</li><li>volatile-ttl：淘汰剩余有效期最短的key，从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li><li></li></ul><h3 id="二、设置redis的最大存储空间"><a href="#二、设置redis的最大存储空间" class="headerlink" title="二、设置redis的最大存储空间"></a><strong>二、设置redis的最大存储空间</strong></h3><p>内存的淘汰机制的初衷是为了更好地使用内存，用一定的缓存miss来换取内存的使用效率。</p><p><strong>首先要配置maxmemory值</strong></p><p>1.客户端发起了需要申请更多内存的命令（如set）。</p><p>2.Redis检查内存使用情况，如果已使用的内存大于maxmemory则开始根据用户配置的不同淘汰策略来淘汰内存（key），从而换取一定的内存。</p><p>3.如果上面都没问题，则这个命令执行成功。</p><p>maxmemory为0的时候表示我们对Redis的内存使用没有限制。</p><p>配置方法：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxmemory-policy volatile-lru   <span class="comment">#默认是noeviction，即不进行数据淘汰</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
       
     </entry>
     
@@ -1340,31 +1365,6 @@
     
     
     <entry>
-      <title>Vue中从数据库查询单的数据进行运算</title>
-      <link href="/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/"/>
-      <url>/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="Vue中从数据库查询单的数据进行运算"><a href="#Vue中从数据库查询单的数据进行运算" class="headerlink" title="Vue中从数据库查询单的数据进行运算"></a>Vue中从数据库查询单的数据进行运算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> &lt;tr&gt;</span><br><span class="line">    &lt;th&gt;商品序号&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品名称&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品价格&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;购买数量&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;总价格&lt;&#x2F;th&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br><span class="line">&lt;tr v-for&#x3D;&quot;(item,index) in carlist&quot; :key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;index +1&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.gname&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.price&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.num&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;商品价格*商品数量&lt;&#x2F;td&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br></pre></td></tr></table></figure><p>就像如此总价格需要<strong>商品价格*商品数量</strong> 进行乘法运算 但在模版渲染里乘法符号是个字符串，所有需要在方法里面定义和计算</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">all:function()&#123;</span><br><span class="line">    let list &#x3D; this.carlist;</span><br><span class="line">    for(let i&#x3D;0,l&#x3D;list.length;i&lt;l;i++)&#123;</span><br><span class="line">        var total &#x3D; list[i][&#39;price&#39;] * list[i][&#39;num&#39;]</span><br><span class="line">        this.allmoney &#x3D; total</span><br><span class="line">        &#125;</span><br><span class="line">        return total</span><br><span class="line">    &#125;           </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>之后 将 商品价格*商品数量 换成 all()</p><p>因为这里调用的是<strong>方法</strong>使用需要加上（）</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Vue </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Navicat Premium15安装与激活</title>
       <link href="/2020/04/28/Blog/seven/"/>
       <url>/2020/04/28/Blog/seven/</url>
@@ -1382,6 +1382,31 @@
         <tags>
             
             <tag> Navicat </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vue中从数据库查询单的数据进行运算</title>
+      <link href="/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/"/>
+      <url>/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="Vue中从数据库查询单的数据进行运算"><a href="#Vue中从数据库查询单的数据进行运算" class="headerlink" title="Vue中从数据库查询单的数据进行运算"></a>Vue中从数据库查询单的数据进行运算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> &lt;tr&gt;</span><br><span class="line">    &lt;th&gt;商品序号&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品名称&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品价格&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;购买数量&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;总价格&lt;&#x2F;th&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br><span class="line">&lt;tr v-for&#x3D;&quot;(item,index) in carlist&quot; :key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;index +1&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.gname&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.price&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.num&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;商品价格*商品数量&lt;&#x2F;td&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br></pre></td></tr></table></figure><p>就像如此总价格需要<strong>商品价格*商品数量</strong> 进行乘法运算 但在模版渲染里乘法符号是个字符串，所有需要在方法里面定义和计算</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">all:function()&#123;</span><br><span class="line">    let list &#x3D; this.carlist;</span><br><span class="line">    for(let i&#x3D;0,l&#x3D;list.length;i&lt;l;i++)&#123;</span><br><span class="line">        var total &#x3D; list[i][&#39;price&#39;] * list[i][&#39;num&#39;]</span><br><span class="line">        this.allmoney &#x3D; total</span><br><span class="line">        &#125;</span><br><span class="line">        return total</span><br><span class="line">    &#125;           </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>之后 将 商品价格*商品数量 换成 all()</p><p>因为这里调用的是<strong>方法</strong>使用需要加上（）</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue </tag>
             
         </tags>
       
@@ -1547,31 +1572,6 @@
     
     
     <entry>
-      <title>Git 相关</title>
-      <link href="/2020/04/10/Blog/two/"/>
-      <url>/2020/04/10/Blog/two/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="Git-相关操作"><a href="#Git-相关操作" class="headerlink" title="Git 相关操作"></a>Git 相关操作</h3><hr><p>1、git清空密码</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --system --unset credential.helper</span><br></pre></td></tr></table></figure><p>2、git保存密码</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><p>3、没有加入暂存区 后退一步</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout</span><br></pre></td></tr></table></figure><p>4、加入暂存区 后退一步</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset</span><br></pre></td></tr></table></figure><p>5、查看提交日志</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure><p>6、返回相对应的日志号</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard + git log 中的日志号</span><br></pre></td></tr></table></figure><p>7、设置国内源 and 查看原</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm set registry https:&#x2F;&#x2F;registry.npm.taobao.orgnpm config list</span><br></pre></td></tr></table></figure><p>8、查看当前git分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure><p>9、拉取Git项目</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure><p>10、素质三联</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -Agit commit -m &quot;&quot;git push -u origin master</span><br></pre></td></tr></table></figure><hr><h3 id="一、版本控制系统"><a href="#一、版本控制系统" class="headerlink" title="一、版本控制系统"></a>一、版本控制系统</h3><hr><p>1、意义 记录文件内容变化，以便将来查阅特定版本修订情况的系统 可以讲文件回溯到某个修改之前的状态。 版本控制不仅对源码做控制，可以对任意类型文件进行版本控制</p><p>2、常用的版本工具 CVS SVN Git-分布式 首先安装 文本编辑器软件，使用notepad++ 作为文本编辑器</p><p>3、git本地版本管理</p><h2 id="4、git本地仓库与远程仓库通信"><a href="#4、git本地仓库与远程仓库通信" class="headerlink" title="4、git本地仓库与远程仓库通信"></a>4、git本地仓库与远程仓库通信</h2><h3 id="二、git本地版本管理"><a href="#二、git本地版本管理" class="headerlink" title="二、git本地版本管理"></a>二、git本地版本管理</h3><hr><p>1、配置我们的身份</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;John Doe&quot;$ git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure><p>2、初始化一个git仓库 选择一个文件夹 作为我们的仓库 然后初始化它</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure><p>3、查看git当前的状态</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure><p>我们目录下的文件 有两种状态： 未追踪untracked文件 已追踪tracked文件 已追踪 表示 这个文件已经添加到git仓库中 未追踪 表示 文件还没有添加到仓库中</p><p>4、添加未追踪的文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 文件</span><br></pre></td></tr></table></figure><p>5、把 add的文件 进行commit提交 添加到仓库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit </span><br><span class="line">git commit -m &quot;提交的说明&quot; 不会打开文本编辑器</span><br></pre></td></tr></table></figure><p>总结：一个新文件 要先 add 在 commit 两步才能提交到仓库</p><p>6、忽略文件</p><p>项目中 不是所有的文件 都需要追踪的，比如一些临时文件，日志就不用追踪</p><p>因此我们可以写一个.gitingore文件</p><p>7、我们的git可以分为三个区域</p><p>工作区：我们从仓库中 提取某个版本 作为工作内容，对文件可以修改、删除等操作</p><p>暂存区：工作区中的文件内容发生改变，我们要把这个改变先保存起来，放到暂存区 等待提交</p><p>仓库区：所有的已经提交commit的数据</p><p>如果一个被追踪的文件 发生了修改则操作过程：</p><p>第一、git add 文件/* 会把文件从工作区 拷贝一份 放到暂存区</p><p>第二、git commit 文件 会把暂存区存放的所有文件 都提交到仓库</p><hr><h3 id="三、本地仓库与-远程仓库"><a href="#三、本地仓库与-远程仓库" class="headerlink" title="三、本地仓库与 远程仓库"></a>三、本地仓库与 远程仓库</h3><hr><p>1、从远程仓库 clone 到本地</p><p>这个过程 会自动把远程仓库的所有内容 都拷贝一份到本地，并生成创建一个对应的本地仓库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone 链接</span><br></pre></td></tr></table></figure><p>本地仓库名默认就是 bookweb</p><p>2、推送项目到远程仓库</p><p>git push 推送 推送本地仓库内容 到远程仓库</p><p>3、push的时候因为要 登录远程仓库，所有需要认证</p><p>第一次的时候需要你输入 github的 账号 密码</p><p>我们在输入完以后可以通过 命令</p><p>①设置记住密码（默认15分钟）：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper cache</span><br></pre></td></tr></table></figure><p>②如果想自己设置时间，可以这样做(1小时后失效)：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper &#39;cache --timeout&#x3D;3600&#39;</span><br></pre></td></tr></table></figure><p>③长期存储密码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><p>4、代码冲突的问题</p><p>想在开发都是 团队协同开发有可能多人同时修改了文件中的某一处</p><p>解决冲突： 第一步 首先要先 git pull 先把远程的新的提交 拉过来，到本地仓库。</p><p>5、标签tag 了解</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给一个提交版本 添加 标签  用来表示该提交git tag -a 标签名  -m &quot;描述标签&quot;git tag -a v1 -m &quot;版本1&quot;</span><br></pre></td></tr></table></figure><p>6、git分支</p><p>查看分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure><p>创建分支 <code>git branch 分支名</code> 切换分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支</span><br></pre></td></tr></table></figure><p>合并分支：</p><p>注意 谁合并谁 先切换到谁<br>master要合并dev 先切换到master</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout mastergit merge dev</span><br></pre></td></tr></table></figure><p>删除分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d dev</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 · 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Git </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>总结购物车优惠卷生成</title>
       <link href="/2020/04/10/Note/%E4%BC%98%E6%83%A0%E5%8D%B7/"/>
       <url>/2020/04/10/Note/%E4%BC%98%E6%83%A0%E5%8D%B7/</url>
@@ -1591,6 +1591,31 @@
             <tag> Python </tag>
             
             <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Git 相关</title>
+      <link href="/2020/04/10/Blog/two/"/>
+      <url>/2020/04/10/Blog/two/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="Git-相关操作"><a href="#Git-相关操作" class="headerlink" title="Git 相关操作"></a>Git 相关操作</h3><hr><p>1、git清空密码</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --system --unset credential.helper</span><br></pre></td></tr></table></figure><p>2、git保存密码</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><p>3、没有加入暂存区 后退一步</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout</span><br></pre></td></tr></table></figure><p>4、加入暂存区 后退一步</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset</span><br></pre></td></tr></table></figure><p>5、查看提交日志</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure><p>6、返回相对应的日志号</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard + git log 中的日志号</span><br></pre></td></tr></table></figure><p>7、设置国内源 and 查看原</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm set registry https:&#x2F;&#x2F;registry.npm.taobao.orgnpm config list</span><br></pre></td></tr></table></figure><p>8、查看当前git分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure><p>9、拉取Git项目</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master</span><br></pre></td></tr></table></figure><p>10、素质三联</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -Agit commit -m &quot;&quot;git push -u origin master</span><br></pre></td></tr></table></figure><hr><h3 id="一、版本控制系统"><a href="#一、版本控制系统" class="headerlink" title="一、版本控制系统"></a>一、版本控制系统</h3><hr><p>1、意义 记录文件内容变化，以便将来查阅特定版本修订情况的系统 可以讲文件回溯到某个修改之前的状态。 版本控制不仅对源码做控制，可以对任意类型文件进行版本控制</p><p>2、常用的版本工具 CVS SVN Git-分布式 首先安装 文本编辑器软件，使用notepad++ 作为文本编辑器</p><p>3、git本地版本管理</p><h2 id="4、git本地仓库与远程仓库通信"><a href="#4、git本地仓库与远程仓库通信" class="headerlink" title="4、git本地仓库与远程仓库通信"></a>4、git本地仓库与远程仓库通信</h2><h3 id="二、git本地版本管理"><a href="#二、git本地版本管理" class="headerlink" title="二、git本地版本管理"></a>二、git本地版本管理</h3><hr><p>1、配置我们的身份</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;John Doe&quot;$ git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure><p>2、初始化一个git仓库 选择一个文件夹 作为我们的仓库 然后初始化它</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure><p>3、查看git当前的状态</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure><p>我们目录下的文件 有两种状态： 未追踪untracked文件 已追踪tracked文件 已追踪 表示 这个文件已经添加到git仓库中 未追踪 表示 文件还没有添加到仓库中</p><p>4、添加未追踪的文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 文件</span><br></pre></td></tr></table></figure><p>5、把 add的文件 进行commit提交 添加到仓库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit </span><br><span class="line">git commit -m &quot;提交的说明&quot; 不会打开文本编辑器</span><br></pre></td></tr></table></figure><p>总结：一个新文件 要先 add 在 commit 两步才能提交到仓库</p><p>6、忽略文件</p><p>项目中 不是所有的文件 都需要追踪的，比如一些临时文件，日志就不用追踪</p><p>因此我们可以写一个.gitingore文件</p><p>7、我们的git可以分为三个区域</p><p>工作区：我们从仓库中 提取某个版本 作为工作内容，对文件可以修改、删除等操作</p><p>暂存区：工作区中的文件内容发生改变，我们要把这个改变先保存起来，放到暂存区 等待提交</p><p>仓库区：所有的已经提交commit的数据</p><p>如果一个被追踪的文件 发生了修改则操作过程：</p><p>第一、git add 文件/* 会把文件从工作区 拷贝一份 放到暂存区</p><p>第二、git commit 文件 会把暂存区存放的所有文件 都提交到仓库</p><hr><h3 id="三、本地仓库与-远程仓库"><a href="#三、本地仓库与-远程仓库" class="headerlink" title="三、本地仓库与 远程仓库"></a>三、本地仓库与 远程仓库</h3><hr><p>1、从远程仓库 clone 到本地</p><p>这个过程 会自动把远程仓库的所有内容 都拷贝一份到本地，并生成创建一个对应的本地仓库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone 链接</span><br></pre></td></tr></table></figure><p>本地仓库名默认就是 bookweb</p><p>2、推送项目到远程仓库</p><p>git push 推送 推送本地仓库内容 到远程仓库</p><p>3、push的时候因为要 登录远程仓库，所有需要认证</p><p>第一次的时候需要你输入 github的 账号 密码</p><p>我们在输入完以后可以通过 命令</p><p>①设置记住密码（默认15分钟）：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper cache</span><br></pre></td></tr></table></figure><p>②如果想自己设置时间，可以这样做(1小时后失效)：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config credential.helper &#39;cache --timeout&#x3D;3600&#39;</span><br></pre></td></tr></table></figure><p>③长期存储密码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure><p>4、代码冲突的问题</p><p>想在开发都是 团队协同开发有可能多人同时修改了文件中的某一处</p><p>解决冲突： 第一步 首先要先 git pull 先把远程的新的提交 拉过来，到本地仓库。</p><p>5、标签tag 了解</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给一个提交版本 添加 标签  用来表示该提交git tag -a 标签名  -m &quot;描述标签&quot;git tag -a v1 -m &quot;版本1&quot;</span><br></pre></td></tr></table></figure><p>6、git分支</p><p>查看分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure><p>创建分支 <code>git branch 分支名</code> 切换分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支</span><br></pre></td></tr></table></figure><p>合并分支：</p><p>注意 谁合并谁 先切换到谁<br>master要合并dev 先切换到master</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout mastergit merge dev</span><br></pre></td></tr></table></figure><p>删除分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d dev</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 · 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
             
         </tags>
       
