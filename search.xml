@@ -380,31 +380,6 @@
     
     
     <entry>
-      <title>Redis持久化</title>
-      <link href="/2020/06/08/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/"/>
-      <url>/2020/06/08/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>知识是珍贵宝石的结晶,文化是宝石放出的光泽。——泰戈尔</p><hr><h1 id="RDB持久化"><a href="#RDB持久化" class="headerlink" title="RDB持久化"></a>RDB持久化</h1><h4 id="开启方式"><a href="#开启方式" class="headerlink" title="开启方式"></a>开启方式</h4><p>在<code>Redis</code>安装目录下找到<code>redis.windows.conf</code>这个文件，并打开</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/redis9.png" alt="redis"></p><p>下图就是RDB开启方式</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/RDB.png" alt="RDB"></p><p>RDB持久化是把当前进程数据生成快照保存到硬盘的过程，触发RDB持久化过程分为手动触发和自动触发</p><h4 id="1）触发机制"><a href="#1）触发机制" class="headerlink" title="1）触发机制"></a>1）触发机制</h4><p>手动触发分别对应save和bgsave命令</p><p>save命令：阻塞当前Redis服务器，直到RDB过程完成为止，对于内存 比较大的实例会造成长时间阻塞，线上环境不建议使用</p><p>bgsave命令：Redis进程执行fork操作创建子进程，RDB持久化过程由子 进程负责，完成后自动结束。阻塞只发生在fork阶段，一般时间很短</p><h4 id="2）自动触发RDB的持久"><a href="#2）自动触发RDB的持久" class="headerlink" title="2）自动触发RDB的持久"></a>2）自动触发RDB的持久</h4><p>使用save相关配置，如“save m n”。表示m秒内数据集存在n次修改 时，自动触发bgsave。</p><p>如果从节点执行全量复制操作，主节点自动执行bgsave生成RDB文件并发送给从节点，更多细节见6.3节介绍的复制原理。</p><p>执行debug reload命令重新加载Redis时，也会自动触发save操作。</p><p>默认情况下执行shutdown命令时，如果没有开启AOF持久化功能则 自动执行bgsave。</p><p>bgsave是主流的触发RDB持久化方式</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/webp.png" alt="img"></p><p>执行bgsave命令，Redis父进程判断当前是否存在正在执行的子进 程，如RDB/AOF子进程，如果存在bgsave命令直接返回。</p><p>父进程执行fork操作创建子进程，fork操作过程中父进程会阻塞，通 过info stats命令查看latest_fork_usec选项，可以获取最近一个fork操作的耗时，单位为微秒</p><p>父进程fork完成后，bgsave命令返回“Background saving started”信息并不再阻塞父进程，可以继续响应其他命令。</p><p>子进程创建RDB文件，根据父进程内存生成临时快照文件，完成后 对原有文件进行原子替换。执行lastsave命令可以获取最后一次生成RDB的 时间，对应info统计的rdb_last_save_time选项。</p><p>进程发送信号给父进程表示完成，父进程更新统计信息，具体见 info Persistence下的rdb_*相关选项。</p><p>RDB文件的处理</p><p>保存：RDB文件保存在dir配置指定的目录下，文件名通过dbfilename配 置指定。可以通过执行config set dir{newDir}和config set dbfilename{newFileName}运行期动态执行，当下次运行时RDB文件会保存到新目录。</p><h1 id="RDB的优缺点"><a href="#RDB的优缺点" class="headerlink" title="RDB的优缺点"></a>RDB的优缺点</h1><h4 id="RDB的优点："><a href="#RDB的优点：" class="headerlink" title="RDB的优点："></a>RDB的优点：</h4><p>RDB是一个紧凑压缩的二进制文件，代表Redis在某个时间点上的数据 快照。非常适用于备份，全量复制等场景。比如每6小时执行bgsave备份， 并把RDB文件拷贝到远程机器或者文件系统中（如hdfs），用于灾难恢复。</p><p>Redis加载RDB恢复数据远远快于AOF的方式。</p><h4 id="RDB的缺点："><a href="#RDB的缺点：" class="headerlink" title="RDB的缺点："></a>RDB的缺点：</h4><p>RDB方式数据没办法做到实时持久化/秒级持久化。因为bgsave每次运 行都要执行fork操作创建子进程，属于重量级操作，频繁执行成本过高。</p><p>RDB文件使用特定二进制格式保存，Redis版本演进过程中有多个格式 的RDB版本，存在老版本Redis服务无法兼容新版RDB格式的问题。</p><p>针对RDB不适合实时持久化的问题，Redis提供了AOF持久化方式来解决。</p><h1 id="AOF持久化"><a href="#AOF持久化" class="headerlink" title="AOF持久化"></a>AOF持久化</h1><h4 id="开启方式-1"><a href="#开启方式-1" class="headerlink" title="开启方式"></a>开启方式</h4><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/AOF.png" alt="AOF"></p><p>AOF（append only file）持久化：以独立日志的方式记录每次写命令， 重启时再重新执行AOF文件中的命令达到恢复数据的目的。AOF的主要作用 是解决了数据持久化的实时性，目前已经是Redis持久化的主流方式</p><h4 id="1）使用AOF"><a href="#1）使用AOF" class="headerlink" title="1）使用AOF"></a>1）使用AOF</h4><p>开启AOF功能需要设置配置：appendonly yes，默认不开启。AOF文件名 通过appendfilename配置设置，默认文件名是appendonly.aof。保存路径同 RDB持久化方式一致，通过dir配置指定。AOF的工作流程操作：命令写入 （append）、文件同步（sync）、文件重写（rewrite）、重启加载 （load）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/webp1.png" alt="img"></p><h4 id="1）所有的写入命令会追加到aof-buf（缓冲区）中。"><a href="#1）所有的写入命令会追加到aof-buf（缓冲区）中。" class="headerlink" title="1）所有的写入命令会追加到aof_buf（缓冲区）中。"></a>1）所有的写入命令会追加到aof_buf（缓冲区）中。</h4><h4 id="2）AOF缓冲区根据对应的策略向硬盘做同步操作。"><a href="#2）AOF缓冲区根据对应的策略向硬盘做同步操作。" class="headerlink" title="2）AOF缓冲区根据对应的策略向硬盘做同步操作。"></a>2）AOF缓冲区根据对应的策略向硬盘做同步操作。</h4><p>AOF为什么把命令追加到aof_buf中？Redis使用单线程响应命令，如 果每次写AOF文件命令都直接追加到硬盘，那么性能完全取决于当前硬盘负 载。先写入缓冲区aof_buf中，还有另一个好处，Redis可以提供多种缓冲区同步硬盘的策略，在性能和安全性方面做出平衡</p><h4 id="3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。"><a href="#3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。" class="headerlink" title="3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。"></a>3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。</h4><p>重写后的AOF文件为什么可以变小？有如下原因：</p><p>1.进程内已经超时的数据不再写入文件。</p><p>2.旧的AOF文件含有无效命令，如del key1、hdel key2、srem keys、set a111、set a222等。重写使用进程内数据直接生成，这样新的AOF文件只保</p><p>留最终数据的写入命令。</p><p>3.多条写命令可以合并为一个，如：lpush list a、lpush list b、lpush list c可以转化为：lpush list a b c。为了防止单条命令过大造成客户端缓冲区溢 出，对于list、set、hash、zset等类型操作，以64个元素为界拆分为多条。</p><p>AOF重写降低了文件占用空间，除此之外，另一个目的是：更小的AOF 文件可以更快地被Redis加载</p><p>AOF重写过程可以手动触发和自动触发：</p><p>手动触发：直接调用bgrewriteaof命令。</p><p>自动触发：根据auto-aof-rewrite-min-size和auto-aof-rewrite-percentage参数确定自动触发时机</p><p>auto-aof-rewrite-min-size：表示运行AOF重写时文件最小体积，默认 为64MB。</p><p>auto-aof-rewrite-percentage：代表当前AOF文件空间 （aof_current_size）和上一次重写后AOF文件空间（aof_base_size）的比值。</p><p>自动触发时机=aof_current_size&gt;auto-aof-rewrite-minsize&amp;&amp;（aof_current_size-aof_base_size）/aof_base_size&gt;=auto-aof-rewritepercentage</p><p>其中aof_current_size和aof_base_size可以在info Persistence统计信息中查看。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/webp2.png" alt="img"></p><h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。"><a href="#4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。" class="headerlink" title="4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。"></a>4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。</h4><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/webp3.png" alt="img"></p><p>流程说明：</p><p>1）AOF持久化开启且存在AOF文件时，优先加载AOF文件，打印如下日志：</p><p>* DB loaded from append only file: 5.841 seconds</p><p>2）AOF关闭或者AOF文件不存在时，加载RDB文件，打印如下日志：</p><p>* DB loaded from disk: 5.586 seconds</p><p>3）加载AOF/RDB文件成功后，Redis启动成功。</p><p>4）AOF/RDB文件存在错误时，Redis启动失败并打印错误信息。</p><p>重点回顾</p><p>1）Redis提供了两种持久化方式：RDB和AOF。</p><p>2）RDB使用一次性生成内存快照的方式，产生的文件紧凑压缩比更 高，因此读取RDB恢复速度更快。由于每次生成RDB开销较大，无法做到实</p><p>时持久化，一般用于数据冷备和复制传输。</p><p>3）save命令会阻塞主线程不建议使用，bgsave命令通过fork操作创建子 进程生成RDB避免阻塞。</p><p>4）AOF通过追加写命令到文件实现持久化，通过appendfsync参数可以 控制实时/秒级持久化。因为需要不断追加写命令，所以AOF文件体积逐渐变大，需要定期执行重写操作来降低文件体积。</p><p>5）AOF重写可以通过auto-aof-rewrite-min-size和auto-aof-rewritepercentage参数控制自动触发，也可以使用bgrewriteaof命令手动触发。</p><p>6）子进程执行期间使用copy-on-write机制与父进程共享内存，避免内 存消耗翻倍。AOF重写期间还需要维护重写缓冲区，保存新的写入命令避免数据丢失。</p><p>7）持久化阻塞主线程场景有：fork阻塞和AOF追加阻塞。fork阻塞时间 跟内存量和系统有关，AOF追加阻塞说明硬盘资源紧张。</p><p>8）单机下部署多个实例时，为了防止出现多个子进程执行重写操作， 建议做隔离控制，避免CPU和IO资源竞争。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>（七牛云云端存储）使用python3.7+Vue.js2.0+Django2.0.4异步前端通过api上传文件到七牛云云端存储</title>
       <link href="/2020/06/08/Blog/qiniu/"/>
       <url>/2020/06/08/Blog/qiniu/</url>
@@ -426,6 +401,31 @@
             <tag> Python </tag>
             
             <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Redis持久化</title>
+      <link href="/2020/06/08/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/"/>
+      <url>/2020/06/08/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>知识是珍贵宝石的结晶,文化是宝石放出的光泽。——泰戈尔</p><hr><h1 id="RDB持久化"><a href="#RDB持久化" class="headerlink" title="RDB持久化"></a>RDB持久化</h1><h4 id="开启方式"><a href="#开启方式" class="headerlink" title="开启方式"></a>开启方式</h4><p>在<code>Redis</code>安装目录下找到<code>redis.windows.conf</code>这个文件，并打开</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/redis9.png" alt="redis"></p><p>下图就是RDB开启方式</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/RDB.png" alt="RDB"></p><p>RDB持久化是把当前进程数据生成快照保存到硬盘的过程，触发RDB持久化过程分为手动触发和自动触发</p><h4 id="1）触发机制"><a href="#1）触发机制" class="headerlink" title="1）触发机制"></a>1）触发机制</h4><p>手动触发分别对应save和bgsave命令</p><p>save命令：阻塞当前Redis服务器，直到RDB过程完成为止，对于内存 比较大的实例会造成长时间阻塞，线上环境不建议使用</p><p>bgsave命令：Redis进程执行fork操作创建子进程，RDB持久化过程由子 进程负责，完成后自动结束。阻塞只发生在fork阶段，一般时间很短</p><h4 id="2）自动触发RDB的持久"><a href="#2）自动触发RDB的持久" class="headerlink" title="2）自动触发RDB的持久"></a>2）自动触发RDB的持久</h4><p>使用save相关配置，如“save m n”。表示m秒内数据集存在n次修改 时，自动触发bgsave。</p><p>如果从节点执行全量复制操作，主节点自动执行bgsave生成RDB文件并发送给从节点，更多细节见6.3节介绍的复制原理。</p><p>执行debug reload命令重新加载Redis时，也会自动触发save操作。</p><p>默认情况下执行shutdown命令时，如果没有开启AOF持久化功能则 自动执行bgsave。</p><p>bgsave是主流的触发RDB持久化方式</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/webp.png" alt="img"></p><p>执行bgsave命令，Redis父进程判断当前是否存在正在执行的子进 程，如RDB/AOF子进程，如果存在bgsave命令直接返回。</p><p>父进程执行fork操作创建子进程，fork操作过程中父进程会阻塞，通 过info stats命令查看latest_fork_usec选项，可以获取最近一个fork操作的耗时，单位为微秒</p><p>父进程fork完成后，bgsave命令返回“Background saving started”信息并不再阻塞父进程，可以继续响应其他命令。</p><p>子进程创建RDB文件，根据父进程内存生成临时快照文件，完成后 对原有文件进行原子替换。执行lastsave命令可以获取最后一次生成RDB的 时间，对应info统计的rdb_last_save_time选项。</p><p>进程发送信号给父进程表示完成，父进程更新统计信息，具体见 info Persistence下的rdb_*相关选项。</p><p>RDB文件的处理</p><p>保存：RDB文件保存在dir配置指定的目录下，文件名通过dbfilename配 置指定。可以通过执行config set dir{newDir}和config set dbfilename{newFileName}运行期动态执行，当下次运行时RDB文件会保存到新目录。</p><h1 id="RDB的优缺点"><a href="#RDB的优缺点" class="headerlink" title="RDB的优缺点"></a>RDB的优缺点</h1><h4 id="RDB的优点："><a href="#RDB的优点：" class="headerlink" title="RDB的优点："></a>RDB的优点：</h4><p>RDB是一个紧凑压缩的二进制文件，代表Redis在某个时间点上的数据 快照。非常适用于备份，全量复制等场景。比如每6小时执行bgsave备份， 并把RDB文件拷贝到远程机器或者文件系统中（如hdfs），用于灾难恢复。</p><p>Redis加载RDB恢复数据远远快于AOF的方式。</p><h4 id="RDB的缺点："><a href="#RDB的缺点：" class="headerlink" title="RDB的缺点："></a>RDB的缺点：</h4><p>RDB方式数据没办法做到实时持久化/秒级持久化。因为bgsave每次运 行都要执行fork操作创建子进程，属于重量级操作，频繁执行成本过高。</p><p>RDB文件使用特定二进制格式保存，Redis版本演进过程中有多个格式 的RDB版本，存在老版本Redis服务无法兼容新版RDB格式的问题。</p><p>针对RDB不适合实时持久化的问题，Redis提供了AOF持久化方式来解决。</p><h1 id="AOF持久化"><a href="#AOF持久化" class="headerlink" title="AOF持久化"></a>AOF持久化</h1><h4 id="开启方式-1"><a href="#开启方式-1" class="headerlink" title="开启方式"></a>开启方式</h4><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/AOF.png" alt="AOF"></p><p>AOF（append only file）持久化：以独立日志的方式记录每次写命令， 重启时再重新执行AOF文件中的命令达到恢复数据的目的。AOF的主要作用 是解决了数据持久化的实时性，目前已经是Redis持久化的主流方式</p><h4 id="1）使用AOF"><a href="#1）使用AOF" class="headerlink" title="1）使用AOF"></a>1）使用AOF</h4><p>开启AOF功能需要设置配置：appendonly yes，默认不开启。AOF文件名 通过appendfilename配置设置，默认文件名是appendonly.aof。保存路径同 RDB持久化方式一致，通过dir配置指定。AOF的工作流程操作：命令写入 （append）、文件同步（sync）、文件重写（rewrite）、重启加载 （load）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/webp1.png" alt="img"></p><h4 id="1）所有的写入命令会追加到aof-buf（缓冲区）中。"><a href="#1）所有的写入命令会追加到aof-buf（缓冲区）中。" class="headerlink" title="1）所有的写入命令会追加到aof_buf（缓冲区）中。"></a>1）所有的写入命令会追加到aof_buf（缓冲区）中。</h4><h4 id="2）AOF缓冲区根据对应的策略向硬盘做同步操作。"><a href="#2）AOF缓冲区根据对应的策略向硬盘做同步操作。" class="headerlink" title="2）AOF缓冲区根据对应的策略向硬盘做同步操作。"></a>2）AOF缓冲区根据对应的策略向硬盘做同步操作。</h4><p>AOF为什么把命令追加到aof_buf中？Redis使用单线程响应命令，如 果每次写AOF文件命令都直接追加到硬盘，那么性能完全取决于当前硬盘负 载。先写入缓冲区aof_buf中，还有另一个好处，Redis可以提供多种缓冲区同步硬盘的策略，在性能和安全性方面做出平衡</p><h4 id="3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。"><a href="#3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。" class="headerlink" title="3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。"></a>3）随着AOF文件越来越大，需要定期对AOF文件进行重写，达到压缩的目的。</h4><p>重写后的AOF文件为什么可以变小？有如下原因：</p><p>1.进程内已经超时的数据不再写入文件。</p><p>2.旧的AOF文件含有无效命令，如del key1、hdel key2、srem keys、set a111、set a222等。重写使用进程内数据直接生成，这样新的AOF文件只保</p><p>留最终数据的写入命令。</p><p>3.多条写命令可以合并为一个，如：lpush list a、lpush list b、lpush list c可以转化为：lpush list a b c。为了防止单条命令过大造成客户端缓冲区溢 出，对于list、set、hash、zset等类型操作，以64个元素为界拆分为多条。</p><p>AOF重写降低了文件占用空间，除此之外，另一个目的是：更小的AOF 文件可以更快地被Redis加载</p><p>AOF重写过程可以手动触发和自动触发：</p><p>手动触发：直接调用bgrewriteaof命令。</p><p>自动触发：根据auto-aof-rewrite-min-size和auto-aof-rewrite-percentage参数确定自动触发时机</p><p>auto-aof-rewrite-min-size：表示运行AOF重写时文件最小体积，默认 为64MB。</p><p>auto-aof-rewrite-percentage：代表当前AOF文件空间 （aof_current_size）和上一次重写后AOF文件空间（aof_base_size）的比值。</p><p>自动触发时机=aof_current_size&gt;auto-aof-rewrite-minsize&amp;&amp;（aof_current_size-aof_base_size）/aof_base_size&gt;=auto-aof-rewritepercentage</p><p>其中aof_current_size和aof_base_size可以在info Persistence统计信息中查看。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/webp2.png" alt="img"></p><h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。"><a href="#4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。" class="headerlink" title="4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。"></a>4）当Redis服务器重启时，可以加载AOF文件进行数据恢复。</h4><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/webp3.png" alt="img"></p><p>流程说明：</p><p>1）AOF持久化开启且存在AOF文件时，优先加载AOF文件，打印如下日志：</p><p>* DB loaded from append only file: 5.841 seconds</p><p>2）AOF关闭或者AOF文件不存在时，加载RDB文件，打印如下日志：</p><p>* DB loaded from disk: 5.586 seconds</p><p>3）加载AOF/RDB文件成功后，Redis启动成功。</p><p>4）AOF/RDB文件存在错误时，Redis启动失败并打印错误信息。</p><p>重点回顾</p><p>1）Redis提供了两种持久化方式：RDB和AOF。</p><p>2）RDB使用一次性生成内存快照的方式，产生的文件紧凑压缩比更 高，因此读取RDB恢复速度更快。由于每次生成RDB开销较大，无法做到实</p><p>时持久化，一般用于数据冷备和复制传输。</p><p>3）save命令会阻塞主线程不建议使用，bgsave命令通过fork操作创建子 进程生成RDB避免阻塞。</p><p>4）AOF通过追加写命令到文件实现持久化，通过appendfsync参数可以 控制实时/秒级持久化。因为需要不断追加写命令，所以AOF文件体积逐渐变大，需要定期执行重写操作来降低文件体积。</p><p>5）AOF重写可以通过auto-aof-rewrite-min-size和auto-aof-rewritepercentage参数控制自动触发，也可以使用bgrewriteaof命令手动触发。</p><p>6）子进程执行期间使用copy-on-write机制与父进程共享内存，避免内 存消耗翻倍。AOF重写期间还需要维护重写缓冲区，保存新的写入命令避免数据丢失。</p><p>7）持久化阻塞主线程场景有：fork阻塞和AOF追加阻塞。fork阻塞时间 跟内存量和系统有关，AOF追加阻塞说明硬盘资源紧张。</p><p>8）单机下部署多个实例时，为了防止出现多个子进程执行重写操作， 建议做隔离控制，避免CPU和IO资源竞争。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
             
         </tags>
       
@@ -742,6 +742,25 @@
     
     
     <entry>
+      <title>《绿皮书》：拿到奥斯卡最佳影片，就因为“涉黑”?</title>
+      <link href="/2020/05/30/Movie/Green%20Book/"/>
+      <url>/2020/05/30/Movie/Green%20Book/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><em>不管是在上届届奥斯卡颁奖典礼之前，还是在颁奖典礼之后，对于《绿皮书》能够拿到最佳影片奖，很多人都不会感到稀奇。貌似打上届届奥斯卡获奖提名名单一曝光，《绿皮书》就已经内定，不管是同样大热门的《罗马》，还是其他六部电影，都像是可怜的陪跑运动员，没有丝毫挣扎的可能性。</em></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/green.png" alt="move"></p><p>不管是在上届届奥斯卡颁奖典礼之前，还是在颁奖典礼之后，对于《绿皮书》能够拿到最佳影片奖，很多人都不会感到稀奇。</p><p>貌似打上届届奥斯卡获奖提名名单一曝光，《绿皮书》就已经内定，不管是同样大热门的《罗马》，还是其他六部电影，都像是可怜的陪跑运动员，没有丝毫挣扎的可能性。</p><p>《黑豹》看似有着纯正的黑皮肤，但是说到底，它也只是一部漫威超级英雄电影。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/heibao.jpg" alt="move"></p><p>《绿皮书》是一种均衡，它不仅为学院的评委们提供了一组最大公约数，而且，它也让观众在观看的瞬间品尝到了百香果的滋味，用舌头尝，是甜，用牙齿咬，是脆。</p><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>《绿皮书》是由彼得·法拉利执导，维果·莫特森、马赫沙拉·阿里主演的剧情片，于2018年9月11日在多伦多国际电影节首映；2019年3月1日在中国内地上映。</p><p>该片改编自真人真事，讲述了保镖托尼被聘用为世界上优秀的爵士钢琴家唐开车。钢琴家将从纽约开始举办巡回演奏，俩人之间一段跨越种族、阶级的友谊的故事。</p><h3 id="剧情"><a href="#剧情" class="headerlink" title="剧情"></a>剧情</h3><p>托尼由于夜总会关门装修，也亟需一份工作。有个朋友建议他去参加一位音乐博士为了寻找司机所举办的面试。当他到达豪华公寓后，发现这位博士是个名叫唐的黑人古典乐钢琴家，钢琴家正需要一个司机，负责在他举办南方巡演时的接送工作。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/green1.png" alt="move"></p><p>当然，两人心里都十分清楚，在二十世纪六十年代种族隔离严重的南部地区，他们很容易身陷麻烦之中，但托尼需要钱，而唐需要一个能照顾他的专业司机。给托尼付钱的唱片公司给了他一本“绿皮书”指南，上面列着当地黑人可以吃饭睡觉的地方，因为很多旅馆和餐厅都是只限白人。</p><p>顺便送上1080p片源，请使用迅雷下载(复制打开迅雷即可)</p><p>magnet:?xt=urn:btih:EE565D3FC1721A9DF468CC6DC4A3467CBF6EE54B</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 新剧 · 电影 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Celery</title>
       <link href="/2020/05/30/Note/celery/"/>
       <url>/2020/05/30/Note/celery/</url>
@@ -765,25 +784,6 @@
             <tag> Celery </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>《绿皮书》：拿到奥斯卡最佳影片，就因为“涉黑”?</title>
-      <link href="/2020/05/30/Movie/Green%20Book/"/>
-      <url>/2020/05/30/Movie/Green%20Book/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><em>不管是在上届届奥斯卡颁奖典礼之前，还是在颁奖典礼之后，对于《绿皮书》能够拿到最佳影片奖，很多人都不会感到稀奇。貌似打上届届奥斯卡获奖提名名单一曝光，《绿皮书》就已经内定，不管是同样大热门的《罗马》，还是其他六部电影，都像是可怜的陪跑运动员，没有丝毫挣扎的可能性。</em></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/green.png" alt="move"></p><p>不管是在上届届奥斯卡颁奖典礼之前，还是在颁奖典礼之后，对于《绿皮书》能够拿到最佳影片奖，很多人都不会感到稀奇。</p><p>貌似打上届届奥斯卡获奖提名名单一曝光，《绿皮书》就已经内定，不管是同样大热门的《罗马》，还是其他六部电影，都像是可怜的陪跑运动员，没有丝毫挣扎的可能性。</p><p>《黑豹》看似有着纯正的黑皮肤，但是说到底，它也只是一部漫威超级英雄电影。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/heibao.jpg" alt="move"></p><p>《绿皮书》是一种均衡，它不仅为学院的评委们提供了一组最大公约数，而且，它也让观众在观看的瞬间品尝到了百香果的滋味，用舌头尝，是甜，用牙齿咬，是脆。</p><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>《绿皮书》是由彼得·法拉利执导，维果·莫特森、马赫沙拉·阿里主演的剧情片，于2018年9月11日在多伦多国际电影节首映；2019年3月1日在中国内地上映。</p><p>该片改编自真人真事，讲述了保镖托尼被聘用为世界上优秀的爵士钢琴家唐开车。钢琴家将从纽约开始举办巡回演奏，俩人之间一段跨越种族、阶级的友谊的故事。</p><h3 id="剧情"><a href="#剧情" class="headerlink" title="剧情"></a>剧情</h3><p>托尼由于夜总会关门装修，也亟需一份工作。有个朋友建议他去参加一位音乐博士为了寻找司机所举办的面试。当他到达豪华公寓后，发现这位博士是个名叫唐的黑人古典乐钢琴家，钢琴家正需要一个司机，负责在他举办南方巡演时的接送工作。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/green1.png" alt="move"></p><p>当然，两人心里都十分清楚，在二十世纪六十年代种族隔离严重的南部地区，他们很容易身陷麻烦之中，但托尼需要钱，而唐需要一个能照顾他的专业司机。给托尼付钱的唱片公司给了他一本“绿皮书”指南，上面列着当地黑人可以吃饭睡觉的地方，因为很多旅馆和餐厅都是只限白人。</p><p>顺便送上1080p片源，请使用迅雷下载(复制打开迅雷即可)</p><p>magnet:?xt=urn:btih:EE565D3FC1721A9DF468CC6DC4A3467CBF6EE54B</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 新剧 · 电影 </category>
-          
-      </categories>
-      
       
     </entry>
     
