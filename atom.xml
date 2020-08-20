@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.sirxs.cn/"/>
-  <updated>2020-07-23T07:07:37.099Z</updated>
+  <updated>2020-08-20T02:33:12.304Z</updated>
   <id>http://www.sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python下，文件读写open与codecs.open</title>
+    <link href="http://www.sirxs.cn/2020/08/19/Blog/codecs/"/>
+    <id>http://www.sirxs.cn/2020/08/19/Blog/codecs/</id>
+    <published>2020-08-19T00:00:00.000Z</published>
+    <updated>2020-08-20T02:33:12.304Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h3><p>读写文件是最常见的IO操作。Python内置了读写文件的函数，用法和C是兼容的。</p><p>读写文件前，我们先必须了解一下，在磁盘上读写文件的功能都是由操作系统提供的，现代操作系统不允许普通的程序直接操作磁盘，所以，读写文件就是请求操作系统打开一个文件对象（通常称为文件描述符），然后，通过操作系统提供的接口从这个文件对象中读取数据（读文件），或者把数据写入这个文件对象（写文件）。</p><p>当我面有数据需要保存时，第一时间一般会想到写到一个txt文件中，当然，数据量比较大的时候还是写到数据库比较方便管理，需要进行网络传输时要序列化，json化。下面主要整理一下平时用的最多的写入到文件中，一般以txt结尾，linux里不会以后缀来区分文件类型，后缀可以随便，也可以没有。</p><h3 id="open"><a href="#open" class="headerlink" title="open"></a>open</h3><p>python读写文件估计大家都用open内置函数，或者file这个工厂函数，这两个的效果基本一样。</p><p>打开文件的方式一般为：<code>f=open(file_name,access_mode = &#39;r&#39;,buffering = -1)。</code>file_name就是文件的路径加文件名字，不加路径则文件会存放在python程序的路径下，</p><p>access_mode就是操作文件的模式，主要有r,w,rb，wb等，细节网上一大堆,buffering = -1是用于指示访问文件所采用的缓存方式。0表示不缓存；1表示只缓存一行，n代表缓存n行。如果不提供或为负数，则代表使用系统默认的缓存机制。</p><p>打开以后就是写和读的操作。但是用open方法打开会有一些问题。open打开文件只能写入str类型,不管字符串是什么编码方式。例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr = open(<span class="string">'test.txt'</span>,<span class="string">'a'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>line1 = <span class="string">"我爱祖国"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr.write(line1)</span><br></pre></td></tr></table></figure><p>这样是完全可以的。</p><h3 id="codecs-open"><a href="#codecs-open" class="headerlink" title="codecs.open"></a>codecs.open</h3><p>但是有时候我们爬虫或者其他方式得到一些数据写入文件时会有编码不统一的问题，所以就一般都统一转换为unicode。此时写入open方式打开的文件就有问题了。例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line2 = <span class="string">u'我爱祖国'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr.write(line2)</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"> File <span class="string">"&lt;pyshell#4&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  fr.write(line2)</span><br><span class="line">UnicodeEncodeError: <span class="string">'ascii'</span> codec can<span class="string">'t encode characters in position 0-11: ordinal not in range(128)</span></span><br><span class="line"><span class="string">&gt;&gt;&gt;</span></span><br></pre></td></tr></table></figure><p>怎么办，我们可以将上面的line2编码成str类型，但是太麻烦。我们要把得到的东西先decode为unicode再encode为str。。。</p><p><code>input文件(gbk, utf-8...)  ----decode-----&gt;  unicode -------encode------&gt; output文件(gbk, utf-8...)</code></p><p>代替这繁琐的操作就是codecs.open，例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> codecs</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fw = codecs.open(<span class="string">'test1.txt'</span>,<span class="string">'a'</span>,<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fw.write(line2)</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><p>不会报错，说明写入成功。这种方法可以指定一个编码打开文件，使用这个方法打开的文件读取返回的将是unicode。写入时，如果参数 是unicode，则使用open()时指定的编码进行编码后写入；如果是str，则先根据源代码文件声明的字符编码，解码成unicode后再进行前述 操作。相对内置的open()来说，这个方法比较不容易在编码上出现问题。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>文件读尽量用第二种方法，一般不会出现编码的问题。至于用第二种方法有什么缺点，我没有研究过。。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>docker配置热加载(设置共享文件夹用来配合Docker的挂载)</title>
@@ -525,36 +551,6 @@
     
       <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
-    
-      <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
-    
-      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>单点登录（SSO）的设计与实现</title>
-    <link href="http://www.sirxs.cn/2020/06/10/Note/oss/"/>
-    <id>http://www.sirxs.cn/2020/06/10/Note/oss/</id>
-    <published>2020-06-10T00:00:00.000Z</published>
-    <updated>2020-06-11T00:17:52.880Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p>单点登录英文全称Single Sign On，简称就是SSO。它的解释是：<strong>在多个应用系统中，只需要登录一次，就可以访问其他相互信任的应用系统。</strong></p><p>两个站点如果在同域下，那么它们之间是可以共享cookie的。简单的说就是这种同域下不同站点的sso实现可以通过cookie来实现，当用户访问这个域下面的任意站点时，浏览器都会将这个cookie发送给站点对应的系统。</p><h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/oss.jpg" alt="oss"></p><h4 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h4><p>比如阿里系的<strong>淘宝和天猫</strong>，很明显地我们可以知道这是两个系统，但是你在使用的时候，登录了天猫，淘宝也会自动登录。</p><p><img src= "/img/loading.gif" data-src="https://user-gold-cdn.xitu.io/2019/5/15/16abb63967305d5d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="oss"></p><p>简单来说，单点登录就是<strong>在多个系统中，用户只需一次登录，各个系统即可感知该用户已经登录。</strong></p><h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><h4 id="第一种方式：凭借cookie，应用间的重定向"><a href="#第一种方式：凭借cookie，应用间的重定向" class="headerlink" title="第一种方式：凭借cookie，应用间的重定向"></a>第一种方式：凭借cookie，应用间的重定向</h4><p>这种方式比较简单，当用户在上面三个站点中的任意一个站点登录成功时，必须在浏览器中同时设置其他站点的cookie信息。<br> 例如：当用户登录site1站点，并且验证通过之后，浏览器会存储一份site1站点的cookie信息，这时，为了实现单点登录（为了在site2站点和site3站点无需登录），那么我们需要在浏览器设置site2站点和site3站点的cookie信息，因此，在用户登录site1站点的请求响应之前，需要从siteId1站点重定向到site2站点和site3站点去设置cookie信息，这样就可以保证，在任意站点登录成功之后，在浏览器也有其他站点的cookie信息。下图可具体展示其中流程：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/oss2.jpg" alt="oss"></p><p>这种方式其实过程比较简单，只需要确保登录其中一个站点在浏览器设置cookie其他站点都在浏览器设置对应cookie，就可以实现单点登录了（单点退出是一样的道理，一个退出清除cookie，其他也清除）。<br> 但是这种方式有一个非常明显的缺点是：这里举例是3个站点，如果是几十个上百个站点再使用这种方式将非常影响效率。</p><h4 id="第二种方式：借助单独的SSO服务器"><a href="#第二种方式：借助单独的SSO服务器" class="headerlink" title="第二种方式：借助单独的SSO服务器"></a>第二种方式：借助单独的SSO服务器</h4><p>这种方式需要借助一个单独的SSOServer，相对于上一种方式，这种方式就不需要将每个站点的cookie信息都保存在浏览器上，浏览器只需要保存SSOServer的cookie信息。将这个cookie信息用于需要做单点登录的所有站点中。<br> 对于这种方式，在浏览器对于任意一个站点的请求都将会先重定向到SSOServer去验证代表当前用户的cookie是否存在，如果存在，那么将验证成功后的跳转页面发送给浏览器，否则将跳转到登录页面提示用户登录。可参考如下图</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/oss3.jpg" alt="oss"></p><p>由于site1和site2的单点登录与site1、site2、site3之间的单点登录是同样道理的（因为登录site1后去访问site2和site3的流程都是相同的），所以，这里借助site1和site2的单点登录来说明这种方式。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="总结 · 笔记" scheme="http://www.sirxs.cn/categories/%E6%80%BB%E7%BB%93-%C2%B7-%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
     
       <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
     
