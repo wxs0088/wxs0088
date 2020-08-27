@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.sirxs.cn/"/>
-  <updated>2020-08-20T02:57:49.352Z</updated>
+  <updated>2020-08-20T02:43:51.558Z</updated>
   <id>http://www.sirxs.cn/</id>
   
   <author>
@@ -15,32 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>shutil---高阶文件操作</title>
-    <link href="http://www.sirxs.cn/2020/08/19/Blog/shutil/"/>
-    <id>http://www.sirxs.cn/2020/08/19/Blog/shutil/</id>
-    <published>2020-08-19T00:00:00.000Z</published>
-    <updated>2020-08-20T02:57:49.352Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="shutil"><a href="#shutil" class="headerlink" title="shutil"></a>shutil</h3><p>shutil 模块提供了一系列对文件和文件集合的高阶操作。 特别是提供了一些支持文件拷贝和删除的函数。 对于单个文件的操作，请参阅 os 模块。</p><p><code>注意：即便是高阶文件拷贝函数(shutil.copy(),shutil.copy2()也无法拷贝所有的文件原数据)</code></p><h3 id="目录和文件操作"><a href="#目录和文件操作" class="headerlink" title="目录和文件操作"></a>目录和文件操作</h3><ol><li><p><code>shutil.``copyfileobj</code>(<em>fsrc</em>, <em>fdst</em>[, <em>length</em>])</p><p>将文件类对象 <em>fsrc</em> 的内容拷贝到文件类对象 <em>fdst*。 整数值 *length</em> 如果给出则为缓冲区大小。 特别地， <em>length</em> 为负值表示拷贝数据时不对源数据进行分块循环处理；默认情况下会分块读取数据以避免不受控制的内存消耗。 请注意如果 <em>fsrc</em> 对象的当前文件位置不为 0，则只有从当前文件位置到文件末尾的内容会被拷贝。</p></li><li><p><code>shutil.``copyfile</code>(<em>src</em>, <em>dst</em>, <em>**, *follow_symlinks=True</em>)</p><p>将名为 <em>src</em> 的文件的内容（不包括元数据）拷贝到名为 <em>dst</em> 的文件并以尽可能高效的方式返回 <em>dst*。 *src</em> 和 <em>dst</em> 均为路径类对象或以字符串形式给出的路径名。</p><p><code>*dst* 必须是完整的目标文件名；</code></p></li><li><p>shutil.copymode(src, dst, *, follow_symlinks=True)从 src 拷贝权限位到 dst。 文件的内容、所有者和分组将不受影响。 src 和 dst 均为路径类对象或字符串形式的路径名。 如果 follow_symlinks 为假值，并且 src 和 dst 均为符号链接，copymode() 将尝试修改 dst 本身的模式（而非它所指向的文件）。 此功能并不是在所有平台上均可用；请参阅 copystat() 了解详情。 如果 copymode() 无法修改本机平台上的符号链接，而它被要求这样做，它将不做任何操作即返回。</p></li><li><p><code>shutil.``copystat</code>(<em>src</em>, <em>dst</em>, <em>**, *follow_symlinks=True</em>)</p><p>从 <em>src</em> 拷贝权限位、最近访问时间、最近修改时间以及旗标到 <em>dst*。 在 Linux上，<a href="https://docs.python.org/zh-cn/3/library/shutil.html#shutil.copystat" target="_blank" rel="noopener"><code>copystat()</code></a> 还会在可能的情况下拷贝“扩展属性”。 文件的内容、所有者和分组将不受影响。 *src</em> 和 <em>dst</em> 均为路径类对象或字符串形式的路径名。</p></li><li><p><code>shutil.``copy</code>(<em>src</em>, <em>dst</em>, <em>**, *follow_symlinks=True</em>)</p><p>将文件 <em>src</em> 拷贝到文件或目录 <em>dst*。 *src</em> 和 <em>dst</em> 应为字符串。 如果 <em>dst</em> 指定了一个目录，文件将使用 <em>src</em> 中的基准文件名拷贝到 <em>dst</em>。 返回新创建文件的路径。</p><p>如果 <em>follow_symlinks</em> 为假值且 <em>src</em> 为符号链接，则 <em>dst</em> 也将被创建为符号链接。 如果 <em>follow_symlinks</em> 为真值且 <em>src</em> 为符号链接，<em>dst</em> 将成为 <em>src</em> 所指向的文件的一个副本。</p></li><li><p>shutil.copy2(src, dst, *, follow_symlinks=True)类似于 copy()，区别在于 copy2() 还会尝试保留文件的元数据。<br>当 follow_symlinks 为假值且 src 为符号链接时，copy2() 会尝试将来自 src 符号链接的所有元数据拷贝到新创建的 dst 符号链接。 但是，此功能不是在所有平台上均可用。 在此功能部分或全部不可用的平台上，copy2() 将尽量保留所有元数据；copy2() 一定不会由于无法保留文件元数据而引发异常。</p></li><li><p><code>shutil.``ignore_patterns</code>(<em>*patterns</em>)</p><p>这个工厂函数会创建一个函数，它可被用作 [<code>copytree()</code>] 的 <em>ignore</em> 可调用对象参数，以忽略那些匹配所提供的 glob 风格的 <em>patterns</em> 之一的文件和目录。 参见以下示例。</p></li><li><p><code>shutil.``copytree</code>(<em>src</em>, <em>dst</em>, <em>symlinks=False</em>, <em>ignore=None</em>, <em>copy_function=copy2</em>, <em>ignore_dangling_symlinks=False</em>, <em>dirs_exist_ok=False</em>)<a href="https://docs.python.org/zh-cn/3/library/shutil.html#shutil.copytree" target="_blank" rel="noopener">¶</a></p><p>将以 <em>src</em> 为根起点的整个目录树拷贝到名为 <em>dst</em> 的目录并返回目标目录。 <em>dirs_exist_ok</em> 指明是否要在 <em>dst</em> 或任何丢失的父目录已存在的情况下引发异常。</p></li><li><p><code>rmtree.``avoids_symlink_attacks</code></p><p>指明当前平台和实现是否提供防御符号链接攻击的 [<code>rmtree()</code>] 版本。 目前它仅在平台支持基于 fd 的目录访问函数时才返回真值。</p></li><li><p><code>shutil.``move</code>(<em>src</em>, <em>dst</em>, <em>copy_function=copy2</em>)</p><p>递归地将一个文件或目录 (<em>src</em>) 移至另一位置 (<em>dst</em>) 并返回目标位置。</p></li><li><p>shutil.disk_usage(path)</p><p>返回给定路径的磁盘使用统计数据，形式为一个 named tuple，其中包含 total, used 和 free 属性，分别表示总计、已使用和未使用空间的字节数。 path 可以是一个文件或是一个目录。</p></li><li><p><code>shutil.``which</code>(<em>cmd</em>, <em>mode=os.F_OK | os.X_OK</em>, <em>path=None</em>)</p><p>返回当给定的 <em>cmd</em> 被调用时将要运行的可执行文件的路径。 如果没有 <em>cmd</em> 会被调用则返回 <code>None</code></p></li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># _*_ coding:utf-8 _*_</span></span><br><span class="line">__author__ = <span class="string">'junxi'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将文件内容拷贝到另一个文件中</span></span><br><span class="line">shutil.copyfileobj(open(<span class="string">'old.txt'</span>, <span class="string">'r'</span>), open(<span class="string">'new.txt'</span>, <span class="string">'w'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝文件</span></span><br><span class="line">shutil.copyfile(<span class="string">'old.txt'</span>, <span class="string">'old1.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 仅拷贝权限。内容、组、用户均不变</span></span><br><span class="line">shutil.copymode(<span class="string">'old.txt'</span>, <span class="string">'old1.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制权限、最后访问时间、最后修改时间</span></span><br><span class="line">shutil.copystat(<span class="string">'old.txt'</span>, <span class="string">'old1.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制一个文件到一个文件或一个目录</span></span><br><span class="line">shutil.copy(<span class="string">'old.txt'</span>, <span class="string">'old2.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在copy上的基础上再复制文件最后访问时间与修改时间也复制过来了</span></span><br><span class="line">shutil.copy2(<span class="string">'old.txt'</span>, <span class="string">'old2.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把olddir拷贝一份newdir，如果第3个参数是True，则复制目录时将保持文件夹下的符号连接，如果第3个参数是False，则将在复制的目录下生成物理副本来替代符号连接</span></span><br><span class="line">shutil.copytree(<span class="string">'C:/Users/xiaoxinsoso/Desktop/aaa'</span>, <span class="string">'C:/Users/xiaoxinsoso/Desktop/bbb'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移动目录或文件</span></span><br><span class="line">shutil.move(<span class="string">'C:/Users/xiaoxinsoso/Desktop/aaa'</span>, <span class="string">'C:/Users/xiaoxinsoso/Desktop/bbb'</span>) <span class="comment"># 把aaa目录移动到bbb目录下</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除一个目录</span></span><br><span class="line">shutil.rmtree(<span class="string">'C:/Users/xiaoxinsoso/Desktop/bbb'</span>) <span class="comment"># 删除bbb目录</span></span><br></pre></td></tr></table></figure><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>shutil是一种高层次的文件操作工具类似于高级API，而且主要强大之处在于其对文件的复制与删除操作更是比较支持好。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
-    
-  </entry>
   
   <entry>
     <title>Python下文件读写open与codecs.open</title>
@@ -69,13 +43,13 @@
   </entry>
   
   <entry>
-    <title>docker配置热加载(设置共享文件夹用来配合Docker的挂载)</title>
-    <link href="http://www.sirxs.cn/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/"/>
-    <id>http://www.sirxs.cn/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/</id>
-    <published>2020-07-23T00:00:00.000Z</published>
-    <updated>2020-07-23T07:07:37.099Z</updated>
+    <title>shutil---高阶文件操作</title>
+    <link href="http://www.sirxs.cn/2020/08/19/Blog/shutil/"/>
+    <id>http://www.sirxs.cn/2020/08/19/Blog/shutil/</id>
+    <published>2020-08-19T00:00:00.000Z</published>
+    <updated>2020-08-20T02:57:49.352Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前几次我们<a href="https://www.sirxs.cn/2020/07/20/Blog/docker%E4%BD%BF%E7%94%A8/">在Win10系统下利用Docker部署Gunicorn+Flask打造独立镜像</a>，在docker内启动服务后根据docker的IP可以实现数据访问，但是我们在本地修改代码之后，在docker内启动并没有实现。这时我们就需要重新打包镜像，是不是很麻烦。当然也有解决的办法，那就是我们今天说的docker配置热加载</p><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol><li><p>首先在项目文件<code>gunicorn.conf.py</code>，中添加</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reload = <span class="literal">True</span></span><br></pre></td></tr></table></figure></li><li><p>之后我们需要在<code>Oracle VM VirtualBox</code>内创建本地项目的共享文件,如下图</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re1.png" alt=""></p></li><li><p>导入本地服务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re2.png" alt=""></p><p><strong>选择固定分配，选择后该共享文件将是永久性的</strong></p></li><li><p>搞定之后关闭<code>Oracle VM VirtualBox</code>，重新启动docker</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re3.png" alt=""></p></li><li><p>输入命令进入默认容器</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-machine ssh default</span><br></pre></td></tr></table></figure></li><li><p>进入容器根目录查看刚刚设置的共享文件</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re4.png" alt=""></p><p><strong>ok，没问题</strong></p></li><li><p>最后退出默认容器，启动项目</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm -v /共享文件名/:项目Dockerfile文件中的WORKDIR -p 5000:5000 flask_back</span><br><span class="line"><span class="comment"># -P 指定端口映射，格式为：主机(宿主)端口:容器端口</span></span><br></pre></td></tr></table></figure><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re5.png" alt=""></p><p><strong>启动成功，没有问题</strong></p></li><li><p>查看效果</p><p><strong>通过docker的IP访问5000</strong></p><ul><li><p>没有修改前</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re6.png" alt=""></p></li><li><p>修改之后</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re7.png" alt=""></p></li></ul></li></ol><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>设置共享文件夹用来配合Docker的挂载，是很不错的选择，这样我们就不想要每次更改之后再次打包镜像。。。</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="shutil"><a href="#shutil" class="headerlink" title="shutil"></a>shutil</h3><p>shutil 模块提供了一系列对文件和文件集合的高阶操作。 特别是提供了一些支持文件拷贝和删除的函数。 对于单个文件的操作，请参阅 os 模块。</p><p><code>注意：即便是高阶文件拷贝函数(shutil.copy(),shutil.copy2()也无法拷贝所有的文件原数据)</code></p><h3 id="目录和文件操作"><a href="#目录和文件操作" class="headerlink" title="目录和文件操作"></a>目录和文件操作</h3><ol><li><p><code>shutil.``copyfileobj</code>(<em>fsrc</em>, <em>fdst</em>[, <em>length</em>])</p><p>将文件类对象 <em>fsrc</em> 的内容拷贝到文件类对象 <em>fdst*。 整数值 *length</em> 如果给出则为缓冲区大小。 特别地， <em>length</em> 为负值表示拷贝数据时不对源数据进行分块循环处理；默认情况下会分块读取数据以避免不受控制的内存消耗。 请注意如果 <em>fsrc</em> 对象的当前文件位置不为 0，则只有从当前文件位置到文件末尾的内容会被拷贝。</p></li><li><p><code>shutil.``copyfile</code>(<em>src</em>, <em>dst</em>, <em>**, *follow_symlinks=True</em>)</p><p>将名为 <em>src</em> 的文件的内容（不包括元数据）拷贝到名为 <em>dst</em> 的文件并以尽可能高效的方式返回 <em>dst*。 *src</em> 和 <em>dst</em> 均为路径类对象或以字符串形式给出的路径名。</p><p><code>*dst* 必须是完整的目标文件名；</code></p></li><li><p>shutil.copymode(src, dst, *, follow_symlinks=True)从 src 拷贝权限位到 dst。 文件的内容、所有者和分组将不受影响。 src 和 dst 均为路径类对象或字符串形式的路径名。 如果 follow_symlinks 为假值，并且 src 和 dst 均为符号链接，copymode() 将尝试修改 dst 本身的模式（而非它所指向的文件）。 此功能并不是在所有平台上均可用；请参阅 copystat() 了解详情。 如果 copymode() 无法修改本机平台上的符号链接，而它被要求这样做，它将不做任何操作即返回。</p></li><li><p><code>shutil.``copystat</code>(<em>src</em>, <em>dst</em>, <em>**, *follow_symlinks=True</em>)</p><p>从 <em>src</em> 拷贝权限位、最近访问时间、最近修改时间以及旗标到 <em>dst*。 在 Linux上，<a href="https://docs.python.org/zh-cn/3/library/shutil.html#shutil.copystat" target="_blank" rel="noopener"><code>copystat()</code></a> 还会在可能的情况下拷贝“扩展属性”。 文件的内容、所有者和分组将不受影响。 *src</em> 和 <em>dst</em> 均为路径类对象或字符串形式的路径名。</p></li><li><p><code>shutil.``copy</code>(<em>src</em>, <em>dst</em>, <em>**, *follow_symlinks=True</em>)</p><p>将文件 <em>src</em> 拷贝到文件或目录 <em>dst*。 *src</em> 和 <em>dst</em> 应为字符串。 如果 <em>dst</em> 指定了一个目录，文件将使用 <em>src</em> 中的基准文件名拷贝到 <em>dst</em>。 返回新创建文件的路径。</p><p>如果 <em>follow_symlinks</em> 为假值且 <em>src</em> 为符号链接，则 <em>dst</em> 也将被创建为符号链接。 如果 <em>follow_symlinks</em> 为真值且 <em>src</em> 为符号链接，<em>dst</em> 将成为 <em>src</em> 所指向的文件的一个副本。</p></li><li><p>shutil.copy2(src, dst, *, follow_symlinks=True)类似于 copy()，区别在于 copy2() 还会尝试保留文件的元数据。<br>当 follow_symlinks 为假值且 src 为符号链接时，copy2() 会尝试将来自 src 符号链接的所有元数据拷贝到新创建的 dst 符号链接。 但是，此功能不是在所有平台上均可用。 在此功能部分或全部不可用的平台上，copy2() 将尽量保留所有元数据；copy2() 一定不会由于无法保留文件元数据而引发异常。</p></li><li><p><code>shutil.``ignore_patterns</code>(<em>*patterns</em>)</p><p>这个工厂函数会创建一个函数，它可被用作 [<code>copytree()</code>] 的 <em>ignore</em> 可调用对象参数，以忽略那些匹配所提供的 glob 风格的 <em>patterns</em> 之一的文件和目录。 参见以下示例。</p></li><li><p><code>shutil.``copytree</code>(<em>src</em>, <em>dst</em>, <em>symlinks=False</em>, <em>ignore=None</em>, <em>copy_function=copy2</em>, <em>ignore_dangling_symlinks=False</em>, <em>dirs_exist_ok=False</em>)<a href="https://docs.python.org/zh-cn/3/library/shutil.html#shutil.copytree" target="_blank" rel="noopener">¶</a></p><p>将以 <em>src</em> 为根起点的整个目录树拷贝到名为 <em>dst</em> 的目录并返回目标目录。 <em>dirs_exist_ok</em> 指明是否要在 <em>dst</em> 或任何丢失的父目录已存在的情况下引发异常。</p></li><li><p><code>rmtree.``avoids_symlink_attacks</code></p><p>指明当前平台和实现是否提供防御符号链接攻击的 [<code>rmtree()</code>] 版本。 目前它仅在平台支持基于 fd 的目录访问函数时才返回真值。</p></li><li><p><code>shutil.``move</code>(<em>src</em>, <em>dst</em>, <em>copy_function=copy2</em>)</p><p>递归地将一个文件或目录 (<em>src</em>) 移至另一位置 (<em>dst</em>) 并返回目标位置。</p></li><li><p>shutil.disk_usage(path)</p><p>返回给定路径的磁盘使用统计数据，形式为一个 named tuple，其中包含 total, used 和 free 属性，分别表示总计、已使用和未使用空间的字节数。 path 可以是一个文件或是一个目录。</p></li><li><p><code>shutil.``which</code>(<em>cmd</em>, <em>mode=os.F_OK | os.X_OK</em>, <em>path=None</em>)</p><p>返回当给定的 <em>cmd</em> 被调用时将要运行的可执行文件的路径。 如果没有 <em>cmd</em> 会被调用则返回 <code>None</code></p></li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># _*_ coding:utf-8 _*_</span></span><br><span class="line">__author__ = <span class="string">'junxi'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将文件内容拷贝到另一个文件中</span></span><br><span class="line">shutil.copyfileobj(open(<span class="string">'old.txt'</span>, <span class="string">'r'</span>), open(<span class="string">'new.txt'</span>, <span class="string">'w'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝文件</span></span><br><span class="line">shutil.copyfile(<span class="string">'old.txt'</span>, <span class="string">'old1.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 仅拷贝权限。内容、组、用户均不变</span></span><br><span class="line">shutil.copymode(<span class="string">'old.txt'</span>, <span class="string">'old1.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制权限、最后访问时间、最后修改时间</span></span><br><span class="line">shutil.copystat(<span class="string">'old.txt'</span>, <span class="string">'old1.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制一个文件到一个文件或一个目录</span></span><br><span class="line">shutil.copy(<span class="string">'old.txt'</span>, <span class="string">'old2.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在copy上的基础上再复制文件最后访问时间与修改时间也复制过来了</span></span><br><span class="line">shutil.copy2(<span class="string">'old.txt'</span>, <span class="string">'old2.txt'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把olddir拷贝一份newdir，如果第3个参数是True，则复制目录时将保持文件夹下的符号连接，如果第3个参数是False，则将在复制的目录下生成物理副本来替代符号连接</span></span><br><span class="line">shutil.copytree(<span class="string">'C:/Users/xiaoxinsoso/Desktop/aaa'</span>, <span class="string">'C:/Users/xiaoxinsoso/Desktop/bbb'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移动目录或文件</span></span><br><span class="line">shutil.move(<span class="string">'C:/Users/xiaoxinsoso/Desktop/aaa'</span>, <span class="string">'C:/Users/xiaoxinsoso/Desktop/bbb'</span>) <span class="comment"># 把aaa目录移动到bbb目录下</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除一个目录</span></span><br><span class="line">shutil.rmtree(<span class="string">'C:/Users/xiaoxinsoso/Desktop/bbb'</span>) <span class="comment"># 删除bbb目录</span></span><br></pre></td></tr></table></figure><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>shutil是一种高层次的文件操作工具类似于高级API，而且主要强大之处在于其对文件的复制与删除操作更是比较支持好。</p>]]></content>
     
     <summary type="html">
     
@@ -87,10 +61,10 @@
     </summary>
     
     
-      <category term="总结 · 笔记" scheme="http://www.sirxs.cn/categories/%E6%80%BB%E7%BB%93-%C2%B7-%E7%AC%94%E8%AE%B0/"/>
+      <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Docker" scheme="http://www.sirxs.cn/tags/Docker/"/>
+      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
     
   </entry>
   
@@ -119,6 +93,32 @@
       <category term="Docker" scheme="http://www.sirxs.cn/tags/Docker/"/>
     
       <category term="Elasticsearch" scheme="http://www.sirxs.cn/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker配置热加载(设置共享文件夹用来配合Docker的挂载)</title>
+    <link href="http://www.sirxs.cn/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/"/>
+    <id>http://www.sirxs.cn/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/</id>
+    <published>2020-07-23T00:00:00.000Z</published>
+    <updated>2020-07-23T07:07:37.099Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前几次我们<a href="https://www.sirxs.cn/2020/07/20/Blog/docker%E4%BD%BF%E7%94%A8/">在Win10系统下利用Docker部署Gunicorn+Flask打造独立镜像</a>，在docker内启动服务后根据docker的IP可以实现数据访问，但是我们在本地修改代码之后，在docker内启动并没有实现。这时我们就需要重新打包镜像，是不是很麻烦。当然也有解决的办法，那就是我们今天说的docker配置热加载</p><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol><li><p>首先在项目文件<code>gunicorn.conf.py</code>，中添加</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reload = <span class="literal">True</span></span><br></pre></td></tr></table></figure></li><li><p>之后我们需要在<code>Oracle VM VirtualBox</code>内创建本地项目的共享文件,如下图</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re1.png" alt=""></p></li><li><p>导入本地服务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re2.png" alt=""></p><p><strong>选择固定分配，选择后该共享文件将是永久性的</strong></p></li><li><p>搞定之后关闭<code>Oracle VM VirtualBox</code>，重新启动docker</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re3.png" alt=""></p></li><li><p>输入命令进入默认容器</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-machine ssh default</span><br></pre></td></tr></table></figure></li><li><p>进入容器根目录查看刚刚设置的共享文件</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re4.png" alt=""></p><p><strong>ok，没问题</strong></p></li><li><p>最后退出默认容器，启动项目</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm -v /共享文件名/:项目Dockerfile文件中的WORKDIR -p 5000:5000 flask_back</span><br><span class="line"><span class="comment"># -P 指定端口映射，格式为：主机(宿主)端口:容器端口</span></span><br></pre></td></tr></table></figure><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re5.png" alt=""></p><p><strong>启动成功，没有问题</strong></p></li><li><p>查看效果</p><p><strong>通过docker的IP访问5000</strong></p><ul><li><p>没有修改前</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re6.png" alt=""></p></li><li><p>修改之后</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re7.png" alt=""></p></li></ul></li></ol><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>设置共享文件夹用来配合Docker的挂载，是很不错的选择，这样我们就不想要每次更改之后再次打包镜像。。。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="总结 · 笔记" scheme="http://www.sirxs.cn/categories/%E6%80%BB%E7%BB%93-%C2%B7-%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Docker" scheme="http://www.sirxs.cn/tags/Docker/"/>
     
   </entry>
   
@@ -408,9 +408,9 @@
       <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
-    
       <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
+      <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
     
       <category term="Flask" scheme="http://www.sirxs.cn/tags/Flask/"/>
     
@@ -464,11 +464,11 @@
       <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
     
+      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
       <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
     
       <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
-    
-      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
     
   </entry>
   
@@ -520,9 +520,9 @@
       <category term="总结 · 笔记" scheme="http://www.sirxs.cn/categories/%E6%80%BB%E7%BB%93-%C2%B7-%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
-    
       <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
+      <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
     
   </entry>
   
@@ -548,11 +548,11 @@
       <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
     
+      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
+    
       <category term="Vue" scheme="http://www.sirxs.cn/tags/Vue/"/>
     
       <category term="Django" scheme="http://www.sirxs.cn/tags/Django/"/>
-    
-      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
     
   </entry>
   
