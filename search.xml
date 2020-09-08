@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>C语言-数据类型</title>
-      <link href="/2020/09/08/Note/C-data_type/"/>
-      <url>/2020/09/08/Note/C-data_type/</url>
+      <title>C语言-基本语法</title>
+      <link href="/2020/09/08/Note/C-grammar/"/>
+      <url>/2020/09/08/Note/C-grammar/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>在C语言中，数据类型指的是用于声明不同类型的变量或函数的一个广泛的系统。变量的类型决定了变量 存储占用的空间，以及如何解释存储的位模式。</p><p>C中的类型可分为以下几种：</p><table><thead><tr><th align="left">序号</th><th align="left">类型与描述</th></tr></thead><tbody><tr><td align="left">1</td><td align="left"><strong>基本类型：</strong> 它们是算术类型，包括两种类型：整数类型和浮点类型。</td></tr><tr><td align="left">2</td><td align="left"><strong>枚举类型：</strong> 它们也是算术类型，被用来定义在程序中只能赋予其一定的离散整数值的变量。</td></tr><tr><td align="left">3</td><td align="left"><strong>void 类型：</strong> 类型说明符 <em>void</em> 表明没有可用的值。</td></tr><tr><td align="left">4</td><td align="left"><strong>派生类型：</strong> 它们包括：指针类型、数组类型、结构类型、共用体类型和函数类型。</td></tr></tbody></table><p>数组类型和结构类型统称为聚合类型。函数的类型指的是函数返回值的类型。</p><h3 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h3><p>下表列出了关于标准整数类型的存储大小和值范围的细节：</p><table><thead><tr><th align="left">类型</th><th align="left">存储大小</th><th align="left">值范围</th></tr></thead><tbody><tr><td align="left">char</td><td align="left">1 字节</td><td align="left">-128 到 127 或 0 到 255</td></tr><tr><td align="left">unsigned char</td><td align="left">1 字节</td><td align="left">0 到 255</td></tr><tr><td align="left">signed char</td><td align="left">1 字节</td><td align="left">-128 到 127</td></tr><tr><td align="left">int</td><td align="left">2 或 4 字节</td><td align="left">-32,768 到 32,767 或 -2,147,483,648 到 2,147,483,647</td></tr><tr><td align="left">unsigned int</td><td align="left">2 或 4 字节</td><td align="left">0 到 65,535 或 0 到 4,294,967,295</td></tr><tr><td align="left">short</td><td align="left">2 字节</td><td align="left">-32,768 到 32,767</td></tr><tr><td align="left">unsigned short</td><td align="left">2 字节</td><td align="left">0 到 65,535</td></tr><tr><td align="left">long</td><td align="left">4 字节</td><td align="left">-2,147,483,648 到 2,147,483,647</td></tr><tr><td align="left">unsigned long</td><td align="left">4 字节</td><td align="left">0 到 4,294,967,295</td></tr></tbody></table><p>为了得到某个类型或某个变量在特定平台上的准确大小，我们可以使用<code>sizeof</code>运算符。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"int 存储大小 : %lu \n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">   <span class="comment">// %lu 为32位无符号整数</span></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>当我们在Linux上编译并执行上面的程序时，它会产生</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> 存储大小：<span class="number">4</span></span><br></pre></td></tr></table></figure><h3 id="浮点类型"><a href="#浮点类型" class="headerlink" title="浮点类型"></a>浮点类型</h3><p>下表列出了关于标准浮点类型的存储大小、值范围和精度的细节：</p><table><thead><tr><th align="left">类型</th><th align="left">存储大小</th><th align="left">值范围</th><th align="left">精度</th></tr></thead><tbody><tr><td align="left">float</td><td align="left">4 字节</td><td align="left">1.2E-38 到 3.4E+38</td><td align="left">6 位小数</td></tr><tr><td align="left">double</td><td align="left">8 字节</td><td align="left">2.3E-308 到 1.7E+308</td><td align="left">15 位小数</td></tr><tr><td align="left">long double</td><td align="left">16 字节</td><td align="left">3.4E-4932 到 1.1E+4932</td><td align="left">19 位小数</td></tr></tbody></table><p>头文件 float.h 定义了宏，在程序中可以使用这些值和其他有关实数二进制表示的细节。下面的实例将输出浮点类型占用的存储空间以及它的范围值：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;float.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"float 存储最大字节数 : %lu \n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">float</span>));</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"float 最小值: %E\n"</span>, FLT_MIN );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"float 最大值: %E\n"</span>, FLT_MAX );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"精度值: %d\n"</span>, FLT_DIG );</span><br><span class="line">   <span class="comment">// %E 为以指数形式输出单、双精度实数</span></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>当我们在Linux上编译并执行上面的程序时，它会产生</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> 存储最大字节数 : <span class="number">4</span> </span><br><span class="line"><span class="keyword">float</span> 最小值: <span class="number">1.175494E-38</span></span><br><span class="line"><span class="keyword">float</span> 最大值: <span class="number">3.402823E+38</span></span><br><span class="line">精度值: <span class="number">6</span></span><br></pre></td></tr></table></figure><h3 id="void类型"><a href="#void类型" class="headerlink" title="void类型"></a>void类型</h3><p>void 类型指定没有可用的值。它通常用于以下三种情况下：</p><table><thead><tr><th align="left">序号</th><th align="left">类型与描述</th></tr></thead><tbody><tr><td align="left">1</td><td align="left"><strong>函数返回为空</strong> C 中有各种函数都不返回值，或者您可以说它们返回空。不返回值的函数的返回类型为空。例如 <strong>void exit (int status);</strong></td></tr><tr><td align="left">2</td><td align="left"><strong>函数参数为空</strong> C 中有各种函数不接受任何参数。不带参数的函数可以接受一个 void。例如 <strong>int rand(void);</strong></td></tr><tr><td align="left">3</td><td align="left"><strong>指针指向 void</strong> 类型为 void * 的指针代表对象的地址，而不是类型。例如，内存分配函数 <strong>void *malloc( size_t size );</strong> 返回指向 void 的指针，可以转换为任何数据类型。</td></tr></tbody></table><h3 id="笔记1"><a href="#笔记1" class="headerlink" title="笔记1"></a>笔记1</h3><p>常用基本数据类型占用空间（64位机器为例）</p><ul><li>char ： 1个字节</li><li>int ：4个字节</li><li>float：4个字节</li><li>double：8个字节</li></ul><h4 id="基本类型书写"><a href="#基本类型书写" class="headerlink" title="基本类型书写"></a>基本类型书写</h4><p>整数</p><ul><li>a，默认为10进制 ，10 ，20。</li><li>b，以0开头为8进制，045，021。</li><li>c.，以0b开头为2进制，0b11101101。</li><li>d，以0x开头为16进制，0x21458adf。</li></ul><p>小数</p><p>单精度常量：2.3f 。</p><p>双精度常量：2.3，默认为双精度。</p><p>字符型常量</p><p>用英文单引号括起来，只保存一个字符’a’、’b’ 、’*’ ，还有转义字符 ‘\n’ 、’\t’。</p><p>字符串常量</p><p>用英文的双引号引起来 可以保存多个字符：”abc”。</p><h3 id="笔记2"><a href="#笔记2" class="headerlink" title="笔记2"></a>笔记2</h3><p>1、数据类型转换：C 语言中如果一个表达式中含有不同类型的常量和变量，在计算时，会将它们自动转换为同一种类型；在 C 语言中也可以对数据类型进行强制转换；</p><p>2、自动转换规则：</p><ul><li>a）浮点数赋给整型，该浮点数小数被舍去；</li><li>b）整数赋给浮点型，数值不变，但是被存储到相应的浮点型变量中；</li></ul><p>3、强制类型转换形式: <strong>(类型说明符)(表达式)</strong></p><p>实例程序：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> f,x=<span class="number">3.6</span>,y=<span class="number">5.2</span>;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">4</span>,a,b;</span><br><span class="line">    a=x+y;</span><br><span class="line">    b=(<span class="keyword">int</span>)(x+y);</span><br><span class="line">    f=<span class="number">10</span>/i;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"a=%d,b=%d,f=%f,x=%f\n"</span>,a,b,f,x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>例中先计算 x+y 值为 8.8，然后赋值给 a，因为a为整型，所以自取整数部分8，a=8;</p><p>接下来 b 把 x+y 强制转换为整型;</p><p>最后 10/i 是两个整数相除，结果仍为整数 2，把 2 赋给浮点数 f;</p><p>x 为浮点型直接输出。</p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="C-的令牌（Token）"><a href="#C-的令牌（Token）" class="headerlink" title="C 的令牌（Token）"></a>C 的令牌（Token）</h3><p>C 程序由各种令牌组成，令牌可以是关键字、标识符、常量、字符串值，或者是一个符号。例如，下面的 C 语句包括五个令牌：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Hello, World! \n"</span>);</span><br></pre></td></tr></table></figure><p>这五个令牌分别是：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span></span><br><span class="line">(</span><br><span class="line"><span class="string">"Hello, World! \n"</span></span><br><span class="line">)</span><br><span class="line">;</span><br></pre></td></tr></table></figure><h3 id="分号"><a href="#分号" class="headerlink" title="分号 ;"></a>分号 ;</h3><p>在 C 程序中，分号是语句结束符。也就是说，每个语句必须以分号结束。它表明一个逻辑实体的结束。</p><p>例如，下面是两个不同的语句：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Hello, World! \n"</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>C 语言有两种注释方式</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单行注释</span></span><br></pre></td></tr></table></figure><p>以<code>//</code>开始的单行注释，这种注释可以单独占一行。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 单行注释 */</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> 多行注释</span></span><br><span class="line"><span class="comment"> 多行注释</span></span><br><span class="line"><span class="comment"> 多行注释</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure><p><code>/\* \*/</code>这种格式的注释可以单行或多行。</p><p>不能在注释内嵌套注释，注释也不能出现在字符串或字符值中。</p><h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>C标识符是用来识别变量、函数、或任何其他用户自定义项目的名称。一个标识符以字母A-Z或a-z或下划线_开始，后跟零个或多个字母，下划线和数字（0-9）。</p><p>C标识符内不允许出现标点字符，如<code>@</code>、<code>$</code>和<code>%</code>。C是<strong>区分大小写</strong>的编程语言。因此，在C中，<code>Manpower</code>和<code>manpower</code>是两个不同的标识符。下面列出几个有效的标识符：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mohd       zara    abc   move_name  a_123</span><br><span class="line">myname50   _temp   j     a23b9      retVal</span><br></pre></td></tr></table></figure><h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>下表列出了 C 中的保留字。这些保留字不能作为常量名、变量名或其他标识符名称。</p><table><thead><tr><th align="left">关键字</th><th align="left">说明</th></tr></thead><tbody><tr><td align="left">auto</td><td align="left">声明自动变量</td></tr><tr><td align="left">break</td><td align="left">跳出当前循环</td></tr><tr><td align="left">case</td><td align="left">开关语句分支</td></tr><tr><td align="left">char</td><td align="left">声明字符型变量或函数返回值类型</td></tr><tr><td align="left">const</td><td align="left">定义常量，如果一个变量被 const 修饰，那么它的值就不能再被改变</td></tr><tr><td align="left">continue</td><td align="left">结束当前循环，开始下一轮循环</td></tr><tr><td align="left">default</td><td align="left">开关语句中的”其它”分支</td></tr><tr><td align="left">do</td><td align="left">循环语句的循环体</td></tr><tr><td align="left">double</td><td align="left">声明双精度浮点型变量或函数返回值类型</td></tr><tr><td align="left">else</td><td align="left">条件语句否定分支（与 if 连用）</td></tr><tr><td align="left">enum</td><td align="left">声明枚举类型</td></tr><tr><td align="left">extern</td><td align="left">声明变量或函数是在其它文件或本文件的其他位置定义</td></tr><tr><td align="left">float</td><td align="left">声明浮点型变量或函数返回值类型</td></tr><tr><td align="left">for</td><td align="left">一种循环语句</td></tr><tr><td align="left">goto</td><td align="left">无条件跳转语句</td></tr><tr><td align="left">if</td><td align="left">条件语句</td></tr><tr><td align="left">int</td><td align="left">声明整型变量或函数</td></tr><tr><td align="left">long</td><td align="left">声明长整型变量或函数返回值类型</td></tr><tr><td align="left">register</td><td align="left">声明寄存器变量</td></tr><tr><td align="left">return</td><td align="left">子程序返回语句（可以带参数，也可不带参数）</td></tr><tr><td align="left">short</td><td align="left">声明短整型变量或函数</td></tr><tr><td align="left">signed</td><td align="left">声明有符号类型变量或函数</td></tr><tr><td align="left">sizeof</td><td align="left">计算数据类型或变量长度（即所占字节数）</td></tr><tr><td align="left">static</td><td align="left">声明静态变量</td></tr><tr><td align="left">struct</td><td align="left">声明结构体类型</td></tr><tr><td align="left">switch</td><td align="left">用于开关语句</td></tr><tr><td align="left">typedef</td><td align="left">用以给数据类型取别名</td></tr><tr><td align="left">unsigned</td><td align="left">声明无符号类型变量或函数</td></tr><tr><td align="left">union</td><td align="left">声明共用体类型</td></tr><tr><td align="left">void</td><td align="left">声明函数无返回值或无参数，声明无类型指针</td></tr><tr><td align="left">volatile</td><td align="left">说明变量在程序执行中可被隐含地改变</td></tr><tr><td align="left">while</td><td align="left">循环语句的循环条件</td></tr></tbody></table><h3 id="C99-新增关键字"><a href="#C99-新增关键字" class="headerlink" title="C99 新增关键字"></a>C99 新增关键字</h3><table><thead><tr><th><code>_Bool</code></th><th><code>_Complex</code></th><th><code>_Imaginary</code></th><th><code>inline</code></th><th><code>restrict</code></th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3 id="C11-新增关键字"><a href="#C11-新增关键字" class="headerlink" title="C11 新增关键字"></a>C11 新增关键字</h3><table><thead><tr><th><code>_Alignas</code></th><th><code>_Alignof</code></th><th><code>_Atomic</code></th><th><code>_Generic</code></th><th><code>_Noreturn</code></th></tr></thead><tbody><tr><td><code>_Static_assert</code></td><td><code>_Thread_local</code></td><td></td><td></td><td></td></tr></tbody></table><h3 id="C中的空格"><a href="#C中的空格" class="headerlink" title="C中的空格"></a>C中的空格</h3><p>只包含空格的行，被称为空白行，可能带有注释，C编译器会完全忽略它。</p><p>在C中，空格用于描述空白符、制表符、换行符和注释。空格分隔语句的各个部分，让编译器能识别语句中的某个元素（如：int）在哪里结束，下一个元素在那里开始。因此，在下面 的语句中：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> age;</span><br></pre></td></tr></table></figure><p>在这里，int 和 age 之间必须至少有一个空格字符（通常是一个空白符），这样编译器才能够区分它们。另一方面，在下面的语句中：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fruit = apples + oranges;  <span class="comment">// 获取水果的总数</span></span><br></pre></td></tr></table></figure><p>fruit 和 =，或者 = 和 apples 之间的空格字符不是必需的，但是为了增强可读性，您可以根据需要适当增加一些空格。</p>]]></content>
       
       
       <categories>
@@ -54,11 +54,11 @@
     
     
     <entry>
-      <title>C语言-基本语法</title>
-      <link href="/2020/09/08/Note/C-grammar/"/>
-      <url>/2020/09/08/Note/C-grammar/</url>
+      <title>C语言整体介绍</title>
+      <link href="/2020/09/08/Note/C/"/>
+      <url>/2020/09/08/Note/C/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="C-的令牌（Token）"><a href="#C-的令牌（Token）" class="headerlink" title="C 的令牌（Token）"></a>C 的令牌（Token）</h3><p>C 程序由各种令牌组成，令牌可以是关键字、标识符、常量、字符串值，或者是一个符号。例如，下面的 C 语句包括五个令牌：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Hello, World! \n"</span>);</span><br></pre></td></tr></table></figure><p>这五个令牌分别是：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span></span><br><span class="line">(</span><br><span class="line"><span class="string">"Hello, World! \n"</span></span><br><span class="line">)</span><br><span class="line">;</span><br></pre></td></tr></table></figure><h3 id="分号"><a href="#分号" class="headerlink" title="分号 ;"></a>分号 ;</h3><p>在 C 程序中，分号是语句结束符。也就是说，每个语句必须以分号结束。它表明一个逻辑实体的结束。</p><p>例如，下面是两个不同的语句：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"Hello, World! \n"</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>C 语言有两种注释方式</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 单行注释</span></span><br></pre></td></tr></table></figure><p>以<code>//</code>开始的单行注释，这种注释可以单独占一行。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 单行注释 */</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> 多行注释</span></span><br><span class="line"><span class="comment"> 多行注释</span></span><br><span class="line"><span class="comment"> 多行注释</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure><p><code>/\* \*/</code>这种格式的注释可以单行或多行。</p><p>不能在注释内嵌套注释，注释也不能出现在字符串或字符值中。</p><h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>C标识符是用来识别变量、函数、或任何其他用户自定义项目的名称。一个标识符以字母A-Z或a-z或下划线_开始，后跟零个或多个字母，下划线和数字（0-9）。</p><p>C标识符内不允许出现标点字符，如<code>@</code>、<code>$</code>和<code>%</code>。C是<strong>区分大小写</strong>的编程语言。因此，在C中，<code>Manpower</code>和<code>manpower</code>是两个不同的标识符。下面列出几个有效的标识符：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mohd       zara    abc   move_name  a_123</span><br><span class="line">myname50   _temp   j     a23b9      retVal</span><br></pre></td></tr></table></figure><h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>下表列出了 C 中的保留字。这些保留字不能作为常量名、变量名或其他标识符名称。</p><table><thead><tr><th align="left">关键字</th><th align="left">说明</th></tr></thead><tbody><tr><td align="left">auto</td><td align="left">声明自动变量</td></tr><tr><td align="left">break</td><td align="left">跳出当前循环</td></tr><tr><td align="left">case</td><td align="left">开关语句分支</td></tr><tr><td align="left">char</td><td align="left">声明字符型变量或函数返回值类型</td></tr><tr><td align="left">const</td><td align="left">定义常量，如果一个变量被 const 修饰，那么它的值就不能再被改变</td></tr><tr><td align="left">continue</td><td align="left">结束当前循环，开始下一轮循环</td></tr><tr><td align="left">default</td><td align="left">开关语句中的”其它”分支</td></tr><tr><td align="left">do</td><td align="left">循环语句的循环体</td></tr><tr><td align="left">double</td><td align="left">声明双精度浮点型变量或函数返回值类型</td></tr><tr><td align="left">else</td><td align="left">条件语句否定分支（与 if 连用）</td></tr><tr><td align="left">enum</td><td align="left">声明枚举类型</td></tr><tr><td align="left">extern</td><td align="left">声明变量或函数是在其它文件或本文件的其他位置定义</td></tr><tr><td align="left">float</td><td align="left">声明浮点型变量或函数返回值类型</td></tr><tr><td align="left">for</td><td align="left">一种循环语句</td></tr><tr><td align="left">goto</td><td align="left">无条件跳转语句</td></tr><tr><td align="left">if</td><td align="left">条件语句</td></tr><tr><td align="left">int</td><td align="left">声明整型变量或函数</td></tr><tr><td align="left">long</td><td align="left">声明长整型变量或函数返回值类型</td></tr><tr><td align="left">register</td><td align="left">声明寄存器变量</td></tr><tr><td align="left">return</td><td align="left">子程序返回语句（可以带参数，也可不带参数）</td></tr><tr><td align="left">short</td><td align="left">声明短整型变量或函数</td></tr><tr><td align="left">signed</td><td align="left">声明有符号类型变量或函数</td></tr><tr><td align="left">sizeof</td><td align="left">计算数据类型或变量长度（即所占字节数）</td></tr><tr><td align="left">static</td><td align="left">声明静态变量</td></tr><tr><td align="left">struct</td><td align="left">声明结构体类型</td></tr><tr><td align="left">switch</td><td align="left">用于开关语句</td></tr><tr><td align="left">typedef</td><td align="left">用以给数据类型取别名</td></tr><tr><td align="left">unsigned</td><td align="left">声明无符号类型变量或函数</td></tr><tr><td align="left">union</td><td align="left">声明共用体类型</td></tr><tr><td align="left">void</td><td align="left">声明函数无返回值或无参数，声明无类型指针</td></tr><tr><td align="left">volatile</td><td align="left">说明变量在程序执行中可被隐含地改变</td></tr><tr><td align="left">while</td><td align="left">循环语句的循环条件</td></tr></tbody></table><h3 id="C99-新增关键字"><a href="#C99-新增关键字" class="headerlink" title="C99 新增关键字"></a>C99 新增关键字</h3><table><thead><tr><th><code>_Bool</code></th><th><code>_Complex</code></th><th><code>_Imaginary</code></th><th><code>inline</code></th><th><code>restrict</code></th></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody></table><h3 id="C11-新增关键字"><a href="#C11-新增关键字" class="headerlink" title="C11 新增关键字"></a>C11 新增关键字</h3><table><thead><tr><th><code>_Alignas</code></th><th><code>_Alignof</code></th><th><code>_Atomic</code></th><th><code>_Generic</code></th><th><code>_Noreturn</code></th></tr></thead><tbody><tr><td><code>_Static_assert</code></td><td><code>_Thread_local</code></td><td></td><td></td><td></td></tr></tbody></table><h3 id="C中的空格"><a href="#C中的空格" class="headerlink" title="C中的空格"></a>C中的空格</h3><p>只包含空格的行，被称为空白行，可能带有注释，C编译器会完全忽略它。</p><p>在C中，空格用于描述空白符、制表符、换行符和注释。空格分隔语句的各个部分，让编译器能识别语句中的某个元素（如：int）在哪里结束，下一个元素在那里开始。因此，在下面 的语句中：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> age;</span><br></pre></td></tr></table></figure><p>在这里，int 和 age 之间必须至少有一个空格字符（通常是一个空白符），这样编译器才能够区分它们。另一方面，在下面的语句中：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fruit = apples + oranges;  <span class="comment">// 获取水果的总数</span></span><br></pre></td></tr></table></figure><p>fruit 和 =，或者 = 和 apples 之间的空格字符不是必需的，但是为了增强可读性，您可以根据需要适当增加一些空格。</p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="C-简介"><a href="#C-简介" class="headerlink" title="C 简介"></a>C 简介</h3><p>C 语言是一种通用的高级语言，最初是由丹尼斯·里奇在贝尔实验室为开发 UNIX 操作系统而设计的。C 语言最开始是于 1972 年在 DEC PDP-11 计算机上被首次实现。</p><p>在 1978 年，布莱恩·柯林汉（Brian Kernighan）和丹尼斯·里奇（Dennis Ritchie）制作了 C 的第一个公开可用的描述，现在被称为 K&amp;R 标准。</p><p>UNIX 操作系统，C编译器，和几乎所有的 UNIX 应用程序都是用 C 语言编写的。由于各种原因，C 语言现在已经成为一种广泛使用的专业语言。</p><ul><li>易于学习。</li><li>结构化语言。</li><li>它产生高效率的程序。</li><li>它可以处理底层的活动。</li><li>它可以在多种计算机平台上编译。</li></ul><h3 id="关于-C"><a href="#关于-C" class="headerlink" title="关于 C"></a>关于 C</h3><ul><li>C 语言是为了编写 UNIX 操作系统而被发明的。</li><li>C 语言是以 B 语言为基础的，B 语言大概是在 1970 年被引进的。</li><li>C 语言标准是于 1988 年由美国国家标准协会（ANSI，全称 American National Standard Institute）制定的。</li><li>截至 1973 年，UNIX 操作系统完全使用 C 语言编写。</li><li>目前，C 语言是最广泛使用的系统程序设计语言。</li><li>大多数先进的软件都是使用 C 语言实现的。</li><li>当今最流行的 Linux 操作系统和 RDBMS（Relational Database Management System：关系数据库管理系统） MySQL 都是使用 C 语言编写的。</li></ul><h3 id="为什么要使用-C？"><a href="#为什么要使用-C？" class="headerlink" title="为什么要使用 C？"></a>为什么要使用 C？</h3><p>C 语言最初是用于系统开发工作，特别是组成操作系统的程序。由于 C 语言所产生的代码运行速度与汇编语言编写的代码运行速度几乎一样，所以采用 C 语言作为系统开发语言。下面列举几个使用 C 的实例：</p><ul><li>操作系统</li><li>语言编译器</li><li>汇编器</li><li>文本编辑器</li><li>打印机</li><li>网络驱动器</li><li>现代程序</li><li>数据库</li><li>语言解释器</li><li>实体工具</li></ul><h3 id="C-程序"><a href="#C-程序" class="headerlink" title="C 程序"></a>C 程序</h3><p>一个 C 语言程序，可以是 3 行，也可以是数百万行，它可以写在一个或多个扩展名为 <strong>“.c”</strong> 的文本文件中，例如，<em>hello.c</em>。您可以使用 <strong>“vi”</strong>、<strong>“vim”</strong> 或任何其他文本编辑器来编写您的 C 语言程序。</p><p>本教程假定您已经知道如何编辑一个文本文件，以及如何在程序文件中编写源代码。</p><hr><h3 id="C11"><a href="#C11" class="headerlink" title="C11"></a>C11</h3><p>C11（也被称为C1X）指ISO标准ISO/IEC 9899:2011，是当前最新的C语言标准。在它之前的C语言标准为C99。</p><h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><ul><li>对齐处理（Alignment）的标准化（包括_Alignas标志符，alignof运算符，aligned_alloc函数以及&lt;stdalign.h&gt;头文件）。</li><li><em>Noreturn 函数标记，类似于 gcc 的 <em>_attribute</em></em>((noreturn))。</li><li>_Generic 关键字。</li><li>多线程（Multithreading）支持，包括：<br>_Thread_local存储类型标识符，&lt;threads.h&gt;头文件，里面包含了线程的创建和管理函数。<br>_Atomic类型修饰符和&lt;stdatomic.h&gt;头文件。</li><li>增强的Unicode的支持。基于C Unicode技术报告ISO/IEC TR 19769:2004，增强了对Unicode的支持。包括为UTF-16/UTF-32编码增加了char16_t和char32_t数据类型，提供了包含unicode字符串转换函数的头文件&lt;uchar.h&gt;。</li><li>删除了 gets() 函数，使用一个新的更安全的函数gets_s()替代。</li><li>增加了边界检查函数接口，定义了新的安全的函数，例如 fopen_s()，strcat_s() 等等。</li><li>增加了更多浮点处理宏(宏)。</li><li>匿名结构体/联合体支持。这个在gcc早已存在，C11将其引入标准。</li><li>静态断言（Static assertions），_Static_assert()，在解释 #if 和 #error 之后被处理。</li><li>新的 fopen() 模式，(“…x”)。类似 POSIX 中的 O_CREAT|O_EXCL，在文件锁中比较常用。</li><li>新增 quick_exit() 函数作为第三种终止程序的方式。当 exit()失败时可以做最少的清理工作。</li></ul>]]></content>
       
       
       <categories>
@@ -79,11 +79,11 @@
     
     
     <entry>
-      <title>C语言整体介绍</title>
-      <link href="/2020/09/08/Note/C/"/>
-      <url>/2020/09/08/Note/C/</url>
+      <title>C语言-数据类型</title>
+      <link href="/2020/09/08/Note/C-data_type/"/>
+      <url>/2020/09/08/Note/C-data_type/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="C-简介"><a href="#C-简介" class="headerlink" title="C 简介"></a>C 简介</h3><p>C 语言是一种通用的高级语言，最初是由丹尼斯·里奇在贝尔实验室为开发 UNIX 操作系统而设计的。C 语言最开始是于 1972 年在 DEC PDP-11 计算机上被首次实现。</p><p>在 1978 年，布莱恩·柯林汉（Brian Kernighan）和丹尼斯·里奇（Dennis Ritchie）制作了 C 的第一个公开可用的描述，现在被称为 K&amp;R 标准。</p><p>UNIX 操作系统，C编译器，和几乎所有的 UNIX 应用程序都是用 C 语言编写的。由于各种原因，C 语言现在已经成为一种广泛使用的专业语言。</p><ul><li>易于学习。</li><li>结构化语言。</li><li>它产生高效率的程序。</li><li>它可以处理底层的活动。</li><li>它可以在多种计算机平台上编译。</li></ul><h3 id="关于-C"><a href="#关于-C" class="headerlink" title="关于 C"></a>关于 C</h3><ul><li>C 语言是为了编写 UNIX 操作系统而被发明的。</li><li>C 语言是以 B 语言为基础的，B 语言大概是在 1970 年被引进的。</li><li>C 语言标准是于 1988 年由美国国家标准协会（ANSI，全称 American National Standard Institute）制定的。</li><li>截至 1973 年，UNIX 操作系统完全使用 C 语言编写。</li><li>目前，C 语言是最广泛使用的系统程序设计语言。</li><li>大多数先进的软件都是使用 C 语言实现的。</li><li>当今最流行的 Linux 操作系统和 RDBMS（Relational Database Management System：关系数据库管理系统） MySQL 都是使用 C 语言编写的。</li></ul><h3 id="为什么要使用-C？"><a href="#为什么要使用-C？" class="headerlink" title="为什么要使用 C？"></a>为什么要使用 C？</h3><p>C 语言最初是用于系统开发工作，特别是组成操作系统的程序。由于 C 语言所产生的代码运行速度与汇编语言编写的代码运行速度几乎一样，所以采用 C 语言作为系统开发语言。下面列举几个使用 C 的实例：</p><ul><li>操作系统</li><li>语言编译器</li><li>汇编器</li><li>文本编辑器</li><li>打印机</li><li>网络驱动器</li><li>现代程序</li><li>数据库</li><li>语言解释器</li><li>实体工具</li></ul><h3 id="C-程序"><a href="#C-程序" class="headerlink" title="C 程序"></a>C 程序</h3><p>一个 C 语言程序，可以是 3 行，也可以是数百万行，它可以写在一个或多个扩展名为 <strong>“.c”</strong> 的文本文件中，例如，<em>hello.c</em>。您可以使用 <strong>“vi”</strong>、<strong>“vim”</strong> 或任何其他文本编辑器来编写您的 C 语言程序。</p><p>本教程假定您已经知道如何编辑一个文本文件，以及如何在程序文件中编写源代码。</p><hr><h3 id="C11"><a href="#C11" class="headerlink" title="C11"></a>C11</h3><p>C11（也被称为C1X）指ISO标准ISO/IEC 9899:2011，是当前最新的C语言标准。在它之前的C语言标准为C99。</p><h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><ul><li>对齐处理（Alignment）的标准化（包括_Alignas标志符，alignof运算符，aligned_alloc函数以及&lt;stdalign.h&gt;头文件）。</li><li><em>Noreturn 函数标记，类似于 gcc 的 <em>_attribute</em></em>((noreturn))。</li><li>_Generic 关键字。</li><li>多线程（Multithreading）支持，包括：<br>_Thread_local存储类型标识符，&lt;threads.h&gt;头文件，里面包含了线程的创建和管理函数。<br>_Atomic类型修饰符和&lt;stdatomic.h&gt;头文件。</li><li>增强的Unicode的支持。基于C Unicode技术报告ISO/IEC TR 19769:2004，增强了对Unicode的支持。包括为UTF-16/UTF-32编码增加了char16_t和char32_t数据类型，提供了包含unicode字符串转换函数的头文件&lt;uchar.h&gt;。</li><li>删除了 gets() 函数，使用一个新的更安全的函数gets_s()替代。</li><li>增加了边界检查函数接口，定义了新的安全的函数，例如 fopen_s()，strcat_s() 等等。</li><li>增加了更多浮点处理宏(宏)。</li><li>匿名结构体/联合体支持。这个在gcc早已存在，C11将其引入标准。</li><li>静态断言（Static assertions），_Static_assert()，在解释 #if 和 #error 之后被处理。</li><li>新的 fopen() 模式，(“…x”)。类似 POSIX 中的 O_CREAT|O_EXCL，在文件锁中比较常用。</li><li>新增 quick_exit() 函数作为第三种终止程序的方式。当 exit()失败时可以做最少的清理工作。</li></ul>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>在C语言中，数据类型指的是用于声明不同类型的变量或函数的一个广泛的系统。变量的类型决定了变量 存储占用的空间，以及如何解释存储的位模式。</p><p>C中的类型可分为以下几种：</p><table><thead><tr><th align="left">序号</th><th align="left">类型与描述</th></tr></thead><tbody><tr><td align="left">1</td><td align="left"><strong>基本类型：</strong> 它们是算术类型，包括两种类型：整数类型和浮点类型。</td></tr><tr><td align="left">2</td><td align="left"><strong>枚举类型：</strong> 它们也是算术类型，被用来定义在程序中只能赋予其一定的离散整数值的变量。</td></tr><tr><td align="left">3</td><td align="left"><strong>void 类型：</strong> 类型说明符 <em>void</em> 表明没有可用的值。</td></tr><tr><td align="left">4</td><td align="left"><strong>派生类型：</strong> 它们包括：指针类型、数组类型、结构类型、共用体类型和函数类型。</td></tr></tbody></table><p>数组类型和结构类型统称为聚合类型。函数的类型指的是函数返回值的类型。</p><h3 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h3><p>下表列出了关于标准整数类型的存储大小和值范围的细节：</p><table><thead><tr><th align="left">类型</th><th align="left">存储大小</th><th align="left">值范围</th></tr></thead><tbody><tr><td align="left">char</td><td align="left">1 字节</td><td align="left">-128 到 127 或 0 到 255</td></tr><tr><td align="left">unsigned char</td><td align="left">1 字节</td><td align="left">0 到 255</td></tr><tr><td align="left">signed char</td><td align="left">1 字节</td><td align="left">-128 到 127</td></tr><tr><td align="left">int</td><td align="left">2 或 4 字节</td><td align="left">-32,768 到 32,767 或 -2,147,483,648 到 2,147,483,647</td></tr><tr><td align="left">unsigned int</td><td align="left">2 或 4 字节</td><td align="left">0 到 65,535 或 0 到 4,294,967,295</td></tr><tr><td align="left">short</td><td align="left">2 字节</td><td align="left">-32,768 到 32,767</td></tr><tr><td align="left">unsigned short</td><td align="left">2 字节</td><td align="left">0 到 65,535</td></tr><tr><td align="left">long</td><td align="left">4 字节</td><td align="left">-2,147,483,648 到 2,147,483,647</td></tr><tr><td align="left">unsigned long</td><td align="left">4 字节</td><td align="left">0 到 4,294,967,295</td></tr></tbody></table><p>为了得到某个类型或某个变量在特定平台上的准确大小，我们可以使用<code>sizeof</code>运算符。</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"int 存储大小 : %lu \n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">   <span class="comment">// %lu 为32位无符号整数</span></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>当我们在Linux上编译并执行上面的程序时，它会产生</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> 存储大小：<span class="number">4</span></span><br></pre></td></tr></table></figure><h3 id="浮点类型"><a href="#浮点类型" class="headerlink" title="浮点类型"></a>浮点类型</h3><p>下表列出了关于标准浮点类型的存储大小、值范围和精度的细节：</p><table><thead><tr><th align="left">类型</th><th align="left">存储大小</th><th align="left">值范围</th><th align="left">精度</th></tr></thead><tbody><tr><td align="left">float</td><td align="left">4 字节</td><td align="left">1.2E-38 到 3.4E+38</td><td align="left">6 位小数</td></tr><tr><td align="left">double</td><td align="left">8 字节</td><td align="left">2.3E-308 到 1.7E+308</td><td align="left">15 位小数</td></tr><tr><td align="left">long double</td><td align="left">16 字节</td><td align="left">3.4E-4932 到 1.1E+4932</td><td align="left">19 位小数</td></tr></tbody></table><p>头文件 float.h 定义了宏，在程序中可以使用这些值和其他有关实数二进制表示的细节。下面的实例将输出浮点类型占用的存储空间以及它的范围值：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;float.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"float 存储最大字节数 : %lu \n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">float</span>));</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"float 最小值: %E\n"</span>, FLT_MIN );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"float 最大值: %E\n"</span>, FLT_MAX );</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"精度值: %d\n"</span>, FLT_DIG );</span><br><span class="line">   <span class="comment">// %E 为以指数形式输出单、双精度实数</span></span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>当我们在Linux上编译并执行上面的程序时，它会产生</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> 存储最大字节数 : <span class="number">4</span> </span><br><span class="line"><span class="keyword">float</span> 最小值: <span class="number">1.175494E-38</span></span><br><span class="line"><span class="keyword">float</span> 最大值: <span class="number">3.402823E+38</span></span><br><span class="line">精度值: <span class="number">6</span></span><br></pre></td></tr></table></figure><h3 id="void类型"><a href="#void类型" class="headerlink" title="void类型"></a>void类型</h3><p>void 类型指定没有可用的值。它通常用于以下三种情况下：</p><table><thead><tr><th align="left">序号</th><th align="left">类型与描述</th></tr></thead><tbody><tr><td align="left">1</td><td align="left"><strong>函数返回为空</strong> C 中有各种函数都不返回值，或者您可以说它们返回空。不返回值的函数的返回类型为空。例如 <strong>void exit (int status);</strong></td></tr><tr><td align="left">2</td><td align="left"><strong>函数参数为空</strong> C 中有各种函数不接受任何参数。不带参数的函数可以接受一个 void。例如 <strong>int rand(void);</strong></td></tr><tr><td align="left">3</td><td align="left"><strong>指针指向 void</strong> 类型为 void * 的指针代表对象的地址，而不是类型。例如，内存分配函数 <strong>void *malloc( size_t size );</strong> 返回指向 void 的指针，可以转换为任何数据类型。</td></tr></tbody></table><h3 id="笔记1"><a href="#笔记1" class="headerlink" title="笔记1"></a>笔记1</h3><p>常用基本数据类型占用空间（64位机器为例）</p><ul><li>char ： 1个字节</li><li>int ：4个字节</li><li>float：4个字节</li><li>double：8个字节</li></ul><h4 id="基本类型书写"><a href="#基本类型书写" class="headerlink" title="基本类型书写"></a>基本类型书写</h4><p>整数</p><ul><li>a，默认为10进制 ，10 ，20。</li><li>b，以0开头为8进制，045，021。</li><li>c.，以0b开头为2进制，0b11101101。</li><li>d，以0x开头为16进制，0x21458adf。</li></ul><p>小数</p><p>单精度常量：2.3f 。</p><p>双精度常量：2.3，默认为双精度。</p><p>字符型常量</p><p>用英文单引号括起来，只保存一个字符’a’、’b’ 、’*’ ，还有转义字符 ‘\n’ 、’\t’。</p><p>字符串常量</p><p>用英文的双引号引起来 可以保存多个字符：”abc”。</p><h3 id="笔记2"><a href="#笔记2" class="headerlink" title="笔记2"></a>笔记2</h3><p>1、数据类型转换：C 语言中如果一个表达式中含有不同类型的常量和变量，在计算时，会将它们自动转换为同一种类型；在 C 语言中也可以对数据类型进行强制转换；</p><p>2、自动转换规则：</p><ul><li>a）浮点数赋给整型，该浮点数小数被舍去；</li><li>b）整数赋给浮点型，数值不变，但是被存储到相应的浮点型变量中；</li></ul><p>3、强制类型转换形式: <strong>(类型说明符)(表达式)</strong></p><p>实例程序：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> f,x=<span class="number">3.6</span>,y=<span class="number">5.2</span>;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">4</span>,a,b;</span><br><span class="line">    a=x+y;</span><br><span class="line">    b=(<span class="keyword">int</span>)(x+y);</span><br><span class="line">    f=<span class="number">10</span>/i;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"a=%d,b=%d,f=%f,x=%f\n"</span>,a,b,f,x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>例中先计算 x+y 值为 8.8，然后赋值给 a，因为a为整型，所以自取整数部分8，a=8;</p><p>接下来 b 把 x+y 强制转换为整型;</p><p>最后 10/i 是两个整数相除，结果仍为整数 2，把 2 赋给浮点数 f;</p><p>x 为浮点型直接输出。</p>]]></content>
       
       
       <categories>
@@ -501,9 +501,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Vue </tag>
+            
+            <tag> Python </tag>
             
             <tag> Flask </tag>
             
@@ -555,11 +555,11 @@
       
         <tags>
             
+            <tag> Vue </tag>
+            
             <tag> Django </tag>
             
             <tag> Python </tag>
-            
-            <tag> Vue </tag>
             
         </tags>
       
@@ -636,11 +636,11 @@
       
         <tags>
             
+            <tag> Vue </tag>
+            
             <tag> Django </tag>
             
             <tag> Python </tag>
-            
-            <tag> Vue </tag>
             
         </tags>
       
@@ -692,11 +692,11 @@
       
         <tags>
             
+            <tag> Vue </tag>
+            
             <tag> Django </tag>
             
             <tag> Python </tag>
-            
-            <tag> Vue </tag>
             
         </tags>
       
@@ -721,11 +721,11 @@
       
         <tags>
             
+            <tag> Vue </tag>
+            
             <tag> Django </tag>
             
             <tag> Python </tag>
-            
-            <tag> Vue </tag>
             
         </tags>
       
@@ -775,11 +775,11 @@
       
         <tags>
             
+            <tag> Vue </tag>
+            
             <tag> Django </tag>
             
             <tag> Python </tag>
-            
-            <tag> Vue </tag>
             
         </tags>
       
@@ -927,11 +927,11 @@
       
         <tags>
             
+            <tag> Vue </tag>
+            
             <tag> Django </tag>
             
             <tag> Python </tag>
-            
-            <tag> Vue </tag>
             
         </tags>
       
@@ -956,11 +956,11 @@
       
         <tags>
             
+            <tag> Vue </tag>
+            
             <tag> Django </tag>
             
             <tag> Python </tag>
-            
-            <tag> Vue </tag>
             
         </tags>
       
@@ -985,11 +985,11 @@
       
         <tags>
             
+            <tag> Vue </tag>
+            
             <tag> Django </tag>
             
             <tag> Python </tag>
-            
-            <tag> Vue </tag>
             
         </tags>
       
@@ -1025,25 +1025,6 @@
     
     
     <entry>
-      <title>Thunder无版权</title>
-      <link href="/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/"/>
-      <url>/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、序幕"><a href="#一、序幕" class="headerlink" title="一、序幕"></a>一、序幕</h3><p>再现当今各大影视平台推出的各种VIP制度，使我们是我们这些‘穷人’已无法生存。</p><p>于是出现了<a href="https://baike.baidu.com/item/BT种子" target="_blank" rel="noopener">BT种子</a>，在这个BT种子泛滥的时代，影视VIP已经在有的人心中抹去。</p><p>说道BT种子好像很多男人都很喜欢比如：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/%E4%B8%8B%E8%BD%BD.jpg" alt="img"></p><p>这个。。。。真是太棒了！！！</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p><p>有了BT种子我们还需要有一个解析工具<a href="https://baike.baidu.com/item/迅雷/33354" target="_blank" rel="noopener">迅雷(Thunder)</a>，迅雷应该是大多数人的电脑或者手机里必备的软件吧！！</p><p>但是：</p><p><img src= "/img/loading.gif" data-src="https://pic4.zhimg.com/80/v2-d5d664989af1c5915c32241df9f71f83_720w.jpg" alt="img"></p><p>这个是不是很讨厌。。</p><hr><h3 id="二、问题"><a href="#二、问题" class="headerlink" title="二、问题"></a>二、问题</h3><p>同样，今天我一如既往的在网上搜索BT种子：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p><p>来到迅雷解析：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder1.png" alt="img"></p><p>这。。。这又不是什么搞颜色的视频，为啥也没有版权？？</p><p>之后，我在网上一顿操作，找到了解决办法！！</p><hr><h3 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h3><ul><li><p>首先我们先下载BT种子到桌面</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder2.png" alt="img"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p></li><li><p>之后我们来到百度云盘（可以是网页版的，也可以是端游版的，我用的是网页版的）</p></li><li><p>找到离线下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder4.png" alt="img"></p></li><li><p>进去，点击新建BT任务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder5.png" alt="img"></p></li><li><p>找到你的BT种子位置，并打开</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder6.png" alt="img"></p></li><li><p>之后选择视频文件，开始下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder7.png" alt="img"></p></li><li><p>可以看到下载速度是非常快的（我用的是网页版的，客户端应该会更快）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder8.png" alt="img"></p></li><li><p>下载完成，点击播放</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder9.png" alt="img"></p></li><li><p>就可以开开心心的看电影了（悄悄拿上纸巾）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder10.png" alt="img"></p></li></ul><p>是不是帮你们解决了没有女朋友的问题呢</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 生活 · 日记 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>JWT</title>
       <link href="/2020/05/31/Note/jwt/"/>
       <url>/2020/05/31/Note/jwt/</url>
@@ -1065,6 +1046,25 @@
             <tag> jwt </tag>
             
         </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Thunder无版权</title>
+      <link href="/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/"/>
+      <url>/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、序幕"><a href="#一、序幕" class="headerlink" title="一、序幕"></a>一、序幕</h3><p>再现当今各大影视平台推出的各种VIP制度，使我们是我们这些‘穷人’已无法生存。</p><p>于是出现了<a href="https://baike.baidu.com/item/BT种子" target="_blank" rel="noopener">BT种子</a>，在这个BT种子泛滥的时代，影视VIP已经在有的人心中抹去。</p><p>说道BT种子好像很多男人都很喜欢比如：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/%E4%B8%8B%E8%BD%BD.jpg" alt="img"></p><p>这个。。。。真是太棒了！！！</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p><p>有了BT种子我们还需要有一个解析工具<a href="https://baike.baidu.com/item/迅雷/33354" target="_blank" rel="noopener">迅雷(Thunder)</a>，迅雷应该是大多数人的电脑或者手机里必备的软件吧！！</p><p>但是：</p><p><img src= "/img/loading.gif" data-src="https://pic4.zhimg.com/80/v2-d5d664989af1c5915c32241df9f71f83_720w.jpg" alt="img"></p><p>这个是不是很讨厌。。</p><hr><h3 id="二、问题"><a href="#二、问题" class="headerlink" title="二、问题"></a>二、问题</h3><p>同样，今天我一如既往的在网上搜索BT种子：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p><p>来到迅雷解析：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder1.png" alt="img"></p><p>这。。。这又不是什么搞颜色的视频，为啥也没有版权？？</p><p>之后，我在网上一顿操作，找到了解决办法！！</p><hr><h3 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h3><ul><li><p>首先我们先下载BT种子到桌面</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder2.png" alt="img"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p></li><li><p>之后我们来到百度云盘（可以是网页版的，也可以是端游版的，我用的是网页版的）</p></li><li><p>找到离线下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder4.png" alt="img"></p></li><li><p>进去，点击新建BT任务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder5.png" alt="img"></p></li><li><p>找到你的BT种子位置，并打开</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder6.png" alt="img"></p></li><li><p>之后选择视频文件，开始下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder7.png" alt="img"></p></li><li><p>可以看到下载速度是非常快的（我用的是网页版的，客户端应该会更快）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder8.png" alt="img"></p></li><li><p>下载完成，点击播放</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder9.png" alt="img"></p></li><li><p>就可以开开心心的看电影了（悄悄拿上纸巾）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder10.png" alt="img"></p></li></ul><p>是不是帮你们解决了没有女朋友的问题呢</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 · 日记 </category>
+          
+      </categories>
+      
       
     </entry>
     
@@ -1269,6 +1269,31 @@
     
     
     <entry>
+      <title>redis优化</title>
+      <link href="/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/"/>
+      <url>/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a><strong>数据持久化</strong></h3><p><a href="https://www.sirxs.cn/2020/05/21/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/">数据持久化</a></p><h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a><strong>内存优化</strong></h3><p>设置<em>maxmemory</em>。设置Redis使用的最大物理内存，即Redis在占用<em>maxmemory</em>大小的内存之后就开始拒绝后续的写入请求，该参数可以确保Redis因为使用了大量内存严重影响速度或者发生<em>OOM</em>。此外，可以使用<code>info</code>命令查看Redis占用的内存及其它信息。</p><p>让键名保持简短。键的长度越长，<code>Redis</code>需要存储的数据也就越多</p><p>使用短结构。主要Redis的<em>list</em>、<em>hash</em>、<em>set</em>、<em>zset</em>这四种数据结构的存储优化。在<em>Redis3.2</em>之前，如果列表、散列或者有序集合的长度或者体积较小，<em>Redis</em>会选择一种名为<em>ziplist</em>的数据结构来存储它们。该结构是列表、散列和有序集合三种不同类型的对象的一种非结构化表示，与Redis在通常情况下使用双向链表来表示列表、使用散列表示散列、使用散列加跳跃表表示有序集合相比，它更加紧凑，避免了存储额外的指针和元数据（比如字符串值的剩余可用空间和结束符”\0”）。但是压缩列表需要在存储的时候进行序列化，读取的时候进行反序列化。以散列为例，在<code>redis.conf</code>中，可以进行如下设置</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hash-max-ziplist-entries <span class="number">512</span></span><br><span class="line">hash-max-ziplist-value <span class="number">64</span></span><br></pre></td></tr></table></figure><h3 id="拓展读写能力"><a href="#拓展读写能力" class="headerlink" title="拓展读写能力"></a><strong>拓展读写能力</strong></h3><p>扩展读性能。在<code>redis.conf</code>中添加<code>slaveof host port</code>即可将其配置为另一台Redis服务器的从服务器。注意，在从服务器连接主服务器的时候，从服务器之前的数据会被清空。可以用这种方式建立从服务器树，扩展其读能力。但这种方式并未做故障转移，高可用Redis部署方案可以参考<a href="https://www.jianshu.com/p/afb678794a0e" target="_blank" rel="noopener">Redis Sentinel</a>,<a href="https://link.jianshu.com?t=http%3A%2F%2Fredis.io%2Ftopics%2Fcluster-tutorial" target="_blank" rel="noopener">Redis Cluster</a>和<a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2FCodisLabs%2Fcodis" target="_blank" rel="noopener">Codis</a>。</p><p>扩展写性能。(1)使用集群分片技术，比如Redis Cluster;(2)单机上运行多个Redis实例。由于Redis是单线程设计，在涉及到cpu bound的操作的时候，可能速度会大大降低。如果服务器的cpu、io资源充足，可以在同一台机器上运行多个Redis服务器。</p><h3 id="应用程序优化"><a href="#应用程序优化" class="headerlink" title="应用程序优化"></a><strong>应用程序优化</strong></h3><p>应用程序优化部分主要是客户端和Redis交互的一些建议。主要思想是<strong>尽可能减少操作Redis往返的通信次数</strong>。</p><p>Redis提供了<em>Slow Log</em>功能，可以自动记录耗时较长的命令，<code>redis.conf</code>中的配置如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#执行时间慢于10000毫秒的命令计入Slow Log</span></span><br><span class="line">slowlog-log-slower-than <span class="number">10000</span>  </span><br><span class="line"><span class="comment">#最大纪录多少条Slow Log</span></span><br><span class="line">slowlog-max-len <span class="number">128</span></span><br></pre></td></tr></table></figure><p>使用<code>SLOWLOG GET n</code>命令，可以输出最近n条慢查询日志。使用<code>SLOWLOG RESET</code>命令，可以重置<em>Slow Log</em>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>redis主从</title>
       <link href="/2020/05/23/Note/redis%E4%B8%BB%E4%BB%8E/"/>
       <url>/2020/05/23/Note/redis%E4%B8%BB%E4%BB%8E/</url>
@@ -1299,31 +1324,6 @@
       <url>/2020/05/23/Note/redis%E9%9B%AA%E5%B4%A9%EF%BC%8C%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%A9%BF%E9%80%8F/</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>对于系统 A，假设每天高峰期每秒 5000 个请求，本来缓存在高峰期可以扛住每秒 4000 个请求，但是缓存机器意外发生了全盘宕机。缓存挂了，此时 1 秒 5000 个请求全部落数据库，数据库必然扛不住，它会报一下警，然后就挂了。此时，如果没有采用什么特别的方案来处理这个故障，DBA 很着急，重启数据库，但是数据库立马又被新的流量给打死了。</p><p>(</p><p>1、缓存中大批量热点数据过期后系统涌入大量查询请求</p><p>2、因为大部分数据在Redis层已经失效，请求渗透到数据库层</p><p>3、大批量请求犹如洪水一般涌入，引起数据库压力造成查询堵塞甚至宕机。</p><p>)</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/xuebeng.jpg" alt="img"></p><p>缓存雪崩的事前事中事后的解决方案如下。</p><ul><li>事前：redis 高可用，主从+哨兵，redis cluster，避免全盘崩溃。</li><li>事中：本地 ehcache 缓存 + hystrix 限流&amp;降级，避免 MySQL 被打死。</li><li>事后：redis 持久化，一旦重启，自动从磁盘上加载数据，快速恢复缓存数据。</li></ul><p>(</p><p>1、事前：redis 高可用，主从+哨兵，redis cluster，避免全盘崩溃</p><p>2、事中：本地 ehcache 缓存 + hystrix 限流&amp;降级，避免 MySQL 被打死。</p><p>3、事后：redis 持久化，一旦重启，自动从磁盘上加载数据，快速恢复缓存数据。</p><p>4、用户发送一个请求，系统 A 收到请求后，先查本地 ehcache 缓存，如果没查到再查 redis。如果 ehcache 和 redis 都没有，再查数据库，将数据库中的结果，写入 ehcache 和 redis 中。</p><p>5、 限流组件，可以设置每秒的请求，有多少能通过组件，剩余的未通过的请求，怎么办？走降级！可以返回一些默认的值，或者友情提示，或者空白的值。这样可以保证数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。 -只要数据库不死，就是说，对用户来说，2/5 的请求都是可以被处理的。 - 只要有 2/5 的请求可以被处理，就意味着你的系统没死，对用户来说，可能就是点击几次刷不出来页面，但是多点几次，就可以刷出来一次。</p><p>)</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/xuebeng1.jpg" alt="img"></p><p>好处：</p><ul><li>数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。</li><li>只要数据库不死，就是说，对用户来说，2/5 的请求都是可以被处理的。</li><li>只要有 2/5 的请求可以被处理，就意味着你的系统没死，对用户来说，可能就是点击几次刷不出来页面，但是多点几次，就可以刷出来一次。</li></ul><p><strong>缓存穿透</strong></p><p>对于系统A，假设一秒 5000 个请求，结果其中 4000 个请求是黑客发出的恶意攻击。</p><p>黑客发出的那 4000 个攻击，缓存中查不到，每次你去数据库里查，也查不到。</p><p>举个栗子。数据库 id 是从 1 开始的，结果黑客发过来的请求 id 全部都是负数。这样的话，缓存中不会有，请求每次都“<strong>视缓存于无物</strong>”，直接查询数据库。这种恶意攻击场景的缓存穿透就会直接把数据库给打死。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/chuantou.jpg" alt="img"></p><p>解决方式很简单。</p><p>每次系统 A 从数据库中只要没查到，就写一个空值到缓存里去，比如 <code>set -999 UNKNOWN</code>。然后设置一个过期时间，这样的话，下次有相同的 key 来访问的时候，在缓存失效之前，都可以直接从缓存中取数据。</p><p><strong>缓存击穿</strong></p><p>缓存击穿，就是说某个 key 非常热点，访问非常频繁，处于集中式高并发访问的情况，当这个 key 在失效的瞬间，大量的请求就击穿了缓存，直接请求数据库，就像是在一道屏障上凿开了一个洞。</p><p>解决方式。</p><p>1、可以将热点数据设置为永远不过期；或者基于 redis or zookeeper 实现互斥锁，等待第一个请求构建完缓存之后，再释放锁，进而其它请求才能通过该 key 访问数据。</p><p>2、有很多种方法可以有效地解决缓存穿透问题，最常见的则是采用布隆过滤器，将所有可能存在的数据哈希到一个足够大的bitmap中，一个一定不存在的数据会被这个bitmap拦截掉，从而避免了对底层存储系统的查询压力。</p><p>3、另外也有一个更为简单粗暴的方法，如果一个查询返回的数据为空（不管是数据不存在，还是系统故障），我们仍然把这个空结果进行缓存，但它的过期时间会很短，最长不超过五分钟。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>redis优化</title>
-      <link href="/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/"/>
-      <url>/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a><strong>数据持久化</strong></h3><p><a href="https://www.sirxs.cn/2020/05/21/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/">数据持久化</a></p><h3 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a><strong>内存优化</strong></h3><p>设置<em>maxmemory</em>。设置Redis使用的最大物理内存，即Redis在占用<em>maxmemory</em>大小的内存之后就开始拒绝后续的写入请求，该参数可以确保Redis因为使用了大量内存严重影响速度或者发生<em>OOM</em>。此外，可以使用<code>info</code>命令查看Redis占用的内存及其它信息。</p><p>让键名保持简短。键的长度越长，<code>Redis</code>需要存储的数据也就越多</p><p>使用短结构。主要Redis的<em>list</em>、<em>hash</em>、<em>set</em>、<em>zset</em>这四种数据结构的存储优化。在<em>Redis3.2</em>之前，如果列表、散列或者有序集合的长度或者体积较小，<em>Redis</em>会选择一种名为<em>ziplist</em>的数据结构来存储它们。该结构是列表、散列和有序集合三种不同类型的对象的一种非结构化表示，与Redis在通常情况下使用双向链表来表示列表、使用散列表示散列、使用散列加跳跃表表示有序集合相比，它更加紧凑，避免了存储额外的指针和元数据（比如字符串值的剩余可用空间和结束符”\0”）。但是压缩列表需要在存储的时候进行序列化，读取的时候进行反序列化。以散列为例，在<code>redis.conf</code>中，可以进行如下设置</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hash-max-ziplist-entries <span class="number">512</span></span><br><span class="line">hash-max-ziplist-value <span class="number">64</span></span><br></pre></td></tr></table></figure><h3 id="拓展读写能力"><a href="#拓展读写能力" class="headerlink" title="拓展读写能力"></a><strong>拓展读写能力</strong></h3><p>扩展读性能。在<code>redis.conf</code>中添加<code>slaveof host port</code>即可将其配置为另一台Redis服务器的从服务器。注意，在从服务器连接主服务器的时候，从服务器之前的数据会被清空。可以用这种方式建立从服务器树，扩展其读能力。但这种方式并未做故障转移，高可用Redis部署方案可以参考<a href="https://www.jianshu.com/p/afb678794a0e" target="_blank" rel="noopener">Redis Sentinel</a>,<a href="https://link.jianshu.com?t=http%3A%2F%2Fredis.io%2Ftopics%2Fcluster-tutorial" target="_blank" rel="noopener">Redis Cluster</a>和<a href="https://link.jianshu.com?t=https%3A%2F%2Fgithub.com%2FCodisLabs%2Fcodis" target="_blank" rel="noopener">Codis</a>。</p><p>扩展写性能。(1)使用集群分片技术，比如Redis Cluster;(2)单机上运行多个Redis实例。由于Redis是单线程设计，在涉及到cpu bound的操作的时候，可能速度会大大降低。如果服务器的cpu、io资源充足，可以在同一台机器上运行多个Redis服务器。</p><h3 id="应用程序优化"><a href="#应用程序优化" class="headerlink" title="应用程序优化"></a><strong>应用程序优化</strong></h3><p>应用程序优化部分主要是客户端和Redis交互的一些建议。主要思想是<strong>尽可能减少操作Redis往返的通信次数</strong>。</p><p>Redis提供了<em>Slow Log</em>功能，可以自动记录耗时较长的命令，<code>redis.conf</code>中的配置如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#执行时间慢于10000毫秒的命令计入Slow Log</span></span><br><span class="line">slowlog-log-slower-than <span class="number">10000</span>  </span><br><span class="line"><span class="comment">#最大纪录多少条Slow Log</span></span><br><span class="line">slowlog-max-len <span class="number">128</span></span><br></pre></td></tr></table></figure><p>使用<code>SLOWLOG GET n</code>命令，可以输出最近n条慢查询日志。使用<code>SLOWLOG RESET</code>命令，可以重置<em>Slow Log</em>。</p>]]></content>
       
       
       <categories>
@@ -1413,31 +1413,6 @@
     
     
     <entry>
-      <title>联合索引的意义，作用，以及使用方式（ORM）</title>
-      <link href="/2020/05/19/Note/%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95(orm)/"/>
-      <url>/2020/05/19/Note/%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95(orm)/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、为什么要用联合索引"><a href="#一、为什么要用联合索引" class="headerlink" title="一、为什么要用联合索引"></a>一、为什么要用联合索引</h3><p>1、每多创建一个索引，都会增加操作的开销和磁盘空间的开销。对于大量数据的表，这可是不小的开销。</p><p>2、覆盖索引。数据库可以直接通过遍历索引取得数据，而无需回表，这减少了很多的随机io操作。减少io操作，特别的随机io其实是dba主要的优化策略。所以，在真正的实际应用中，覆盖索引是主要的提升性能的优化手段之一。</p><p>3、索引列越多，通过索引筛选出的数据越少。如果是复合索引，通过索引筛选出1000w *10% *10% *10%=1w，然后再排序、分页，哪个更高效，一眼便知。</p><h3 id="二、联合索引的使用"><a href="#二、联合索引的使用" class="headerlink" title="二、联合索引的使用"></a>二、联合索引的使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class User(models.Model):</span><br><span class="line">    #一.常用字段：</span><br><span class="line"></span><br><span class="line">    #1.字符字段</span><br><span class="line">    username &#x3D; models.CharField(max_length&#x3D;32)</span><br><span class="line"></span><br><span class="line">    #2.数字字段</span><br><span class="line">    age &#x3D; models.IntegerField()#整数</span><br><span class="line">    num &#x3D; models.DecimalField(max_digits&#x3D;10,decimal_places&#x3D;2)#小数，长度10，小数点位数2</span><br><span class="line"></span><br><span class="line">    #3.时间字段</span><br><span class="line">    ctime &#x3D; models.DateTimeField()</span><br><span class="line">    # 时间字段通过models.User.objects.create(ctime&#x3D;&#39;2020-4-29&#39;)来添加数据</span><br><span class="line"></span><br><span class="line">    #二.常用参数：</span><br><span class="line">    null &#x3D; True</span><br><span class="line">    default &#x3D; xx</span><br><span class="line">    max_length &#x3D; 32</span><br><span class="line">    db_index &#x3D; True #普通索引</span><br><span class="line">    unique &#x3D; True #唯一索引</span><br><span class="line"></span><br><span class="line">    #class Meta是固定写法，并且必须写在class User里面，只要写在它里面就可以起作用。</span><br><span class="line">    class Meta:</span><br><span class="line">        #联合唯一索引</span><br><span class="line">        unique_together &#x3D; (</span><br><span class="line">            (&#39;username&#39;,&#39;age&#39;),</span><br><span class="line">        )</span><br><span class="line">        #联合索引(不唯一)</span><br><span class="line">        index_together &#x3D; (</span><br><span class="line">            (&#39;username&#39;, &#39;age&#39;),</span><br><span class="line">        )</span><br></pre></td></tr></table></figure><h3 id="三、注意"><a href="#三、注意" class="headerlink" title="三、注意"></a>三、注意</h3><p>1、联合索引不要以主键开头，不然联合索引和主键索引作用是一样的</p><p>2、当你的查询sql where条件中用到的多个字段在联合索引中的查询速度优于在单列索引的速度</p><p>3、使用联合索引时，当你的where条件中不包含联合索引中的第一个字段时，无法用到索引</p><p>4、根据最左原则，联合索引可以使用部分生效的索引。(a,b,c) 当 where a=1 and c=2 a 索引是生效的</p><p>5、单列索引不受字段最左原则限制,但受内容最左原则限制</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Django </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>逆地理编码</title>
       <link href="/2020/05/19/Blog/1/"/>
       <url>/2020/05/19/Blog/1/</url>
@@ -1455,6 +1430,31 @@
         <tags>
             
             <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>联合索引的意义，作用，以及使用方式（ORM）</title>
+      <link href="/2020/05/19/Note/%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95(orm)/"/>
+      <url>/2020/05/19/Note/%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95(orm)/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、为什么要用联合索引"><a href="#一、为什么要用联合索引" class="headerlink" title="一、为什么要用联合索引"></a>一、为什么要用联合索引</h3><p>1、每多创建一个索引，都会增加操作的开销和磁盘空间的开销。对于大量数据的表，这可是不小的开销。</p><p>2、覆盖索引。数据库可以直接通过遍历索引取得数据，而无需回表，这减少了很多的随机io操作。减少io操作，特别的随机io其实是dba主要的优化策略。所以，在真正的实际应用中，覆盖索引是主要的提升性能的优化手段之一。</p><p>3、索引列越多，通过索引筛选出的数据越少。如果是复合索引，通过索引筛选出1000w *10% *10% *10%=1w，然后再排序、分页，哪个更高效，一眼便知。</p><h3 id="二、联合索引的使用"><a href="#二、联合索引的使用" class="headerlink" title="二、联合索引的使用"></a>二、联合索引的使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class User(models.Model):</span><br><span class="line">    #一.常用字段：</span><br><span class="line"></span><br><span class="line">    #1.字符字段</span><br><span class="line">    username &#x3D; models.CharField(max_length&#x3D;32)</span><br><span class="line"></span><br><span class="line">    #2.数字字段</span><br><span class="line">    age &#x3D; models.IntegerField()#整数</span><br><span class="line">    num &#x3D; models.DecimalField(max_digits&#x3D;10,decimal_places&#x3D;2)#小数，长度10，小数点位数2</span><br><span class="line"></span><br><span class="line">    #3.时间字段</span><br><span class="line">    ctime &#x3D; models.DateTimeField()</span><br><span class="line">    # 时间字段通过models.User.objects.create(ctime&#x3D;&#39;2020-4-29&#39;)来添加数据</span><br><span class="line"></span><br><span class="line">    #二.常用参数：</span><br><span class="line">    null &#x3D; True</span><br><span class="line">    default &#x3D; xx</span><br><span class="line">    max_length &#x3D; 32</span><br><span class="line">    db_index &#x3D; True #普通索引</span><br><span class="line">    unique &#x3D; True #唯一索引</span><br><span class="line"></span><br><span class="line">    #class Meta是固定写法，并且必须写在class User里面，只要写在它里面就可以起作用。</span><br><span class="line">    class Meta:</span><br><span class="line">        #联合唯一索引</span><br><span class="line">        unique_together &#x3D; (</span><br><span class="line">            (&#39;username&#39;,&#39;age&#39;),</span><br><span class="line">        )</span><br><span class="line">        #联合索引(不唯一)</span><br><span class="line">        index_together &#x3D; (</span><br><span class="line">            (&#39;username&#39;, &#39;age&#39;),</span><br><span class="line">        )</span><br></pre></td></tr></table></figure><h3 id="三、注意"><a href="#三、注意" class="headerlink" title="三、注意"></a>三、注意</h3><p>1、联合索引不要以主键开头，不然联合索引和主键索引作用是一样的</p><p>2、当你的查询sql where条件中用到的多个字段在联合索引中的查询速度优于在单列索引的速度</p><p>3、使用联合索引时，当你的where条件中不包含联合索引中的第一个字段时，无法用到索引</p><p>4、根据最左原则，联合索引可以使用部分生效的索引。(a,b,c) 当 where a=1 and c=2 a 索引是生效的</p><p>5、单列索引不受字段最左原则限制,但受内容最左原则限制</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Django </tag>
             
         </tags>
       
@@ -1577,9 +1577,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Vue </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -1604,9 +1604,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Vue </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -1656,9 +1656,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Vue </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -1719,31 +1719,6 @@
     
     
     <entry>
-      <title>Vue中从数据库查询单的数据进行运算</title>
-      <link href="/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/"/>
-      <url>/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="Vue中从数据库查询单的数据进行运算"><a href="#Vue中从数据库查询单的数据进行运算" class="headerlink" title="Vue中从数据库查询单的数据进行运算"></a>Vue中从数据库查询单的数据进行运算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> &lt;tr&gt;</span><br><span class="line">    &lt;th&gt;商品序号&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品名称&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品价格&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;购买数量&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;总价格&lt;&#x2F;th&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br><span class="line">&lt;tr v-for&#x3D;&quot;(item,index) in carlist&quot; :key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;index +1&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.gname&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.price&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.num&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;商品价格*商品数量&lt;&#x2F;td&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br></pre></td></tr></table></figure><p>就像如此总价格需要<strong>商品价格*商品数量</strong> 进行乘法运算 但在模版渲染里乘法符号是个字符串，所有需要在方法里面定义和计算</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">all:function()&#123;</span><br><span class="line">    let list &#x3D; this.carlist;</span><br><span class="line">    for(let i&#x3D;0,l&#x3D;list.length;i&lt;l;i++)&#123;</span><br><span class="line">        var total &#x3D; list[i][&#39;price&#39;] * list[i][&#39;num&#39;]</span><br><span class="line">        this.allmoney &#x3D; total</span><br><span class="line">        &#125;</span><br><span class="line">        return total</span><br><span class="line">    &#125;           </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>之后 将 商品价格*商品数量 换成 all()</p><p>因为这里调用的是<strong>方法</strong>使用需要加上（）</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Vue </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Navicat Premium15安装与激活</title>
       <link href="/2020/04/28/Blog/seven/"/>
       <url>/2020/04/28/Blog/seven/</url>
@@ -1769,6 +1744,31 @@
     
     
     <entry>
+      <title>Vue中从数据库查询单的数据进行运算</title>
+      <link href="/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/"/>
+      <url>/2020/04/28/Note/%E6%95%B0%E6%8D%AE%E8%BF%90%E7%AE%97/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="Vue中从数据库查询单的数据进行运算"><a href="#Vue中从数据库查询单的数据进行运算" class="headerlink" title="Vue中从数据库查询单的数据进行运算"></a>Vue中从数据库查询单的数据进行运算</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> &lt;tr&gt;</span><br><span class="line">    &lt;th&gt;商品序号&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品名称&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;商品价格&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;购买数量&lt;&#x2F;th&gt;</span><br><span class="line">    &lt;th&gt;总价格&lt;&#x2F;th&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br><span class="line">&lt;tr v-for&#x3D;&quot;(item,index) in carlist&quot; :key&#x3D;&quot;index&quot;&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;index +1&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.gname&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.price&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;&#123;&#123;item.num&#125;&#125;&lt;&#x2F;td&gt;</span><br><span class="line">    &lt;td&gt;商品价格*商品数量&lt;&#x2F;td&gt;</span><br><span class="line">&lt;&#x2F;tr&gt;</span><br></pre></td></tr></table></figure><p>就像如此总价格需要<strong>商品价格*商品数量</strong> 进行乘法运算 但在模版渲染里乘法符号是个字符串，所有需要在方法里面定义和计算</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">all:function()&#123;</span><br><span class="line">    let list &#x3D; this.carlist;</span><br><span class="line">    for(let i&#x3D;0,l&#x3D;list.length;i&lt;l;i++)&#123;</span><br><span class="line">        var total &#x3D; list[i][&#39;price&#39;] * list[i][&#39;num&#39;]</span><br><span class="line">        this.allmoney &#x3D; total</span><br><span class="line">        &#125;</span><br><span class="line">        return total</span><br><span class="line">    &#125;           </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>之后 将 商品价格*商品数量 换成 all()</p><p>因为这里调用的是<strong>方法</strong>使用需要加上（）</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Git联合开发注意事项</title>
       <link href="/2020/04/21/Note/git%E8%81%94%E5%90%88%E5%BC%80%E5%8F%91/"/>
       <url>/2020/04/21/Note/git%E8%81%94%E5%90%88%E5%BC%80%E5%8F%91/</url>
@@ -1785,9 +1785,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Vue </tag>
+            
+            <tag> Python </tag>
             
             <tag> Git </tag>
             
@@ -1967,9 +1967,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Vue </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -2007,31 +2007,6 @@
     
     
     <entry>
-      <title>总结Vue自定义过滤器</title>
-      <link href="/2020/04/08/Note/%E8%BF%87%E6%BB%A4%E5%99%A8/"/>
-      <url>/2020/04/08/Note/%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr><p>有的时候，有些数据是半动态的，即数据的一部分是变化的，一部分是固定不变或者也可能能动态，但是这种动态是相对比较少的。那么我可以使用过滤器来对数据进行一步优化过滤。在vue中提供了Vue.filter(‘flterName’,fn)来定义一个过滤器，过滤器可以在HTML代码中使用，如对动态拿到的数据进行过滤，</p><hr><p>1.定义过滤器</p><p>第一个参数是过滤器的名字</p><p>第二个参数是过滤器的功能函数。如果不定义，vue也不知道你这个字符串是什么，有什么作用。</p><p>2.过滤器功能函数</p><p>第一个参数是传入的要过滤数据，即原数据。</p><p>第二个参数开始就是html调用过滤器的时候传入的参数。</p><h4 id="错误运用过滤器"><a href="#错误运用过滤器" class="headerlink" title="错误运用过滤器"></a>错误运用过滤器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">  &#x2F;&#x2F; 自定用户义方法</span><br><span class="line">  user_filter(value) &#123;</span><br><span class="line">    &#x2F;&#x2F; 通过key(用户id)取用户名</span><br><span class="line">    return this.myuser[value]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure><h4 id="正确使用过滤器"><a href="#正确使用过滤器" class="headerlink" title="正确使用过滤器"></a>正确使用过滤器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">  &#x2F;&#x2F; 自定用户义方法</span><br><span class="line">  user_filter(value) &#123;</span><br><span class="line">    &#x2F;&#x2F; 通过key(用户id)取用户名</span><br><span class="line">    return window.that.myuser[value]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Vue </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Docker镜像安装与启动</title>
       <link href="/2020/04/08/Note/docker%E9%95%9C%E5%83%8F/"/>
       <url>/2020/04/08/Note/docker%E9%95%9C%E5%83%8F/</url>
@@ -2048,9 +2023,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Vue </tag>
+            
+            <tag> Python </tag>
             
         </tags>
       
@@ -2076,6 +2051,31 @@
         <tags>
             
             <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>总结Vue自定义过滤器</title>
+      <link href="/2020/04/08/Note/%E8%BF%87%E6%BB%A4%E5%99%A8/"/>
+      <url>/2020/04/08/Note/%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><hr><p>有的时候，有些数据是半动态的，即数据的一部分是变化的，一部分是固定不变或者也可能能动态，但是这种动态是相对比较少的。那么我可以使用过滤器来对数据进行一步优化过滤。在vue中提供了Vue.filter(‘flterName’,fn)来定义一个过滤器，过滤器可以在HTML代码中使用，如对动态拿到的数据进行过滤，</p><hr><p>1.定义过滤器</p><p>第一个参数是过滤器的名字</p><p>第二个参数是过滤器的功能函数。如果不定义，vue也不知道你这个字符串是什么，有什么作用。</p><p>2.过滤器功能函数</p><p>第一个参数是传入的要过滤数据，即原数据。</p><p>第二个参数开始就是html调用过滤器的时候传入的参数。</p><h4 id="错误运用过滤器"><a href="#错误运用过滤器" class="headerlink" title="错误运用过滤器"></a>错误运用过滤器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">  &#x2F;&#x2F; 自定用户义方法</span><br><span class="line">  user_filter(value) &#123;</span><br><span class="line">    &#x2F;&#x2F; 通过key(用户id)取用户名</span><br><span class="line">    return this.myuser[value]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure><h4 id="正确使用过滤器"><a href="#正确使用过滤器" class="headerlink" title="正确使用过滤器"></a>正确使用过滤器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">filters: &#123;</span><br><span class="line">  &#x2F;&#x2F; 自定用户义方法</span><br><span class="line">  user_filter(value) &#123;</span><br><span class="line">    &#x2F;&#x2F; 通过key(用户id)取用户名</span><br><span class="line">    return window.that.myuser[value]</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Vue </tag>
             
         </tags>
       
