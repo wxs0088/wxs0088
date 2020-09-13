@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>A-star寻路算法</title>
+      <link href="/2020/09/13/Blog/%E5%AF%BB%E8%B7%AF%E7%AE%97%E6%B3%95/"/>
+      <url>/2020/09/13/Blog/%E5%AF%BB%E8%B7%AF%E7%AE%97%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="什么是寻路算法"><a href="#什么是寻路算法" class="headerlink" title="什么是寻路算法"></a>什么是寻路算法</h3><p>在英雄联盟之中，当你和你的队友都苦苦修炼到十八级的时候，仍然与敌方阵营不分胜负，就在你刚买好装备已经神装的时候，你看见信息框中一条队友的消息：“大龙集合”，这个时候你鼠标移到大龙处，轻点右键，然后你就像一个吃瓜群众一样盯着你的英雄，看他走进野区小路，因为你买了日炎斗篷，路过三狼的时候三狼还追着你咬了几口，你的英雄也没有去理会，三狼可算是出了一口气，牛逼坏了！然后你还顺路采了几个蘑菇，因烫到了蓝buff被蓝buff追杀。就连河道里的河蟹都想咬你一口为你在三级的时候杀了它的爷爷而报仇。然而你还是在临死前来到大龙面前，你还没动大龙一根汗毛，就被大龙一个甩尾干趴下了，这时候你旁边的妹纸还很疑惑，你得显示器怎么突然坏掉了，变成黑白的了。</p><p>那么问题来了，为什么野区套路那么深，而你的英雄不选择走大路沿河道到大龙呢？因为你每确定一个目标，你的英雄就会沿着最短的路线前往。那么你的英雄是怎么找到最近的路线呢？如果你觉的很简单，你自己也能找到，你有你的英雄找的快吗？当你确定目标的时候你的英雄可不是东张西望让后才开始走，更不会走一半发现不对劲有自己回去重头再来。你也许开始对这个问题感兴趣了，那些游戏中的英雄人物是怎么做到的？如果你不玩游戏，那么你肯定用过导航软件，你应该会好奇它是怎么做到的。</p><p>例如：下面的图片中，小人想要找到五角星，主要有2条路径，一条是蓝色部分，从上面开始寻找，此时总步数为9步；另外一种就是从下面开始寻找，此时总步数为7步，我们通过步数得出，最短路径的步数为7步。这与LOL里面的英雄寻路一样的道理。</p><p><img src= "/img/loading.gif" data-src="http://wangxs020202.gitee.io/pbad/skill-geek/a-star.jpg" alt="a-star"></p><hr><p><a href="https://zh.wikipedia.org/wiki/A*%E6%90%9C%E5%B0%8B%E6%BC%94%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">A-star搜索算法</a>是一种在图形平面上，有多个节点的路径，求出最低通过成本的算法。常用于游戏中的NPC的移动计算，或网络游戏的BOT的移动计算上。<br>该算法综合了最良优先搜索和Dijkstra算法的优点：在进行启发式搜索提高算法效率的同时，可以保证找到一条最优路径（基于评估函数）。<br>在此算法中，如果以<strong>g(n)</strong>表示从起点到任意顶点<strong>n</strong>的实际距离，<strong>h(n)</strong>表示任意顶点<strong>n</strong>到目标顶点的估算距离（根据所采用的评估函数的不同而变化），那么A<em>算法的估算函数为：*</em>f(n) = g(n) + h(n)**</p><p>这个公式遵循以下特性：</p><ul><li>如果<strong>g(n)</strong>为0，即只计算任意顶点<strong>n</strong>到目标的评估函数<strong>h(n)</strong>，而不计算起点到顶点<strong>n</strong>的距离，则算法转化为使用贪心策略的最良优先搜索，速度最快，但可能得不出最优解；</li><li>如果<strong>h(n)</strong>不大于顶点<strong>n</strong>到目标顶点的实际距离，则一定可以求出最优解，而且<strong>h(n)</strong>越小，需要计算的节点越多，算法效率越低，常见的评估函数有——欧几里得距离、曼哈顿距离、切比雪夫距离；</li><li>如果<strong>h(n)</strong>为0，即只需求出起点到任意顶点<strong>n</strong>的最短路径<strong>g(n)</strong>，而不计算任何评估函数<strong>h(n)</strong>，则转化为单源最短路径问题，即Dijkstra算法，此时需要计算最多的顶点；</li></ul><p><strong>来自维基百科</strong></p><hr><h3 id="算法核心"><a href="#算法核心" class="headerlink" title="算法核心"></a>算法核心</h3><p><strong>A-star算法核心公式F值的计算</strong></p><p>F = G + H</p><p>F - 方块的总移动代价<br>G - 开始点到当前方块的移动代价<br>H - 当前方块到结束点的预估移动代价</p><p>以下详细解释这个公式，方便更好地理解它。</p><p><strong>G值是怎么计算的？</strong><br>假设现在我们在某一格子，邻近有8个格子可走，当我们往上、下、左、右这4个格子走时，移动代价为10；当往左上、左下、右上、右下这4个格子走时，移动代价为14；即走斜线的移动代价为走直线的1.4倍。<br>这就是G值最基本的计算方式，适用于大多数2.5Drpg页游。</p><p>基本公式：<br>G = 移动代价</p><p>根据游戏需要，G值的计算可以进行拓展。如加上地形因素对寻路的影响。格子地形不同，那么选择通过不同地形格子，移动代价肯定不同。同一段路，平地地形和丘陵地形，虽然都可以走，但平地地形显然更易走。<br>我们可以给不同地形赋予不同代价因子，来体现出G值的差异。如给平地地形设置代价因子为1，丘陵地形为2，在移动代价相同情况下，平地地形的G值更低，算法就会倾向选择G值更小的平地地形（例如：吃鸡类的游戏）。</p><p>拓展公式：<br>G = 移动代价 * 代价因子</p><p><strong>H值是如何预估出来的？</strong><br>很显然，在只知道当前点，结束点，不知道这两者的路径情况下，我们无法精确地确定H值大小，所以只能进行预估。<br>有多种方式可以预估H值，如曼哈顿距离、欧式距离、对角线估价，最常用最简单的方法就是使用曼哈顿距离进行预估：<br>H = 当前方块到结束点的水平距离 + 当前方块到结束点的垂直距离（曼哈顿距离：<strong>C = |x1 - x2| + |y1 - y2|</strong>(把两个点坐标的 x 坐标相减取绝对值，y 坐标相减取绝对值，再加和。)）</p><p>题外话：A星算法之所以被认为是具有启发策略的算法，在于其可通过预估H值，降低走弯路的可能性，更容易找到一条更短的路径。其他不具有启发策略的算法，没有做预估处理，只是穷举出所有可通行路径，然后从中挑选一条最短的路径。这也是A星算法效率更高的原因。</p><p><strong>每个方块的G值、H值是怎么确定的呢？</strong><br>G值 = 父节点的G值 + 父节点到当前点的移动代价<br>H值 = 当前点到结束点的曼哈顿距离</p><p>最后，A星算法还需要用到两个列表：<br><strong>开放列表</strong> - 用于记录所有可考虑选择的格子<br><strong>封闭列表</strong> - 用于记录所有不再考虑的格子</p><p>以上就是要完成A星算法所需要的东西,而算法的过程并不复杂。</p><p><strong>A星算法伪码：</strong><br>a、将开始点记录为当前点P<br>b、将当前点P放入封闭列表<br>c、搜寻点P所有邻近点，假如某邻近点既没有在开放列表或封闭列表里面，则计算出该邻近点的F值，并设父节点为P，然后将其放入开放列表<br>d、判断开放列表是否已经空了，如果没有说明在达到结束点前已经找完了所有可能的路径点，寻路失败，算法结束；否则继续。<br>e、从开放列表拿出一个F值最小的点，作为寻路路径的下一步。<br>f、判断该点是否为结束点，如果是，则寻路成功，算法结束；否则继续。<br>g、将该点设为当前点P，跳回步骤c。</p><p><strong>后续优化</strong></p><p>以上就是A星算法最基本的原理，明白了基本原理，用2,3百行代码写出一个可用的A星算法并不难。当然A星算法在实际应用中不仅于此，还可以对细节进行优化：</p><p>1、选择排序更快的二叉树来作为开放列表，帮助我们更快地从开放列表中取出F值最小的点；</p><p>2、对何种情况下可以走斜线路径加以判断；</p><p>3、采用布兰森汉姆算法预先判断两点是否可以直接通行，可通行就直接返回两点的直线路径，不可直接通行再采用A星算法寻路，提高寻路效率；</p><p>4、A星算法得出寻路路径后，可采用弗洛伊德算法对路径进行平滑处理，使人物走动更为自然</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 · 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C语言-常量</title>
       <link href="/2020/09/09/Note/C-constant/"/>
       <url>/2020/09/09/Note/C-constant/</url>
@@ -179,31 +204,6 @@
     
     
     <entry>
-      <title>Python下文件读写open与codecs.open</title>
-      <link href="/2020/08/19/Blog/codecs/"/>
-      <url>/2020/08/19/Blog/codecs/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h3><p>读写文件是最常见的IO操作。Python内置了读写文件的函数，用法和C是兼容的。</p><p>读写文件前，我们先必须了解一下，在磁盘上读写文件的功能都是由操作系统提供的，现代操作系统不允许普通的程序直接操作磁盘，所以，读写文件就是请求操作系统打开一个文件对象（通常称为文件描述符），然后，通过操作系统提供的接口从这个文件对象中读取数据（读文件），或者把数据写入这个文件对象（写文件）。</p><p>当我面有数据需要保存时，第一时间一般会想到写到一个txt文件中，当然，数据量比较大的时候还是写到数据库比较方便管理，需要进行网络传输时要序列化，json化。下面主要整理一下平时用的最多的写入到文件中，一般以txt结尾，linux里不会以后缀来区分文件类型，后缀可以随便，也可以没有。</p><h3 id="open"><a href="#open" class="headerlink" title="open"></a>open</h3><p>python读写文件估计大家都用open内置函数，或者file这个工厂函数，这两个的效果基本一样。</p><p>打开文件的方式一般为：<code>f=open(file_name,access_mode = &#39;r&#39;,buffering = -1)。</code>file_name就是文件的路径加文件名字，不加路径则文件会存放在python程序的路径下，</p><p>access_mode就是操作文件的模式，主要有r,w,rb，wb等，细节网上一大堆,buffering = -1是用于指示访问文件所采用的缓存方式。0表示不缓存；1表示只缓存一行，n代表缓存n行。如果不提供或为负数，则代表使用系统默认的缓存机制。</p><p>打开以后就是写和读的操作。但是用open方法打开会有一些问题。open打开文件只能写入str类型,不管字符串是什么编码方式。例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr = open(<span class="string">'test.txt'</span>,<span class="string">'a'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>line1 = <span class="string">"我爱祖国"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr.write(line1)</span><br></pre></td></tr></table></figure><p>这样是完全可以的。</p><h3 id="codecs-open"><a href="#codecs-open" class="headerlink" title="codecs.open"></a>codecs.open</h3><p>但是有时候我们爬虫或者其他方式得到一些数据写入文件时会有编码不统一的问题，所以就一般都统一转换为unicode。此时写入open方式打开的文件就有问题了。例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line2 = <span class="string">u'我爱祖国'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr.write(line2)</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"> File <span class="string">"&lt;pyshell#4&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  fr.write(line2)</span><br><span class="line">UnicodeEncodeError: <span class="string">'ascii'</span> codec can<span class="string">'t encode characters in position 0-11: ordinal not in range(128)</span></span><br><span class="line"><span class="string">&gt;&gt;&gt;</span></span><br></pre></td></tr></table></figure><p>怎么办，我们可以将上面的line2编码成str类型，但是太麻烦。我们要把得到的东西先decode为unicode再encode为str。。。</p><p><code>input文件(gbk, utf-8...)  ----decode-----&gt;  unicode -------encode------&gt; output文件(gbk, utf-8...)</code></p><p>代替这繁琐的操作就是codecs.open，例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> codecs</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fw = codecs.open(<span class="string">'test1.txt'</span>,<span class="string">'a'</span>,<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fw.write(line2)</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><p>不会报错，说明写入成功。这种方法可以指定一个编码打开文件，使用这个方法打开的文件读取返回的将是unicode。写入时，如果参数 是unicode，则使用open()时指定的编码进行编码后写入；如果是str，则先根据源代码文件声明的字符编码，解码成unicode后再进行前述 操作。相对内置的open()来说，这个方法比较不容易在编码上出现问题。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>文件读尽量用第二种方法，一般不会出现编码的问题。至于用第二种方法有什么缺点，我没有研究过。。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 · 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>shutil---高阶文件操作</title>
       <link href="/2020/08/19/Blog/shutil/"/>
       <url>/2020/08/19/Blog/shutil/</url>
@@ -229,23 +229,23 @@
     
     
     <entry>
-      <title>docker配置热加载(设置共享文件夹用来配合Docker的挂载)</title>
-      <link href="/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/"/>
-      <url>/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/</url>
+      <title>Python下文件读写open与codecs.open</title>
+      <link href="/2020/08/19/Blog/codecs/"/>
+      <url>/2020/08/19/Blog/codecs/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前几次我们<a href="https://www.sirxs.cn/2020/07/20/Blog/docker%E4%BD%BF%E7%94%A8/">在Win10系统下利用Docker部署Gunicorn+Flask打造独立镜像</a>，在docker内启动服务后根据docker的IP可以实现数据访问，但是我们在本地修改代码之后，在docker内启动并没有实现。这时我们就需要重新打包镜像，是不是很麻烦。当然也有解决的办法，那就是我们今天说的docker配置热加载</p><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol><li><p>首先在项目文件<code>gunicorn.conf.py</code>，中添加</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reload = <span class="literal">True</span></span><br></pre></td></tr></table></figure></li><li><p>之后我们需要在<code>Oracle VM VirtualBox</code>内创建本地项目的共享文件,如下图</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re1.png" alt=""></p></li><li><p>导入本地服务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re2.png" alt=""></p><p><strong>选择固定分配，选择后该共享文件将是永久性的</strong></p></li><li><p>搞定之后关闭<code>Oracle VM VirtualBox</code>，重新启动docker</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re3.png" alt=""></p></li><li><p>输入命令进入默认容器</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-machine ssh default</span><br></pre></td></tr></table></figure></li><li><p>进入容器根目录查看刚刚设置的共享文件</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re4.png" alt=""></p><p><strong>ok，没问题</strong></p></li><li><p>最后退出默认容器，启动项目</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm -v /共享文件名/:项目Dockerfile文件中的WORKDIR -p 5000:5000 flask_back</span><br><span class="line"><span class="comment"># -P 指定端口映射，格式为：主机(宿主)端口:容器端口</span></span><br></pre></td></tr></table></figure><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re5.png" alt=""></p><p><strong>启动成功，没有问题</strong></p></li><li><p>查看效果</p><p><strong>通过docker的IP访问5000</strong></p><ul><li><p>没有修改前</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re6.png" alt=""></p></li><li><p>修改之后</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re7.png" alt=""></p></li></ul></li></ol><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>设置共享文件夹用来配合Docker的挂载，是很不错的选择，这样我们就不想要每次更改之后再次打包镜像。。。</p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h3><p>读写文件是最常见的IO操作。Python内置了读写文件的函数，用法和C是兼容的。</p><p>读写文件前，我们先必须了解一下，在磁盘上读写文件的功能都是由操作系统提供的，现代操作系统不允许普通的程序直接操作磁盘，所以，读写文件就是请求操作系统打开一个文件对象（通常称为文件描述符），然后，通过操作系统提供的接口从这个文件对象中读取数据（读文件），或者把数据写入这个文件对象（写文件）。</p><p>当我面有数据需要保存时，第一时间一般会想到写到一个txt文件中，当然，数据量比较大的时候还是写到数据库比较方便管理，需要进行网络传输时要序列化，json化。下面主要整理一下平时用的最多的写入到文件中，一般以txt结尾，linux里不会以后缀来区分文件类型，后缀可以随便，也可以没有。</p><h3 id="open"><a href="#open" class="headerlink" title="open"></a>open</h3><p>python读写文件估计大家都用open内置函数，或者file这个工厂函数，这两个的效果基本一样。</p><p>打开文件的方式一般为：<code>f=open(file_name,access_mode = &#39;r&#39;,buffering = -1)。</code>file_name就是文件的路径加文件名字，不加路径则文件会存放在python程序的路径下，</p><p>access_mode就是操作文件的模式，主要有r,w,rb，wb等，细节网上一大堆,buffering = -1是用于指示访问文件所采用的缓存方式。0表示不缓存；1表示只缓存一行，n代表缓存n行。如果不提供或为负数，则代表使用系统默认的缓存机制。</p><p>打开以后就是写和读的操作。但是用open方法打开会有一些问题。open打开文件只能写入str类型,不管字符串是什么编码方式。例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr = open(<span class="string">'test.txt'</span>,<span class="string">'a'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>line1 = <span class="string">"我爱祖国"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr.write(line1)</span><br></pre></td></tr></table></figure><p>这样是完全可以的。</p><h3 id="codecs-open"><a href="#codecs-open" class="headerlink" title="codecs.open"></a>codecs.open</h3><p>但是有时候我们爬虫或者其他方式得到一些数据写入文件时会有编码不统一的问题，所以就一般都统一转换为unicode。此时写入open方式打开的文件就有问题了。例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line2 = <span class="string">u'我爱祖国'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr.write(line2)</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"> File <span class="string">"&lt;pyshell#4&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  fr.write(line2)</span><br><span class="line">UnicodeEncodeError: <span class="string">'ascii'</span> codec can<span class="string">'t encode characters in position 0-11: ordinal not in range(128)</span></span><br><span class="line"><span class="string">&gt;&gt;&gt;</span></span><br></pre></td></tr></table></figure><p>怎么办，我们可以将上面的line2编码成str类型，但是太麻烦。我们要把得到的东西先decode为unicode再encode为str。。。</p><p><code>input文件(gbk, utf-8...)  ----decode-----&gt;  unicode -------encode------&gt; output文件(gbk, utf-8...)</code></p><p>代替这繁琐的操作就是codecs.open，例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> codecs</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fw = codecs.open(<span class="string">'test1.txt'</span>,<span class="string">'a'</span>,<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fw.write(line2)</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><p>不会报错，说明写入成功。这种方法可以指定一个编码打开文件，使用这个方法打开的文件读取返回的将是unicode。写入时，如果参数 是unicode，则使用open()时指定的编码进行编码后写入；如果是str，则先根据源代码文件声明的字符编码，解码成unicode后再进行前述 操作。相对内置的open()来说，这个方法比较不容易在编码上出现问题。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>文件读尽量用第二种方法，一般不会出现编码的问题。至于用第二种方法有什么缺点，我没有研究过。。</p>]]></content>
       
       
       <categories>
           
-          <category> 总结 · 笔记 </category>
+          <category> 编程 · 技术 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Docker </tag>
+            <tag> Python </tag>
             
         </tags>
       
@@ -273,6 +273,31 @@
             <tag> Docker </tag>
             
             <tag> Elasticsearch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>docker配置热加载(设置共享文件夹用来配合Docker的挂载)</title>
+      <link href="/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/"/>
+      <url>/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前几次我们<a href="https://www.sirxs.cn/2020/07/20/Blog/docker%E4%BD%BF%E7%94%A8/">在Win10系统下利用Docker部署Gunicorn+Flask打造独立镜像</a>，在docker内启动服务后根据docker的IP可以实现数据访问，但是我们在本地修改代码之后，在docker内启动并没有实现。这时我们就需要重新打包镜像，是不是很麻烦。当然也有解决的办法，那就是我们今天说的docker配置热加载</p><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol><li><p>首先在项目文件<code>gunicorn.conf.py</code>，中添加</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reload = <span class="literal">True</span></span><br></pre></td></tr></table></figure></li><li><p>之后我们需要在<code>Oracle VM VirtualBox</code>内创建本地项目的共享文件,如下图</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re1.png" alt=""></p></li><li><p>导入本地服务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re2.png" alt=""></p><p><strong>选择固定分配，选择后该共享文件将是永久性的</strong></p></li><li><p>搞定之后关闭<code>Oracle VM VirtualBox</code>，重新启动docker</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re3.png" alt=""></p></li><li><p>输入命令进入默认容器</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-machine ssh default</span><br></pre></td></tr></table></figure></li><li><p>进入容器根目录查看刚刚设置的共享文件</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re4.png" alt=""></p><p><strong>ok，没问题</strong></p></li><li><p>最后退出默认容器，启动项目</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm -v /共享文件名/:项目Dockerfile文件中的WORKDIR -p 5000:5000 flask_back</span><br><span class="line"><span class="comment"># -P 指定端口映射，格式为：主机(宿主)端口:容器端口</span></span><br></pre></td></tr></table></figure><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re5.png" alt=""></p><p><strong>启动成功，没有问题</strong></p></li><li><p>查看效果</p><p><strong>通过docker的IP访问5000</strong></p><ul><li><p>没有修改前</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re6.png" alt=""></p></li><li><p>修改之后</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re7.png" alt=""></p></li></ul></li></ol><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>设置共享文件夹用来配合Docker的挂载，是很不错的选择，这样我们就不想要每次更改之后再次打包镜像。。。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
             
         </tags>
       
@@ -813,6 +838,25 @@
     
     
     <entry>
+      <title>个人微信公众号申请以及添加机器人</title>
+      <link href="/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
+      <url>/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="开场"><a href="#开场" class="headerlink" title="开场"></a>开场</h3><p>微信（<a href="https://baike.baidu.com/item/WeChat" target="_blank" rel="noopener">WeChat</a>）是<a href="https://baike.baidu.com/item/腾讯公司" target="_blank" rel="noopener">腾讯公司</a>于2011年1月21日推出的一个为<a href="https://baike.baidu.com/item/智能终端" target="_blank" rel="noopener">智能终端</a>提供<a href="https://baike.baidu.com/item/即时通讯/111144" target="_blank" rel="noopener">即时通讯</a>服务的免费<a href="https://baike.baidu.com/item/应用程序" target="_blank" rel="noopener">应用程序</a> ，由<a href="https://baike.baidu.com/item/张小龙/24795" target="_blank" rel="noopener">张小龙</a>所带领的腾讯<a href="https://baike.baidu.com/item/广州/72101" target="_blank" rel="noopener">广州</a>研发中心产品团队打造 。微信支持跨通信<a href="https://baike.baidu.com/item/运营商/4530550" target="_blank" rel="noopener">运营商</a>、跨<a href="https://baike.baidu.com/item/操作系统/192" target="_blank" rel="noopener">操作系统</a>平台通过网络快速发送免费（需消耗少量网络流量）<a href="https://baike.baidu.com/item/语音短信/8430295" target="_blank" rel="noopener">语音短信</a>、<a href="https://baike.baidu.com/item/视频/321962" target="_blank" rel="noopener">视频</a>、<a href="https://baike.baidu.com/item/图片/372416" target="_blank" rel="noopener">图片</a>和文字，同时，也可以使用通过共享<a href="https://baike.baidu.com/item/流媒体/98740" target="_blank" rel="noopener">流媒体</a>内容的资料和基于位置的社交插件“<a href="https://baike.baidu.com/item/摇一摇/14079911" target="_blank" rel="noopener">摇一摇</a>”、“<a href="https://baike.baidu.com/item/漂流瓶/5706027" target="_blank" rel="noopener">漂流瓶</a>”、“<a href="https://baike.baidu.com/item/朋友圈/17341022" target="_blank" rel="noopener">朋友圈</a>”、”<a href="https://baike.baidu.com/item/公众平台/3274590" target="_blank" rel="noopener">公众平台</a>“、”<a href="https://baike.baidu.com/item/语音记事本" target="_blank" rel="noopener">语音记事本</a>“等服务插件。</p><p>微信公众平台，简称公众号。利用公众账号平台进行自媒体活动，简单来说就是进行一对多的媒体性行为活动，如商家通过申请公众微信服务号通过二次开发展示商家微官网、微会员、微推送、<a href="https://baike.baidu.com/item/微支付/10360089" target="_blank" rel="noopener">微支付</a>、微活动、微报名、微分享、<a href="https://baike.baidu.com/item/微名片/9824840" target="_blank" rel="noopener">微名片</a>等，已经形成了一种主流的线上线下微信互动营销方式。</p><h3 id="申请微信公众号"><a href="#申请微信公众号" class="headerlink" title="申请微信公众号"></a>申请微信公众号</h3><ol><li><p>打开微信公众平台官网：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a> 右上角点击“立即注册”；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/7b4101870f94370b73d5cd6aec92f22e.jpg" alt="wechar"></p></li><li><p>选择帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/9bbe5e53e78ec43d06afc8029f805d4f.png" alt="wechar"></p></li><li><p>填写邮箱，登录您的邮箱，查看激活邮件，填写邮箱验证码激活；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/07fcbb9c84b54592a84c1e41c7427593.png" alt="wechar"></p></li></ol><p>   <img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/8adfac5a79153e3419f430e8a179a8c4.png" alt="wechar"></p><ol start="4"><li><p>了解订阅号、服务号和企业微信的区别后，选择想要的帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/e88a2daa703d10c3f65f654f9e494b4a.jpg" alt="wechar"></p></li><li><p>下图为订阅号、服务号和企业微信的在手机端展示效果</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/5fe805b2f2114cb1f4e5bc89192363a6.jpg" alt="wechar"></p></li><li><p>信息登记，选择个人类型之后，填写身份证信息</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/c6f85f4e01d0f26b8c1a3d3be8e768ad.png" alt="wechar"></p></li><li><p>填写帐号信息，包括公众号名称、功能介绍，选择运营地区</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/d64f5ba1ae908f4d918fd9ddc948b642.png" alt="wechar"></p></li><li><p>恭喜注册成功！可以开始使用公众号了~</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/08b8812718edff4c23e5e21dc0f8e94d.jpg" alt="wechar"></p></li></ol><h3 id="给公众号添加机器人"><a href="#给公众号添加机器人" class="headerlink" title="给公众号添加机器人"></a>给公众号添加机器人</h3><ol><li><p>打开图灵机器人官网：<a href="http://www.turingapi.com/" target="_blank" rel="noopener">http://www.turingapi.com/</a>，进行<code>注册登陆</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling1.png" alt="gitee"></p></li><li><p>进入之后，点击<code>创建机器人</code>，每个人最多免费申请五个机器人。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling2.png" alt="gitee"></p></li><li><p>填写信息</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling3.png" alt="gitee"></p></li><li><p>创建成功之后进入创建好的机器人的<code>终端设置</code>，找到<code>添加微信公众号</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling4.png" alt="gitee"></p></li><li><p>使用之前创建公众号的管理员微信扫描，授权</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling5.png" alt="gitee"></p></li><li><p>使用效果还是挺不错的</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling6.png" alt="gitee"></p></li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>使用个人公众号有什么好处：</p><ul><li><p><strong>赞赏作者</strong></p></li><li><p><strong>广告收入</strong></p><p>很多商家都需要打广告，以前他们都是在 电视、公交车打广告，现在手机是最多人使用的，微信公众号也是最多人看的，把广告打在公众号里面，可能效果会更好，因此很多商家都会找有粉丝的公众号合作，给钱在公众号上写文章，如果他们找到你，要在你公众号投放广告，广告费就非常不错了，目前广告是公众号做着变现的最主流的方式，流量就是钱，比如，目前做的比较好的咪蒙的广告费用，一篇文章就要100万元左右。</p></li><li><p><strong>电商</strong></p><p>微信最近公众号改版后，可在公众号文章直接插入商品，可通过分销产品，公众号主获得商品提成，如果你不想帮别人打广告，可以自己做电商广告，比如我卖茶叶的，我可以自己做商品，在自己公众号打广告，这种就叫做自媒体电商，如果你的粉丝足够大，电商收入肯定非常高。</p></li><li><p><strong>知识付费</strong></p><p>很多公众号主，获得了很多忠实的粉丝，他的成功经验可以做成付费课程，通过做付费课程变现也是很常见的方式，知识付费就是包括出书、线下沙龙、线上知识、付费社群等方式。</p></li><li><p><strong>卖公众号</strong></p><p>卖公众号这种一般都是批量做号的公司做的，他们都是形成了标准化运作，只有IP主号粉丝在，不断的养号做号，把粉丝聚集起来，迁移卖给别人，这种交易模式现在很成熟，一般一个十万粉丝的质量号，能够卖三十万左右，具体看号的类型和质量，总之，卖公众号也是非常赚钱的，其实本质上，就是卖粉丝，这也是非常重要的变现方式。</p></li></ul><p><strong>当然了我们可能做不到那么好，但是成功都是慢慢积累的，如果你掌握了这个技能，并且好好运营，成功也是在情理之中的。</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 生活 · 日记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Redis持久化</title>
       <link href="/2020/06/08/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/"/>
       <url>/2020/06/08/Note/reids%E6%8C%81%E4%B9%85%E5%8C%96/</url>
@@ -832,25 +876,6 @@
             <tag> Redis </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>个人微信公众号申请以及添加机器人</title>
-      <link href="/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
-      <url>/2020/06/08/Live/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="开场"><a href="#开场" class="headerlink" title="开场"></a>开场</h3><p>微信（<a href="https://baike.baidu.com/item/WeChat" target="_blank" rel="noopener">WeChat</a>）是<a href="https://baike.baidu.com/item/腾讯公司" target="_blank" rel="noopener">腾讯公司</a>于2011年1月21日推出的一个为<a href="https://baike.baidu.com/item/智能终端" target="_blank" rel="noopener">智能终端</a>提供<a href="https://baike.baidu.com/item/即时通讯/111144" target="_blank" rel="noopener">即时通讯</a>服务的免费<a href="https://baike.baidu.com/item/应用程序" target="_blank" rel="noopener">应用程序</a> ，由<a href="https://baike.baidu.com/item/张小龙/24795" target="_blank" rel="noopener">张小龙</a>所带领的腾讯<a href="https://baike.baidu.com/item/广州/72101" target="_blank" rel="noopener">广州</a>研发中心产品团队打造 。微信支持跨通信<a href="https://baike.baidu.com/item/运营商/4530550" target="_blank" rel="noopener">运营商</a>、跨<a href="https://baike.baidu.com/item/操作系统/192" target="_blank" rel="noopener">操作系统</a>平台通过网络快速发送免费（需消耗少量网络流量）<a href="https://baike.baidu.com/item/语音短信/8430295" target="_blank" rel="noopener">语音短信</a>、<a href="https://baike.baidu.com/item/视频/321962" target="_blank" rel="noopener">视频</a>、<a href="https://baike.baidu.com/item/图片/372416" target="_blank" rel="noopener">图片</a>和文字，同时，也可以使用通过共享<a href="https://baike.baidu.com/item/流媒体/98740" target="_blank" rel="noopener">流媒体</a>内容的资料和基于位置的社交插件“<a href="https://baike.baidu.com/item/摇一摇/14079911" target="_blank" rel="noopener">摇一摇</a>”、“<a href="https://baike.baidu.com/item/漂流瓶/5706027" target="_blank" rel="noopener">漂流瓶</a>”、“<a href="https://baike.baidu.com/item/朋友圈/17341022" target="_blank" rel="noopener">朋友圈</a>”、”<a href="https://baike.baidu.com/item/公众平台/3274590" target="_blank" rel="noopener">公众平台</a>“、”<a href="https://baike.baidu.com/item/语音记事本" target="_blank" rel="noopener">语音记事本</a>“等服务插件。</p><p>微信公众平台，简称公众号。利用公众账号平台进行自媒体活动，简单来说就是进行一对多的媒体性行为活动，如商家通过申请公众微信服务号通过二次开发展示商家微官网、微会员、微推送、<a href="https://baike.baidu.com/item/微支付/10360089" target="_blank" rel="noopener">微支付</a>、微活动、微报名、微分享、<a href="https://baike.baidu.com/item/微名片/9824840" target="_blank" rel="noopener">微名片</a>等，已经形成了一种主流的线上线下微信互动营销方式。</p><h3 id="申请微信公众号"><a href="#申请微信公众号" class="headerlink" title="申请微信公众号"></a>申请微信公众号</h3><ol><li><p>打开微信公众平台官网：<a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a> 右上角点击“立即注册”；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/7b4101870f94370b73d5cd6aec92f22e.jpg" alt="wechar"></p></li><li><p>选择帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/9bbe5e53e78ec43d06afc8029f805d4f.png" alt="wechar"></p></li><li><p>填写邮箱，登录您的邮箱，查看激活邮件，填写邮箱验证码激活；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/07fcbb9c84b54592a84c1e41c7427593.png" alt="wechar"></p></li></ol><p>   <img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201802/8adfac5a79153e3419f430e8a179a8c4.png" alt="wechar"></p><ol start="4"><li><p>了解订阅号、服务号和企业微信的区别后，选择想要的帐号类型；</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/e88a2daa703d10c3f65f654f9e494b4a.jpg" alt="wechar"></p></li><li><p>下图为订阅号、服务号和企业微信的在手机端展示效果</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201708/5fe805b2f2114cb1f4e5bc89192363a6.jpg" alt="wechar"></p></li><li><p>信息登记，选择个人类型之后，填写身份证信息</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/c6f85f4e01d0f26b8c1a3d3be8e768ad.png" alt="wechar"></p></li><li><p>填写帐号信息，包括公众号名称、功能介绍，选择运营地区</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201803/d64f5ba1ae908f4d918fd9ddc948b642.png" alt="wechar"></p></li><li><p>恭喜注册成功！可以开始使用公众号了~</p><p><img src= "/img/loading.gif" data-src="http://file.service.qq.com/user-files/uploads/201612/08b8812718edff4c23e5e21dc0f8e94d.jpg" alt="wechar"></p></li></ol><h3 id="给公众号添加机器人"><a href="#给公众号添加机器人" class="headerlink" title="给公众号添加机器人"></a>给公众号添加机器人</h3><ol><li><p>打开图灵机器人官网：<a href="http://www.turingapi.com/" target="_blank" rel="noopener">http://www.turingapi.com/</a>，进行<code>注册登陆</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling1.png" alt="gitee"></p></li><li><p>进入之后，点击<code>创建机器人</code>，每个人最多免费申请五个机器人。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling2.png" alt="gitee"></p></li><li><p>填写信息</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling3.png" alt="gitee"></p></li><li><p>创建成功之后进入创建好的机器人的<code>终端设置</code>，找到<code>添加微信公众号</code></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling4.png" alt="gitee"></p></li><li><p>使用之前创建公众号的管理员微信扫描，授权</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling5.png" alt="gitee"></p></li><li><p>使用效果还是挺不错的</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/tuling6.png" alt="gitee"></p></li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>使用个人公众号有什么好处：</p><ul><li><p><strong>赞赏作者</strong></p></li><li><p><strong>广告收入</strong></p><p>很多商家都需要打广告，以前他们都是在 电视、公交车打广告，现在手机是最多人使用的，微信公众号也是最多人看的，把广告打在公众号里面，可能效果会更好，因此很多商家都会找有粉丝的公众号合作，给钱在公众号上写文章，如果他们找到你，要在你公众号投放广告，广告费就非常不错了，目前广告是公众号做着变现的最主流的方式，流量就是钱，比如，目前做的比较好的咪蒙的广告费用，一篇文章就要100万元左右。</p></li><li><p><strong>电商</strong></p><p>微信最近公众号改版后，可在公众号文章直接插入商品，可通过分销产品，公众号主获得商品提成，如果你不想帮别人打广告，可以自己做电商广告，比如我卖茶叶的，我可以自己做商品，在自己公众号打广告，这种就叫做自媒体电商，如果你的粉丝足够大，电商收入肯定非常高。</p></li><li><p><strong>知识付费</strong></p><p>很多公众号主，获得了很多忠实的粉丝，他的成功经验可以做成付费课程，通过做付费课程变现也是很常见的方式，知识付费就是包括出书、线下沙龙、线上知识、付费社群等方式。</p></li><li><p><strong>卖公众号</strong></p><p>卖公众号这种一般都是批量做号的公司做的，他们都是形成了标准化运作，只有IP主号粉丝在，不断的养号做号，把粉丝聚集起来，迁移卖给别人，这种交易模式现在很成熟，一般一个十万粉丝的质量号，能够卖三十万左右，具体看号的类型和质量，总之，卖公众号也是非常赚钱的，其实本质上，就是卖粉丝，这也是非常重要的变现方式。</p></li></ul><p><strong>当然了我们可能做不到那么好，但是成功都是慢慢积累的，如果你掌握了这个技能，并且好好运营，成功也是在情理之中的。</strong></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 生活 · 日记 </category>
-          
-      </categories>
-      
       
     </entry>
     
@@ -1075,25 +1100,6 @@
     
     
     <entry>
-      <title>Thunder无版权</title>
-      <link href="/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/"/>
-      <url>/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、序幕"><a href="#一、序幕" class="headerlink" title="一、序幕"></a>一、序幕</h3><p>再现当今各大影视平台推出的各种VIP制度，使我们是我们这些‘穷人’已无法生存。</p><p>于是出现了<a href="https://baike.baidu.com/item/BT种子" target="_blank" rel="noopener">BT种子</a>，在这个BT种子泛滥的时代，影视VIP已经在有的人心中抹去。</p><p>说道BT种子好像很多男人都很喜欢比如：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/%E4%B8%8B%E8%BD%BD.jpg" alt="img"></p><p>这个。。。。真是太棒了！！！</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p><p>有了BT种子我们还需要有一个解析工具<a href="https://baike.baidu.com/item/迅雷/33354" target="_blank" rel="noopener">迅雷(Thunder)</a>，迅雷应该是大多数人的电脑或者手机里必备的软件吧！！</p><p>但是：</p><p><img src= "/img/loading.gif" data-src="https://pic4.zhimg.com/80/v2-d5d664989af1c5915c32241df9f71f83_720w.jpg" alt="img"></p><p>这个是不是很讨厌。。</p><hr><h3 id="二、问题"><a href="#二、问题" class="headerlink" title="二、问题"></a>二、问题</h3><p>同样，今天我一如既往的在网上搜索BT种子：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p><p>来到迅雷解析：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder1.png" alt="img"></p><p>这。。。这又不是什么搞颜色的视频，为啥也没有版权？？</p><p>之后，我在网上一顿操作，找到了解决办法！！</p><hr><h3 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h3><ul><li><p>首先我们先下载BT种子到桌面</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder2.png" alt="img"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p></li><li><p>之后我们来到百度云盘（可以是网页版的，也可以是端游版的，我用的是网页版的）</p></li><li><p>找到离线下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder4.png" alt="img"></p></li><li><p>进去，点击新建BT任务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder5.png" alt="img"></p></li><li><p>找到你的BT种子位置，并打开</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder6.png" alt="img"></p></li><li><p>之后选择视频文件，开始下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder7.png" alt="img"></p></li><li><p>可以看到下载速度是非常快的（我用的是网页版的，客户端应该会更快）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder8.png" alt="img"></p></li><li><p>下载完成，点击播放</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder9.png" alt="img"></p></li><li><p>就可以开开心心的看电影了（悄悄拿上纸巾）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder10.png" alt="img"></p></li></ul><p>是不是帮你们解决了没有女朋友的问题呢</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 生活 · 日记 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>JWT</title>
       <link href="/2020/05/31/Note/jwt/"/>
       <url>/2020/05/31/Note/jwt/</url>
@@ -1121,25 +1127,19 @@
     
     
     <entry>
-      <title>VSCode插件-Draw.io</title>
-      <link href="/2020/05/30/Blog/vscode%E6%8F%92%E4%BB%B6-Draw.io/"/>
-      <url>/2020/05/30/Blog/vscode%E6%8F%92%E4%BB%B6-Draw.io/</url>
+      <title>Thunder无版权</title>
+      <link href="/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/"/>
+      <url>/2020/05/31/Live/Thunder%E4%B8%8B%E8%BD%BD%E6%97%A0%E7%89%88%E6%9D%83/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近呢，每次写代码之前都必须要画流程图，再画的时候很是烦恼，使用<a href="https://www.processon.com/" target="_blank" rel="noopener">ProcessOn</a>效果很好，但是有文件数量限制，如果想要增加数量的话还必须花钱，这就很烦恼，于是我找到一款非常棒的VSCode的插件–Draw.io</p><hr><p>作为一款开源的主流代码编辑器，VSCode 在发布之后一直受到不少开发者的喜爱。</p><p>VSCode，它不仅有提升开发体验的界面、轻量化的编辑器，还有丰富而强大的插件，超多的插件让水友调侃道，这个世界上没有VSCode做不到的事。</p><p>今天我就给大家介绍一款实用的 VSCode 插件：VSCode Drawio。</p><p>这个draw.io其实我也不太了解，上网找了下资料大概和<a href="https://www.processon.com/" target="_blank" rel="noopener">ProcessOn</a>一样的支持在线绘图的网站工具</p><hr><h3 id="接下来进入主题—VSCode-Drawio"><a href="#接下来进入主题—VSCode-Drawio" class="headerlink" title="接下来进入主题—VSCode Drawio"></a>接下来进入主题—<em>VSCode Drawio</em></h3><p>话不多说先看它的效果吧</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/drawio.gif" alt="drawio"></p><p>怎么样是不是心动了</p><p>赶快去VSCode里面下载吧</p><h3 id="下载方式"><a href="#下载方式" class="headerlink" title="下载方式"></a>下载方式</h3><p>打开你的VSCode，在拓展商店里搜索Draw.io，下载即可</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/drawio.png" alt="drawio"></p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="一、序幕"><a href="#一、序幕" class="headerlink" title="一、序幕"></a>一、序幕</h3><p>再现当今各大影视平台推出的各种VIP制度，使我们是我们这些‘穷人’已无法生存。</p><p>于是出现了<a href="https://baike.baidu.com/item/BT种子" target="_blank" rel="noopener">BT种子</a>，在这个BT种子泛滥的时代，影视VIP已经在有的人心中抹去。</p><p>说道BT种子好像很多男人都很喜欢比如：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/%E4%B8%8B%E8%BD%BD.jpg" alt="img"></p><p>这个。。。。真是太棒了！！！</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p><p>有了BT种子我们还需要有一个解析工具<a href="https://baike.baidu.com/item/迅雷/33354" target="_blank" rel="noopener">迅雷(Thunder)</a>，迅雷应该是大多数人的电脑或者手机里必备的软件吧！！</p><p>但是：</p><p><img src= "/img/loading.gif" data-src="https://pic4.zhimg.com/80/v2-d5d664989af1c5915c32241df9f71f83_720w.jpg" alt="img"></p><p>这个是不是很讨厌。。</p><hr><h3 id="二、问题"><a href="#二、问题" class="headerlink" title="二、问题"></a>二、问题</h3><p>同样，今天我一如既往的在网上搜索BT种子：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p><p>来到迅雷解析：</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder1.png" alt="img"></p><p>这。。。这又不是什么搞颜色的视频，为啥也没有版权？？</p><p>之后，我在网上一顿操作，找到了解决办法！！</p><hr><h3 id="三、解决"><a href="#三、解决" class="headerlink" title="三、解决"></a>三、解决</h3><ul><li><p>首先我们先下载BT种子到桌面</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder2.png" alt="img"></p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder3.png" alt="img"></p></li><li><p>之后我们来到百度云盘（可以是网页版的，也可以是端游版的，我用的是网页版的）</p></li><li><p>找到离线下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder4.png" alt="img"></p></li><li><p>进去，点击新建BT任务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder5.png" alt="img"></p></li><li><p>找到你的BT种子位置，并打开</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder6.png" alt="img"></p></li><li><p>之后选择视频文件，开始下载</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder7.png" alt="img"></p></li><li><p>可以看到下载速度是非常快的（我用的是网页版的，客户端应该会更快）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder8.png" alt="img"></p></li><li><p>下载完成，点击播放</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder9.png" alt="img"></p></li><li><p>就可以开开心心的看电影了（悄悄拿上纸巾）</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/live/Thunder10.png" alt="img"></p></li></ul><p>是不是帮你们解决了没有女朋友的问题呢</p><p><img src= "/img/loading.gif" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590941992507&di=63b5d874d792dc40037d532a08e1ca9d&imgtype=0&src=http%3A%2F%2Fwww.baduqq.com%2Fuploads%2Fallimg%2F121219%2F225400E37-9.gif" alt="img"></p>]]></content>
       
       
       <categories>
           
-          <category> 编程 · 技术 </category>
+          <category> 生活 · 日记 </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> VSCode </tag>
-            
-        </tags>
       
     </entry>
     
@@ -1188,6 +1188,31 @@
           
       </categories>
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>VSCode插件-Draw.io</title>
+      <link href="/2020/05/30/Blog/vscode%E6%8F%92%E4%BB%B6-Draw.io/"/>
+      <url>/2020/05/30/Blog/vscode%E6%8F%92%E4%BB%B6-Draw.io/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>最近呢，每次写代码之前都必须要画流程图，再画的时候很是烦恼，使用<a href="https://www.processon.com/" target="_blank" rel="noopener">ProcessOn</a>效果很好，但是有文件数量限制，如果想要增加数量的话还必须花钱，这就很烦恼，于是我找到一款非常棒的VSCode的插件–Draw.io</p><hr><p>作为一款开源的主流代码编辑器，VSCode 在发布之后一直受到不少开发者的喜爱。</p><p>VSCode，它不仅有提升开发体验的界面、轻量化的编辑器，还有丰富而强大的插件，超多的插件让水友调侃道，这个世界上没有VSCode做不到的事。</p><p>今天我就给大家介绍一款实用的 VSCode 插件：VSCode Drawio。</p><p>这个draw.io其实我也不太了解，上网找了下资料大概和<a href="https://www.processon.com/" target="_blank" rel="noopener">ProcessOn</a>一样的支持在线绘图的网站工具</p><hr><h3 id="接下来进入主题—VSCode-Drawio"><a href="#接下来进入主题—VSCode-Drawio" class="headerlink" title="接下来进入主题—VSCode Drawio"></a>接下来进入主题—<em>VSCode Drawio</em></h3><p>话不多说先看它的效果吧</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/drawio.gif" alt="drawio"></p><p>怎么样是不是心动了</p><p>赶快去VSCode里面下载吧</p><h3 id="下载方式"><a href="#下载方式" class="headerlink" title="下载方式"></a>下载方式</h3><p>打开你的VSCode，在拓展商店里搜索Draw.io，下载即可</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/drawio.png" alt="drawio"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 · 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> VSCode </tag>
+            
+        </tags>
       
     </entry>
     
@@ -1319,6 +1344,31 @@
     
     
     <entry>
+      <title>redis雪崩，击穿，穿透</title>
+      <link href="/2020/05/23/Note/redis%E9%9B%AA%E5%B4%A9%EF%BC%8C%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%A9%BF%E9%80%8F/"/>
+      <url>/2020/05/23/Note/redis%E9%9B%AA%E5%B4%A9%EF%BC%8C%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%A9%BF%E9%80%8F/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>对于系统 A，假设每天高峰期每秒 5000 个请求，本来缓存在高峰期可以扛住每秒 4000 个请求，但是缓存机器意外发生了全盘宕机。缓存挂了，此时 1 秒 5000 个请求全部落数据库，数据库必然扛不住，它会报一下警，然后就挂了。此时，如果没有采用什么特别的方案来处理这个故障，DBA 很着急，重启数据库，但是数据库立马又被新的流量给打死了。</p><p>(</p><p>1、缓存中大批量热点数据过期后系统涌入大量查询请求</p><p>2、因为大部分数据在Redis层已经失效，请求渗透到数据库层</p><p>3、大批量请求犹如洪水一般涌入，引起数据库压力造成查询堵塞甚至宕机。</p><p>)</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/xuebeng.jpg" alt="img"></p><p>缓存雪崩的事前事中事后的解决方案如下。</p><ul><li>事前：redis 高可用，主从+哨兵，redis cluster，避免全盘崩溃。</li><li>事中：本地 ehcache 缓存 + hystrix 限流&amp;降级，避免 MySQL 被打死。</li><li>事后：redis 持久化，一旦重启，自动从磁盘上加载数据，快速恢复缓存数据。</li></ul><p>(</p><p>1、事前：redis 高可用，主从+哨兵，redis cluster，避免全盘崩溃</p><p>2、事中：本地 ehcache 缓存 + hystrix 限流&amp;降级，避免 MySQL 被打死。</p><p>3、事后：redis 持久化，一旦重启，自动从磁盘上加载数据，快速恢复缓存数据。</p><p>4、用户发送一个请求，系统 A 收到请求后，先查本地 ehcache 缓存，如果没查到再查 redis。如果 ehcache 和 redis 都没有，再查数据库，将数据库中的结果，写入 ehcache 和 redis 中。</p><p>5、 限流组件，可以设置每秒的请求，有多少能通过组件，剩余的未通过的请求，怎么办？走降级！可以返回一些默认的值，或者友情提示，或者空白的值。这样可以保证数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。 -只要数据库不死，就是说，对用户来说，2/5 的请求都是可以被处理的。 - 只要有 2/5 的请求可以被处理，就意味着你的系统没死，对用户来说，可能就是点击几次刷不出来页面，但是多点几次，就可以刷出来一次。</p><p>)</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/xuebeng1.jpg" alt="img"></p><p>好处：</p><ul><li>数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。</li><li>只要数据库不死，就是说，对用户来说，2/5 的请求都是可以被处理的。</li><li>只要有 2/5 的请求可以被处理，就意味着你的系统没死，对用户来说，可能就是点击几次刷不出来页面，但是多点几次，就可以刷出来一次。</li></ul><p><strong>缓存穿透</strong></p><p>对于系统A，假设一秒 5000 个请求，结果其中 4000 个请求是黑客发出的恶意攻击。</p><p>黑客发出的那 4000 个攻击，缓存中查不到，每次你去数据库里查，也查不到。</p><p>举个栗子。数据库 id 是从 1 开始的，结果黑客发过来的请求 id 全部都是负数。这样的话，缓存中不会有，请求每次都“<strong>视缓存于无物</strong>”，直接查询数据库。这种恶意攻击场景的缓存穿透就会直接把数据库给打死。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/chuantou.jpg" alt="img"></p><p>解决方式很简单。</p><p>每次系统 A 从数据库中只要没查到，就写一个空值到缓存里去，比如 <code>set -999 UNKNOWN</code>。然后设置一个过期时间，这样的话，下次有相同的 key 来访问的时候，在缓存失效之前，都可以直接从缓存中取数据。</p><p><strong>缓存击穿</strong></p><p>缓存击穿，就是说某个 key 非常热点，访问非常频繁，处于集中式高并发访问的情况，当这个 key 在失效的瞬间，大量的请求就击穿了缓存，直接请求数据库，就像是在一道屏障上凿开了一个洞。</p><p>解决方式。</p><p>1、可以将热点数据设置为永远不过期；或者基于 redis or zookeeper 实现互斥锁，等待第一个请求构建完缓存之后，再释放锁，进而其它请求才能通过该 key 访问数据。</p><p>2、有很多种方法可以有效地解决缓存穿透问题，最常见的则是采用布隆过滤器，将所有可能存在的数据哈希到一个足够大的bitmap中，一个一定不存在的数据会被这个bitmap拦截掉，从而避免了对底层存储系统的查询压力。</p><p>3、另外也有一个更为简单粗暴的方法，如果一个查询返回的数据为空（不管是数据不存在，还是系统故障），我们仍然把这个空结果进行缓存，但它的过期时间会很短，最长不超过五分钟。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>redis优化</title>
       <link href="/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/"/>
       <url>/2020/05/23/Note/redis%E4%BC%98%E5%8C%96/</url>
@@ -1369,25 +1419,19 @@
     
     
     <entry>
-      <title>redis雪崩，击穿，穿透</title>
-      <link href="/2020/05/23/Note/redis%E9%9B%AA%E5%B4%A9%EF%BC%8C%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%A9%BF%E9%80%8F/"/>
-      <url>/2020/05/23/Note/redis%E9%9B%AA%E5%B4%A9%EF%BC%8C%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%A9%BF%E9%80%8F/</url>
+      <title>《小丑》 （美国2019年托德·菲利普斯执导电影）</title>
+      <link href="/2020/05/22/Movie/joker/"/>
+      <url>/2020/05/22/Movie/joker/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>聪明出于勤奋，天才在于积累。——华罗庚 </p><hr><h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>对于系统 A，假设每天高峰期每秒 5000 个请求，本来缓存在高峰期可以扛住每秒 4000 个请求，但是缓存机器意外发生了全盘宕机。缓存挂了，此时 1 秒 5000 个请求全部落数据库，数据库必然扛不住，它会报一下警，然后就挂了。此时，如果没有采用什么特别的方案来处理这个故障，DBA 很着急，重启数据库，但是数据库立马又被新的流量给打死了。</p><p>(</p><p>1、缓存中大批量热点数据过期后系统涌入大量查询请求</p><p>2、因为大部分数据在Redis层已经失效，请求渗透到数据库层</p><p>3、大批量请求犹如洪水一般涌入，引起数据库压力造成查询堵塞甚至宕机。</p><p>)</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/xuebeng.jpg" alt="img"></p><p>缓存雪崩的事前事中事后的解决方案如下。</p><ul><li>事前：redis 高可用，主从+哨兵，redis cluster，避免全盘崩溃。</li><li>事中：本地 ehcache 缓存 + hystrix 限流&amp;降级，避免 MySQL 被打死。</li><li>事后：redis 持久化，一旦重启，自动从磁盘上加载数据，快速恢复缓存数据。</li></ul><p>(</p><p>1、事前：redis 高可用，主从+哨兵，redis cluster，避免全盘崩溃</p><p>2、事中：本地 ehcache 缓存 + hystrix 限流&amp;降级，避免 MySQL 被打死。</p><p>3、事后：redis 持久化，一旦重启，自动从磁盘上加载数据，快速恢复缓存数据。</p><p>4、用户发送一个请求，系统 A 收到请求后，先查本地 ehcache 缓存，如果没查到再查 redis。如果 ehcache 和 redis 都没有，再查数据库，将数据库中的结果，写入 ehcache 和 redis 中。</p><p>5、 限流组件，可以设置每秒的请求，有多少能通过组件，剩余的未通过的请求，怎么办？走降级！可以返回一些默认的值，或者友情提示，或者空白的值。这样可以保证数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。 -只要数据库不死，就是说，对用户来说，2/5 的请求都是可以被处理的。 - 只要有 2/5 的请求可以被处理，就意味着你的系统没死，对用户来说，可能就是点击几次刷不出来页面，但是多点几次，就可以刷出来一次。</p><p>)</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/xuebeng1.jpg" alt="img"></p><p>好处：</p><ul><li>数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。</li><li>只要数据库不死，就是说，对用户来说，2/5 的请求都是可以被处理的。</li><li>只要有 2/5 的请求可以被处理，就意味着你的系统没死，对用户来说，可能就是点击几次刷不出来页面，但是多点几次，就可以刷出来一次。</li></ul><p><strong>缓存穿透</strong></p><p>对于系统A，假设一秒 5000 个请求，结果其中 4000 个请求是黑客发出的恶意攻击。</p><p>黑客发出的那 4000 个攻击，缓存中查不到，每次你去数据库里查，也查不到。</p><p>举个栗子。数据库 id 是从 1 开始的，结果黑客发过来的请求 id 全部都是负数。这样的话，缓存中不会有，请求每次都“<strong>视缓存于无物</strong>”，直接查询数据库。这种恶意攻击场景的缓存穿透就会直接把数据库给打死。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/chuantou.jpg" alt="img"></p><p>解决方式很简单。</p><p>每次系统 A 从数据库中只要没查到，就写一个空值到缓存里去，比如 <code>set -999 UNKNOWN</code>。然后设置一个过期时间，这样的话，下次有相同的 key 来访问的时候，在缓存失效之前，都可以直接从缓存中取数据。</p><p><strong>缓存击穿</strong></p><p>缓存击穿，就是说某个 key 非常热点，访问非常频繁，处于集中式高并发访问的情况，当这个 key 在失效的瞬间，大量的请求就击穿了缓存，直接请求数据库，就像是在一道屏障上凿开了一个洞。</p><p>解决方式。</p><p>1、可以将热点数据设置为永远不过期；或者基于 redis or zookeeper 实现互斥锁，等待第一个请求构建完缓存之后，再释放锁，进而其它请求才能通过该 key 访问数据。</p><p>2、有很多种方法可以有效地解决缓存穿透问题，最常见的则是采用布隆过滤器，将所有可能存在的数据哈希到一个足够大的bitmap中，一个一定不存在的数据会被这个bitmap拦截掉，从而避免了对底层存储系统的查询压力。</p><p>3、另外也有一个更为简单粗暴的方法，如果一个查询返回的数据为空（不管是数据不存在，还是系统故障），我们仍然把这个空结果进行缓存，但它的过期时间会很短，最长不超过五分钟。</p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="电影背景"><a href="#电影背景" class="headerlink" title="电影背景"></a>电影背景</h3><p>《<a href="https://baike.baidu.com/item/%E5%B0%8F%E4%B8%91/22867904?fr=aladdin" target="_blank" rel="noopener">小丑</a>》是由托德·菲利普斯执导，杰昆·菲尼克斯、莎姬·贝兹、罗伯特·德尼罗、弗兰西丝·康罗伊、布莱特·卡伦等联袂出演的犯罪剧情片。2019年8月31日在威尼斯电影节主竞赛单元首映。</p><p>《小丑》的故事背景设定在1980年代，讲述小丑的起源故事 。该片是华纳和DC所独立开发的影片，与DC扩展宇宙并无关联。</p><p>该片于2019年10月4日在美国上映，随即以9620万美元的收入登顶北美周末票房榜，创下北美影史10月份上映影片首周末最高票房纪录。截至2019年11月8日，《小丑》全球票房将超过9.57亿美元，成为了影史上最赚钱的漫改电影</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/joker1.jpg" alt="move"></p><h3 id="剧情简介"><a href="#剧情简介" class="headerlink" title="剧情简介"></a>剧情简介</h3><p>亚瑟·弗莱克是一个和母亲住在老旧公寓里，需要靠社会福利组织帮助，不断服用精神疾病药物的小丑。他想成为一个脱口秀演员，但并不成功。人们只是嘲笑他。他在地铁上爆发式地犯下了谋杀案。他的世界，就此一点一滴地开始崩塌了</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/joker2.jpg" alt="move"></p><h3 id="创作背景"><a href="#创作背景" class="headerlink" title="创作背景"></a>创作背景</h3><p>导演兼编剧的托德·菲利普斯透露，《小丑》取材并不遵循任何漫画。托德·菲利普斯按照自己的认知，创造了一个故事，没有从漫画书中汲取任何灵感。讲述了小丑这样的角色是如何产生的，这就是托德·菲利普斯感兴趣的地方。<br>该片的故事背景设定在1980年代。托德·菲利普斯打造一个纯粹全新的小丑起源故事</p><h3 id="个人评价"><a href="#个人评价" class="headerlink" title="个人评价"></a>个人评价</h3><p>《小丑》电影2019剧情简介 菲尼克斯演绎不一样的丑爷。</p><p>《小丑》新剧照正面亮相！由杰昆·菲尼克斯主演、托德·菲利普斯执导的DC漫改电影《小丑》登上了《il Venerdì》8月刊封面。</p><p>新剧照中，小丑妆容粗糙，蓝色的眼部装饰上面蜿蜒着高低不一的红色眉毛，猩红的嘴唇难掩从鼻翼两侧延伸出的法令纹。区别于以往的嚣张和邪恶，该剧照中小丑的双眼暗含平静的力量，这或许与该片讲述的是小丑亚瑟·弗莱克的起源故事有关。其实，DC反派小丑的形象已被多次搬上大银幕，杰昆·菲尼克斯版的小丑能否超越希斯·莱杰这座“大山”，演绎属于自己的丑爷经典？</p><p>《小丑》虽然被定为R级电影，但强大的阵容依然是高票房的加持力量。主演杰昆·菲尼克斯曾多次获得奥斯卡提名，并将被多伦多电影节组委会授予年度演员荣誉奖。导演托德·菲利普斯曾执导《宿醉》系列，编剧斯科特·西尔弗曾担任“姆爷”埃米纳姆的自传电影《8英里》的编剧。</p><p>该片讲述了小丑亚瑟·弗莱克的起源故事。上世纪80年代，一位生活陷入困境的喜剧演员渐渐走向精神的崩溃，在哥谭市开始了疯狂的犯罪生涯，最终成为了蝙蝠侠的宿敌“小丑”。</p><p>顺便送上1080p片源，请使用迅雷下载(复制打开迅雷即可)</p><p>magnet:?xt=urn:btih:F9D6CD6E5D93FC013D079981387D8E556FF139A4</p>]]></content>
       
       
       <categories>
           
-          <category> 总结 · 笔记 </category>
+          <category> 新剧 · 电影 </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> Redis </tag>
-            
-        </tags>
       
     </entry>
     
@@ -1413,25 +1457,6 @@
             <tag> Redis </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>《小丑》 （美国2019年托德·菲利普斯执导电影）</title>
-      <link href="/2020/05/22/Movie/joker/"/>
-      <url>/2020/05/22/Movie/joker/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="电影背景"><a href="#电影背景" class="headerlink" title="电影背景"></a>电影背景</h3><p>《<a href="https://baike.baidu.com/item/%E5%B0%8F%E4%B8%91/22867904?fr=aladdin" target="_blank" rel="noopener">小丑</a>》是由托德·菲利普斯执导，杰昆·菲尼克斯、莎姬·贝兹、罗伯特·德尼罗、弗兰西丝·康罗伊、布莱特·卡伦等联袂出演的犯罪剧情片。2019年8月31日在威尼斯电影节主竞赛单元首映。</p><p>《小丑》的故事背景设定在1980年代，讲述小丑的起源故事 。该片是华纳和DC所独立开发的影片，与DC扩展宇宙并无关联。</p><p>该片于2019年10月4日在美国上映，随即以9620万美元的收入登顶北美周末票房榜，创下北美影史10月份上映影片首周末最高票房纪录。截至2019年11月8日，《小丑》全球票房将超过9.57亿美元，成为了影史上最赚钱的漫改电影</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/joker1.jpg" alt="move"></p><h3 id="剧情简介"><a href="#剧情简介" class="headerlink" title="剧情简介"></a>剧情简介</h3><p>亚瑟·弗莱克是一个和母亲住在老旧公寓里，需要靠社会福利组织帮助，不断服用精神疾病药物的小丑。他想成为一个脱口秀演员，但并不成功。人们只是嘲笑他。他在地铁上爆发式地犯下了谋杀案。他的世界，就此一点一滴地开始崩塌了</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/me/joker2.jpg" alt="move"></p><h3 id="创作背景"><a href="#创作背景" class="headerlink" title="创作背景"></a>创作背景</h3><p>导演兼编剧的托德·菲利普斯透露，《小丑》取材并不遵循任何漫画。托德·菲利普斯按照自己的认知，创造了一个故事，没有从漫画书中汲取任何灵感。讲述了小丑这样的角色是如何产生的，这就是托德·菲利普斯感兴趣的地方。<br>该片的故事背景设定在1980年代。托德·菲利普斯打造一个纯粹全新的小丑起源故事</p><h3 id="个人评价"><a href="#个人评价" class="headerlink" title="个人评价"></a>个人评价</h3><p>《小丑》电影2019剧情简介 菲尼克斯演绎不一样的丑爷。</p><p>《小丑》新剧照正面亮相！由杰昆·菲尼克斯主演、托德·菲利普斯执导的DC漫改电影《小丑》登上了《il Venerdì》8月刊封面。</p><p>新剧照中，小丑妆容粗糙，蓝色的眼部装饰上面蜿蜒着高低不一的红色眉毛，猩红的嘴唇难掩从鼻翼两侧延伸出的法令纹。区别于以往的嚣张和邪恶，该剧照中小丑的双眼暗含平静的力量，这或许与该片讲述的是小丑亚瑟·弗莱克的起源故事有关。其实，DC反派小丑的形象已被多次搬上大银幕，杰昆·菲尼克斯版的小丑能否超越希斯·莱杰这座“大山”，演绎属于自己的丑爷经典？</p><p>《小丑》虽然被定为R级电影，但强大的阵容依然是高票房的加持力量。主演杰昆·菲尼克斯曾多次获得奥斯卡提名，并将被多伦多电影节组委会授予年度演员荣誉奖。导演托德·菲利普斯曾执导《宿醉》系列，编剧斯科特·西尔弗曾担任“姆爷”埃米纳姆的自传电影《8英里》的编剧。</p><p>该片讲述了小丑亚瑟·弗莱克的起源故事。上世纪80年代，一位生活陷入困境的喜剧演员渐渐走向精神的崩溃，在哥谭市开始了疯狂的犯罪生涯，最终成为了蝙蝠侠的宿敌“小丑”。</p><p>顺便送上1080p片源，请使用迅雷下载(复制打开迅雷即可)</p><p>magnet:?xt=urn:btih:F9D6CD6E5D93FC013D079981387D8E556FF139A4</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 新剧 · 电影 </category>
-          
-      </categories>
-      
       
     </entry>
     
@@ -1638,31 +1663,6 @@
     
     
     <entry>
-      <title>Python之列表(list)</title>
-      <link href="/2020/05/07/Note/list/"/>
-      <url>/2020/05/07/Note/list/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ol><li>append用于在列表末尾追加新的对象</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3]</span><br><span class="line">a.append(4)                          #the result ： [1, 2, 3, 4]</span><br></pre></td></tr></table></figure><ol start="2"><li><p>count方法统计某个元素在列表中出现的次数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [&#39;aa&#39;,&#39;bb&#39;,&#39;cc&#39;,&#39;aa&#39;,&#39;aa&#39;]</span><br><span class="line">print(a.count(&#39;aa&#39;))                 #the result ： 3</span><br></pre></td></tr></table></figure></li><li><p>extend方法可以在列表的末尾一次性追加另一个序列中的多个值</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3]</span><br><span class="line">b &#x3D; [4,5,6]</span><br><span class="line">a.extend(b)                          #the result ：[1, 2, 3, 4, 5, 6]</span><br></pre></td></tr></table></figure><ol start="4"><li><p>index函数用于从列表中找出某个值第一个匹配项的索引位置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3,1]</span><br><span class="line">print(a.index(1))                   #the result ： 0</span><br></pre></td></tr></table></figure></li><li><p>insert方法用于将对象插入到列表中</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3]</span><br><span class="line">a.insert(0,&#39;aa&#39;)            #the result : [&#39;aa&#39;, 1, 2, 3]</span><br></pre></td></tr></table></figure></li><li><p>pop方法会移除列表中的一个元素（默认是最后一个），并且返回该元素的值</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3]</span><br><span class="line">a.pop()                             #the result ： [1, 2]</span><br><span class="line">a.pop(0)</span><br></pre></td></tr></table></figure></li><li><p>remove方法用于移除列表中某个值的第一个匹配项</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [&#39;aa&#39;,&#39;bb&#39;,&#39;cc&#39;,&#39;aa&#39;]</span><br><span class="line">a.remove(&#39;aa&#39;)                      #the result ： [&#39;bb&#39;, &#39;cc&#39;, &#39;aa&#39;]</span><br></pre></td></tr></table></figure></li><li><p>reverse方法将列表中的元素反向存放</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]</span><br><span class="line">a.reverse()                         #the result ： [&#39;c&#39;, &#39;b&#39;, &#39;a&#39;]</span><br></pre></td></tr></table></figure></li><li><p>sort方法用于在原位置对列表进行排序，意味着改变原来的列表，让其中的元素按一定顺序排列</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,1,2,3]</span><br><span class="line">a.sort()                           #the result ：[1, 2, 3, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span><br></pre></td></tr></table></figure></li><li><p>enumrate</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">li &#x3D; [11,22,33]</span><br><span class="line">for k,v in enumerate(li, 1):</span><br><span class="line">    print(k,v)</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 · 笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Webshell</title>
       <link href="/2020/05/07/Blog/ten/"/>
       <url>/2020/05/07/Blog/ten/</url>
@@ -1680,6 +1680,31 @@
         <tags>
             
             <tag> Vue </tag>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python之列表(list)</title>
+      <link href="/2020/05/07/Note/list/"/>
+      <url>/2020/05/07/Note/list/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ol><li>append用于在列表末尾追加新的对象</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3]</span><br><span class="line">a.append(4)                          #the result ： [1, 2, 3, 4]</span><br></pre></td></tr></table></figure><ol start="2"><li><p>count方法统计某个元素在列表中出现的次数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [&#39;aa&#39;,&#39;bb&#39;,&#39;cc&#39;,&#39;aa&#39;,&#39;aa&#39;]</span><br><span class="line">print(a.count(&#39;aa&#39;))                 #the result ： 3</span><br></pre></td></tr></table></figure></li><li><p>extend方法可以在列表的末尾一次性追加另一个序列中的多个值</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3]</span><br><span class="line">b &#x3D; [4,5,6]</span><br><span class="line">a.extend(b)                          #the result ：[1, 2, 3, 4, 5, 6]</span><br></pre></td></tr></table></figure><ol start="4"><li><p>index函数用于从列表中找出某个值第一个匹配项的索引位置</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3,1]</span><br><span class="line">print(a.index(1))                   #the result ： 0</span><br></pre></td></tr></table></figure></li><li><p>insert方法用于将对象插入到列表中</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3]</span><br><span class="line">a.insert(0,&#39;aa&#39;)            #the result : [&#39;aa&#39;, 1, 2, 3]</span><br></pre></td></tr></table></figure></li><li><p>pop方法会移除列表中的一个元素（默认是最后一个），并且返回该元素的值</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [1,2,3]</span><br><span class="line">a.pop()                             #the result ： [1, 2]</span><br><span class="line">a.pop(0)</span><br></pre></td></tr></table></figure></li><li><p>remove方法用于移除列表中某个值的第一个匹配项</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [&#39;aa&#39;,&#39;bb&#39;,&#39;cc&#39;,&#39;aa&#39;]</span><br><span class="line">a.remove(&#39;aa&#39;)                      #the result ： [&#39;bb&#39;, &#39;cc&#39;, &#39;aa&#39;]</span><br></pre></td></tr></table></figure></li><li><p>reverse方法将列表中的元素反向存放</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]</span><br><span class="line">a.reverse()                         #the result ： [&#39;c&#39;, &#39;b&#39;, &#39;a&#39;]</span><br></pre></td></tr></table></figure></li><li><p>sort方法用于在原位置对列表进行排序，意味着改变原来的列表，让其中的元素按一定顺序排列</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;,1,2,3]</span><br><span class="line">a.sort()                           #the result ：[1, 2, 3, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span><br></pre></td></tr></table></figure></li><li><p>enumrate</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">li &#x3D; [11,22,33]</span><br><span class="line">for k,v in enumerate(li, 1):</span><br><span class="line">    print(k,v)</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 · 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
             
             <tag> Python </tag>
             
@@ -2057,31 +2082,6 @@
     
     
     <entry>
-      <title>字典之keys()、values()和 items()方法</title>
-      <link href="/2020/04/08/Blog/six/"/>
-      <url>/2020/04/08/Blog/six/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys-、values-和item-。"><a href="#字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys-、values-和item-。" class="headerlink" title="字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys()、values()和item()。"></a>字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys()、values()和item()。</h2><h2 id="这些方法返回的值不是真正的列表，它们不能被修改，没有append-方法。但这些数据类型可以用于for循环。"><a href="#这些方法返回的值不是真正的列表，它们不能被修改，没有append-方法。但这些数据类型可以用于for循环。" class="headerlink" title="这些方法返回的值不是真正的列表，它们不能被修改，没有append()方法。但这些数据类型可以用于for循环。"></a>这些方法返回的值不是真正的列表，它们不能被修改，没有append()方法。但这些数据类型可以用于for循环。</h2><p>values()方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item in spam.values(): </span><br><span class="line"></span><br><span class="line">    print(item)  # red 18  取的是值</span><br></pre></td></tr></table></figure><p>keys()方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item2 in spam.keys():    </span><br><span class="line"></span><br><span class="line">    print(item2)  # color age  取的时键</span><br></pre></td></tr></table></figure><p>items()方法 这个方法最特别</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">单个参数</span><br><span class="line"></span><br><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item1 in spam.items():</span><br><span class="line">    print(item1)  # (&#39;color&#39;, &#39;red&#39;)(&#39;age&#39;, 18) items 元组的形式  取出键 值对</span><br><span class="line">    </span><br><span class="line">两个参数</span><br><span class="line"></span><br><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for k,v in spam.items():   </span><br><span class="line"></span><br><span class="line">    print(k,v)   # color red age 18   若有两个参数则将key 与 value 单独去取</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 · 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Docker镜像安装与启动</title>
       <link href="/2020/04/08/Note/docker%E9%95%9C%E5%83%8F/"/>
       <url>/2020/04/08/Note/docker%E9%95%9C%E5%83%8F/</url>
@@ -2126,6 +2126,31 @@
         <tags>
             
             <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>字典之keys()、values()和 items()方法</title>
+      <link href="/2020/04/08/Blog/six/"/>
+      <url>/2020/04/08/Blog/six/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys-、values-和item-。"><a href="#字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys-、values-和item-。" class="headerlink" title="字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys()、values()和item()。"></a>字典有3个方法，他们返回类似的列表值，分别对应于字典的键，值和键值对：keys()、values()和item()。</h2><h2 id="这些方法返回的值不是真正的列表，它们不能被修改，没有append-方法。但这些数据类型可以用于for循环。"><a href="#这些方法返回的值不是真正的列表，它们不能被修改，没有append-方法。但这些数据类型可以用于for循环。" class="headerlink" title="这些方法返回的值不是真正的列表，它们不能被修改，没有append()方法。但这些数据类型可以用于for循环。"></a>这些方法返回的值不是真正的列表，它们不能被修改，没有append()方法。但这些数据类型可以用于for循环。</h2><p>values()方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item in spam.values(): </span><br><span class="line"></span><br><span class="line">    print(item)  # red 18  取的是值</span><br></pre></td></tr></table></figure><p>keys()方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item2 in spam.keys():    </span><br><span class="line"></span><br><span class="line">    print(item2)  # color age  取的时键</span><br></pre></td></tr></table></figure><p>items()方法 这个方法最特别</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">单个参数</span><br><span class="line"></span><br><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for item1 in spam.items():</span><br><span class="line">    print(item1)  # (&#39;color&#39;, &#39;red&#39;)(&#39;age&#39;, 18) items 元组的形式  取出键 值对</span><br><span class="line">    </span><br><span class="line">两个参数</span><br><span class="line"></span><br><span class="line">spam &#x3D; &#123;&#39;color&#39;:&#39;red&#39;,&#39;age&#39;:18&#125;</span><br><span class="line"></span><br><span class="line">for k,v in spam.items():   </span><br><span class="line"></span><br><span class="line">    print(k,v)   # color red age 18   若有两个参数则将key 与 value 单独去取</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 · 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
             
         </tags>
       

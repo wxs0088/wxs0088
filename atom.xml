@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.sirxs.cn/"/>
-  <updated>2020-09-09T08:51:10.963Z</updated>
+  <updated>2020-09-13T02:57:36.055Z</updated>
   <id>http://www.sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>A-star寻路算法</title>
+    <link href="http://www.sirxs.cn/2020/09/13/Blog/%E5%AF%BB%E8%B7%AF%E7%AE%97%E6%B3%95/"/>
+    <id>http://www.sirxs.cn/2020/09/13/Blog/%E5%AF%BB%E8%B7%AF%E7%AE%97%E6%B3%95/</id>
+    <published>2020-09-13T00:00:00.000Z</published>
+    <updated>2020-09-13T02:57:36.055Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="什么是寻路算法"><a href="#什么是寻路算法" class="headerlink" title="什么是寻路算法"></a>什么是寻路算法</h3><p>在英雄联盟之中，当你和你的队友都苦苦修炼到十八级的时候，仍然与敌方阵营不分胜负，就在你刚买好装备已经神装的时候，你看见信息框中一条队友的消息：“大龙集合”，这个时候你鼠标移到大龙处，轻点右键，然后你就像一个吃瓜群众一样盯着你的英雄，看他走进野区小路，因为你买了日炎斗篷，路过三狼的时候三狼还追着你咬了几口，你的英雄也没有去理会，三狼可算是出了一口气，牛逼坏了！然后你还顺路采了几个蘑菇，因烫到了蓝buff被蓝buff追杀。就连河道里的河蟹都想咬你一口为你在三级的时候杀了它的爷爷而报仇。然而你还是在临死前来到大龙面前，你还没动大龙一根汗毛，就被大龙一个甩尾干趴下了，这时候你旁边的妹纸还很疑惑，你得显示器怎么突然坏掉了，变成黑白的了。</p><p>那么问题来了，为什么野区套路那么深，而你的英雄不选择走大路沿河道到大龙呢？因为你每确定一个目标，你的英雄就会沿着最短的路线前往。那么你的英雄是怎么找到最近的路线呢？如果你觉的很简单，你自己也能找到，你有你的英雄找的快吗？当你确定目标的时候你的英雄可不是东张西望让后才开始走，更不会走一半发现不对劲有自己回去重头再来。你也许开始对这个问题感兴趣了，那些游戏中的英雄人物是怎么做到的？如果你不玩游戏，那么你肯定用过导航软件，你应该会好奇它是怎么做到的。</p><p>例如：下面的图片中，小人想要找到五角星，主要有2条路径，一条是蓝色部分，从上面开始寻找，此时总步数为9步；另外一种就是从下面开始寻找，此时总步数为7步，我们通过步数得出，最短路径的步数为7步。这与LOL里面的英雄寻路一样的道理。</p><p><img src= "/img/loading.gif" data-src="http://wangxs020202.gitee.io/pbad/skill-geek/a-star.jpg" alt="a-star"></p><hr><p><a href="https://zh.wikipedia.org/wiki/A*%E6%90%9C%E5%B0%8B%E6%BC%94%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">A-star搜索算法</a>是一种在图形平面上，有多个节点的路径，求出最低通过成本的算法。常用于游戏中的NPC的移动计算，或网络游戏的BOT的移动计算上。<br>该算法综合了最良优先搜索和Dijkstra算法的优点：在进行启发式搜索提高算法效率的同时，可以保证找到一条最优路径（基于评估函数）。<br>在此算法中，如果以<strong>g(n)</strong>表示从起点到任意顶点<strong>n</strong>的实际距离，<strong>h(n)</strong>表示任意顶点<strong>n</strong>到目标顶点的估算距离（根据所采用的评估函数的不同而变化），那么A<em>算法的估算函数为：*</em>f(n) = g(n) + h(n)**</p><p>这个公式遵循以下特性：</p><ul><li>如果<strong>g(n)</strong>为0，即只计算任意顶点<strong>n</strong>到目标的评估函数<strong>h(n)</strong>，而不计算起点到顶点<strong>n</strong>的距离，则算法转化为使用贪心策略的最良优先搜索，速度最快，但可能得不出最优解；</li><li>如果<strong>h(n)</strong>不大于顶点<strong>n</strong>到目标顶点的实际距离，则一定可以求出最优解，而且<strong>h(n)</strong>越小，需要计算的节点越多，算法效率越低，常见的评估函数有——欧几里得距离、曼哈顿距离、切比雪夫距离；</li><li>如果<strong>h(n)</strong>为0，即只需求出起点到任意顶点<strong>n</strong>的最短路径<strong>g(n)</strong>，而不计算任何评估函数<strong>h(n)</strong>，则转化为单源最短路径问题，即Dijkstra算法，此时需要计算最多的顶点；</li></ul><p><strong>来自维基百科</strong></p><hr><h3 id="算法核心"><a href="#算法核心" class="headerlink" title="算法核心"></a>算法核心</h3><p><strong>A-star算法核心公式F值的计算</strong></p><p>F = G + H</p><p>F - 方块的总移动代价<br>G - 开始点到当前方块的移动代价<br>H - 当前方块到结束点的预估移动代价</p><p>以下详细解释这个公式，方便更好地理解它。</p><p><strong>G值是怎么计算的？</strong><br>假设现在我们在某一格子，邻近有8个格子可走，当我们往上、下、左、右这4个格子走时，移动代价为10；当往左上、左下、右上、右下这4个格子走时，移动代价为14；即走斜线的移动代价为走直线的1.4倍。<br>这就是G值最基本的计算方式，适用于大多数2.5Drpg页游。</p><p>基本公式：<br>G = 移动代价</p><p>根据游戏需要，G值的计算可以进行拓展。如加上地形因素对寻路的影响。格子地形不同，那么选择通过不同地形格子，移动代价肯定不同。同一段路，平地地形和丘陵地形，虽然都可以走，但平地地形显然更易走。<br>我们可以给不同地形赋予不同代价因子，来体现出G值的差异。如给平地地形设置代价因子为1，丘陵地形为2，在移动代价相同情况下，平地地形的G值更低，算法就会倾向选择G值更小的平地地形（例如：吃鸡类的游戏）。</p><p>拓展公式：<br>G = 移动代价 * 代价因子</p><p><strong>H值是如何预估出来的？</strong><br>很显然，在只知道当前点，结束点，不知道这两者的路径情况下，我们无法精确地确定H值大小，所以只能进行预估。<br>有多种方式可以预估H值，如曼哈顿距离、欧式距离、对角线估价，最常用最简单的方法就是使用曼哈顿距离进行预估：<br>H = 当前方块到结束点的水平距离 + 当前方块到结束点的垂直距离（曼哈顿距离：<strong>C = |x1 - x2| + |y1 - y2|</strong>(把两个点坐标的 x 坐标相减取绝对值，y 坐标相减取绝对值，再加和。)）</p><p>题外话：A星算法之所以被认为是具有启发策略的算法，在于其可通过预估H值，降低走弯路的可能性，更容易找到一条更短的路径。其他不具有启发策略的算法，没有做预估处理，只是穷举出所有可通行路径，然后从中挑选一条最短的路径。这也是A星算法效率更高的原因。</p><p><strong>每个方块的G值、H值是怎么确定的呢？</strong><br>G值 = 父节点的G值 + 父节点到当前点的移动代价<br>H值 = 当前点到结束点的曼哈顿距离</p><p>最后，A星算法还需要用到两个列表：<br><strong>开放列表</strong> - 用于记录所有可考虑选择的格子<br><strong>封闭列表</strong> - 用于记录所有不再考虑的格子</p><p>以上就是要完成A星算法所需要的东西,而算法的过程并不复杂。</p><p><strong>A星算法伪码：</strong><br>a、将开始点记录为当前点P<br>b、将当前点P放入封闭列表<br>c、搜寻点P所有邻近点，假如某邻近点既没有在开放列表或封闭列表里面，则计算出该邻近点的F值，并设父节点为P，然后将其放入开放列表<br>d、判断开放列表是否已经空了，如果没有说明在达到结束点前已经找完了所有可能的路径点，寻路失败，算法结束；否则继续。<br>e、从开放列表拿出一个F值最小的点，作为寻路路径的下一步。<br>f、判断该点是否为结束点，如果是，则寻路成功，算法结束；否则继续。<br>g、将该点设为当前点P，跳回步骤c。</p><p><strong>后续优化</strong></p><p>以上就是A星算法最基本的原理，明白了基本原理，用2,3百行代码写出一个可用的A星算法并不难。当然A星算法在实际应用中不仅于此，还可以对细节进行优化：</p><p>1、选择排序更快的二叉树来作为开放列表，帮助我们更快地从开放列表中取出F值最小的点；</p><p>2、对何种情况下可以走斜线路径加以判断；</p><p>3、采用布兰森汉姆算法预先判断两点是否可以直接通行，可通行就直接返回两点的直线路径，不可直接通行再采用A星算法寻路，提高寻路效率；</p><p>4、A星算法得出寻路路径后，可采用弗洛伊德算法对路径进行平滑处理，使人物走动更为自然</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="算法" scheme="http://www.sirxs.cn/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>C语言-常量</title>
@@ -199,32 +225,6 @@
   </entry>
   
   <entry>
-    <title>Python下文件读写open与codecs.open</title>
-    <link href="http://www.sirxs.cn/2020/08/19/Blog/codecs/"/>
-    <id>http://www.sirxs.cn/2020/08/19/Blog/codecs/</id>
-    <published>2020-08-19T00:00:00.000Z</published>
-    <updated>2020-08-20T02:43:51.558Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h3><p>读写文件是最常见的IO操作。Python内置了读写文件的函数，用法和C是兼容的。</p><p>读写文件前，我们先必须了解一下，在磁盘上读写文件的功能都是由操作系统提供的，现代操作系统不允许普通的程序直接操作磁盘，所以，读写文件就是请求操作系统打开一个文件对象（通常称为文件描述符），然后，通过操作系统提供的接口从这个文件对象中读取数据（读文件），或者把数据写入这个文件对象（写文件）。</p><p>当我面有数据需要保存时，第一时间一般会想到写到一个txt文件中，当然，数据量比较大的时候还是写到数据库比较方便管理，需要进行网络传输时要序列化，json化。下面主要整理一下平时用的最多的写入到文件中，一般以txt结尾，linux里不会以后缀来区分文件类型，后缀可以随便，也可以没有。</p><h3 id="open"><a href="#open" class="headerlink" title="open"></a>open</h3><p>python读写文件估计大家都用open内置函数，或者file这个工厂函数，这两个的效果基本一样。</p><p>打开文件的方式一般为：<code>f=open(file_name,access_mode = &#39;r&#39;,buffering = -1)。</code>file_name就是文件的路径加文件名字，不加路径则文件会存放在python程序的路径下，</p><p>access_mode就是操作文件的模式，主要有r,w,rb，wb等，细节网上一大堆,buffering = -1是用于指示访问文件所采用的缓存方式。0表示不缓存；1表示只缓存一行，n代表缓存n行。如果不提供或为负数，则代表使用系统默认的缓存机制。</p><p>打开以后就是写和读的操作。但是用open方法打开会有一些问题。open打开文件只能写入str类型,不管字符串是什么编码方式。例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr = open(<span class="string">'test.txt'</span>,<span class="string">'a'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>line1 = <span class="string">"我爱祖国"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr.write(line1)</span><br></pre></td></tr></table></figure><p>这样是完全可以的。</p><h3 id="codecs-open"><a href="#codecs-open" class="headerlink" title="codecs.open"></a>codecs.open</h3><p>但是有时候我们爬虫或者其他方式得到一些数据写入文件时会有编码不统一的问题，所以就一般都统一转换为unicode。此时写入open方式打开的文件就有问题了。例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line2 = <span class="string">u'我爱祖国'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr.write(line2)</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"> File <span class="string">"&lt;pyshell#4&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  fr.write(line2)</span><br><span class="line">UnicodeEncodeError: <span class="string">'ascii'</span> codec can<span class="string">'t encode characters in position 0-11: ordinal not in range(128)</span></span><br><span class="line"><span class="string">&gt;&gt;&gt;</span></span><br></pre></td></tr></table></figure><p>怎么办，我们可以将上面的line2编码成str类型，但是太麻烦。我们要把得到的东西先decode为unicode再encode为str。。。</p><p><code>input文件(gbk, utf-8...)  ----decode-----&gt;  unicode -------encode------&gt; output文件(gbk, utf-8...)</code></p><p>代替这繁琐的操作就是codecs.open，例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> codecs</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fw = codecs.open(<span class="string">'test1.txt'</span>,<span class="string">'a'</span>,<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fw.write(line2)</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><p>不会报错，说明写入成功。这种方法可以指定一个编码打开文件，使用这个方法打开的文件读取返回的将是unicode。写入时，如果参数 是unicode，则使用open()时指定的编码进行编码后写入；如果是str，则先根据源代码文件声明的字符编码，解码成unicode后再进行前述 操作。相对内置的open()来说，这个方法比较不容易在编码上出现问题。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>文件读尽量用第二种方法，一般不会出现编码的问题。至于用第二种方法有什么缺点，我没有研究过。。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
     <title>shutil---高阶文件操作</title>
     <link href="http://www.sirxs.cn/2020/08/19/Blog/shutil/"/>
     <id>http://www.sirxs.cn/2020/08/19/Blog/shutil/</id>
@@ -251,13 +251,13 @@
   </entry>
   
   <entry>
-    <title>docker配置热加载(设置共享文件夹用来配合Docker的挂载)</title>
-    <link href="http://www.sirxs.cn/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/"/>
-    <id>http://www.sirxs.cn/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/</id>
-    <published>2020-07-23T00:00:00.000Z</published>
-    <updated>2020-07-23T07:07:37.099Z</updated>
+    <title>Python下文件读写open与codecs.open</title>
+    <link href="http://www.sirxs.cn/2020/08/19/Blog/codecs/"/>
+    <id>http://www.sirxs.cn/2020/08/19/Blog/codecs/</id>
+    <published>2020-08-19T00:00:00.000Z</published>
+    <updated>2020-08-20T02:43:51.558Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前几次我们<a href="https://www.sirxs.cn/2020/07/20/Blog/docker%E4%BD%BF%E7%94%A8/">在Win10系统下利用Docker部署Gunicorn+Flask打造独立镜像</a>，在docker内启动服务后根据docker的IP可以实现数据访问，但是我们在本地修改代码之后，在docker内启动并没有实现。这时我们就需要重新打包镜像，是不是很麻烦。当然也有解决的办法，那就是我们今天说的docker配置热加载</p><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol><li><p>首先在项目文件<code>gunicorn.conf.py</code>，中添加</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reload = <span class="literal">True</span></span><br></pre></td></tr></table></figure></li><li><p>之后我们需要在<code>Oracle VM VirtualBox</code>内创建本地项目的共享文件,如下图</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re1.png" alt=""></p></li><li><p>导入本地服务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re2.png" alt=""></p><p><strong>选择固定分配，选择后该共享文件将是永久性的</strong></p></li><li><p>搞定之后关闭<code>Oracle VM VirtualBox</code>，重新启动docker</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re3.png" alt=""></p></li><li><p>输入命令进入默认容器</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-machine ssh default</span><br></pre></td></tr></table></figure></li><li><p>进入容器根目录查看刚刚设置的共享文件</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re4.png" alt=""></p><p><strong>ok，没问题</strong></p></li><li><p>最后退出默认容器，启动项目</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm -v /共享文件名/:项目Dockerfile文件中的WORKDIR -p 5000:5000 flask_back</span><br><span class="line"><span class="comment"># -P 指定端口映射，格式为：主机(宿主)端口:容器端口</span></span><br></pre></td></tr></table></figure><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re5.png" alt=""></p><p><strong>启动成功，没有问题</strong></p></li><li><p>查看效果</p><p><strong>通过docker的IP访问5000</strong></p><ul><li><p>没有修改前</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re6.png" alt=""></p></li><li><p>修改之后</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re7.png" alt=""></p></li></ul></li></ol><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>设置共享文件夹用来配合Docker的挂载，是很不错的选择，这样我们就不想要每次更改之后再次打包镜像。。。</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h3><p>读写文件是最常见的IO操作。Python内置了读写文件的函数，用法和C是兼容的。</p><p>读写文件前，我们先必须了解一下，在磁盘上读写文件的功能都是由操作系统提供的，现代操作系统不允许普通的程序直接操作磁盘，所以，读写文件就是请求操作系统打开一个文件对象（通常称为文件描述符），然后，通过操作系统提供的接口从这个文件对象中读取数据（读文件），或者把数据写入这个文件对象（写文件）。</p><p>当我面有数据需要保存时，第一时间一般会想到写到一个txt文件中，当然，数据量比较大的时候还是写到数据库比较方便管理，需要进行网络传输时要序列化，json化。下面主要整理一下平时用的最多的写入到文件中，一般以txt结尾，linux里不会以后缀来区分文件类型，后缀可以随便，也可以没有。</p><h3 id="open"><a href="#open" class="headerlink" title="open"></a>open</h3><p>python读写文件估计大家都用open内置函数，或者file这个工厂函数，这两个的效果基本一样。</p><p>打开文件的方式一般为：<code>f=open(file_name,access_mode = &#39;r&#39;,buffering = -1)。</code>file_name就是文件的路径加文件名字，不加路径则文件会存放在python程序的路径下，</p><p>access_mode就是操作文件的模式，主要有r,w,rb，wb等，细节网上一大堆,buffering = -1是用于指示访问文件所采用的缓存方式。0表示不缓存；1表示只缓存一行，n代表缓存n行。如果不提供或为负数，则代表使用系统默认的缓存机制。</p><p>打开以后就是写和读的操作。但是用open方法打开会有一些问题。open打开文件只能写入str类型,不管字符串是什么编码方式。例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr = open(<span class="string">'test.txt'</span>,<span class="string">'a'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>line1 = <span class="string">"我爱祖国"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr.write(line1)</span><br></pre></td></tr></table></figure><p>这样是完全可以的。</p><h3 id="codecs-open"><a href="#codecs-open" class="headerlink" title="codecs.open"></a>codecs.open</h3><p>但是有时候我们爬虫或者其他方式得到一些数据写入文件时会有编码不统一的问题，所以就一般都统一转换为unicode。此时写入open方式打开的文件就有问题了。例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line2 = <span class="string">u'我爱祖国'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fr.write(line2)</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"> File <span class="string">"&lt;pyshell#4&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">  fr.write(line2)</span><br><span class="line">UnicodeEncodeError: <span class="string">'ascii'</span> codec can<span class="string">'t encode characters in position 0-11: ordinal not in range(128)</span></span><br><span class="line"><span class="string">&gt;&gt;&gt;</span></span><br></pre></td></tr></table></figure><p>怎么办，我们可以将上面的line2编码成str类型，但是太麻烦。我们要把得到的东西先decode为unicode再encode为str。。。</p><p><code>input文件(gbk, utf-8...)  ----decode-----&gt;  unicode -------encode------&gt; output文件(gbk, utf-8...)</code></p><p>代替这繁琐的操作就是codecs.open，例如</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> codecs</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fw = codecs.open(<span class="string">'test1.txt'</span>,<span class="string">'a'</span>,<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fw.write(line2)</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure><p>不会报错，说明写入成功。这种方法可以指定一个编码打开文件，使用这个方法打开的文件读取返回的将是unicode。写入时，如果参数 是unicode，则使用open()时指定的编码进行编码后写入；如果是str，则先根据源代码文件声明的字符编码，解码成unicode后再进行前述 操作。相对内置的open()来说，这个方法比较不容易在编码上出现问题。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>文件读尽量用第二种方法，一般不会出现编码的问题。至于用第二种方法有什么缺点，我没有研究过。。</p>]]></content>
     
     <summary type="html">
     
@@ -269,10 +269,10 @@
     </summary>
     
     
-      <category term="总结 · 笔记" scheme="http://www.sirxs.cn/categories/%E6%80%BB%E7%BB%93-%C2%B7-%E7%AC%94%E8%AE%B0/"/>
+      <category term="编程 · 技术" scheme="http://www.sirxs.cn/categories/%E7%BC%96%E7%A8%8B-%C2%B7-%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="Docker" scheme="http://www.sirxs.cn/tags/Docker/"/>
+      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
     
   </entry>
   
@@ -301,6 +301,32 @@
       <category term="Docker" scheme="http://www.sirxs.cn/tags/Docker/"/>
     
       <category term="Elasticsearch" scheme="http://www.sirxs.cn/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker配置热加载(设置共享文件夹用来配合Docker的挂载)</title>
+    <link href="http://www.sirxs.cn/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/"/>
+    <id>http://www.sirxs.cn/2020/07/23/Note/docker%E7%83%AD%E5%8A%A0%E8%BD%BD/</id>
+    <published>2020-07-23T00:00:00.000Z</published>
+    <updated>2020-07-23T07:07:37.099Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前几次我们<a href="https://www.sirxs.cn/2020/07/20/Blog/docker%E4%BD%BF%E7%94%A8/">在Win10系统下利用Docker部署Gunicorn+Flask打造独立镜像</a>，在docker内启动服务后根据docker的IP可以实现数据访问，但是我们在本地修改代码之后，在docker内启动并没有实现。这时我们就需要重新打包镜像，是不是很麻烦。当然也有解决的办法，那就是我们今天说的docker配置热加载</p><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol><li><p>首先在项目文件<code>gunicorn.conf.py</code>，中添加</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reload = <span class="literal">True</span></span><br></pre></td></tr></table></figure></li><li><p>之后我们需要在<code>Oracle VM VirtualBox</code>内创建本地项目的共享文件,如下图</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re1.png" alt=""></p></li><li><p>导入本地服务</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re2.png" alt=""></p><p><strong>选择固定分配，选择后该共享文件将是永久性的</strong></p></li><li><p>搞定之后关闭<code>Oracle VM VirtualBox</code>，重新启动docker</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re3.png" alt=""></p></li><li><p>输入命令进入默认容器</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-machine ssh default</span><br></pre></td></tr></table></figure></li><li><p>进入容器根目录查看刚刚设置的共享文件</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re4.png" alt=""></p><p><strong>ok，没问题</strong></p></li><li><p>最后退出默认容器，启动项目</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm -v /共享文件名/:项目Dockerfile文件中的WORKDIR -p 5000:5000 flask_back</span><br><span class="line"><span class="comment"># -P 指定端口映射，格式为：主机(宿主)端口:容器端口</span></span><br></pre></td></tr></table></figure><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re5.png" alt=""></p><p><strong>启动成功，没有问题</strong></p></li><li><p>查看效果</p><p><strong>通过docker的IP访问5000</strong></p><ul><li><p>没有修改前</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re6.png" alt=""></p></li><li><p>修改之后</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/re7.png" alt=""></p></li></ul></li></ol><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>设置共享文件夹用来配合Docker的挂载，是很不错的选择，这样我们就不想要每次更改之后再次打包镜像。。。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="总结 · 笔记" scheme="http://www.sirxs.cn/categories/%E6%80%BB%E7%BB%93-%C2%B7-%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Docker" scheme="http://www.sirxs.cn/tags/Docker/"/>
     
   </entry>
   
@@ -511,34 +537,6 @@
     
     
       <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用ShareLatex和Python3打造属于自己的特色简历</title>
-    <link href="http://www.sirxs.cn/2020/07/11/Note/%E4%BD%BF%E7%94%A8ShareLatex%E5%88%B6%E4%BD%9C%E7%AE%80%E5%8E%86/"/>
-    <id>http://www.sirxs.cn/2020/07/11/Note/%E4%BD%BF%E7%94%A8ShareLatex%E5%88%B6%E4%BD%9C%E7%AE%80%E5%8E%86/</id>
-    <published>2020-07-11T08:59:18.000Z</published>
-    <updated>2020-07-12T13:44:23.866Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p><strong>履历</strong>(英式英语：<a href="https://zh.wikipedia.org/w/index.php?title=Curriculum_Vitae&action=edit&redlink=1" target="_blank" rel="noopener">Curriculum Vitae</a>，简称<strong>CV</strong>；美式英语：<a href="https://zh.wikipedia.org/w/index.php?title=Résumé&action=edit&redlink=1" target="_blank" rel="noopener">Résumé</a>)，是对个人教育、工作经历的书面介绍，是求职者通向面试阶段的重要一环。</p><p>说起简历模板，大家一定不会陌生，随便在百度搜关键词“简历模板”，林林总总的会出现一大片，但是这些简历模板往往都会有一个共同点，就是太Low、“土味”重、没有时代感、味同嚼蜡，蜡都要顺着嘴角流下来了，以一个求职者的视角来看待这些简历都会无奈心烦，更别说招聘者了。所以新时代的简历应该具备独特性、新颖、与众不同并且不落窠臼。</p><p>Resume是在申请求职时最常使用的文件，为你的教育程度、工作经历以及工作技能做简单且明了的摘要，同时，也会依个人、申请职位的需求，列出求职目标。由于是个人“摘要”，Resume通常为一页，最多不超过二页，以求简洁。</p><p>而在CV中，则会详细的列举出个人的经验与相关技能，尤其是个人的学术背景，如：教学经验、研究成果、获奖纪录、相关出版物⋯⋯等细节，也因此，CV的篇幅会比Resume长上许多，通常会超过二页。</p><h3 id="开始操作"><a href="#开始操作" class="headerlink" title="开始操作"></a>开始操作</h3><ol><li><p>首先进入<a href="https://www.sharelatex.com/" target="_blank" rel="noopener">ShareLatex</a>，注册账号并登陆。</p></li><li><p>之后通过邮箱激活，选择新建序幕，并选简历</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha1.png" alt="sha"></p></li><li><p>紧接着我们会发现有许多简历模板，但是都用LaTeX语法写的</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha2.png" alt="sha"></p></li><li><p>随后点开其中一个，就可以进行定制化的编辑</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha3.png" alt="sha"></p></li><li><p>编辑之后，可以点击重新编译查看效果，如果编辑好之后就可以在线下载pdf，非常方便</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha4.png" alt="sha"></p></li><li><p>但是由于LaTeX语法我们没有学过，而且编辑成本比较高，最重要的对于一些英文不好的很难编辑。</p></li><li><p>其实<code>6</code>的问题很好解决。我们可以下载这上面的原始pdf简历，再通过Python脚本将其转换为我们所熟悉的Word文档模式，这样就可以随便进行编辑</p></li><li><p>通过Pdfminer3k以及Python-Docx两个库，使用python可以实现</p></li><li><p>首先安装依赖</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pdfminer3k</span><br><span class="line">pip3 install python-docx</span><br></pre></td></tr></table></figure></li><li><p>通过Pdfminer3k读取pdf内容，再使用Python-Docx写入word文档</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pdfminer.pdfinterp <span class="keyword">import</span> PDFResourceManager</span><br><span class="line"><span class="keyword">from</span> pdfminer.pdfinterp <span class="keyword">import</span> process_pdf</span><br><span class="line"><span class="keyword">from</span> pdfminer.converter <span class="keyword">import</span> TextConverter</span><br><span class="line"><span class="keyword">from</span> pdfminer.layout <span class="keyword">import</span> LAParams</span><br><span class="line"><span class="keyword">from</span> io <span class="keyword">import</span> StringIO</span><br><span class="line"><span class="keyword">from</span> docx <span class="keyword">import</span> Document</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">file = open(<span class="string">"pdf文件地址"</span>, <span class="string">'rb'</span>)</span><br><span class="line"></span><br><span class="line">resource_manager = PDFResourceManager()</span><br><span class="line">return_str = StringIO()</span><br><span class="line">lap_params = LAParams()</span><br><span class="line"></span><br><span class="line">device = TextConverter(resource_manager, return_str, laparams=lap_params)</span><br><span class="line">process_pdf(resource_manager, device, file)</span><br><span class="line">device.close()</span><br><span class="line"></span><br><span class="line">content = return_str.getvalue()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_control_characters</span><span class="params">(content)</span>:</span></span><br><span class="line">    mpa = dict.fromkeys(range(<span class="number">32</span>))</span><br><span class="line">    <span class="keyword">return</span> content.translate(mpa)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">doc = Document()</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> content.split(<span class="string">'\n'</span>):</span><br><span class="line">    paragraph = doc.add_paragraph()</span><br><span class="line">    paragraph.add_run(remove_control_characters(line))</span><br><span class="line">doc.save(<span class="string">"mypdf.docx"</span>)</span><br></pre></td></tr></table></figure></li><li><p>但是，这样弄出来的简历，没有样式而且麻烦</p></li><li><p>我们可以通过注册登陆<a href="https://smallpdf.com/" target="_blank" rel="noopener">https://smallpdf.com/</a>此网站，进行在线转换</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha5.png" alt="sha"></p></li><li><p>直接拖拽上传即可。</p><p><img src= "/img/loading.gif" data-src="https://wangxs020202.gitee.io/images/note/sha6.png" alt="sha"></p></li></ol><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>一个不落俗套的简历模板可以让你的求职如虎添翼，也可以让你的简历从招聘者邮箱中的海量简历中脱颖而出，但是简历模板也仅仅是求职中的一个重要细节之一，比起简历模板，简历中的工作经历以及技术经验则更加重要，切不可本末倒置。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="总结 · 笔记" scheme="http://www.sirxs.cn/categories/%E6%80%BB%E7%BB%93-%C2%B7-%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="Python" scheme="http://www.sirxs.cn/tags/Python/"/>
-    
-      <category term="ShareLatex" scheme="http://www.sirxs.cn/tags/ShareLatex/"/>
     
   </entry>
   
