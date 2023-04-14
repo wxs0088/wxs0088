@@ -1,0 +1,1608 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Docker搭建ClickHouse+Zookeeper集群, 未央之域">
+    <meta name="description" content="Using Docker to Build a ClickHouse+Zookeeper Cluster">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Docker搭建ClickHouse+Zookeeper集群 | 未央之域</title>
+    <link rel="icon" type="image/png" href="/wxs0088/medias/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/wxs0088/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/wxs0088/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/wxs0088/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/wxs0088/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/wxs0088/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/wxs0088/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/wxs0088/css/my.css">
+<link rel="stylesheet" type="text/css" href="/wxs0088/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/wxs0088/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/wxs0088/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/wxs0088/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/wxs0088/atom.xml" title="未央之域" type="application/atom+xml">
+<link rel="stylesheet" href="/wxs0088/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/wxs0088/" class="waves-effect waves-light">
+                    
+                    <img src="/wxs0088/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">未央之域</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/wxs0088/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/wxs0088/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/wxs0088/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/wxs0088/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/wxs0088/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/wxs0088/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">未央之域</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/wxs0088/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/wxs0088/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/wxs0088/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/wxs0088/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/wxs0088/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/wxs0088" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/wxs0088" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://www.bytebase.com/static/blog/how-to-run-clickhouse-with-docker-and-connect-using-mysql-client/docker-and-clickhouse.webp')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Docker搭建ClickHouse+Zookeeper集群</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/wxs0088/tags/db/">
+                                <span class="chip bg-color">db</span>
+                            </a>
+                        
+                            <a href="/wxs0088/tags/Docker/">
+                                <span class="chip bg-color">Docker</span>
+                            </a>
+                        
+                            <a href="/wxs0088/tags/ClickHouse/">
+                                <span class="chip bg-color">ClickHouse</span>
+                            </a>
+                        
+                            <a href="/wxs0088/tags/Ubuntu/">
+                                <span class="chip bg-color">Ubuntu</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/wxs0088/categories/Docker/" class="post-category">
+                                Docker
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-04-14
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-04-14
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    14 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <ol>
+<li><p>需要创建一台<code>Ubuntu</code>系统的主机&#x2F;虚拟机</p>
+</li>
+<li><p>更换apt源</p>
+<pre class=" language-shell"><code class="language-shell"># 备份信息
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.bat
+# 打开配置文件进行修改
+sudo vi /etc/apt/sources.list
+# 删除所有数据换成一下信息
+</code></pre>
+<pre class=" language-reStructuredText"><code class="language-reStructuredText">deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
+deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+# deb-src [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+</code></pre>
+<pre class=" language-shell"><code class="language-shell"># 更新apt
+sudo apt-get update
+</code></pre>
+</li>
+<li><p>搭建docker环境</p>
+<pre class=" language-shell"><code class="language-shell"># 卸载旧的docker环境
+sudo apt-get remove docker docker-engine docker-ce docker.io
+
+# 安装以下包以使apt可以通过HTTPS使用存储库（repository）：
+sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+
+# 添加Docker官方的GPG密钥：
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# 使用下面的命令来设置stable存储库：
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+# 安装最新版本的Docker CE：这个根据网络情况会比较慢
+sudo apt-get install -y docker-ce
+
+# 查看docker服务状态
+systemctl status docker
+
+# 如果没启动，则启动docker服务
+
+sudo systemctl start docker
+
+# 修改docker源
+
+# 进入阿里云 复制 加速器地址
+https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
+
+# 修改/创建daemon配置文件/etc/docker/daemon.json来使用加速器
+sudo vim /etc/docker/daemon.json
+
+# 复制一下信息
+&#123;
+  "registry-mirrors": ["https://xxxxxxxx.mirror.aliyuncs.com"]
+&#125;
+</code></pre>
+</li>
+<li><p>拉取<code>yandex/clickhouse-server</code>、<code>zookeeper</code>镜像</p>
+<pre class=" language-shell"><code class="language-shell">docker pull yandex/clickhouse-server
+docker pull zookeeper
+</code></pre>
+</li>
+<li><p>复制虚拟机</p>
+<p>使用VMware直接复制</p>
+</li>
+<li><p>修改hosts</p>
+<pre class=" language-shell"><code class="language-shell"># 三台服务器的ip分别是：117、105、103
+# 分别修改三台服务器的hosts文件
+vim /etc/hosts
+
+# 服务1 的ip
+192.168.3.117 server01
+# 服务2 的ip
+192.168.3.105 server02
+# 服务3 的ip
+192.168.3.103 server03
+</code></pre>
+</li>
+<li><p>Zookeeper集群搭建</p>
+<pre class=" language-shell"><code class="language-shell"># 创建zk配置信息存放文件
+sudo mkdir /usr/soft
+sudo mkdir /usr/soft/zookeeper
+</code></pre>
+<p><strong>server01执行：</strong></p>
+<pre class=" language-shell"><code class="language-shell">docker run -d -p 2181:2181 -p 2888:2888 -p 3888:3888 --name zookeeper_node --restart always \
+-v /usr/soft/zookeeper/data:/data \
+-v /usr/soft/zookeeper/datalog:/datalog \
+-v /usr/soft/zookeeper/logs:/logs \
+-v /usr/soft/zookeeper/conf:/conf \
+--network host  \
+-e ZOO_MY_ID=1  zookeeper
+</code></pre>
+<p><strong>server02执行：</strong></p>
+<pre class=" language-shell"><code class="language-shell">docker run -d -p 2181:2181 -p 2888:2888 -p 3888:3888 --name zookeeper_node --restart always \
+-v /usr/soft/zookeeper/data:/data \
+-v /usr/soft/zookeeper/datalog:/datalog \
+-v /usr/soft/zookeeper/logs:/logs \
+-v /usr/soft/zookeeper/conf:/conf \
+--network host  \
+-e ZOO_MY_ID=2  zookeeper
+</code></pre>
+<p><strong>server03执行：</strong></p>
+<pre class=" language-shell"><code class="language-shell">docker run -d -p 2181:2181 -p 2888:2888 -p 3888:3888 --name zookeeper_node --restart always \
+-v /usr/soft/zookeeper/data:/data \
+-v /usr/soft/zookeeper/datalog:/datalog \
+-v /usr/soft/zookeeper/logs:/logs \
+-v /usr/soft/zookeeper/conf:/conf \
+--network host  \
+-e ZOO_MY_ID=3  zookeeper
+</code></pre>
+<p>唯一的差别是： <code>-e ZOO_MY_ID=*</code> 而已。</p>
+</li>
+<li><p>修改zookeeper配置文件</p>
+<p><code>/usr/soft/zookeeper/conf/zoo.cfg</code></p>
+<pre class=" language-shell"><code class="language-shell">dataDir=/data
+dataLogDir=/datalog
+tickTime=2000
+initLimit=5
+syncLimit=2
+clientPort=2181
+autopurge.snapRetainCount=3
+autopurge.purgeInterval=0
+maxClientCnxns=60
+
+# 服务1 的ip
+server.1=192.168.3.117:2888:3888
+# 服务2 的ip
+server.2=192.168.3.105:2888:3888
+# 服务3 的ip
+server.3=192.168.3.103:2888:3888
+</code></pre>
+</li>
+<li><p>验证zookeeper是否配置成功</p>
+<pre class=" language-shell"><code class="language-shell">docker exec -it zookeeper_node /bin/bash
+./bin/zkServer.sh status
+</code></pre>
+<p><strong>成功结果</strong></p>
+<pre class=" language-shell"><code class="language-shell">ZooKeeper JMX enabled by default
+Using config: /conf/zoo.cfg
+Client port found: 2181. Client address: localhost. Client SSL: false.
+Mode: follower
+</code></pre>
+</li>
+<li><p>Clickhouse集群部署</p>
+<ul>
+<li><p>拷贝出临时镜像配置</p>
+<pre class=" language-shell"><code class="language-shell"># 运行一个临时容器，目的是为了将配置、数据、日志等信息存储到宿主机上：
+docker run --rm -d --name=temp-ch yandex/clickhouse-server
+# 拷贝容器内的文件：
+docker cp temp-ch:/etc/clickhouse-server/ /etc/
+</code></pre>
+</li>
+<li><p>修改配置文件<code>/etc/clickhouse-server/config.xml</code></p>
+<pre class=" language-xml"><code class="language-xml"># 同时兼容IPV6，一劳永逸
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>listen_host</span><span class="token punctuation">></span></span>0.0.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>listen_host</span><span class="token punctuation">></span></span>
+
+//设置时区
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>timezone</span><span class="token punctuation">></span></span>Asia/Shanghai<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>timezone</span><span class="token punctuation">></span></span>
+
+//删除原节点<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>remote_servers</span><span class="token punctuation">></span></span>的测试信息
+
+//新增
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>remote_servers</span> <span class="token attr-name">incl</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clickhouse_remote_servers<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+
+//新增，和上面的remote_servers 节点同级
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include_from</span><span class="token punctuation">></span></span>/etc/clickhouse-server/metrika.xml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include_from</span><span class="token punctuation">></span></span>
+
+//新增，和上面的remote_servers 节点同级
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>zookeeper</span> <span class="token attr-name">incl</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>zookeeper-servers<span class="token punctuation">"</span></span> <span class="token attr-name">optional</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+
+//新增，和上面的remote_servers 节点同级
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>macros</span> <span class="token attr-name">incl</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>macros<span class="token punctuation">"</span></span> <span class="token attr-name">optional</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+</code></pre>
+</li>
+<li><p>拷贝配置文件到挂载文件下</p>
+<pre class=" language-shell"><code class="language-shell"># 分别在server01 server02 server03 执行创建指令
+# 创建挂载文件 mian
+sudo mkdir /usr/soft/clickhouse-server
+sudo mkdir /usr/soft/clickhouse-server/main
+sudo mkdir /usr/soft/clickhouse-server/main/conf
+# 创建挂载文件 sub
+sudo mkdir /usr/soft/clickhouse-server/sub
+sudo mkdir /usr/soft/clickhouse-server/sub/conf
+# 拷贝配置文件
+cp -rf /etc/clickhouse-server/ /usr/soft/clickhouse-server/main/conf
+cp -rf /etc/clickhouse-server/ /usr/soft/clickhouse-server/sub/conf
+</code></pre>
+</li>
+<li><p>修改每台服务器的scp配置</p>
+<pre class=" language-shell"><code class="language-shell">vim /etc/ssh/sshd_config
+# 修改
+PermitRootLogin yes
+# 重启服务
+systemctl restart sshd 
+</code></pre>
+</li>
+<li><p>分发到其他服务器</p>
+<pre class=" language-shell"><code class="language-shell"># 拷贝配置到server02上
+scp -r /usr/soft/clickhouse-server/main/conf/ server02:/usr/soft/clickhouse-server/main/
+scp -r /usr/soft/clickhouse-server/sub/conf/ server02:/usr/soft/clickhouse-server/sub/
+# 拷贝配置到server03上
+scp -r /usr/soft/clickhouse-server/main/conf/ server03:/usr/soft/clickhouse-server/main/
+scp -r /usr/soft/clickhouse-server/sub/conf/ server03:/usr/soft/clickhouse-server/sub/
+</code></pre>
+</li>
+<li><p>删除掉临时容器</p>
+<pre class=" language-shell"><code class="language-shell">docker rm -f temp-ch
+</code></pre>
+</li>
+<li><p>进入<code>server01</code>修改<code>/usr/soft/clickhouse-server/sub/conf/config.xml</code>为了和主分片 <strong>main</strong>的配置区分开来</p>
+<pre class=" language-XML"><code class="language-XML">原：
+<http_port>8123</http_port>
+<tcp_port>9000</tcp_port>
+<mysql_port>9004</mysql_port>
+<postgresql_port>9005</postgresql_port>
+<interserver_http_port>9009</interserver_http_port>
+
+修改为：
+<http_port>8124</http_port>
+<tcp_port>9001</tcp_port>
+<mysql_port>9005</mysql_port>
+<!--<postgresql_port>9005</postgresql_port>-->
+<interserver_http_port>9010</interserver_http_port>
+</code></pre>
+<p><strong>server02</strong>和<strong>server03</strong>如此修改或scp命令进行分发</p>
+</li>
+<li><p><code>server01</code>新增集群配置文件<code>/usr/soft/clickhouse-server/main/conf/metrika.xml</code></p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>yandex</span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- CH集群配置,所有服务器都一样 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>clickhouse_remote_servers</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>cluster_3s_1r</span><span class="token punctuation">></span></span>
+            <span class="token comment" spellcheck="true">&lt;!-- 数据分片1  --></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>internal_replication</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>internal_replication</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9000<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server03<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9001<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+            <span class="token comment" spellcheck="true">&lt;!-- 数据分片2  --></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>internal_replication</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>internal_replication</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server02<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9000<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9001<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+            <span class="token comment" spellcheck="true">&lt;!-- 数据分片3  --></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>internal_replication</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>internal_replication</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server03<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9000<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server02<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9001<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>cluster_3s_1r</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>clickhouse_remote_servers</span><span class="token punctuation">></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- zookeeper_servers所有实例配置都一样 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>zookeeper-servers</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>node</span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>192.168.3.117<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>2181<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>node</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>node</span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>192.168.3.105<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>2181<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>node</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>node</span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>192.168.3.103<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>2181<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>node</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>zookeeper-servers</span><span class="token punctuation">></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- marcos每个实例配置不一样 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>macros</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>layer</span><span class="token punctuation">></span></span>01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>layer</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>cluster01-01-1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>macros</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>networks</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ip</span><span class="token punctuation">></span></span>::/0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ip</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>networks</span><span class="token punctuation">></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- 数据压缩算法  --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>clickhouse_compression</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>case</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>min_part_size</span><span class="token punctuation">></span></span>10000000000<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>min_part_size</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>min_part_size_ratio</span><span class="token punctuation">></span></span>0.01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>min_part_size_ratio</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>method</span><span class="token punctuation">></span></span>lz4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>method</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>case</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>clickhouse_compression</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>yandex</span><span class="token punctuation">></span></span>
+</code></pre>
+</li>
+<li><p><code>server01</code>新增集群配置文件<code>/usr/soft/clickhouse-server/sub/conf/metrika.xml</code></p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>yandex</span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- CH集群配置,所有服务器都一样 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>clickhouse_remote_servers</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>cluster_3s_1r</span><span class="token punctuation">></span></span>
+            <span class="token comment" spellcheck="true">&lt;!-- 数据分片1  --></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>internal_replication</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>internal_replication</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9000<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server03<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9001<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+            <span class="token comment" spellcheck="true">&lt;!-- 数据分片2  --></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>internal_replication</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>internal_replication</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server02<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9000<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9001<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+            <span class="token comment" spellcheck="true">&lt;!-- 数据分片3  --></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>internal_replication</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>internal_replication</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server03<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9000<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>server02<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>9001<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>user</span><span class="token punctuation">></span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>user</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>password</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>cluster_3s_1r</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>clickhouse_remote_servers</span><span class="token punctuation">></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- zookeeper_servers所有实例配置都一样 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>zookeeper-servers</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>node</span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>192.168.3.117<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>2181<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>node</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>node</span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>192.168.3.105<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>2181<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>node</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>node</span> <span class="token attr-name">index</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>host</span><span class="token punctuation">></span></span>192.168.3.103<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>host</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>port</span><span class="token punctuation">></span></span>2181<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>port</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>node</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>zookeeper-servers</span><span class="token punctuation">></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- marcos每个实例配置不一样 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>macros</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>layer</span><span class="token punctuation">></span></span>01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>layer</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>02<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>cluster01-02-2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>macros</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>networks</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ip</span><span class="token punctuation">></span></span>::/0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ip</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>networks</span><span class="token punctuation">></span></span>
+
+    <span class="token comment" spellcheck="true">&lt;!-- 数据压缩算法  --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>clickhouse_compression</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>case</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>min_part_size</span><span class="token punctuation">></span></span>10000000000<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>min_part_size</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>min_part_size_ratio</span><span class="token punctuation">></span></span>0.01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>min_part_size_ratio</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>method</span><span class="token punctuation">></span></span>lz4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>method</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>case</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>clickhouse_compression</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>yandex</span><span class="token punctuation">></span></span>
+</code></pre>
+</li>
+<li><p>将<code>server01</code>新增的两个<code>metrika.xml</code>文件分发到<code>server02</code>,<code>server03</code></p>
+<pre class=" language-shell"><code class="language-shell"># server02
+scp -r /usr/soft/clickhouse-server/main/conf/metrika.xml server02:/usr/soft/clickhouse-server/main/conf
+scp -r /usr/soft/clickhouse-server/sub/conf/metrika.xml server02:/usr/soft/clickhouse-server/sub/conf
+# server03
+scp -r /usr/soft/clickhouse-server/main/conf/metrika.xml server03:/usr/soft/clickhouse-server/main/conf
+scp -r /usr/soft/clickhouse-server/sub/conf/metrika.xml server03:/usr/soft/clickhouse-server/sub/conf
+</code></pre>
+</li>
+<li><p>修改<code>server02</code>,<code>server03</code>的<code>metrika.xml</code>文件</p>
+<pre class=" language-xml"><code class="language-xml"># server02 main
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>macros</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>layer</span><span class="token punctuation">></span></span>01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>layer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>02<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>cluster01-02-1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>macros</span><span class="token punctuation">></span></span>
+# server02 sub
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>macros</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>layer</span><span class="token punctuation">></span></span>01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>layer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>03<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>cluster01-03-2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>macros</span><span class="token punctuation">></span></span>
+# server03 main
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>macros</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>layer</span><span class="token punctuation">></span></span>01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>layer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>03<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>cluster01-03-1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>macros</span><span class="token punctuation">></span></span>
+# server03 sub
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>macros</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>layer</span><span class="token punctuation">></span></span>01<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>layer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shard</span><span class="token punctuation">></span></span>02<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>shard</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>replica</span><span class="token punctuation">></span></span>cluster01-01-2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>replica</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>macros</span><span class="token punctuation">></span></span>
+</code></pre>
+<p><strong>至此，已经完成全部配置，其他的比如密码等配置，可以按需增加。</strong></p>
+</li>
+</ul>
+</li>
+<li><p>集群运行与测试</p>
+<p>在每一台服务器上依次运行实例，zookeeper前面已经提前运行，没有则需先运行zk集群</p>
+<p><strong>在每台服务器执行命令，唯一不同的参数是hostname</strong></p>
+<ul>
+<li><p>运行main实例</p>
+<pre class=" language-shell"><code class="language-shell">docker run -d --name=ch-main -p 8123:8123 -p 9000:9000 -p 9009:9009 --ulimit nofile=262144:262144 \-v /usr/soft/clickhouse-server/main/data:/var/lib/clickhouse:rw \-v /usr/soft/clickhouse-server/main/conf:/etc/clickhouse-server:rw \-v /usr/soft/clickhouse-server/main/log:/var/log/clickhouse-server:rw \
+--add-host server01:192.168.3.117 \
+--add-host server02:192.168.3.105 \
+--add-host server03:192.168.3.103 \
+--hostname server01 \
+--network host \
+--restart=always \
+ yandex/clickhouse-server
+</code></pre>
+</li>
+<li><p>运行sub实例</p>
+<pre class=" language-shel"><code class="language-shel">docker run -d --name=ch-sub -p 8124:8124 -p 9001:9001 -p 9010:9010 --ulimit nofile=262144:262144 \
+-v /usr/soft/clickhouse-server/sub/data:/var/lib/clickhouse:rw \
+-v /usr/soft/clickhouse-server/sub/conf:/etc/clickhouse-server:rw \
+-v /usr/soft/clickhouse-server/sub/log:/var/log/clickhouse-server:rw \
+--add-host server01:192.168.3.117 \
+--add-host server02:192.168.3.105 \
+--add-host server03:192.168.3.103 \
+--hostname server01 \
+--network host \
+--restart=always \
+ yandex/clickhouse-server
+</code></pre>
+</li>
+<li><p>在每台服务器的实例都启动之后，这里使用正版DataGrip来打开</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/1cd1a26ba1996ba9fe310f8ada9c1205.png"></p>
+</li>
+<li><p>执行 <code>select * from system.clusters</code> 查询集群</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/e62dde63310d042e250dc30b63c4c234.png" alt="image-20220916164416345"></p>
+</li>
+<li><p>在任一实例上新建一个查询</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> T_UserTest <span class="token keyword">on</span> cluster cluster_3s_1r
+<span class="token punctuation">(</span>
+    ts  <span class="token keyword">DateTime</span><span class="token punctuation">,</span>
+    uid String<span class="token punctuation">,</span>
+    biz String
+<span class="token punctuation">)</span>
+    <span class="token keyword">engine</span> <span class="token operator">=</span> ReplicatedMergeTree<span class="token punctuation">(</span>'<span class="token operator">/</span>clickhouse<span class="token operator">/</span><span class="token keyword">tables</span><span class="token operator">/</span><span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;layer&amp;#125;-&amp;#123;shard&amp;#125;/T_UserTest', '&amp;#123;replica&amp;#125;')</span>
+        <span class="token keyword">PARTITION</span> <span class="token keyword">BY</span> toYYYYMMDD<span class="token punctuation">(</span>ts<span class="token punctuation">)</span>
+        <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> ts
+        SETTINGS index_granularity <span class="token operator">=</span> <span class="token number">8192</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>cluster_3s_1r是前面配置的集群名称，需一一对应上， &#x2F;clickhouse&#x2F;tables&#x2F; 是固定的前缀，相关语法可以查看官方文档了。</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/4792426c49bd92be96b2c065c841d3b4.png" alt="image-20220916164825426"></p>
+<p>刷新每个实例，即可看到全部实例中都有这张T_UserTest表，因为已经搭建zookeeper，很容易实现分布式DDL。</p>
+</li>
+<li><p>新建Distributed分布式表</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> T_UserTest_All <span class="token keyword">ON</span> CLUSTER cluster_3s_1r <span class="token keyword">AS</span> T_UserTest <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">Distributed</span><span class="token punctuation">(</span>cluster_3s_1r<span class="token punctuation">,</span> <span class="token keyword">default</span><span class="token punctuation">,</span>  T_UserTest<span class="token punctuation">,</span> rand<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<p>每个主分片分别插入相关信息：</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">--server01</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span>  T_UserTest <span class="token keyword">values</span> <span class="token punctuation">(</span><span class="token string">'2021-08-16 17:00:00'</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">--server02</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span>  T_UserTest <span class="token keyword">values</span> <span class="token punctuation">(</span><span class="token string">'2021-08-16 17:00:00'</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">--server03</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span>  T_UserTest <span class="token keyword">values</span> <span class="token punctuation">(</span><span class="token string">'2021-08-16 17:00:00'</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/ed99a5a5bd1d3245a963d569c2b48dba.png" alt="image-20220916165347531"></p>
+<p><strong>查询对应的副本表或者关闭其中一台服务器的docker实例，查询也是不受影响，时间关系不在测试</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/wxs0088/about" rel="external nofollow noreferrer">未央</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://wxs0088.github.io/wxs0088/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/">https://wxs0088.github.io/wxs0088/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/wxs0088/about" target="_blank">未央</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/wxs0088/tags/db/">
+                                    <span class="chip bg-color">db</span>
+                                </a>
+                            
+                                <a href="/wxs0088/tags/Docker/">
+                                    <span class="chip bg-color">Docker</span>
+                                </a>
+                            
+                                <a href="/wxs0088/tags/ClickHouse/">
+                                    <span class="chip bg-color">ClickHouse</span>
+                                </a>
+                            
+                                <a href="/wxs0088/tags/Ubuntu/">
+                                    <span class="chip bg-color">Ubuntu</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/wxs0088/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/wxs0088/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/wxs0088/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/">
+                    <div class="card-image">
+                        
+                        <img src="https://www.bytebase.com/static/blog/how-to-run-clickhouse-with-docker-and-connect-using-mysql-client/docker-and-clickhouse.webp" class="responsive-img" alt="Docker搭建ClickHouse+Zookeeper集群">
+                        
+                        <span class="card-title">Docker搭建ClickHouse+Zookeeper集群</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Using Docker to Build a ClickHouse+Zookeeper Cluster
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/wxs0088/categories/Docker/" class="post-category">
+                                    Docker
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/wxs0088/tags/db/">
+                        <span class="chip bg-color">db</span>
+                    </a>
+                    
+                    <a href="/wxs0088/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
+                    </a>
+                    
+                    <a href="/wxs0088/tags/ClickHouse/">
+                        <span class="chip bg-color">ClickHouse</span>
+                    </a>
+                    
+                    <a href="/wxs0088/tags/Ubuntu/">
+                        <span class="chip bg-color">Ubuntu</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/wxs0088/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/">
+                    <div class="card-image">
+                        
+                        <img src="https://www.bytebase.com/static/blog/how-to-run-clickhouse-with-docker-and-connect-using-mysql-client/docker-and-clickhouse.webp" class="responsive-img" alt="Docker搭建ClickHouse+Zookeeper集群">
+                        
+                        <span class="card-title">Docker搭建ClickHouse+Zookeeper集群</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Using Docker to Build a ClickHouse+Zookeeper Cluster
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/wxs0088/categories/Docker/" class="post-category">
+                                    Docker
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/wxs0088/tags/db/">
+                        <span class="chip bg-color">db</span>
+                    </a>
+                    
+                    <a href="/wxs0088/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
+                    </a>
+                    
+                    <a href="/wxs0088/tags/ClickHouse/">
+                        <span class="chip bg-color">ClickHouse</span>
+                    </a>
+                    
+                    <a href="/wxs0088/tags/Ubuntu/">
+                        <span class="chip bg-color">Ubuntu</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/wxs0088/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/wxs0088/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/wxs0088/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/wxs0088/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/wxs0088/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            <!-- 版权 -->
+
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2020-2023</span>
+            
+
+            <!-- _config配置的 author 可直接跳转到 about 页面
+                <a href="/wxs0088/about" target="_blank">未央</a>
+             -->
+            <!-- 简繁替换 -->
+            
+            <br>
+            <!-- 总字数 -->
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">2.7k</span>
+            
+
+            
+            
+            <!--  总访问量 -->
+            
+            <!-- 总访问人数 -->
+            
+            <br>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2020";
+                        var startMonth = "6";
+                        var startDate = "28";
+                        var startHour = "2";
+                        var startMinute = "3";
+                        var startSecond = "15";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/wxs0088" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/wxs0088/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/wxs0088/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/wxs0088/libs/materialize/materialize.min.js"></script>
+    <script src="/wxs0088/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/wxs0088/libs/aos/aos.js"></script>
+    <script src="/wxs0088/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/wxs0088/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/wxs0088/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/wxs0088/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/wxs0088/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/wxs0088/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
