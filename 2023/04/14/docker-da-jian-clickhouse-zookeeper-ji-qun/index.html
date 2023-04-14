@@ -369,14 +369,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    3.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    16 分
                 </div>
                 
 
@@ -391,7 +391,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <ol>
+                <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>Docker搭建ClickHouse+Zookeeper集群，是一种高效、灵活和可靠的解决方案，能够满足大规模数据处理和分析的需求。ClickHouse是一款开源的面向列存储的分布式数据库，可以快速地处理大范围的实时数据。而Zookeeper则是一个分布式的协调框架，为ClickHouse提供了多个节点之间协作运作的支持。</p>
+<p>该集群的优势在于，Docker将应用程序、库和依赖项打包成标准镜像并提供容器隔离，简化了 ClickHouse 和 Zookeeper 的配置和部署流程，同时带来更灵活的资源分配和使用。并且，在集群中添加或移除节点都可以实现弹性扩缩容，在保证服务的质量和稳定性的同时，节约了企业的资源成本。</p>
+<p>在这篇博客中，我们将会介绍如何借助Docker技术，使用Docker-Compose将ClickHouse+Zookeeper集群快速搭建至本地环境，并对集群的扩展、管理以及数据备份等方面进行深入的探讨。无论是初学者还是资深的技术爱好者，都能从中获得有价值的经验和知识，进一步掌握 Docker和分布式数据库基础知识，提高工作效率和技术实力。</p>
+<h3 id="二、搭建"><a href="#二、搭建" class="headerlink" title="二、搭建"></a>二、搭建</h3><ol>
 <li><p>需要创建一台<code>Ubuntu</code>系统的主机&#x2F;虚拟机</p>
 </li>
 <li><p>更换apt源</p>
@@ -551,24 +554,11 @@ docker cp temp-ch:/etc/clickhouse-server/ /etc/
 </code></pre>
 </li>
 <li><p>修改配置文件<code>/etc/clickhouse-server/config.xml</code></p>
-<pre class=" language-xml"><code class="language-xml"># 同时兼容IPV6，一劳永逸
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>listen_host</span><span class="token punctuation">></span></span>0.0.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>listen_host</span><span class="token punctuation">></span></span>
-
-//设置时区
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>listen_host</span><span class="token punctuation">></span></span>0.0.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>listen_host</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>timezone</span><span class="token punctuation">></span></span>Asia/Shanghai<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>timezone</span><span class="token punctuation">></span></span>
-
-//删除原节点<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>remote_servers</span><span class="token punctuation">></span></span>的测试信息
-
-//新增
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>remote_servers</span> <span class="token attr-name">incl</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>clickhouse_remote_servers<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-
-//新增，和上面的remote_servers 节点同级
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include_from</span><span class="token punctuation">></span></span>/etc/clickhouse-server/metrika.xml<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include_from</span><span class="token punctuation">></span></span>
-
-//新增，和上面的remote_servers 节点同级
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>zookeeper</span> <span class="token attr-name">incl</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>zookeeper-servers<span class="token punctuation">"</span></span> <span class="token attr-name">optional</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-
-//新增，和上面的remote_servers 节点同级
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>macros</span> <span class="token attr-name">incl</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>macros<span class="token punctuation">"</span></span> <span class="token attr-name">optional</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
 </code></pre>
 </li>
@@ -879,10 +869,8 @@ scp -r /usr/soft/clickhouse-server/sub/conf/metrika.xml server03:/usr/soft/click
 </code></pre>
 </li>
 <li><p>在每台服务器的实例都启动之后，这里使用正版DataGrip来打开</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/1cd1a26ba1996ba9fe310f8ada9c1205.png"></p>
 </li>
 <li><p>执行 <code>select * from system.clusters</code> 查询集群</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/e62dde63310d042e250dc30b63c4c234.png" alt="image-20220916164416345"></p>
 </li>
 <li><p>在任一实例上新建一个查询</p>
 <pre class=" language-sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> T_UserTest <span class="token keyword">on</span> cluster cluster_3s_1r
@@ -897,7 +885,6 @@ scp -r /usr/soft/clickhouse-server/sub/conf/metrika.xml server03:/usr/soft/click
         SETTINGS index_granularity <span class="token operator">=</span> <span class="token number">8192</span><span class="token punctuation">;</span>
 </code></pre>
 <p><strong>cluster_3s_1r是前面配置的集群名称，需一一对应上， &#x2F;clickhouse&#x2F;tables&#x2F; 是固定的前缀，相关语法可以查看官方文档了。</strong></p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/4792426c49bd92be96b2c065c841d3b4.png" alt="image-20220916164825426"></p>
 <p>刷新每个实例，即可看到全部实例中都有这张T_UserTest表，因为已经搭建zookeeper，很容易实现分布式DDL。</p>
 </li>
 <li><p>新建Distributed分布式表</p>
@@ -911,12 +898,14 @@ scp -r /usr/soft/clickhouse-server/sub/conf/metrika.xml server03:/usr/soft/click
 <span class="token comment" spellcheck="true">--server03</span>
 <span class="token keyword">insert</span> <span class="token keyword">into</span>  T_UserTest <span class="token keyword">values</span> <span class="token punctuation">(</span><span class="token string">'2021-08-16 17:00:00'</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
 </code></pre>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/ed99a5a5bd1d3245a963d569c2b48dba.png" alt="image-20220916165347531"></p>
 <p><strong>查询对应的副本表或者关闭其中一台服务器的docker实例，查询也是不受影响，时间关系不在测试</strong></p>
 </li>
 </ul>
 </li>
 </ol>
+<h3 id="三、结语"><a href="#三、结语" class="headerlink" title="三、结语"></a>三、结语</h3><p>本篇博客介绍了如何借助Docker技术，通过使用Docker-Compose快速搭建ClickHouse+Zookeeper集群，并实现扩展节点、数据备份等资料处理方案，最终实现了高可靠性、高性能和高灵活性的大数据处理和分析。这种基于容器化、分布式技术的解决方案与传统中心式单体架构相比，具有更好的故障处理、增强效率、运维便利和易于管理等多方面的优越性。</p>
+<p>在搭建过程中，我们深入探究了ClickHouse 和 Zookeeper 的特性及用途，在容器环境下运行它们并配置好了每个组件的网络和访问方法。我们同时关注到容器资源的调配策略、数据备份的独立存储、服务治理的容错性等问题，帮助读者全面掌握了 Docker 集群管理和优化的基本方法。</p>
+<p>总之，本篇博客旨在提供一种端到端指导，使您更好地了解使用 Docker 搭建 ClickHouse+Zookeeper 集群的过程，可以在企业级大数据应用中发挥出强大的作用，并极大地促进业务发展。希望在今后的工作中为读者提供启示和指导，让技术更好的转化为实际价值。</p>
 
                 
             </div>
@@ -1299,7 +1288,7 @@ scp -r /usr/soft/clickhouse-server/sub/conf/metrika.xml server03:/usr/soft/click
             <!-- 总字数 -->
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">2.7k</span>
+                        class="white-color">3.4k</span>
             
 
             
