@@ -6,7 +6,7 @@
   <link href="https://wxs0088.github.io/atom.xml" rel="self"/>
   
   <link href="https://wxs0088.github.io/"/>
-  <updated>2023-04-14T15:07:09.709Z</updated>
+  <updated>2023-04-14T15:07:22.796Z</updated>
   <id>https://wxs0088.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://wxs0088.github.io/2023/04/14/tan-suo-celery/"/>
     <id>https://wxs0088.github.io/2023/04/14/tan-suo-celery/</id>
     <published>2023-04-14T14:38:40.000Z</published>
-    <updated>2023-04-14T15:07:09.709Z</updated>
+    <updated>2023-04-14T15:07:22.796Z</updated>
     
     
       
@@ -46,6 +46,8 @@
     <category term="Python" scheme="https://wxs0088.github.io/tags/Python/"/>
     
     <category term="Django" scheme="https://wxs0088.github.io/tags/Django/"/>
+    
+    <category term="Flask" scheme="https://wxs0088.github.io/tags/Flask/"/>
     
   </entry>
   
