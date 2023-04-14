@@ -6,7 +6,7 @@
   <link href="https://wxs0088.github.io/atom.xml" rel="self"/>
   
   <link href="https://wxs0088.github.io/"/>
-  <updated>2023-04-14T14:07:51.169Z</updated>
+  <updated>2023-04-14T14:29:44.892Z</updated>
   <id>https://wxs0088.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>是嫉妒，还是营销。知乎热问：国家何时整治程序员的高薪现象？</title>
+    <link href="https://wxs0088.github.io/2023/04/14/hot-spot-one/"/>
+    <id>https://wxs0088.github.io/2023/04/14/hot-spot-one/</id>
+    <published>2023-04-14T14:20:12.000Z</published>
+    <updated>2023-04-14T14:29:44.892Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、国家何时整治程序员的高薪现象？&quot;&gt;&lt;a href=&quot;#一、国家何时整治程序员的高薪现象？&quot; class=&quot;headerlink&quot; title=&quot;一、国家何时整治程序员的高薪现象？&quot;&gt;&lt;/a&gt;一、国家何时整治程序员的高薪现象？&lt;/h3&gt;&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="热点" scheme="https://wxs0088.github.io/categories/%E7%83%AD%E7%82%B9/"/>
+    
+    
+    <category term="热点" scheme="https://wxs0088.github.io/tags/%E7%83%AD%E7%82%B9/"/>
+    
+    <category term="程序员" scheme="https://wxs0088.github.io/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/"/>
+    
+    <category term="薪资" scheme="https://wxs0088.github.io/tags/%E8%96%AA%E8%B5%84/"/>
+    
+    <category term="高薪" scheme="https://wxs0088.github.io/tags/%E9%AB%98%E8%96%AA/"/>
+    
+    <category term="知乎" scheme="https://wxs0088.github.io/tags/%E7%9F%A5%E4%B9%8E/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker搭建ClickHouse+Zookeeper集群</title>
