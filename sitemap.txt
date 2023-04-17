@@ -6,6 +6,12 @@ https://sirxs.tk/about/index.html
 https://sirxs.tk/tags/index.html
 https://sirxs.tk/categories/index.html
 https://sirxs.tk/
+https://sirxs.tk/tags/Celery/
+https://sirxs.tk/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/
+https://sirxs.tk/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/
+https://sirxs.tk/tags/Python/
+https://sirxs.tk/tags/Django/
+https://sirxs.tk/tags/Flask/
 https://sirxs.tk/tags/db/
 https://sirxs.tk/tags/Docker/
 https://sirxs.tk/tags/ClickHouse/
@@ -15,12 +21,6 @@ https://sirxs.tk/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/
 https://sirxs.tk/tags/%E8%96%AA%E8%B5%84/
 https://sirxs.tk/tags/%E9%AB%98%E8%96%AA/
 https://sirxs.tk/tags/%E7%9F%A5%E4%B9%8E/
-https://sirxs.tk/tags/Celery/
-https://sirxs.tk/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/
-https://sirxs.tk/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/
-https://sirxs.tk/tags/Python/
-https://sirxs.tk/tags/Django/
-https://sirxs.tk/tags/Flask/
+https://sirxs.tk/categories/Celery/
 https://sirxs.tk/categories/Docker/
 https://sirxs.tk/categories/%E7%83%AD%E7%82%B9/
-https://sirxs.tk/categories/Celery/
