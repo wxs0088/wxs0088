@@ -3,11 +3,11 @@
   <title>未央之域</title>
   
   <subtitle>未央之域</subtitle>
-  <link href="https://sirxs.tk/atom.xml" rel="self"/>
+  <link href="https://www.sirxs.tk/atom.xml" rel="self"/>
   
-  <link href="https://sirxs.tk/"/>
-  <updated>2023-04-14T15:07:22.796Z</updated>
-  <id>https://sirxs.tk/</id>
+  <link href="https://www.sirxs.tk/"/>
+  <updated>2023-04-19T13:36:06.203Z</updated>
+  <id>https://www.sirxs.tk/</id>
   
   <author>
     <name>未央</name>
@@ -17,9 +17,44 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Hexo-matery主题添加Honkit电子书界面</title>
+    <link href="https://www.sirxs.tk/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/"/>
+    <id>https://www.sirxs.tk/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/</id>
+    <published>2023-04-19T07:09:27.000Z</published>
+    <updated>2023-04-19T13:36:06.203Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Hexo" scheme="https://www.sirxs.tk/categories/Hexo/"/>
+    
+    
+    <category term="Honkit" scheme="https://www.sirxs.tk/tags/Honkit/"/>
+    
+    <category term="静态网站" scheme="https://www.sirxs.tk/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"/>
+    
+    <category term="电子书" scheme="https://www.sirxs.tk/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/"/>
+    
+    <category term="Shell" scheme="https://www.sirxs.tk/tags/Shell/"/>
+    
+    <category term="Node.js" scheme="https://www.sirxs.tk/tags/Node-js/"/>
+    
+    <category term="Git" scheme="https://www.sirxs.tk/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
     <title>探究Celery的分布式任务队列在Python应用中的优越性</title>
-    <link href="https://sirxs.tk/2023/04/14/tan-suo-celery/"/>
-    <id>https://sirxs.tk/2023/04/14/tan-suo-celery/</id>
+    <link href="https://www.sirxs.tk/2023/04/14/tan-suo-celery/"/>
+    <id>https://www.sirxs.tk/2023/04/14/tan-suo-celery/</id>
     <published>2023-04-14T14:38:40.000Z</published>
     <updated>2023-04-14T15:07:22.796Z</updated>
     
@@ -34,27 +69,27 @@
     
     
     
-    <category term="Celery" scheme="https://sirxs.tk/categories/Celery/"/>
+    <category term="Celery" scheme="https://www.sirxs.tk/categories/Celery/"/>
     
     
-    <category term="Celery" scheme="https://sirxs.tk/tags/Celery/"/>
+    <category term="Celery" scheme="https://www.sirxs.tk/tags/Celery/"/>
     
-    <category term="分布式任务队列" scheme="https://sirxs.tk/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/"/>
+    <category term="分布式任务队列" scheme="https://www.sirxs.tk/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/"/>
     
-    <category term="异步任务处理" scheme="https://sirxs.tk/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/"/>
+    <category term="异步任务处理" scheme="https://www.sirxs.tk/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/"/>
     
-    <category term="Python" scheme="https://sirxs.tk/tags/Python/"/>
+    <category term="Python" scheme="https://www.sirxs.tk/tags/Python/"/>
     
-    <category term="Django" scheme="https://sirxs.tk/tags/Django/"/>
+    <category term="Django" scheme="https://www.sirxs.tk/tags/Django/"/>
     
-    <category term="Flask" scheme="https://sirxs.tk/tags/Flask/"/>
+    <category term="Flask" scheme="https://www.sirxs.tk/tags/Flask/"/>
     
   </entry>
   
   <entry>
     <title>是嫉妒，还是营销。知乎热问：国家何时整治程序员的高薪现象？</title>
-    <link href="https://sirxs.tk/2023/04/14/hot-spot-one/"/>
-    <id>https://sirxs.tk/2023/04/14/hot-spot-one/</id>
+    <link href="https://www.sirxs.tk/2023/04/14/hot-spot-one/"/>
+    <id>https://www.sirxs.tk/2023/04/14/hot-spot-one/</id>
     <published>2023-04-14T14:20:12.000Z</published>
     <updated>2023-04-14T14:29:44.892Z</updated>
     
@@ -69,25 +104,25 @@
     
     
     
-    <category term="热点" scheme="https://sirxs.tk/categories/%E7%83%AD%E7%82%B9/"/>
+    <category term="热点" scheme="https://www.sirxs.tk/categories/%E7%83%AD%E7%82%B9/"/>
     
     
-    <category term="热点" scheme="https://sirxs.tk/tags/%E7%83%AD%E7%82%B9/"/>
+    <category term="热点" scheme="https://www.sirxs.tk/tags/%E7%83%AD%E7%82%B9/"/>
     
-    <category term="程序员" scheme="https://sirxs.tk/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/"/>
+    <category term="程序员" scheme="https://www.sirxs.tk/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/"/>
     
-    <category term="薪资" scheme="https://sirxs.tk/tags/%E8%96%AA%E8%B5%84/"/>
+    <category term="薪资" scheme="https://www.sirxs.tk/tags/%E8%96%AA%E8%B5%84/"/>
     
-    <category term="高薪" scheme="https://sirxs.tk/tags/%E9%AB%98%E8%96%AA/"/>
+    <category term="高薪" scheme="https://www.sirxs.tk/tags/%E9%AB%98%E8%96%AA/"/>
     
-    <category term="知乎" scheme="https://sirxs.tk/tags/%E7%9F%A5%E4%B9%8E/"/>
+    <category term="知乎" scheme="https://www.sirxs.tk/tags/%E7%9F%A5%E4%B9%8E/"/>
     
   </entry>
   
   <entry>
     <title>Docker搭建ClickHouse+Zookeeper集群</title>
-    <link href="https://sirxs.tk/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/"/>
-    <id>https://sirxs.tk/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</id>
+    <link href="https://www.sirxs.tk/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/"/>
+    <id>https://www.sirxs.tk/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</id>
     <published>2023-04-14T05:58:45.000Z</published>
     <updated>2023-04-14T15:07:09.706Z</updated>
     
@@ -102,16 +137,16 @@
     
     
     
-    <category term="Docker" scheme="https://sirxs.tk/categories/Docker/"/>
+    <category term="Docker" scheme="https://www.sirxs.tk/categories/Docker/"/>
     
     
-    <category term="db" scheme="https://sirxs.tk/tags/db/"/>
+    <category term="db" scheme="https://www.sirxs.tk/tags/db/"/>
     
-    <category term="Docker" scheme="https://sirxs.tk/tags/Docker/"/>
+    <category term="Docker" scheme="https://www.sirxs.tk/tags/Docker/"/>
     
-    <category term="ClickHouse" scheme="https://sirxs.tk/tags/ClickHouse/"/>
+    <category term="ClickHouse" scheme="https://www.sirxs.tk/tags/ClickHouse/"/>
     
-    <category term="Ubuntu" scheme="https://sirxs.tk/tags/Ubuntu/"/>
+    <category term="Ubuntu" scheme="https://www.sirxs.tk/tags/Ubuntu/"/>
     
   </entry>
   
