@@ -83,6 +83,34 @@
 
   
   <url>
+    <loc>https://www.sirxs.tk/tags/db/</loc>
+    <lastmod>2023-04-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.sirxs.tk/tags/Docker/</loc>
+    <lastmod>2023-04-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.sirxs.tk/tags/ClickHouse/</loc>
+    <lastmod>2023-04-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.sirxs.tk/tags/Ubuntu/</loc>
+    <lastmod>2023-04-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.sirxs.tk/tags/Honkit/</loc>
     <lastmod>2023-04-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -160,34 +188,6 @@
   </url>
   
   <url>
-    <loc>https://www.sirxs.tk/tags/db/</loc>
-    <lastmod>2023-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/tags/Docker/</loc>
-    <lastmod>2023-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/tags/ClickHouse/</loc>
-    <lastmod>2023-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/tags/Ubuntu/</loc>
-    <lastmod>2023-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.sirxs.tk/tags/Celery/</loc>
     <lastmod>2023-04-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -232,6 +232,13 @@
 
   
   <url>
+    <loc>https://www.sirxs.tk/categories/Docker/</loc>
+    <lastmod>2023-04-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.sirxs.tk/categories/Hexo/</loc>
     <lastmod>2023-04-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -240,13 +247,6 @@
   
   <url>
     <loc>https://www.sirxs.tk/categories/%E7%83%AD%E7%82%B9/</loc>
-    <lastmod>2023-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/categories/Docker/</loc>
     <lastmod>2023-04-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
