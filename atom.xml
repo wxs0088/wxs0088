@@ -6,7 +6,7 @@
   <link href="https://www.sirxs.tk/atom.xml" rel="self"/>
   
   <link href="https://www.sirxs.tk/"/>
-  <updated>2023-04-19T13:36:06.203Z</updated>
+  <updated>2023-04-20T12:24:27.918Z</updated>
   <id>https://www.sirxs.tk/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决Python运行速度与依赖问题，亲测打包神器用Nuitka让你的应用程序起飞！</title>
+    <link href="https://www.sirxs.tk/2023/04/20/nuitkavspyinstaller/"/>
+    <id>https://www.sirxs.tk/2023/04/20/nuitkavspyinstaller/</id>
+    <published>2023-04-20T06:22:16.000Z</published>
+    <updated>2023-04-20T12:24:27.918Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Nuitka" scheme="https://www.sirxs.tk/categories/Nuitka/"/>
+    
+    
+    <category term="Nuitka" scheme="https://www.sirxs.tk/tags/Nuitka/"/>
+    
+    <category term="Python" scheme="https://www.sirxs.tk/tags/Python/"/>
+    
+    <category term="C++" scheme="https://www.sirxs.tk/tags/C/"/>
+    
+    <category term="PyQT5" scheme="https://www.sirxs.tk/tags/PyQT5/"/>
+    
+    <category term="PyInstaller" scheme="https://www.sirxs.tk/tags/PyInstaller/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo-matery主题添加Honkit电子书界面</title>
@@ -72,13 +105,13 @@
     <category term="Celery" scheme="https://www.sirxs.tk/categories/Celery/"/>
     
     
+    <category term="Python" scheme="https://www.sirxs.tk/tags/Python/"/>
+    
     <category term="Celery" scheme="https://www.sirxs.tk/tags/Celery/"/>
     
     <category term="分布式任务队列" scheme="https://www.sirxs.tk/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/"/>
     
     <category term="异步任务处理" scheme="https://www.sirxs.tk/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/"/>
-    
-    <category term="Python" scheme="https://www.sirxs.tk/tags/Python/"/>
     
     <category term="Django" scheme="https://www.sirxs.tk/tags/Django/"/>
     
