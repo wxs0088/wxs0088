@@ -51,9 +51,9 @@
       
         <tags>
             
-            <tag> Nuitka </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Nuitka </tag>
             
             <tag> C++ </tag>
             
@@ -119,13 +119,13 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Celery </tag>
             
             <tag> 分布式任务队列 </tag>
             
             <tag> 异步任务处理 </tag>
+            
+            <tag> Python </tag>
             
             <tag> Django </tag>
             
