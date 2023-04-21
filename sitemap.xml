@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://115.159.106.35/2023/04/21/clouddeploymentblog/</loc>
+    <loc>https://sirxs.tk/2023/04/21/clouddeploymentblog/</loc>
     
     <lastmod>2023-04-21</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://115.159.106.35/2023/04/20/nuitkavspyinstaller/</loc>
+    <loc>https://sirxs.tk/2023/04/20/nuitkavspyinstaller/</loc>
     
     <lastmod>2023-04-20</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://115.159.106.35/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/</loc>
+    <loc>https://sirxs.tk/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/</loc>
     
     <lastmod>2023-04-19</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://115.159.106.35/2023/04/14/tan-suo-celery/</loc>
+    <loc>https://sirxs.tk/2023/04/14/tan-suo-celery/</loc>
     
     <lastmod>2023-04-14</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://115.159.106.35/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</loc>
+    <loc>https://sirxs.tk/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</loc>
     
     <lastmod>2023-04-14</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://115.159.106.35/2023/04/14/hot-spot-one/</loc>
+    <loc>https://sirxs.tk/2023/04/14/hot-spot-one/</loc>
     
     <lastmod>2023-04-14</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://115.159.106.35/friends/index.html</loc>
+    <loc>https://sirxs.tk/friends/index.html</loc>
     
     <lastmod>2023-04-14</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://115.159.106.35/about/index.html</loc>
+    <loc>https://sirxs.tk/about/index.html</loc>
     
     <lastmod>2023-04-14</lastmod>
     
@@ -74,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/index.html</loc>
+    <loc>https://sirxs.tk/tags/index.html</loc>
     
     <lastmod>2023-04-14</lastmod>
     
@@ -83,7 +83,7 @@
   </url>
   
   <url>
-    <loc>https://115.159.106.35/categories/index.html</loc>
+    <loc>https://sirxs.tk/categories/index.html</loc>
     
     <lastmod>2023-04-14</lastmod>
     
@@ -93,7 +93,7 @@
   
 
   <url>
-    <loc>https://115.159.106.35/</loc>
+    <loc>https://sirxs.tk/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -101,196 +101,196 @@
 
   
   <url>
-    <loc>https://115.159.106.35/tags/Git/</loc>
+    <loc>https://sirxs.tk/tags/Honkit/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/Nginx/</loc>
+    <loc>https://sirxs.tk/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/</loc>
+    <loc>https://sirxs.tk/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://sirxs.tk/tags/Shell/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/db/</loc>
+    <loc>https://sirxs.tk/tags/Node-js/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/Docker/</loc>
+    <loc>https://sirxs.tk/tags/Git/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/ClickHouse/</loc>
+    <loc>https://sirxs.tk/tags/Nuitka/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/Ubuntu/</loc>
+    <loc>https://sirxs.tk/tags/Python/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/Honkit/</loc>
+    <loc>https://sirxs.tk/tags/C/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/</loc>
+    <loc>https://sirxs.tk/tags/PyQT5/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/</loc>
+    <loc>https://sirxs.tk/tags/PyInstaller/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/Shell/</loc>
+    <loc>https://sirxs.tk/tags/db/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/Node-js/</loc>
+    <loc>https://sirxs.tk/tags/Docker/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/%E7%83%AD%E7%82%B9/</loc>
+    <loc>https://sirxs.tk/tags/ClickHouse/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/</loc>
+    <loc>https://sirxs.tk/tags/Ubuntu/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/%E8%96%AA%E8%B5%84/</loc>
+    <loc>https://sirxs.tk/tags/%E7%83%AD%E7%82%B9/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/%E9%AB%98%E8%96%AA/</loc>
+    <loc>https://sirxs.tk/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/%E7%9F%A5%E4%B9%8E/</loc>
+    <loc>https://sirxs.tk/tags/%E8%96%AA%E8%B5%84/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/Nuitka/</loc>
+    <loc>https://sirxs.tk/tags/%E9%AB%98%E8%96%AA/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/Python/</loc>
+    <loc>https://sirxs.tk/tags/%E7%9F%A5%E4%B9%8E/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/C/</loc>
+    <loc>https://sirxs.tk/tags/Celery/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/PyQT5/</loc>
+    <loc>https://sirxs.tk/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/PyInstaller/</loc>
+    <loc>https://sirxs.tk/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/Celery/</loc>
+    <loc>https://sirxs.tk/tags/Django/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/</loc>
+    <loc>https://sirxs.tk/tags/Flask/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/</loc>
+    <loc>https://sirxs.tk/tags/Nginx/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/Django/</loc>
+    <loc>https://sirxs.tk/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/tags/Flask/</loc>
+    <loc>https://sirxs.tk/tags/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -299,35 +299,35 @@
 
   
   <url>
-    <loc>https://115.159.106.35/categories/Hexo/</loc>
+    <loc>https://sirxs.tk/categories/Hexo/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/categories/Docker/</loc>
+    <loc>https://sirxs.tk/categories/Nuitka/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/categories/%E7%83%AD%E7%82%B9/</loc>
+    <loc>https://sirxs.tk/categories/Docker/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/categories/Nuitka/</loc>
+    <loc>https://sirxs.tk/categories/%E7%83%AD%E7%82%B9/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://115.159.106.35/categories/Celery/</loc>
+    <loc>https://sirxs.tk/categories/Celery/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

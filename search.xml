@@ -84,8 +84,6 @@
       
         <tags>
             
-            <tag> Git </tag>
-            
             <tag> Honkit </tag>
             
             <tag> 静态网站 </tag>
@@ -95,6 +93,8 @@
             <tag> Shell </tag>
             
             <tag> Node.js </tag>
+            
+            <tag> Git </tag>
             
         </tags>
       
