@@ -199,6 +199,34 @@
   </url>
   
   <url>
+    <loc>https://www.sirxs.tk/tags/db/</loc>
+    <lastmod>2023-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.sirxs.tk/tags/Docker/</loc>
+    <lastmod>2023-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.sirxs.tk/tags/ClickHouse/</loc>
+    <lastmod>2023-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.sirxs.tk/tags/Ubuntu/</loc>
+    <lastmod>2023-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.sirxs.tk/tags/%E7%83%AD%E7%82%B9/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -228,34 +256,6 @@
   
   <url>
     <loc>https://www.sirxs.tk/tags/%E7%9F%A5%E4%B9%8E/</loc>
-    <lastmod>2023-04-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/tags/db/</loc>
-    <lastmod>2023-04-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/tags/Docker/</loc>
-    <lastmod>2023-04-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/tags/ClickHouse/</loc>
-    <lastmod>2023-04-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/tags/Ubuntu/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -313,14 +313,14 @@
   </url>
   
   <url>
-    <loc>https://www.sirxs.tk/categories/%E7%83%AD%E7%82%B9/</loc>
+    <loc>https://www.sirxs.tk/categories/Docker/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.sirxs.tk/categories/Docker/</loc>
+    <loc>https://www.sirxs.tk/categories/%E7%83%AD%E7%82%B9/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
