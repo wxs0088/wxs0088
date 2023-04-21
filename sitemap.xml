@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.sirxs.tk/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</loc>
+    
+    <lastmod>2023-04-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.sirxs.tk/2023/04/21/clouddeploymentblog/</loc>
     
     <lastmod>2023-04-21</lastmod>
@@ -30,15 +39,6 @@
   
   <url>
     <loc>https://www.sirxs.tk/2023/04/14/tan-suo-celery/</loc>
-    
-    <lastmod>2023-04-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</loc>
     
     <lastmod>2023-04-14</lastmod>
     
@@ -129,41 +129,6 @@
   </url>
   
   <url>
-    <loc>https://www.sirxs.tk/tags/Nuitka/</loc>
-    <lastmod>2023-04-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/tags/Python/</loc>
-    <lastmod>2023-04-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/tags/C/</loc>
-    <lastmod>2023-04-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/tags/PyQT5/</loc>
-    <lastmod>2023-04-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.sirxs.tk/tags/PyInstaller/</loc>
-    <lastmod>2023-04-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.sirxs.tk/tags/Honkit/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
@@ -221,6 +186,41 @@
   
   <url>
     <loc>https://www.sirxs.tk/tags/Ubuntu/</loc>
+    <lastmod>2023-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.sirxs.tk/tags/Nuitka/</loc>
+    <lastmod>2023-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.sirxs.tk/tags/Python/</loc>
+    <lastmod>2023-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.sirxs.tk/tags/C/</loc>
+    <lastmod>2023-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.sirxs.tk/tags/PyQT5/</loc>
+    <lastmod>2023-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.sirxs.tk/tags/PyInstaller/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -306,14 +306,14 @@
   </url>
   
   <url>
-    <loc>https://www.sirxs.tk/categories/Nuitka/</loc>
+    <loc>https://www.sirxs.tk/categories/Docker/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.sirxs.tk/categories/Docker/</loc>
+    <loc>https://www.sirxs.tk/categories/Nuitka/</loc>
     <lastmod>2023-04-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
