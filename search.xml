@@ -51,9 +51,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Nuitka </tag>
+            
+            <tag> Python </tag>
             
             <tag> C++ </tag>
             
@@ -84,6 +84,8 @@
       
         <tags>
             
+            <tag> Git </tag>
+            
             <tag> Honkit </tag>
             
             <tag> 静态网站 </tag>
@@ -93,8 +95,6 @@
             <tag> Shell </tag>
             
             <tag> Node.js </tag>
-            
-            <tag> Git </tag>
             
         </tags>
       
@@ -119,13 +119,13 @@
       
         <tags>
             
+            <tag> Python </tag>
+            
             <tag> Celery </tag>
             
             <tag> 分布式任务队列 </tag>
             
             <tag> 异步任务处理 </tag>
-            
-            <tag> Python </tag>
             
             <tag> Django </tag>
             

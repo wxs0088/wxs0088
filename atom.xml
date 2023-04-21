@@ -3,11 +3,11 @@
   <title>未央之域</title>
   
   <subtitle>未央之域</subtitle>
-  <link href="https://www.sirxs.tk/atom.xml" rel="self"/>
+  <link href="https://115.159.106.35/atom.xml" rel="self"/>
   
-  <link href="https://www.sirxs.tk/"/>
+  <link href="https://115.159.106.35/"/>
   <updated>2023-04-21T12:57:39.210Z</updated>
-  <id>https://www.sirxs.tk/</id>
+  <id>https://115.159.106.35/</id>
   
   <author>
     <name>未央</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>打造自己的博客天地：在腾讯云服务器上部署Hexo博客</title>
-    <link href="https://www.sirxs.tk/2023/04/21/clouddeploymentblog/"/>
-    <id>https://www.sirxs.tk/2023/04/21/clouddeploymentblog/</id>
+    <link href="https://115.159.106.35/2023/04/21/clouddeploymentblog/"/>
+    <id>https://115.159.106.35/2023/04/21/clouddeploymentblog/</id>
     <published>2023-04-21T06:48:23.000Z</published>
     <updated>2023-04-21T12:57:39.210Z</updated>
     
@@ -34,23 +34,23 @@
     
     
     
-    <category term="Hexo" scheme="https://www.sirxs.tk/categories/Hexo/"/>
+    <category term="Hexo" scheme="https://115.159.106.35/categories/Hexo/"/>
     
     
-    <category term="Git" scheme="https://www.sirxs.tk/tags/Git/"/>
+    <category term="Git" scheme="https://115.159.106.35/tags/Git/"/>
     
-    <category term="Nginx" scheme="https://www.sirxs.tk/tags/Nginx/"/>
+    <category term="Nginx" scheme="https://115.159.106.35/tags/Nginx/"/>
     
-    <category term="腾讯云" scheme="https://www.sirxs.tk/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/"/>
+    <category term="腾讯云" scheme="https://115.159.106.35/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/"/>
     
-    <category term="博客" scheme="https://www.sirxs.tk/tags/%E5%8D%9A%E5%AE%A2/"/>
+    <category term="博客" scheme="https://115.159.106.35/tags/%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   
   <entry>
     <title>解决Python运行速度与依赖问题，亲测打包神器用Nuitka让你的应用程序起飞！</title>
-    <link href="https://www.sirxs.tk/2023/04/20/nuitkavspyinstaller/"/>
-    <id>https://www.sirxs.tk/2023/04/20/nuitkavspyinstaller/</id>
+    <link href="https://115.159.106.35/2023/04/20/nuitkavspyinstaller/"/>
+    <id>https://115.159.106.35/2023/04/20/nuitkavspyinstaller/</id>
     <published>2023-04-20T06:22:16.000Z</published>
     <updated>2023-04-20T12:24:27.918Z</updated>
     
@@ -65,25 +65,25 @@
     
     
     
-    <category term="Nuitka" scheme="https://www.sirxs.tk/categories/Nuitka/"/>
+    <category term="Nuitka" scheme="https://115.159.106.35/categories/Nuitka/"/>
     
     
-    <category term="Python" scheme="https://www.sirxs.tk/tags/Python/"/>
+    <category term="Nuitka" scheme="https://115.159.106.35/tags/Nuitka/"/>
     
-    <category term="Nuitka" scheme="https://www.sirxs.tk/tags/Nuitka/"/>
+    <category term="Python" scheme="https://115.159.106.35/tags/Python/"/>
     
-    <category term="C++" scheme="https://www.sirxs.tk/tags/C/"/>
+    <category term="C++" scheme="https://115.159.106.35/tags/C/"/>
     
-    <category term="PyQT5" scheme="https://www.sirxs.tk/tags/PyQT5/"/>
+    <category term="PyQT5" scheme="https://115.159.106.35/tags/PyQT5/"/>
     
-    <category term="PyInstaller" scheme="https://www.sirxs.tk/tags/PyInstaller/"/>
+    <category term="PyInstaller" scheme="https://115.159.106.35/tags/PyInstaller/"/>
     
   </entry>
   
   <entry>
     <title>Hexo-matery主题添加Honkit电子书界面</title>
-    <link href="https://www.sirxs.tk/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/"/>
-    <id>https://www.sirxs.tk/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/</id>
+    <link href="https://115.159.106.35/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/"/>
+    <id>https://115.159.106.35/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/</id>
     <published>2023-04-19T07:09:27.000Z</published>
     <updated>2023-04-19T13:36:06.203Z</updated>
     
@@ -98,27 +98,27 @@
     
     
     
-    <category term="Hexo" scheme="https://www.sirxs.tk/categories/Hexo/"/>
+    <category term="Hexo" scheme="https://115.159.106.35/categories/Hexo/"/>
     
     
-    <category term="Honkit" scheme="https://www.sirxs.tk/tags/Honkit/"/>
+    <category term="Git" scheme="https://115.159.106.35/tags/Git/"/>
     
-    <category term="静态网站" scheme="https://www.sirxs.tk/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"/>
+    <category term="Honkit" scheme="https://115.159.106.35/tags/Honkit/"/>
     
-    <category term="电子书" scheme="https://www.sirxs.tk/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/"/>
+    <category term="静态网站" scheme="https://115.159.106.35/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"/>
     
-    <category term="Shell" scheme="https://www.sirxs.tk/tags/Shell/"/>
+    <category term="电子书" scheme="https://115.159.106.35/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/"/>
     
-    <category term="Node.js" scheme="https://www.sirxs.tk/tags/Node-js/"/>
+    <category term="Shell" scheme="https://115.159.106.35/tags/Shell/"/>
     
-    <category term="Git" scheme="https://www.sirxs.tk/tags/Git/"/>
+    <category term="Node.js" scheme="https://115.159.106.35/tags/Node-js/"/>
     
   </entry>
   
   <entry>
     <title>探究Celery的分布式任务队列在Python应用中的优越性</title>
-    <link href="https://www.sirxs.tk/2023/04/14/tan-suo-celery/"/>
-    <id>https://www.sirxs.tk/2023/04/14/tan-suo-celery/</id>
+    <link href="https://115.159.106.35/2023/04/14/tan-suo-celery/"/>
+    <id>https://115.159.106.35/2023/04/14/tan-suo-celery/</id>
     <published>2023-04-14T14:38:40.000Z</published>
     <updated>2023-04-14T15:07:22.796Z</updated>
     
@@ -133,27 +133,27 @@
     
     
     
-    <category term="Celery" scheme="https://www.sirxs.tk/categories/Celery/"/>
+    <category term="Celery" scheme="https://115.159.106.35/categories/Celery/"/>
     
     
-    <category term="Celery" scheme="https://www.sirxs.tk/tags/Celery/"/>
+    <category term="Python" scheme="https://115.159.106.35/tags/Python/"/>
     
-    <category term="分布式任务队列" scheme="https://www.sirxs.tk/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/"/>
+    <category term="Celery" scheme="https://115.159.106.35/tags/Celery/"/>
     
-    <category term="异步任务处理" scheme="https://www.sirxs.tk/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/"/>
+    <category term="分布式任务队列" scheme="https://115.159.106.35/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/"/>
     
-    <category term="Python" scheme="https://www.sirxs.tk/tags/Python/"/>
+    <category term="异步任务处理" scheme="https://115.159.106.35/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/"/>
     
-    <category term="Django" scheme="https://www.sirxs.tk/tags/Django/"/>
+    <category term="Django" scheme="https://115.159.106.35/tags/Django/"/>
     
-    <category term="Flask" scheme="https://www.sirxs.tk/tags/Flask/"/>
+    <category term="Flask" scheme="https://115.159.106.35/tags/Flask/"/>
     
   </entry>
   
   <entry>
     <title>是嫉妒，还是营销。知乎热问：国家何时整治程序员的高薪现象？</title>
-    <link href="https://www.sirxs.tk/2023/04/14/hot-spot-one/"/>
-    <id>https://www.sirxs.tk/2023/04/14/hot-spot-one/</id>
+    <link href="https://115.159.106.35/2023/04/14/hot-spot-one/"/>
+    <id>https://115.159.106.35/2023/04/14/hot-spot-one/</id>
     <published>2023-04-14T14:20:12.000Z</published>
     <updated>2023-04-14T14:29:44.892Z</updated>
     
@@ -168,25 +168,25 @@
     
     
     
-    <category term="热点" scheme="https://www.sirxs.tk/categories/%E7%83%AD%E7%82%B9/"/>
+    <category term="热点" scheme="https://115.159.106.35/categories/%E7%83%AD%E7%82%B9/"/>
     
     
-    <category term="热点" scheme="https://www.sirxs.tk/tags/%E7%83%AD%E7%82%B9/"/>
+    <category term="热点" scheme="https://115.159.106.35/tags/%E7%83%AD%E7%82%B9/"/>
     
-    <category term="程序员" scheme="https://www.sirxs.tk/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/"/>
+    <category term="程序员" scheme="https://115.159.106.35/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/"/>
     
-    <category term="薪资" scheme="https://www.sirxs.tk/tags/%E8%96%AA%E8%B5%84/"/>
+    <category term="薪资" scheme="https://115.159.106.35/tags/%E8%96%AA%E8%B5%84/"/>
     
-    <category term="高薪" scheme="https://www.sirxs.tk/tags/%E9%AB%98%E8%96%AA/"/>
+    <category term="高薪" scheme="https://115.159.106.35/tags/%E9%AB%98%E8%96%AA/"/>
     
-    <category term="知乎" scheme="https://www.sirxs.tk/tags/%E7%9F%A5%E4%B9%8E/"/>
+    <category term="知乎" scheme="https://115.159.106.35/tags/%E7%9F%A5%E4%B9%8E/"/>
     
   </entry>
   
   <entry>
     <title>Docker搭建ClickHouse+Zookeeper集群</title>
-    <link href="https://www.sirxs.tk/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/"/>
-    <id>https://www.sirxs.tk/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</id>
+    <link href="https://115.159.106.35/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/"/>
+    <id>https://115.159.106.35/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</id>
     <published>2023-04-14T05:58:45.000Z</published>
     <updated>2023-04-14T15:07:09.706Z</updated>
     
@@ -201,16 +201,16 @@
     
     
     
-    <category term="Docker" scheme="https://www.sirxs.tk/categories/Docker/"/>
+    <category term="Docker" scheme="https://115.159.106.35/categories/Docker/"/>
     
     
-    <category term="db" scheme="https://www.sirxs.tk/tags/db/"/>
+    <category term="db" scheme="https://115.159.106.35/tags/db/"/>
     
-    <category term="Docker" scheme="https://www.sirxs.tk/tags/Docker/"/>
+    <category term="Docker" scheme="https://115.159.106.35/tags/Docker/"/>
     
-    <category term="ClickHouse" scheme="https://www.sirxs.tk/tags/ClickHouse/"/>
+    <category term="ClickHouse" scheme="https://115.159.106.35/tags/ClickHouse/"/>
     
-    <category term="Ubuntu" scheme="https://www.sirxs.tk/tags/Ubuntu/"/>
+    <category term="Ubuntu" scheme="https://115.159.106.35/tags/Ubuntu/"/>
     
   </entry>
   
