@@ -68,9 +68,9 @@
     <category term="Nuitka" scheme="https://www.sirxs.tk/categories/Nuitka/"/>
     
     
-    <category term="Nuitka" scheme="https://www.sirxs.tk/tags/Nuitka/"/>
-    
     <category term="Python" scheme="https://www.sirxs.tk/tags/Python/"/>
+    
+    <category term="Nuitka" scheme="https://www.sirxs.tk/tags/Nuitka/"/>
     
     <category term="C++" scheme="https://www.sirxs.tk/tags/C/"/>
     
@@ -136,13 +136,13 @@
     <category term="Celery" scheme="https://www.sirxs.tk/categories/Celery/"/>
     
     
-    <category term="Python" scheme="https://www.sirxs.tk/tags/Python/"/>
-    
     <category term="Celery" scheme="https://www.sirxs.tk/tags/Celery/"/>
     
     <category term="分布式任务队列" scheme="https://www.sirxs.tk/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/"/>
     
     <category term="异步任务处理" scheme="https://www.sirxs.tk/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/"/>
+    
+    <category term="Python" scheme="https://www.sirxs.tk/tags/Python/"/>
     
     <category term="Django" scheme="https://www.sirxs.tk/tags/Django/"/>
     
