@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-04-21T14:08:10.316Z</updated>
+  <updated>2023-04-22T04:34:27.629Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://sirxs.cn/2023/04/21/clouddeploymentblog/"/>
     <id>https://sirxs.cn/2023/04/21/clouddeploymentblog/</id>
     <published>2023-04-21T06:48:23.000Z</published>
-    <updated>2023-04-21T14:08:10.316Z</updated>
+    <updated>2023-04-22T04:34:27.629Z</updated>
     
     
       
@@ -68,9 +68,9 @@
     <category term="Nuitka" scheme="https://sirxs.cn/categories/Nuitka/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="C++" scheme="https://sirxs.cn/tags/C/"/>
     
@@ -120,7 +120,7 @@
     <link href="https://sirxs.cn/2023/04/14/tan-suo-celery/"/>
     <id>https://sirxs.cn/2023/04/14/tan-suo-celery/</id>
     <published>2023-04-14T14:38:40.000Z</published>
-    <updated>2023-04-14T15:07:22.796Z</updated>
+    <updated>2023-04-22T04:35:29.201Z</updated>
     
     
       
@@ -136,13 +136,13 @@
     <category term="Celery" scheme="https://sirxs.cn/categories/Celery/"/>
     
     
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
     <category term="Celery" scheme="https://sirxs.cn/tags/Celery/"/>
     
     <category term="分布式任务队列" scheme="https://sirxs.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/"/>
     
     <category term="异步任务处理" scheme="https://sirxs.cn/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/"/>
-    
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Django" scheme="https://sirxs.cn/tags/Django/"/>
     
@@ -155,7 +155,7 @@
     <link href="https://sirxs.cn/2023/04/14/hot-spot-one/"/>
     <id>https://sirxs.cn/2023/04/14/hot-spot-one/</id>
     <published>2023-04-14T14:20:12.000Z</published>
-    <updated>2023-04-14T14:29:44.892Z</updated>
+    <updated>2023-04-22T04:35:29.191Z</updated>
     
     
       
@@ -188,7 +188,7 @@
     <link href="https://sirxs.cn/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/"/>
     <id>https://sirxs.cn/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</id>
     <published>2023-04-14T05:58:45.000Z</published>
-    <updated>2023-04-21T14:43:05.804Z</updated>
+    <updated>2023-04-22T04:35:29.197Z</updated>
     
     
       
