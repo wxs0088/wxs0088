@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-04-22T04:34:27.629Z</updated>
+  <updated>2023-04-22T10:35:25.486Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从零开始：在CentOS Stream 9上安装MySQL 8并启用远程root连接</title>
+    <link href="https://sirxs.cn/2023/04/22/an-zhuang-mysql/"/>
+    <id>https://sirxs.cn/2023/04/22/an-zhuang-mysql/</id>
+    <published>2023-04-22T10:04:55.000Z</published>
+    <updated>2023-04-22T10:35:25.486Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot; title=&quot;一、写在前面&quot;&gt;&lt;/a&gt;一、写在前面&lt;/h3&gt;&lt;p&gt;MySQL是一款开源的关系型数据库管理系统，由瑞典MySQL</summary>
+        
+      
+    
+    
+    
+    <category term="MySQL" scheme="https://sirxs.cn/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="https://sirxs.cn/tags/MySQL/"/>
+    
+    <category term="CentOS" scheme="https://sirxs.cn/tags/CentOS/"/>
+    
+  </entry>
   
   <entry>
     <title>打造自己的博客天地：在腾讯云服务器上部署Hexo博客</title>

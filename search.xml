@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>从零开始：在CentOS Stream 9上安装MySQL 8并启用远程root连接</title>
+      <link href="/2023/04/22/an-zhuang-mysql/"/>
+      <url>/2023/04/22/an-zhuang-mysql/</url>
+      
+        <content type="html"><![CDATA[<h3 id="一、写在前面"><a href="#一、写在前面" class="headerlink" title="一、写在前面"></a>一、写在前面</h3><p>MySQL是一款开源的关系型数据库管理系统，由瑞典MySQL AB公司开发，目前属于Oracle公司。MySQL是最流行的关系型数据库管理系统之一，在WEB应用方面MySQL是最好的RDBMS（关系数据库管理系统）应用软件之一。</p><p>本文将介绍如何在CentOS Stream 9上安装MySQL 8并启用远程root连接。</p><h3 id="二、安装MySQL-8"><a href="#二、安装MySQL-8" class="headerlink" title="二、安装MySQL 8"></a>二、安装MySQL 8</h3><ol><li><p>加MySQL 8 Yum源</p><p> 在命令行中执行以下命令：</p><pre class=" language-shell"><code class="language-shell">dnf install https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm</code></pre></li><li><p>安装MySQL 8</p><p> 在命令行中执行以下命令：</p><pre class=" language-shell"><code class="language-shell">dnf install mysql-community-server</code></pre></li><li><p>启动MySQL 8,并设置开机启动</p><p> 在命令行中执行以下命令：</p><pre class=" language-shell"><code class="language-shell">systemctl start mysqldsystemctl enable mysqld</code></pre></li><li><p>查看MySQL 8的初始密码</p><p> 在命令行中执行以下命令：</p><pre class=" language-shell"><code class="language-shell">grep 'temporary password' /var/log/mysqld.log</code></pre><p> 输出如下：</p><pre class=" language-shell"><code class="language-shell">2021-04-22T10:04:55.000000Z 1 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: 5q5q5q5q5q</code></pre><p> 从输出中可以看到MySQL 8的初始密码为<code>5q5q5q5q5q</code>。</p></li><li><p>登录MySQL 8</p><p> 在命令行中执行以下命令：</p><pre class=" language-shell"><code class="language-shell">mysql -u root -p</code></pre><p> 输入密码<code>5q5q5q5q5q</code>，回车，登录成功。</p></li><li><p>修改MySQL 8的root密码</p><p> 在命令行中执行以下命令：</p><pre class=" language-shell"><code class="language-shell">ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';</code></pre><p> 将<code>new_password</code>替换为你想要的密码，回车，修改成功。<br> <code>注意: MySQL 8的密码策略要求密码必须包含大小写字母、数字和特殊字符，且长度不能小于8位。</code></p></li><li><p>允许root用户从任何主机连接到MySQL数据库</p><p> 在命令行中执行以下命令(添加一个可以任何主机连接的用户)：</p><pre class=" language-shell"><code class="language-shell">GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'new_password' WITH GRANT OPTION;</code></pre><p> 将<code>new_password</code>替换为你想要的密码，回车，修改成功。</p><p> 还有另一种方法，直接修改本身的root用户，允许root用户从任何主机连接到MySQL数据库，执行以下命令：</p><pre class=" language-shell"><code class="language-shell">use mysql;update user set host='%' where user='root';</code></pre><p> <code>注意: 这种方法会导致root用户可以从任何主机连接到MySQL数据库，不安全。</code></p><p> 最后别忘了在命令行中执行以下命令(刷新权限)：</p><pre class=" language-shell"><code class="language-shell">flush privileges;</code></pre></li><li><p>退出MySQL 8，重启MySQL 8</p><p> 在命令行中执行以下命令：</p><pre class=" language-shell"><code class="language-shell">exitsystemctl restart mysqld</code></pre></li><li><p>修改MySQL 8的配置文件</p><p> 在命令行中执行以下命令：</p><pre class=" language-shell"><code class="language-shell">vim /etc/my.cnf</code></pre><p> 在<code>[mysqld]</code>下面添加如下配置：</p><pre class=" language-shell"><code class="language-shell">bind-address=0.0.0.0skip-name-resolve</code></pre><p> 保存退出，重启MySQL 8。</p><pre class=" language-shell"><code class="language-shell">systemctl restart mysqld</code></pre></li><li><p>防火墙放行MySQL 8的端口</p><p>在命令行中执行以下命令：</p><pre class=" language-shell"><code class="language-shell">firewall-cmd --zone=public --add-port=3306/tcp --permanentfirewall-cmd --reload</code></pre><p><code>注意: 如果你的MySQL 8的端口不是3306，那么需要将上面的命令中的3306替换为你的MySQL 8的端口。</code></p></li></ol><h3 id="三、连接MySQL-8"><a href="#三、连接MySQL-8" class="headerlink" title="三、连接MySQL 8"></a>三、连接MySQL 8</h3><ol><li><p>从本机连接MySQL 8</p><p> 在命令行中执行以下命令：</p><pre class=" language-shell"><code class="language-shell">mysql -u root -p</code></pre><p> 输入密码<code>new_password</code>，回车，登录成功。</p></li><li><p>从远程主机连接MySQL 8<br>使用可视化工具连接MySQL 8，如Navicat、DBeaver等。</p><p><code>注意: 如果你的MySQL 8的端口不是3306，那么需要将上面的命令中的3306替换为你的MySQL 8的端口。</code></p><p><img src="https://wangxs020202.gitee.io/pbad/new/1682159126427.jpg" alt="1682159126427"></p><p><img src="https://wangxs020202.gitee.io/pbad/new/1682159271082.jpg" alt="1682159271082"></p></li></ol><h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p>MySQL 8较之前的版本有很多变化，比如密码策略、默认的认证方式等，大体安装过程和之前的版本差不多，但是在配置方面有很多变化，需要注意。</p><p>性能优化方面，MySQL 8的性能优化方面有很多变化，比如InnoDB的默认页大小从16KB变为16MB，这样可以减少磁盘IO，提高性能，但是会占用更多的内存，所以需要根据实际情况进行调整。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+            <tag> CentOS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>打造自己的博客天地：在腾讯云服务器上部署Hexo博客</title>
       <link href="/2023/04/21/clouddeploymentblog/"/>
       <url>/2023/04/21/clouddeploymentblog/</url>

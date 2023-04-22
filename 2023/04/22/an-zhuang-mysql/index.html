@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="标签, 未央之域">
-    <meta name="description" content="未央之域">
+    <meta name="keywords" content="从零开始：在CentOS Stream 9上安装MySQL 8并启用远程root连接, 未央之域">
+    <meta name="description" content="本文将介绍如何在CentOS Stream 9上安装MySQL 8并启用远程root连接。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>标签 | 未央之域</title>
+    <title>从零开始：在CentOS Stream 9上安装MySQL 8并启用远程root连接 | 未央之域</title>
     <link rel="icon" type="image/png" href="/medias/favicon.png">
     
 
@@ -285,366 +285,540 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://tva1.sinaimg.cn/large/005DW9w3ly1fqj8hnv7jnj30go09en1q.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">从零开始：在CentOS Stream 9上安装MySQL 8并启用远程root连接</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
     <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                未央之域
-                
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/MySQL/">
+                                <span class="chip bg-color">MySQL</span>
+                            </a>
+                        
+                            <a href="/tags/CentOS/">
+                                <span class="chip bg-color">CentOS</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/MySQL/" class="post-category">
+                                MySQL
+                            </a>
+                        
+                    </div>
+                    
+                </div>
             </div>
 
-            <div class="description center-align">
+            <div class="post-info">
                 
-                <span id="subtitle"></span>
-                <script src="/libs/typed/typed.js"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "从来没有真正的绝境, 只有心灵的迷途",
-                            
-                        ],
-                        startDelay: 300,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-04-22
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-04-22
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    903
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    3 分
+                </div>
+                
+
                 
             </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="一、写在前面"><a href="#一、写在前面" class="headerlink" title="一、写在前面"></a>一、写在前面</h3><p>MySQL是一款开源的关系型数据库管理系统，由瑞典MySQL AB公司开发，目前属于Oracle公司。MySQL是最流行的关系型数据库管理系统之一，在WEB应用方面MySQL是最好的RDBMS（关系数据库管理系统）应用软件之一。</p>
+<p>本文将介绍如何在CentOS Stream 9上安装MySQL 8并启用远程root连接。</p>
+<h3 id="二、安装MySQL-8"><a href="#二、安装MySQL-8" class="headerlink" title="二、安装MySQL 8"></a>二、安装MySQL 8</h3><ol>
+<li><p>加MySQL 8 Yum源</p>
+<p> 在命令行中执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">dnf install https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+</code></pre>
+</li>
+<li><p>安装MySQL 8</p>
+<p> 在命令行中执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">dnf install mysql-community-server
+</code></pre>
+</li>
+<li><p>启动MySQL 8,并设置开机启动</p>
+<p> 在命令行中执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">systemctl start mysqld
+systemctl enable mysqld
+</code></pre>
+</li>
+<li><p>查看MySQL 8的初始密码</p>
+<p> 在命令行中执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">grep 'temporary password' /var/log/mysqld.log
+</code></pre>
+<p> 输出如下：</p>
+<pre class=" language-shell"><code class="language-shell">2021-04-22T10:04:55.000000Z 1 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: 5q5q5q5q5q
+</code></pre>
+<p> 从输出中可以看到MySQL 8的初始密码为<code>5q5q5q5q5q</code>。</p>
+</li>
+<li><p>登录MySQL 8</p>
+<p> 在命令行中执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">mysql -u root -p
+</code></pre>
+<p> 输入密码<code>5q5q5q5q5q</code>，回车，登录成功。</p>
+</li>
+<li><p>修改MySQL 8的root密码</p>
+<p> 在命令行中执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+</code></pre>
+<p> 将<code>new_password</code>替换为你想要的密码，回车，修改成功。<br> <code>注意: MySQL 8的密码策略要求密码必须包含大小写字母、数字和特殊字符，且长度不能小于8位。</code></p>
+</li>
+<li><p>允许root用户从任何主机连接到MySQL数据库</p>
+<p> 在命令行中执行以下命令(添加一个可以任何主机连接的用户)：</p>
+<pre class=" language-shell"><code class="language-shell">GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'new_password' WITH GRANT OPTION;
+</code></pre>
+<p> 将<code>new_password</code>替换为你想要的密码，回车，修改成功。</p>
+<p> 还有另一种方法，直接修改本身的root用户，允许root用户从任何主机连接到MySQL数据库，执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">use mysql;
+update user set host='%' where user='root';
+</code></pre>
+<p> <code>注意: 这种方法会导致root用户可以从任何主机连接到MySQL数据库，不安全。</code></p>
+<p> 最后别忘了在命令行中执行以下命令(刷新权限)：</p>
+<pre class=" language-shell"><code class="language-shell">flush privileges;
+</code></pre>
+</li>
+<li><p>退出MySQL 8，重启MySQL 8</p>
+<p> 在命令行中执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">exit
+systemctl restart mysqld
+</code></pre>
+</li>
+<li><p>修改MySQL 8的配置文件</p>
+<p> 在命令行中执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">vim /etc/my.cnf
+</code></pre>
+<p> 在<code>[mysqld]</code>下面添加如下配置：</p>
+<pre class=" language-shell"><code class="language-shell">bind-address=0.0.0.0
+skip-name-resolve
+</code></pre>
+<p> 保存退出，重启MySQL 8。</p>
+<pre class=" language-shell"><code class="language-shell">systemctl restart mysqld
+</code></pre>
+</li>
+<li><p>防火墙放行MySQL 8的端口</p>
+<p>在命令行中执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">firewall-cmd --zone=public --add-port=3306/tcp --permanent
+firewall-cmd --reload
+</code></pre>
+<p><code>注意: 如果你的MySQL 8的端口不是3306，那么需要将上面的命令中的3306替换为你的MySQL 8的端口。</code></p>
+</li>
+</ol>
+<h3 id="三、连接MySQL-8"><a href="#三、连接MySQL-8" class="headerlink" title="三、连接MySQL 8"></a>三、连接MySQL 8</h3><ol>
+<li><p>从本机连接MySQL 8</p>
+<p> 在命令行中执行以下命令：</p>
+<pre class=" language-shell"><code class="language-shell">mysql -u root -p
+</code></pre>
+<p> 输入密码<code>new_password</code>，回车，登录成功。</p>
+</li>
+<li><p>从远程主机连接MySQL 8<br>使用可视化工具连接MySQL 8，如Navicat、DBeaver等。</p>
+<p><code>注意: 如果你的MySQL 8的端口不是3306，那么需要将上面的命令中的3306替换为你的MySQL 8的端口。</code></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/1682159126427.jpg" alt="1682159126427"></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/1682159271082.jpg" alt="1682159271082"></p>
+</li>
+</ol>
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p>MySQL 8较之前的版本有很多变化，比如密码策略、默认的认证方式等，大体安装过程和之前的版本差不多，但是在配置方面有很多变化，需要注意。</p>
+<p>性能优化方面，MySQL 8的性能优化方面有很多变化，比如InnoDB的默认页大小从16KB变为16MB，这样可以减少磁盘IO，提高性能，但是会占用更多的内存，所以需要根据实际情况进行调整。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">未央</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://sirxs.cn/2023/04/22/an-zhuang-mysql/">https://sirxs.cn/2023/04/22/an-zhuang-mysql/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">未央</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/MySQL/">
+                                    <span class="chip bg-color">MySQL</span>
+                                </a>
+                            
+                                <a href="/tags/CentOS/">
+                                    <span class="chip bg-color">CentOS</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/04/22/an-zhuang-mysql/">
+                    <div class="card-image">
+                        
+                        <img src="https://tva1.sinaimg.cn/large/005DW9w3ly1fqj8hnv7jnj30go09en1q.jpg" class="responsive-img" alt="从零开始：在CentOS Stream 9上安装MySQL 8并启用远程root连接">
+                        
+                        <span class="card-title">从零开始：在CentOS Stream 9上安装MySQL 8并启用远程root连接</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            本文将介绍如何在CentOS Stream 9上安装MySQL 8并启用远程root连接。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MySQL/" class="post-category">
+                                    MySQL
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
+                    </a>
+                    
+                    <a href="/tags/CentOS/">
+                        <span class="chip bg-color">CentOS</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/04/21/clouddeploymentblog/">
+                    <div class="card-image">
+                        
+                        <img src="https://titangene.github.io/images/cover/hexo.jpg" class="responsive-img" alt="打造自己的博客天地：在腾讯云服务器上部署Hexo博客">
+                        
+                        <span class="card-title">打造自己的博客天地：在腾讯云服务器上部署Hexo博客</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            本文将介绍如何在腾讯云服务器上部署Hexo博客，以及如何使用Nginx反向代理，实现域名访问。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Hexo/" class="post-category">
+                                    Hexo
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                    <a href="/tags/Nginx/">
+                        <span class="chip bg-color">Nginx</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/">
+                        <span class="chip bg-color">腾讯云</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8D%9A%E5%AE%A2/">
+                        <span class="chip bg-color">博客</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
         </div>
     </div>
 </div>
 
+<!-- TOC 悬浮按钮. -->
 
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
 <script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
-</script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
 
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
 
-    </div>
-</div>
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
 
-<main class="content">
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
 
-    
-
-<div id="tags" class="container chip-container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
-            </div>
-            <div class="tag-chips">
-                
-                
-                <a href="/tags/Git/" title="Git: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Git" style="background-color: #F9EBEA;">Git
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Nginx/" title="Nginx: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Nginx" style="background-color: #F5EEF8;">Nginx
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/" title="腾讯云: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="腾讯云" style="background-color: #D5F5E3;">腾讯云
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%8D%9A%E5%AE%A2/" title="博客: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="博客" style="background-color: #E8F8F5;">博客
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/db/" title="db: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="db" style="background-color: #FEF9E7;">db
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Docker/" title="Docker: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Docker" style="background-color: #F8F9F9;">Docker
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/ClickHouse/" title="ClickHouse: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="ClickHouse" style="background-color: #82E0AA;">ClickHouse
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Ubuntu/" title="Ubuntu: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Ubuntu" style="background-color: #D7BDE2;">Ubuntu
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Nuitka/" title="Nuitka: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Nuitka" style="background-color: #A3E4D7;">Nuitka
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Python/" title="Python: 2">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Python" style="background-color: #85C1E9;">Python
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/C/" title="C++: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="C++" style="background-color: #F8C471;">C++
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/PyQT5/" title="PyQT5: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="PyQT5" style="background-color: #F9E79F;">PyQT5
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/PyInstaller/" title="PyInstaller: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="PyInstaller" style="background-color: #F9E79F;">PyInstaller
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%83%AD%E7%82%B9/" title="热点: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="热点" style="background-color: #A3E4D7;">热点
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%A8%8B%E5%BA%8F%E5%91%98/" title="程序员: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="程序员" style="background-color: #F9EBEA;">程序员
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E8%96%AA%E8%B5%84/" title="薪资: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="薪资" style="background-color: #A3E4D7;">薪资
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E9%AB%98%E8%96%AA/" title="高薪: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="高薪" style="background-color: #FEF9E7;">高薪
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%9F%A5%E4%B9%8E/" title="知乎: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="知乎" style="background-color: #F9EBEA;">知乎
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/MySQL/" title="MySQL: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="MySQL" style="background-color: #F9EBEA;">MySQL
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/CentOS/" title="CentOS: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="CentOS" style="background-color: #F5EEF8;">CentOS
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Honkit/" title="Honkit: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Honkit" style="background-color: #85C1E9;">Honkit
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/" title="静态网站: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="静态网站" style="background-color: #82E0AA;">静态网站
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/" title="电子书: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="电子书" style="background-color: #D7BDE2;">电子书
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Shell/" title="Shell: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Shell" style="background-color: #82E0AA;">Shell
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Node-js/" title="Node.js: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Node.js" style="background-color: #D5F5E3;">Node.js
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Celery/" title="Celery: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Celery" style="background-color: #F8F9F9;">Celery
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/" title="分布式任务队列: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="分布式任务队列" style="background-color: #A3E4D7;">分布式任务队列
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/" title="异步任务处理: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="异步任务处理" style="background-color: #F9E79F;">异步任务处理
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Django/" title="Django: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Django" style="background-color: #85C1E9;">Django
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Flask/" title="Flask: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="Flask" style="background-color: #F9E79F;">Flask
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-    <link rel="stylesheet" type="text/css" href="/libs/jqcloud/jqcloud.css">
-<style type="text/css">
-    #tag-wordcloud {
-        width: 100%;
-        height: 300px;
-    }
-</style>
-
-<div class="container" data-aos="fade-up">
-    <div class="card">
-        <div id="tag-wordcloud" class="card-content"></div>
-    </div>
-</div>
-
-<script type="text/javascript" src="/libs/jqcloud/jqcloud-1.0.4.min.js"></script>
-<script type="text/javascript">
-    
-
-    $('#tag-wordcloud').jQCloud([{"text":"Git","weight":2,"link":"/tags/Git/"},{"text":"Nginx","weight":1,"link":"/tags/Nginx/"},{"text":"腾讯云","weight":1,"link":"/tags/腾讯云/"},{"text":"博客","weight":1,"link":"/tags/博客/"},{"text":"db","weight":1,"link":"/tags/db/"},{"text":"Docker","weight":1,"link":"/tags/Docker/"},{"text":"ClickHouse","weight":1,"link":"/tags/ClickHouse/"},{"text":"Ubuntu","weight":1,"link":"/tags/Ubuntu/"},{"text":"Nuitka","weight":1,"link":"/tags/Nuitka/"},{"text":"Python","weight":2,"link":"/tags/Python/"},{"text":"C++","weight":1,"link":"/tags/C/"},{"text":"PyQT5","weight":1,"link":"/tags/PyQT5/"},{"text":"PyInstaller","weight":1,"link":"/tags/PyInstaller/"},{"text":"热点","weight":1,"link":"/tags/热点/"},{"text":"程序员","weight":1,"link":"/tags/程序员/"},{"text":"薪资","weight":1,"link":"/tags/薪资/"},{"text":"高薪","weight":1,"link":"/tags/高薪/"},{"text":"知乎","weight":1,"link":"/tags/知乎/"},{"text":"MySQL","weight":1,"link":"/tags/MySQL/"},{"text":"CentOS","weight":1,"link":"/tags/CentOS/"},{"text":"Honkit","weight":1,"link":"/tags/Honkit/"},{"text":"静态网站","weight":1,"link":"/tags/静态网站/"},{"text":"电子书","weight":1,"link":"/tags/电子书/"},{"text":"Shell","weight":1,"link":"/tags/Shell/"},{"text":"Node.js","weight":1,"link":"/tags/Node-js/"},{"text":"Celery","weight":1,"link":"/tags/Celery/"},{"text":"分布式任务队列","weight":1,"link":"/tags/分布式任务队列/"},{"text":"异步任务处理","weight":1,"link":"/tags/异步任务处理/"},{"text":"Django","weight":1,"link":"/tags/Django/"},{"text":"Flask","weight":1,"link":"/tags/Flask/"}], {
-        autoResize: true
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
     });
 </script>
 
     
 
 </main>
+
+
 
 
     <footer class="page-footer bg-color">
