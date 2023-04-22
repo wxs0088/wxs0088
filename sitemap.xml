@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>https://sirxs.cn/2023/04/20/nuitkavspyinstaller/</loc>
+    
+    <lastmod>2023-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sirxs.cn/2023/04/14/tan-suo-celery/</loc>
     
     <lastmod>2023-04-22</lastmod>
@@ -41,15 +50,6 @@
     <loc>https://sirxs.cn/2023/04/21/clouddeploymentblog/</loc>
     
     <lastmod>2023-04-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/2023/04/20/nuitkavspyinstaller/</loc>
-    
-    <lastmod>2023-04-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -166,6 +166,41 @@
   </url>
   
   <url>
+    <loc>https://sirxs.cn/tags/Honkit/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Shell/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Node-js/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://sirxs.cn/tags/Nuitka/</loc>
     <lastmod>2023-04-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -244,41 +279,6 @@
   
   <url>
     <loc>https://sirxs.cn/tags/CentOS/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Honkit/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Shell/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Node-js/</loc>
     <lastmod>2023-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
