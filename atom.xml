@@ -101,8 +101,6 @@
     <category term="Hexo" scheme="https://sirxs.cn/categories/Hexo/"/>
     
     
-    <category term="Git" scheme="https://sirxs.cn/tags/Git/"/>
-    
     <category term="Honkit" scheme="https://sirxs.cn/tags/Honkit/"/>
     
     <category term="静态网站" scheme="https://sirxs.cn/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"/>
@@ -112,6 +110,8 @@
     <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
     
     <category term="Node.js" scheme="https://sirxs.cn/tags/Node-js/"/>
+    
+    <category term="Git" scheme="https://sirxs.cn/tags/Git/"/>
     
   </entry>
   
