@@ -138,6 +138,34 @@
   </url>
   
   <url>
+    <loc>https://sirxs.cn/tags/db/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Docker/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/ClickHouse/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Ubuntu/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://sirxs.cn/tags/Honkit/</loc>
     <lastmod>2023-04-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -173,69 +201,6 @@
   </url>
   
   <url>
-    <loc>https://sirxs.cn/tags/Nuitka/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Python/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/C/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/PyQT5/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/PyInstaller/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/db/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Docker/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/ClickHouse/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Ubuntu/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://sirxs.cn/tags/%E7%83%AD%E7%82%B9/</loc>
     <lastmod>2023-04-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -265,6 +230,41 @@
   
   <url>
     <loc>https://sirxs.cn/tags/%E7%9F%A5%E4%B9%8E/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Nuitka/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Python/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/C/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/PyQT5/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/PyInstaller/</loc>
     <lastmod>2023-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -315,13 +315,6 @@
   </url>
   
   <url>
-    <loc>https://sirxs.cn/categories/Nuitka/</loc>
-    <lastmod>2023-04-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://sirxs.cn/categories/Docker/</loc>
     <lastmod>2023-04-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -330,6 +323,13 @@
   
   <url>
     <loc>https://sirxs.cn/categories/%E7%83%AD%E7%82%B9/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/categories/Nuitka/</loc>
     <lastmod>2023-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
