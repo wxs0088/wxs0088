@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-04-24T12:22:22.196Z</updated>
+  <updated>2023-04-25T12:04:49.978Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu 22.04 Server 安装实录：探索 Linux Server 世界的无限可能！</title>
+    <link href="https://sirxs.cn/2023/04/25/ubuntu22-04-server-an-zhuang/"/>
+    <id>https://sirxs.cn/2023/04/25/ubuntu22-04-server-an-zhuang/</id>
+    <published>2023-04-25T09:03:28.000Z</published>
+    <updated>2023-04-25T12:04:49.978Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot; title=&quot;一、写在前面&quot;&gt;&lt;/a&gt;一、写在前面&lt;/h3&gt;&lt;p&gt;Ubuntu 22.04</summary>
+        
+      
+    
+    
+    
+    <category term="Linux" scheme="https://sirxs.cn/categories/Linux/"/>
+    
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
+    
+    <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
+    
+    <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    
+    <category term="Vim" scheme="https://sirxs.cn/tags/Vim/"/>
+    
+    <category term="SSH" scheme="https://sirxs.cn/tags/SSH/"/>
+    
+  </entry>
   
   <entry>
     <title>在Python世界中游刃有余：如何灵活运用Django日志记录功能</title>
