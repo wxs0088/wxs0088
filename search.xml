@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>最大化服务器性能：在Ubuntu 22.04上逐步指南安装Anaconda</title>
+      <link href="/2023/04/26/ubuntu-an-zhuang-anaconda/"/>
+      <url>/2023/04/26/ubuntu-an-zhuang-anaconda/</url>
+      
+        <content type="html"><![CDATA[<h3 id="一、写在前面"><a href="#一、写在前面" class="headerlink" title="一、写在前面"></a>一、写在前面</h3><p>Anaconda是一个用于科学计算的Python发行版，支持 Linux、Mac、Windows系统，提供了包管理与环境管理的功能，可以很方便地解决多版本python并存、切换以及各种第三方包安装问题。</p><p>Anaconda利用工具conda来进行包和环境管理。conda是一个开源包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。它在Anaconda发行版中默认包含，但也可以通过Miniconda独立安装。</p><p>本文将指导您在Ubuntu 22.04上安装Anaconda，以最大化服务器性能。</p><h3 id="二、下载Anaconda"><a href="#二、下载Anaconda" class="headerlink" title="二、下载Anaconda"></a>二、下载Anaconda</h3><p>Anaconda的下载地址：<a href="https://www.anaconda.com/products/individual">官网</a>，<a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/">清华大学开源软件镜像站</a>。</p><h3 id="三、安装Anaconda"><a href="#三、安装Anaconda" class="headerlink" title="三、安装Anaconda"></a>三、安装Anaconda</h3><p>这里我们继续使用上期的Ubuntu 22.04系统，如果您还没有安装，请参考：<a href="https://sirxs.cn/2023/04/25/ubuntu22-04-server-an-zhuang/">Ubuntu 22.04 Server 安装实录</a>。</p><h4 id="3-1-传输文件"><a href="#3-1-传输文件" class="headerlink" title="3.1 传输文件"></a>3.1 传输文件</h4><p>将下载好的Anaconda文件传输到服务器上，这里我们使用Termius，如果您还没有安装，也可使用Xftp等工具。</p><p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-39-37.png" alt="anaconda_2023-04-26_10-39-37"></p><h4 id="3-2-安装Anaconda"><a href="#3-2-安装Anaconda" class="headerlink" title="3.2 安装Anaconda"></a>3.2 安装Anaconda</h4><p>在服务器上，进入Anaconda文件所在目录，执行以下命令：</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">bash</span> Anaconda3-5.3.1-Linux-x86_64.sh -u</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-19-46.png" alt="anaconda_2023-04-26_10-19-46"></p><p>-u 参数表示使用默认安装路径，如果不加-u参数，需要手动输入安装路径。</p><p><code>注意</code>：这个过程中可能会出现以下错误</p><pre class=" language-text"><code class="language-text">Anaconda3-5.3.1-Linux-x86_64.sh: line 353: bunzip2: command not found</code></pre><p>这是因为服务器上没有安装bzip2，执行以下命令安装即可：</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> <span class="token function">bzip2</span></code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-19-14.png" alt="anaconda_2023-04-26_10-19-14"></p><p>license协议，<code>yes</code>继续。</p><p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-20-19.png" alt="anaconda_2023-04-26_10-20-19"></p><p>安装路径，按<code>Enter</code>继续。</p><p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-20-37.png" alt="anaconda_2023-04-26_10-20-37"></p><p>添加环境变量，<code>yes</code>继续。</p><p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-21-09.png" alt="anaconda_2023-04-26_10-21-09"></p><p>安装Microsoft VSCode，<code>no</code>继续。</p><p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-21-29.png" alt="anaconda_2023-04-26_10-21-29"></p><p>安装完成。</p><p>下面是整体的安装过程：</p><p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-22-00.gif" alt="anaconda_2023-04-26_10-22-00"></p><h3 id="四、创建虚拟环境"><a href="#四、创建虚拟环境" class="headerlink" title="四、创建虚拟环境"></a>四、创建虚拟环境</h3><h4 id="4-1-查看本地虚拟环境"><a href="#4-1-查看本地虚拟环境" class="headerlink" title="4.1 查看本地虚拟环境"></a>4.1 查看本地虚拟环境</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">source</span> ~/.bashrcconda <span class="token function">env</span> list</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-21-46.png" alt="anaconda_2023-04-26_10-21-46"></p><h4 id="4-2-创建虚拟环境"><a href="#4-2-创建虚拟环境" class="headerlink" title="4.2 创建虚拟环境"></a>4.2 创建虚拟环境</h4><pre class=" language-bash"><code class="language-bash">conda create -n mDjango python<span class="token operator">=</span>3.10 -y</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-25-57.png" alt="anaconda_2023-04-26_10-25-57"><br><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-28-31.png" alt="anaconda_2023-04-26_10-28-31"></p><h4 id="4-3-激活虚拟环境"><a href="#4-3-激活虚拟环境" class="headerlink" title="4.3 激活虚拟环境"></a>4.3 激活虚拟环境</h4><pre class=" language-bash"><code class="language-bash">conda activate mDjango</code></pre><h3 id="四、anaconda常用命令"><a href="#四、anaconda常用命令" class="headerlink" title="四、anaconda常用命令"></a>四、anaconda常用命令</h3><pre class=" language-bash"><code class="language-bash">conda --version <span class="token comment" spellcheck="true"># 查看版本</span>conda update conda <span class="token comment" spellcheck="true"># 更新conda</span>conda update anaconda <span class="token comment" spellcheck="true"># 更新anaconda</span>conda update python <span class="token comment" spellcheck="true"># 更新python</span>conda update --all <span class="token comment" spellcheck="true"># 更新所有包</span>conda <span class="token function">env</span> list <span class="token comment" spellcheck="true"># 查看所有虚拟环境</span>conda create -n 虚拟环境名称 python<span class="token operator">=</span>版本号 <span class="token comment" spellcheck="true"># 创建虚拟环境</span>conda activate 虚拟环境名称 <span class="token comment" spellcheck="true"># 激活虚拟环境</span>conda deactivate <span class="token comment" spellcheck="true"># 退出虚拟环境</span>conda <span class="token function">env</span> remove -n 虚拟环境名称 <span class="token comment" spellcheck="true"># 删除虚拟环境</span>conda <span class="token function">install</span> 软件包名称 <span class="token comment" spellcheck="true"># 安装软件包</span>conda remove 软件包名称 <span class="token comment" spellcheck="true"># 删除软件包</span>conda list <span class="token comment" spellcheck="true"># 查看已安装的包</span>conda search 软件包名称 <span class="token comment" spellcheck="true"># 查看可安装的包</span>conda info 软件包名称 <span class="token comment" spellcheck="true"># 查看包的信息</span>conda config --add channels 清华大学开源软件镜像站地址 <span class="token comment" spellcheck="true"># 添加清华大学开源软件镜像站</span>conda config --set show_channel_urls <span class="token function">yes</span> <span class="token comment" spellcheck="true"># 显示镜像站地址</span>conda config --set show_channel_urls no <span class="token comment" spellcheck="true"># 不显示镜像站地址</span></code></pre><h3 id="五、结语"><a href="#五、结语" class="headerlink" title="五、结语"></a>五、结语</h3><p>本文是在上篇文章的基础上，继续安装Anaconda，如果您还没有安装Ubuntu 22.04，请参考：<a href="https://sirxs.cn/2023/04/25/ubuntu22-04-server-an-zhuang/">Ubuntu 22.04 Server 安装实录</a>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Anaconda </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Ubuntu </tag>
+            
+            <tag> Python </tag>
+            
+            <tag> Linux </tag>
+            
+            <tag> Anaconda </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Ubuntu 22.04 Server 安装实录：探索 Linux Server 世界的无限可能！</title>
       <link href="/2023/04/25/ubuntu22-04-server-an-zhuang/"/>
       <url>/2023/04/25/ubuntu22-04-server-an-zhuang/</url>

@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="从零开始：在CentOS Stream 9上安装MySQL 8并启用远程root连接, 未央之域">
-    <meta name="description" content="本文将介绍如何在CentOS Stream 9上安装MySQL 8并启用远程root连接。">
+    <meta name="keywords" content="最大化服务器性能：在Ubuntu 22.04上逐步指南安装Anaconda, 未央之域">
+    <meta name="description" content="本文将指导您在Ubuntu 22.04上安装Anaconda，以最大化服务器性能。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>从零开始：在CentOS Stream 9上安装MySQL 8并启用远程root连接 | 未央之域</title>
+    <title>最大化服务器性能：在Ubuntu 22.04上逐步指南安装Anaconda | 未央之域</title>
     <link rel="icon" type="image/png" href="/medias/favicon.png">
     
 
@@ -289,12 +289,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cache.yisu.com/upload/admin/Ueditor/2020-04-28/1588043464.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://oss.py.cn/pycn/upload/article/000/000/008/5f3b402bc155f941.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">从零开始：在CentOS Stream 9上安装MySQL 8并启用远程root连接</h1>
+                    <h1 class="description center-align post-title">最大化服务器性能：在Ubuntu 22.04上逐步指南安装Anaconda</h1>
                 </div>
             </div>
         </div>
@@ -318,12 +318,20 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/MySQL/">
-                                <span class="chip bg-color">MySQL</span>
+                            <a href="/tags/Ubuntu/">
+                                <span class="chip bg-color">Ubuntu</span>
                             </a>
                         
-                            <a href="/tags/CentOS/">
-                                <span class="chip bg-color">CentOS</span>
+                            <a href="/tags/Python/">
+                                <span class="chip bg-color">Python</span>
+                            </a>
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                            <a href="/tags/Anaconda/">
+                                <span class="chip bg-color">Anaconda</span>
                             </a>
                         
                     </div>
@@ -334,8 +342,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/MySQL/" class="post-category">
-                                MySQL
+                            <a href="/categories/Anaconda/" class="post-category">
+                                Anaconda
                             </a>
                         
                     </div>
@@ -347,28 +355,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-04-22
+                    2023-04-26
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-04-22
+                    2023-04-26
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    903
+                    752
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    2 分
                 </div>
                 
 
@@ -383,101 +391,65 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="一、写在前面"><a href="#一、写在前面" class="headerlink" title="一、写在前面"></a>一、写在前面</h3><p>MySQL是一款开源的关系型数据库管理系统，由瑞典MySQL AB公司开发，目前属于Oracle公司。MySQL是最流行的关系型数据库管理系统之一，在WEB应用方面MySQL是最好的RDBMS（关系数据库管理系统）应用软件之一。</p>
-<p>本文将介绍如何在CentOS Stream 9上安装MySQL 8并启用远程root连接。</p>
-<h3 id="二、安装MySQL-8"><a href="#二、安装MySQL-8" class="headerlink" title="二、安装MySQL 8"></a>二、安装MySQL 8</h3><ol>
-<li><p>加MySQL 8 Yum源</p>
-<p> 在命令行中执行以下命令：</p>
-<pre class=" language-shell"><code class="language-shell">dnf install https://dev.mysql.com/get/mysql80-community-release-el9-1.noarch.rpm
+                <h3 id="一、写在前面"><a href="#一、写在前面" class="headerlink" title="一、写在前面"></a>一、写在前面</h3><p>Anaconda是一个用于科学计算的Python发行版，支持 Linux、Mac、Windows系统，提供了包管理与环境管理的功能，可以很方便地解决多版本python并存、切换以及各种第三方包安装问题。</p>
+<p>Anaconda利用工具conda来进行包和环境管理。conda是一个开源包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换。它在Anaconda发行版中默认包含，但也可以通过Miniconda独立安装。</p>
+<p>本文将指导您在Ubuntu 22.04上安装Anaconda，以最大化服务器性能。</p>
+<h3 id="二、下载Anaconda"><a href="#二、下载Anaconda" class="headerlink" title="二、下载Anaconda"></a>二、下载Anaconda</h3><p>Anaconda的下载地址：<a target="_blank" rel="noopener" href="https://www.anaconda.com/products/individual">官网</a>，<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/">清华大学开源软件镜像站</a>。</p>
+<h3 id="三、安装Anaconda"><a href="#三、安装Anaconda" class="headerlink" title="三、安装Anaconda"></a>三、安装Anaconda</h3><p>这里我们继续使用上期的Ubuntu 22.04系统，如果您还没有安装，请参考：<a href="https://sirxs.cn/2023/04/25/ubuntu22-04-server-an-zhuang/">Ubuntu 22.04 Server 安装实录</a>。</p>
+<h4 id="3-1-传输文件"><a href="#3-1-传输文件" class="headerlink" title="3.1 传输文件"></a>3.1 传输文件</h4><p>将下载好的Anaconda文件传输到服务器上，这里我们使用Termius，如果您还没有安装，也可使用Xftp等工具。</p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-39-37.png" alt="anaconda_2023-04-26_10-39-37"></p>
+<h4 id="3-2-安装Anaconda"><a href="#3-2-安装Anaconda" class="headerlink" title="3.2 安装Anaconda"></a>3.2 安装Anaconda</h4><p>在服务器上，进入Anaconda文件所在目录，执行以下命令：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">bash</span> Anaconda3-5.3.1-Linux-x86_64.sh -u
 </code></pre>
-</li>
-<li><p>安装MySQL 8</p>
-<p> 在命令行中执行以下命令：</p>
-<pre class=" language-shell"><code class="language-shell">dnf install mysql-community-server
+<p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-19-46.png" alt="anaconda_2023-04-26_10-19-46"></p>
+<p>-u 参数表示使用默认安装路径，如果不加-u参数，需要手动输入安装路径。</p>
+<p><code>注意</code>：这个过程中可能会出现以下错误</p>
+<pre class=" language-text"><code class="language-text">Anaconda3-5.3.1-Linux-x86_64.sh: line 353: bunzip2: command not found
 </code></pre>
-</li>
-<li><p>启动MySQL 8,并设置开机启动</p>
-<p> 在命令行中执行以下命令：</p>
-<pre class=" language-shell"><code class="language-shell">systemctl start mysqld
-systemctl enable mysqld
+<p>这是因为服务器上没有安装bzip2，执行以下命令安装即可：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> <span class="token function">bzip2</span>
 </code></pre>
-</li>
-<li><p>查看MySQL 8的初始密码</p>
-<p> 在命令行中执行以下命令：</p>
-<pre class=" language-shell"><code class="language-shell">grep 'temporary password' /var/log/mysqld.log
+<p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-19-14.png" alt="anaconda_2023-04-26_10-19-14"></p>
+<p>license协议，<code>yes</code>继续。</p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-20-19.png" alt="anaconda_2023-04-26_10-20-19"></p>
+<p>安装路径，按<code>Enter</code>继续。</p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-20-37.png" alt="anaconda_2023-04-26_10-20-37"></p>
+<p>添加环境变量，<code>yes</code>继续。</p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-21-09.png" alt="anaconda_2023-04-26_10-21-09"></p>
+<p>安装Microsoft VSCode，<code>no</code>继续。</p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-21-29.png" alt="anaconda_2023-04-26_10-21-29"></p>
+<p>安装完成。</p>
+<p>下面是整体的安装过程：</p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-22-00.gif" alt="anaconda_2023-04-26_10-22-00"></p>
+<h3 id="四、创建虚拟环境"><a href="#四、创建虚拟环境" class="headerlink" title="四、创建虚拟环境"></a>四、创建虚拟环境</h3><h4 id="4-1-查看本地虚拟环境"><a href="#4-1-查看本地虚拟环境" class="headerlink" title="4.1 查看本地虚拟环境"></a>4.1 查看本地虚拟环境</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">source</span> ~/.bashrc
+conda <span class="token function">env</span> list
 </code></pre>
-<p> 输出如下：</p>
-<pre class=" language-shell"><code class="language-shell">2021-04-22T10:04:55.000000Z 1 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: 5q5q5q5q5q
+<p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-21-46.png" alt="anaconda_2023-04-26_10-21-46"></p>
+<h4 id="4-2-创建虚拟环境"><a href="#4-2-创建虚拟环境" class="headerlink" title="4.2 创建虚拟环境"></a>4.2 创建虚拟环境</h4><pre class=" language-bash"><code class="language-bash">conda create -n mDjango python<span class="token operator">=</span>3.10 -y
 </code></pre>
-<p> 从输出中可以看到MySQL 8的初始密码为<code>5q5q5q5q5q</code>。</p>
-</li>
-<li><p>登录MySQL 8</p>
-<p> 在命令行中执行以下命令：</p>
-<pre class=" language-shell"><code class="language-shell">mysql -u root -p
+<p><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-25-57.png" alt="anaconda_2023-04-26_10-25-57"><br><img src="https://wangxs020202.gitee.io/pbad/new/anaconda_2023-04-26_10-28-31.png" alt="anaconda_2023-04-26_10-28-31"></p>
+<h4 id="4-3-激活虚拟环境"><a href="#4-3-激活虚拟环境" class="headerlink" title="4.3 激活虚拟环境"></a>4.3 激活虚拟环境</h4><pre class=" language-bash"><code class="language-bash">conda activate mDjango
 </code></pre>
-<p> 输入密码<code>5q5q5q5q5q</code>，回车，登录成功。</p>
-</li>
-<li><p>修改MySQL 8的root密码</p>
-<p> 在命令行中执行以下命令：</p>
-<pre class=" language-shell"><code class="language-shell">ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+<h3 id="四、anaconda常用命令"><a href="#四、anaconda常用命令" class="headerlink" title="四、anaconda常用命令"></a>四、anaconda常用命令</h3><pre class=" language-bash"><code class="language-bash">conda --version <span class="token comment" spellcheck="true"># 查看版本</span>
+conda update conda <span class="token comment" spellcheck="true"># 更新conda</span>
+conda update anaconda <span class="token comment" spellcheck="true"># 更新anaconda</span>
+conda update python <span class="token comment" spellcheck="true"># 更新python</span>
+conda update --all <span class="token comment" spellcheck="true"># 更新所有包</span>
+conda <span class="token function">env</span> list <span class="token comment" spellcheck="true"># 查看所有虚拟环境</span>
+conda create -n 虚拟环境名称 python<span class="token operator">=</span>版本号 <span class="token comment" spellcheck="true"># 创建虚拟环境</span>
+conda activate 虚拟环境名称 <span class="token comment" spellcheck="true"># 激活虚拟环境</span>
+conda deactivate <span class="token comment" spellcheck="true"># 退出虚拟环境</span>
+conda <span class="token function">env</span> remove -n 虚拟环境名称 <span class="token comment" spellcheck="true"># 删除虚拟环境</span>
+conda <span class="token function">install</span> 软件包名称 <span class="token comment" spellcheck="true"># 安装软件包</span>
+conda remove 软件包名称 <span class="token comment" spellcheck="true"># 删除软件包</span>
+conda list <span class="token comment" spellcheck="true"># 查看已安装的包</span>
+conda search 软件包名称 <span class="token comment" spellcheck="true"># 查看可安装的包</span>
+conda info 软件包名称 <span class="token comment" spellcheck="true"># 查看包的信息</span>
+conda config --add channels 清华大学开源软件镜像站地址 <span class="token comment" spellcheck="true"># 添加清华大学开源软件镜像站</span>
+conda config --set show_channel_urls <span class="token function">yes</span> <span class="token comment" spellcheck="true"># 显示镜像站地址</span>
+conda config --set show_channel_urls no <span class="token comment" spellcheck="true"># 不显示镜像站地址</span>
 </code></pre>
-<p> 将<code>new_password</code>替换为你想要的密码，回车，修改成功。<br> <code>注意: MySQL 8的密码策略要求密码必须包含大小写字母、数字和特殊字符，且长度不能小于8位。</code></p>
-</li>
-<li><p>允许root用户从任何主机连接到MySQL数据库</p>
-<p> 在命令行中执行以下命令(添加一个可以任何主机连接的用户)：</p>
-<pre class=" language-shell"><code class="language-shell">GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'new_password' WITH GRANT OPTION;
-</code></pre>
-<p> 将<code>new_password</code>替换为你想要的密码，回车，修改成功。</p>
-<p> 还有另一种方法，直接修改本身的root用户，允许root用户从任何主机连接到MySQL数据库，执行以下命令：</p>
-<pre class=" language-shell"><code class="language-shell">use mysql;
-update user set host='%' where user='root';
-</code></pre>
-<p> <code>注意: 这种方法会导致root用户可以从任何主机连接到MySQL数据库，不安全。</code></p>
-<p> 最后别忘了在命令行中执行以下命令(刷新权限)：</p>
-<pre class=" language-shell"><code class="language-shell">flush privileges;
-</code></pre>
-</li>
-<li><p>退出MySQL 8，重启MySQL 8</p>
-<p> 在命令行中执行以下命令：</p>
-<pre class=" language-shell"><code class="language-shell">exit
-systemctl restart mysqld
-</code></pre>
-</li>
-<li><p>修改MySQL 8的配置文件</p>
-<p> 在命令行中执行以下命令：</p>
-<pre class=" language-shell"><code class="language-shell">vim /etc/my.cnf
-</code></pre>
-<p> 在<code>[mysqld]</code>下面添加如下配置：</p>
-<pre class=" language-shell"><code class="language-shell">bind-address=0.0.0.0
-skip-name-resolve
-</code></pre>
-<p> 保存退出，重启MySQL 8。</p>
-<pre class=" language-shell"><code class="language-shell">systemctl restart mysqld
-</code></pre>
-</li>
-<li><p>防火墙放行MySQL 8的端口</p>
-<p>在命令行中执行以下命令：</p>
-<pre class=" language-shell"><code class="language-shell">firewall-cmd --zone=public --add-port=3306/tcp --permanent
-firewall-cmd --reload
-</code></pre>
-<p><code>注意: 如果你的MySQL 8的端口不是3306，那么需要将上面的命令中的3306替换为你的MySQL 8的端口。</code></p>
-</li>
-</ol>
-<h3 id="三、连接MySQL-8"><a href="#三、连接MySQL-8" class="headerlink" title="三、连接MySQL 8"></a>三、连接MySQL 8</h3><ol>
-<li><p>从本机连接MySQL 8</p>
-<p> 在命令行中执行以下命令：</p>
-<pre class=" language-shell"><code class="language-shell">mysql -u root -p
-</code></pre>
-<p> 输入密码<code>new_password</code>，回车，登录成功。</p>
-</li>
-<li><p>从远程主机连接MySQL 8<br>使用可视化工具连接MySQL 8，如Navicat、DBeaver等。</p>
-<p><code>注意: 如果你的MySQL 8的端口不是3306，那么需要将上面的命令中的3306替换为你的MySQL 8的端口。</code></p>
-<p><img src="https://wangxs020202.gitee.io/pbad/new/1682159126427.jpg" alt="1682159126427"></p>
-<p><img src="https://wangxs020202.gitee.io/pbad/new/1682159271082.jpg" alt="1682159271082"></p>
-</li>
-</ol>
-<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p>MySQL 8较之前的版本有很多变化，比如密码策略、默认的认证方式等，大体安装过程和之前的版本差不多，但是在配置方面有很多变化，需要注意。</p>
-<p>性能优化方面，MySQL 8的性能优化方面有很多变化，比如InnoDB的默认页大小从16KB变为16MB，这样可以减少磁盘IO，提高性能，但是会占用更多的内存，所以需要根据实际情况进行调整。</p>
+<h3 id="五、结语"><a href="#五、结语" class="headerlink" title="五、结语"></a>五、结语</h3><p>本文是在上篇文章的基础上，继续安装Anaconda，如果您还没有安装Ubuntu 22.04，请参考：<a href="https://sirxs.cn/2023/04/25/ubuntu22-04-server-an-zhuang/">Ubuntu 22.04 Server 安装实录</a>。</p>
 
                 
             </div>
@@ -504,7 +476,7 @@ firewall-cmd --reload
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sirxs.cn/2023/04/22/an-zhuang-mysql/">https://sirxs.cn/2023/04/22/an-zhuang-mysql/</a>
+                    <a href="https://sirxs.cn/2023/04/26/ubuntu-an-zhuang-anaconda/">https://sirxs.cn/2023/04/26/ubuntu-an-zhuang-anaconda/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -542,12 +514,20 @@ firewall-cmd --reload
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/MySQL/">
-                                    <span class="chip bg-color">MySQL</span>
+                                <a href="/tags/Ubuntu/">
+                                    <span class="chip bg-color">Ubuntu</span>
                                 </a>
                             
-                                <a href="/tags/CentOS/">
-                                    <span class="chip bg-color">CentOS</span>
+                                <a href="/tags/Python/">
+                                    <span class="chip bg-color">Python</span>
+                                </a>
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/Anaconda/">
+                                    <span class="chip bg-color">Anaconda</span>
                                 </a>
                             
                         </div>
@@ -593,57 +573,59 @@ firewall-cmd --reload
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/04/24/logging/">
+                <a href="/2023/04/26/ubuntu-an-zhuang-anaconda/">
                     <div class="card-image">
                         
-                        <img src="https://www.sentinelone.com/wp-content/uploads/2022/02/Django_logging_with_Scalyr_colors.png" class="responsive-img" alt="在Python世界中游刃有余：如何灵活运用Django日志记录功能">
+                        <img src="https://oss.py.cn/pycn/upload/article/000/000/008/5f3b402bc155f941.jpg" class="responsive-img" alt="最大化服务器性能：在Ubuntu 22.04上逐步指南安装Anaconda">
                         
-                        <span class="card-title">在Python世界中游刃有余：如何灵活运用Django日志记录功能</span>
+                        <span class="card-title">最大化服务器性能：在Ubuntu 22.04上逐步指南安装Anaconda</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文将介绍如何在Django中使用日志记录功能，以及如何使用Django自带的日志记录功能。
+                            本文将指导您在Ubuntu 22.04上安装Anaconda，以最大化服务器性能。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-24
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Django/" class="post-category">
-                                    Django
+                            <a href="/categories/Anaconda/" class="post-category">
+                                    Anaconda
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
+                    
+                    <a href="/tags/Ubuntu/">
+                        <span class="chip bg-color">Ubuntu</span>
+                    </a>
                     
                     <a href="/tags/Python/">
                         <span class="chip bg-color">Python</span>
                     </a>
                     
-                    <a href="/tags/Django/">
-                        <span class="chip bg-color">Django</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
-                    <a href="/tags/%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95/">
-                        <span class="chip bg-color">日志记录</span>
-                    </a>
-                    
-                    <a href="/tags/Logging/">
-                        <span class="chip bg-color">Logging</span>
+                    <a href="/tags/Anaconda/">
+                        <span class="chip bg-color">Anaconda</span>
                     </a>
                     
                 </div>
@@ -657,30 +639,30 @@ firewall-cmd --reload
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/04/21/clouddeploymentblog/">
+                <a href="/2023/04/25/ubuntu22-04-server-an-zhuang/">
                     <div class="card-image">
                         
-                        <img src="https://titangene.github.io/images/cover/hexo.jpg" class="responsive-img" alt="打造自己的博客天地：在腾讯云服务器上部署Hexo博客">
+                        <img src="https://wangxs020202.gitee.io/pbad/new/ubuntu.jpg" class="responsive-img" alt="Ubuntu 22.04 Server 安装实录：探索 Linux Server 世界的无限可能！">
                         
-                        <span class="card-title">打造自己的博客天地：在腾讯云服务器上部署Hexo博客</span>
+                        <span class="card-title">Ubuntu 22.04 Server 安装实录：探索 Linux Server 世界的无限可能！</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文将介绍如何在腾讯云服务器上部署Hexo博客，以及如何使用Nginx反向代理，实现域名访问。
+                            记录一次Ubuntu 22.04 Server的安装实录
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Hexo/" class="post-category">
-                                    Hexo
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
                                 </a>
                             
                             
@@ -690,20 +672,24 @@ firewall-cmd --reload
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Git/">
-                        <span class="chip bg-color">Git</span>
+                    <a href="/tags/Ubuntu/">
+                        <span class="chip bg-color">Ubuntu</span>
                     </a>
                     
-                    <a href="/tags/Nginx/">
-                        <span class="chip bg-color">Nginx</span>
+                    <a href="/tags/Shell/">
+                        <span class="chip bg-color">Shell</span>
                     </a>
                     
-                    <a href="/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/">
-                        <span class="chip bg-color">腾讯云</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
-                    <a href="/tags/%E5%8D%9A%E5%AE%A2/">
-                        <span class="chip bg-color">博客</span>
+                    <a href="/tags/Vim/">
+                        <span class="chip bg-color">Vim</span>
+                    </a>
+                    
+                    <a href="/tags/SSH/">
+                        <span class="chip bg-color">SSH</span>
                     </a>
                     
                 </div>

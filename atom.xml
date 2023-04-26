@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-04-25T12:04:49.978Z</updated>
+  <updated>2023-04-26T12:48:42.923Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最大化服务器性能：在Ubuntu 22.04上逐步指南安装Anaconda</title>
+    <link href="https://sirxs.cn/2023/04/26/ubuntu-an-zhuang-anaconda/"/>
+    <id>https://sirxs.cn/2023/04/26/ubuntu-an-zhuang-anaconda/</id>
+    <published>2023-04-26T02:32:29.000Z</published>
+    <updated>2023-04-26T12:48:42.923Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot; title=&quot;一、写在前面&quot;&gt;&lt;/a&gt;一、写在前面&lt;/h3&gt;&lt;p&gt;Anaconda是一个用于科学计算的Python发行版，支持</summary>
+        
+      
+    
+    
+    
+    <category term="Anaconda" scheme="https://sirxs.cn/categories/Anaconda/"/>
+    
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    
+    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu 22.04 Server 安装实录：探索 Linux Server 世界的无限可能！</title>
