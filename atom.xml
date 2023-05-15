@@ -37,13 +37,13 @@
     <category term="Anaconda" scheme="https://sirxs.cn/categories/Anaconda/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
-    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    
+    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
     
   </entry>
   
@@ -190,9 +190,9 @@
     <category term="Nuitka" scheme="https://sirxs.cn/categories/Nuitka/"/>
     
     
-    <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
     
     <category term="C++" scheme="https://sirxs.cn/tags/C/"/>
     
