@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-04-26T12:48:42.923Z</updated>
+  <updated>2023-05-19T13:25:44.304Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -17,11 +17,44 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>通过Channels在Django中释放WebSocket的能力</title>
+    <link href="https://sirxs.cn/2023/05/19/page-id-1/"/>
+    <id>https://sirxs.cn/2023/05/19/page-id-1/</id>
+    <published>2023-05-19T06:32:46.000Z</published>
+    <updated>2023-05-19T13:25:44.304Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Django" scheme="https://sirxs.cn/categories/Django/"/>
+    
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Channels" scheme="https://sirxs.cn/tags/Channels/"/>
+    
+    <category term="WebSocket" scheme="https://sirxs.cn/tags/WebSocket/"/>
+    
+    <category term="ASGI" scheme="https://sirxs.cn/tags/ASGI/"/>
+    
+    <category term="聊天室" scheme="https://sirxs.cn/tags/%E8%81%8A%E5%A4%A9%E5%AE%A4/"/>
+    
+  </entry>
+  
+  <entry>
     <title>最大化服务器性能：在Ubuntu 22.04上逐步指南安装Anaconda</title>
     <link href="https://sirxs.cn/2023/04/26/ubuntu-an-zhuang-anaconda/"/>
     <id>https://sirxs.cn/2023/04/26/ubuntu-an-zhuang-anaconda/</id>
     <published>2023-04-26T02:32:29.000Z</published>
-    <updated>2023-04-26T12:48:42.923Z</updated>
+    <updated>2023-05-19T13:31:36.606Z</updated>
     
     
       
@@ -174,7 +207,7 @@
     <link href="https://sirxs.cn/2023/04/20/nuitkavspyinstaller/"/>
     <id>https://sirxs.cn/2023/04/20/nuitkavspyinstaller/</id>
     <published>2023-04-20T06:22:16.000Z</published>
-    <updated>2023-04-22T11:05:52.693Z</updated>
+    <updated>2023-05-19T13:31:36.602Z</updated>
     
     
       
@@ -207,7 +240,7 @@
     <link href="https://sirxs.cn/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/"/>
     <id>https://sirxs.cn/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/</id>
     <published>2023-04-19T07:09:27.000Z</published>
-    <updated>2023-04-19T13:36:06.203Z</updated>
+    <updated>2023-05-19T13:31:36.597Z</updated>
     
     
       
@@ -310,7 +343,7 @@
     <link href="https://sirxs.cn/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/"/>
     <id>https://sirxs.cn/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</id>
     <published>2023-04-14T05:58:45.000Z</published>
-    <updated>2023-04-22T04:35:29.197Z</updated>
+    <updated>2023-05-19T13:29:43.586Z</updated>
     
     
       

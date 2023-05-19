@@ -2,7 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sirxs.cn/2023/04/26/ubuntu-an-zhuang-anaconda/</loc>
-    <lastmod>2023-04-26</lastmod>
+    <lastmod>2023-05-19</lastmod>
+  </url>
+  <url>
+    <loc>https://sirxs.cn/2023/04/20/nuitkavspyinstaller/</loc>
+    <lastmod>2023-05-19</lastmod>
+  </url>
+  <url>
+    <loc>https://sirxs.cn/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/</loc>
+    <lastmod>2023-05-19</lastmod>
+  </url>
+  <url>
+    <loc>https://sirxs.cn/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</loc>
+    <lastmod>2023-05-19</lastmod>
+  </url>
+  <url>
+    <loc>https://sirxs.cn/2023/05/19/page-id-1/</loc>
+    <lastmod>2023-05-19</lastmod>
   </url>
   <url>
     <loc>https://sirxs.cn/2023/04/25/ubuntu22-04-server-an-zhuang/</loc>
@@ -13,19 +29,11 @@
     <lastmod>2023-04-24</lastmod>
   </url>
   <url>
-    <loc>https://sirxs.cn/2023/04/20/nuitkavspyinstaller/</loc>
-    <lastmod>2023-04-22</lastmod>
-  </url>
-  <url>
     <loc>https://sirxs.cn/2023/04/22/an-zhuang-mysql/</loc>
     <lastmod>2023-04-22</lastmod>
   </url>
   <url>
     <loc>https://sirxs.cn/2023/04/14/tan-suo-celery/</loc>
-    <lastmod>2023-04-22</lastmod>
-  </url>
-  <url>
-    <loc>https://sirxs.cn/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</loc>
     <lastmod>2023-04-22</lastmod>
   </url>
   <url>
@@ -35,9 +43,5 @@
   <url>
     <loc>https://sirxs.cn/2023/04/21/clouddeploymentblog/</loc>
     <lastmod>2023-04-22</lastmod>
-  </url>
-  <url>
-    <loc>https://sirxs.cn/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/</loc>
-    <lastmod>2023-04-19</lastmod>
   </url>
 </urlset> 
