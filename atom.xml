@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-05-26T08:51:09.195Z</updated>
+  <updated>2023-05-26T08:58:27.014Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://sirxs.cn/2023/05/28/page-id-4/"/>
     <id>https://sirxs.cn/2023/05/28/page-id-4/</id>
     <published>2023-05-28T09:41:37.000Z</published>
-    <updated>2023-05-26T08:51:09.195Z</updated>
+    <updated>2023-05-26T08:58:27.014Z</updated>
     
     
       
@@ -171,9 +171,9 @@
     
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
-    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
-    
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    
+    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
     
   </entry>
   
