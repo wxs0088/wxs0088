@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>掌握Redis集群：使用Docker搭建Redis高可用Cluster集群环境</title>
+      <link href="/2023/06/14/page-id-5/"/>
+      <url>/2023/06/14/page-id-5/</url>
+      
+        <content type="html"><![CDATA[<h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p>在生产环境中，为了保证Redis的高可用性，我们通常会使用Redis集群来搭建Redis高可用环境。</p><h3 id="Redis集群模式"><a href="#Redis集群模式" class="headerlink" title="Redis集群模式"></a>Redis集群模式</h3><p>Redis集群有三种模式，分别是主从模式、哨兵模式和Cluster模式。</p><p>一般情况下都会以主从的模式进行搭建，我们知道主从的原理是从服务器获取rdb文件的全量复制+写操作的增量复制来共同保证数据的一致性，因此我们在配置从服务器时，需要指定主服务器的ip和端口，这样从服务器才能够连接到主服务器进行数据的复制。<br>下图是一个简单的主从模式的Redis集群示意图：</p><p><img src="https://wangxs020202.gitee.io/pbad/new/redis/Redis_2023-06-14_10-04-52.png" alt="Redis_2023-06-14_10-04-52"></p><p>但是主从模式也有一些缺点，比如主服务器宕机后，从服务器无法自动切换为主服务器，需要手动进行切换，这样就会造成一定的停机时间，因此我们需要哨兵模式来解决这个问题。</p><p>哨兵模式，就是用于在一主多从的集群环境下，如果主服务器宕机了，它会自动的将从服务器中的一台设为新的master，并且将其余的slave的配置文件自动修改，这样就切换出一套新的主从服务，不需要人工干预，且不会影响服务的使用。</p><p>这里就不再赘述哨兵模式的原理了，后期会单独写一篇文章来介绍哨兵模式的原理和搭建。</p><p><strong>Cluster模式</strong>，是Redis3.0之后推出的一种集群模式，它的特点是：<strong>数据分片</strong>，<strong>高可用</strong>，<strong>自动分配</strong>，<strong>自动迁移</strong>，<strong>自动复制<br><strong>，</strong>自动扩容</strong>，<strong>自动容错</strong>，也是目前Redis官方推荐的集群模式。</p><p>这里引用下<a href="https://redis.io/docs/reference/cluster-spec/">官方</a>的解释：</p><pre class=" language-text"><code class="language-text">Redis Cluster 实现了非分布式 Redis 版本中可用的所有单键命令。执行复杂的多键操作（如集合并集和交集）的命令是针对操作中涉及的所有键散列到同一个槽的情况实现的。Redis Cluster 实现了一个称为散列标签的概念，可用于强制将某些键存储在同一个散列槽中。但是，在手动重分片过程中，多键操作可能会在一段时间内不可用，而单键操作始终可用。Redis Cluster 不像 Redis 的独立版本那样支持多数据库。我们只支持数据库0；该SELECT命令是不允许的。这是因为在 Redis Cluster 中，数据库是通过槽而不是通过数据库号码来选择的。</code></pre><h3 id="Redis-Cluster集群搭建"><a href="#Redis-Cluster集群搭建" class="headerlink" title="Redis Cluster集群搭建"></a>Redis Cluster集群搭建</h3><p>一般在生产环境中，会使用不同的物理机来搭建Redis集群，但是在开发环境中，我们可以使用Docker来搭建Redis集群，这样可以节省一些成本。</p><h4 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1. 环境准备"></a>1. 环境准备</h4><p>系统环境：CentOS Stream release 9<br>Docker版本：Docker version 24.0.1, build 6802122</p><h4 id="2-拉取Redis镜像"><a href="#2-拉取Redis镜像" class="headerlink" title="2. 拉取Redis镜像"></a>2. 拉取Redis镜像</h4><pre class=" language-shell"><code class="language-shell">docker pull redis</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/redis/Redis_2023-06-14_10-26-57.png" alt="Redis_2023-06-14_10-26-57"></p><h4 id="3-创建挂载目录"><a href="#3-创建挂载目录" class="headerlink" title="3. 创建挂载目录"></a>3. 创建挂载目录</h4><pre class=" language-shell"><code class="language-shell">mkdir -p /mnt/redis/&#123;6381,6382,6383,6384,6385,6386&#125;/data</code></pre><h4 id="4-创建节点容器"><a href="#4-创建节点容器" class="headerlink" title="4. 创建节点容器"></a>4. 创建节点容器</h4><pre class=" language-shell"><code class="language-shell">docker create --name redis-6381 --restart=always --net host  -v /mnt/redis/6381/data:/data redis --requirepass 123456 --masterauth 123456 --port 6381 --appendonly yes --cluster-enabled yes --cluster-announce-ip 127.0.0.1</code></pre><p>… …</p><pre class=" language-shell"><code class="language-shell">docker create --name redis-6386 --restart=always --net host  -v /mnt/redis/6386/data:/data redis --requirepass 123456 --masterauth 123456 --port 6386 --appendonly yes --cluster-enabled yes --cluster-announce-ip 127.0.0.1</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/redis/Redis_2023-06-14_10-32-29.png" alt="Redis_2023-06-14_10-32-29"></p><ul><li>requirepass：外面服务、客户端来连接 redis 的密码</li><li>masterauth：redis从去连接 redis 主使用的密码。这个意思是说，如果你在主上设置了requirepass 参数，你就需要再从上设置 masterauth 参数，并和主密码指定成一样的。这样从才能继续去同步主的数据</li><li>appendonly：是否开启持久化</li><li>cluster-announce-ip：对外提供访问的IP，如果集群机器不在局域网内的服务器需填写外网域名或IP</li></ul><h4 id="5-启动节点容器"><a href="#5-启动节点容器" class="headerlink" title="5. 启动节点容器"></a>5. 启动节点容器</h4><pre class=" language-shell"><code class="language-shell">docker start redis-6381 redis-6382 redis-6383 redis-6384 redis-6385 redis-6386</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/redis/Redis_2023-06-14_10-37-37.png" alt="Redis_2023-06-14_10-37-37"></p><h4 id="6-创建集群"><a href="#6-创建集群" class="headerlink" title="6. 创建集群"></a>6. 创建集群</h4><pre class=" language-shell"><code class="language-shell">docker exec -it redis-6381 redis-cli -a 123456 --cluster create 127.0.0.1:6381 127.0.0.1:6382 127.0.0.1:6383 127.0.0.1:6384 127.0.0.1:6385 127.0.0.1:6386 --cluster-replicas 1</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/redis/Redis_2023-06-14_10-41-29.png" alt="Redis_2023-06-14_10-41-29"><br><img src="https://wangxs020202.gitee.io/pbad/new/redis/Redis_2023-06-14_10-42-24.png" alt="Redis_2023-06-14_10-42-24"></p><ul><li>–cluster-replicas 1：表示每个主节点对应一个从节点</li><li>–cluster-replicas 0：表示每个主节点没有从节点</li></ul><p>至此，Redis集群搭建完成。接下来我们就可以使用Redis集群了。</p><h3 id="Redis-Cluster集群使用"><a href="#Redis-Cluster集群使用" class="headerlink" title="Redis Cluster集群使用"></a>Redis Cluster集群使用</h3><h4 id="1-连接集群"><a href="#1-连接集群" class="headerlink" title="1. 连接集群"></a>1. 连接集群</h4><pre class=" language-shell"><code class="language-shell">docker exec -it redis-6381 redis-cli -h 127.0.0.1 -p 6382 -a 123456 -c</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/redis/Redis_2023-06-14_10-45-47.png" alt="Redis_2023-06-14_10-45-47"></p><h4 id="2-查看集群信息"><a href="#2-查看集群信息" class="headerlink" title="2. 查看集群信息"></a>2. 查看集群信息</h4><pre class=" language-shell"><code class="language-shell">cluster info</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/redis/Redis_2023-06-14_10-47-16.png" alt="Redis_2023-06-14_10-47-16"></p><h4 id="3-查看集群节点信息"><a href="#3-查看集群节点信息" class="headerlink" title="3. 查看集群节点信息"></a>3. 查看集群节点信息</h4><pre class=" language-shell"><code class="language-shell">cluster nodes</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/redis/Redis_2023-06-14_10-48-06.png" alt="Redis_2023-06-14_10-48-06"></p><h4 id="4-查看集群槽信息"><a href="#4-查看集群槽信息" class="headerlink" title="4. 查看集群槽信息"></a>4. 查看集群槽信息</h4><pre class=" language-shell"><code class="language-shell">cluster slots</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/redis/Redis_2023-06-14_10-49-04.png" alt="Redis_2023-06-14_10-49-04"></p><h4 id="5-创建键值对"><a href="#5-创建键值对" class="headerlink" title="5. 创建键值对"></a>5. 创建键值对</h4><pre class=" language-shell"><code class="language-shell">set name wangxs</code></pre><h4 id="6-查看键值对"><a href="#6-查看键值对" class="headerlink" title="6. 查看键值对"></a>6. 查看键值对</h4><pre class=" language-shell"><code class="language-shell">get name</code></pre><p><img src="https://wangxs020202.gitee.io/pbad/new/redis/Redis_2023-06-14_10-51-47.png" alt="Redis_2023-06-14_10-51-47"></p><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>对于主从模式，我们可以使用Redis Sentinel来实现高可用，但是对于Redis Cluster，我们可以使用Redis Cluster自身来实现高可用，这样就不需要再使用Redis Sentinel了。</p><p>希望本篇文章对你有所帮助，如果有什么问题，欢迎联系我。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> Redis </tag>
+            
+            <tag> 集群 </tag>
+            
+            <tag> 高可用 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>利用DockerHub在Centos7.6环境下部署Nginx反向代理Gunicorn+Flask独立架构</title>
       <link href="/2023/05/28/page-id-4/"/>
       <url>/2023/05/28/page-id-4/</url>
@@ -181,9 +212,9 @@
       
         <tags>
             
-            <tag> Ubuntu </tag>
-            
             <tag> Shell </tag>
+            
+            <tag> Ubuntu </tag>
             
             <tag> Linux </tag>
             
@@ -336,8 +367,6 @@
       
         <tags>
             
-            <tag> Git </tag>
-            
             <tag> Honkit </tag>
             
             <tag> 静态网站 </tag>
@@ -347,6 +376,8 @@
             <tag> Shell </tag>
             
             <tag> Node.js </tag>
+            
+            <tag> Git </tag>
             
         </tags>
       

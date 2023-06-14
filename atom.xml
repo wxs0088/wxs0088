@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-05-29T01:21:55.622Z</updated>
+  <updated>2023-06-14T02:54:11.137Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>掌握Redis集群：使用Docker搭建Redis高可用Cluster集群环境</title>
+    <link href="https://sirxs.cn/2023/06/14/page-id-5/"/>
+    <id>https://sirxs.cn/2023/06/14/page-id-5/</id>
+    <published>2023-06-14T01:49:44.000Z</published>
+    <updated>2023-06-14T02:54:11.137Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;序幕&quot;&gt;&lt;a href=&quot;#序幕&quot; class=&quot;headerlink&quot; title=&quot;序幕&quot;&gt;&lt;/a&gt;序幕&lt;/h3&gt;&lt;p&gt;在生产环境中，为了保证Redis的高可用性，我们通常会使用Redis集群来搭建Redis高可用环境。&lt;/p&gt;
+&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="Redis" scheme="https://sirxs.cn/categories/Redis/"/>
+    
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
+    
+    <category term="Redis" scheme="https://sirxs.cn/tags/Redis/"/>
+    
+    <category term="集群" scheme="https://sirxs.cn/tags/%E9%9B%86%E7%BE%A4/"/>
+    
+    <category term="高可用" scheme="https://sirxs.cn/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>利用DockerHub在Centos7.6环境下部署Nginx反向代理Gunicorn+Flask独立架构</title>
@@ -151,7 +183,7 @@
     <link href="https://sirxs.cn/2023/04/26/ubuntu-an-zhuang-anaconda/"/>
     <id>https://sirxs.cn/2023/04/26/ubuntu-an-zhuang-anaconda/</id>
     <published>2023-04-26T02:32:29.000Z</published>
-    <updated>2023-05-19T13:31:36.606Z</updated>
+    <updated>2023-06-14T01:57:15.067Z</updated>
     
     
       
@@ -198,9 +230,9 @@
     <category term="Linux" scheme="https://sirxs.cn/categories/Linux/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
@@ -353,8 +385,6 @@
     <category term="Hexo" scheme="https://sirxs.cn/categories/Hexo/"/>
     
     
-    <category term="Git" scheme="https://sirxs.cn/tags/Git/"/>
-    
     <category term="Honkit" scheme="https://sirxs.cn/tags/Honkit/"/>
     
     <category term="静态网站" scheme="https://sirxs.cn/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"/>
@@ -364,6 +394,8 @@
     <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
     
     <category term="Node.js" scheme="https://sirxs.cn/tags/Node-js/"/>
+    
+    <category term="Git" scheme="https://sirxs.cn/tags/Git/"/>
     
   </entry>
   

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://sirxs.cn/2023/06/14/page-id-5/</loc>
+    <lastmod>2023-06-14</lastmod>
+  </url>
+  <url>
+    <loc>https://sirxs.cn/2023/04/26/ubuntu-an-zhuang-anaconda/</loc>
+    <lastmod>2023-06-14</lastmod>
+  </url>
+  <url>
     <loc>https://sirxs.cn/2023/05/27/page-id-3/</loc>
     <lastmod>2023-05-29</lastmod>
   </url>
@@ -11,10 +19,6 @@
   <url>
     <loc>https://sirxs.cn/2023/05/26/page-id-2/</loc>
     <lastmod>2023-05-26</lastmod>
-  </url>
-  <url>
-    <loc>https://sirxs.cn/2023/04/26/ubuntu-an-zhuang-anaconda/</loc>
-    <lastmod>2023-05-19</lastmod>
   </url>
   <url>
     <loc>https://sirxs.cn/2023/04/20/nuitkavspyinstaller/</loc>
