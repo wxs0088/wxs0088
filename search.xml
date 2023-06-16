@@ -218,9 +218,9 @@
             
             <tag> Python </tag>
             
-            <tag> Linux </tag>
-            
             <tag> Anaconda </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
@@ -245,11 +245,11 @@
       
         <tags>
             
-            <tag> Shell </tag>
-            
             <tag> Ubuntu </tag>
             
             <tag> Linux </tag>
+            
+            <tag> Shell </tag>
             
             <tag> Vim </tag>
             
@@ -367,9 +367,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Nuitka </tag>
+            
+            <tag> Python </tag>
             
             <tag> C++ </tag>
             
