@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>Step-by-Step Guide: 在Ubuntu上安装Python3，为强大的编程提供支持</title>
+      <link href="/2023/06/16/page-id-6/"/>
+      <url>/2023/06/16/page-id-6/</url>
+      
+        <content type="html"><![CDATA[<h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p>由于Ubuntu安装Python的方式与其他Linux系统有所不同，所以本文将介绍在Ubuntu上安装Python3的方法。</p><h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><h4 id="一、-安装Python3"><a href="#一、-安装Python3" class="headerlink" title="一、 安装Python3"></a>一、 安装Python3</h4><ol><li><p>切换的国内源</p><pre class=" language-shell"><code class="language-shell">  $ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak  $ sudo vim /etc/apt/sources.list</code></pre><p>将原有的源注释掉，添加如下内容：</p><pre class=" language-shell"><code class="language-shell">#清华源deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiversedeb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</code></pre></li><li><p>更新apt-get</p><pre class=" language-shell"><code class="language-shell">sudo apt-get update</code></pre></li><li><p>安装build-essential</p><pre class=" language-shell"><code class="language-shell">sudo apt-get install build-essential</code></pre></li><li><p>安装Python3.8</p><pre class=" language-shell"><code class="language-shell">sudo apt-get install python3.8sudo apt install python3-pip</code></pre></li><li><p>查看Python是否安装成功</p><pre class=" language-shell"><code class="language-shell">python3 -V</code></pre><p>输出版本号Python 3.8.5即表示安装成功。</p></li></ol><h4 id="二、-更换pip源"><a href="#二、-更换pip源" class="headerlink" title="二、 更换pip源"></a>二、 更换pip源</h4><ol><li><p>临时更换</p><pre class=" language-shell"><code class="language-shell">pip install *** -i https://pypi.tuna.tsinghua.edu.cn/simple some-package</code></pre><p>在安装包的时候加上-i参数，指定pip源为清华源，这样就可以临时更换pip源了。</p></li><li><p>永久更换</p><ul><li>新建.pip隐藏文件夹<pre class=" language-shell"><code class="language-shell">mkdir ~/.pip</code></pre></li><li>在.pip文件夹下新建pip.conf文件<pre class=" language-shell"><code class="language-shell">touch ~/.pip/pip.confvim ~/.pip/pip.conf</code></pre></li><li>在pip.conf文件中添加如下内容：<pre class=" language-shell"><code class="language-shell">[global]index-url = https://pypi.tuna.tsinghua.edu.cn/simple[install]trusted-host = https://pypi.tuna.tsinghua.edu.cn</code></pre></li></ul><p>这样就可以永久更换pip源了。</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Ubuntu </tag>
+            
+            <tag> Python </tag>
+            
+            <tag> 安装 </tag>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>掌握Redis集群：使用Docker搭建Redis高可用Cluster集群环境</title>
       <link href="/2023/06/14/page-id-5/"/>
       <url>/2023/06/14/page-id-5/</url>
@@ -212,11 +245,11 @@
       
         <tags>
             
+            <tag> Shell </tag>
+            
             <tag> Ubuntu </tag>
             
             <tag> Linux </tag>
-            
-            <tag> Shell </tag>
             
             <tag> Vim </tag>
             
@@ -369,13 +402,13 @@
             
             <tag> Git </tag>
             
-            <tag> Shell </tag>
-            
             <tag> Honkit </tag>
             
             <tag> 静态网站 </tag>
             
             <tag> 电子书 </tag>
+            
+            <tag> Shell </tag>
             
             <tag> Node.js </tag>
             
