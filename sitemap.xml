@@ -191,90 +191,6 @@
 
   
   <url>
-    <loc>https://sirxs.cn/tags/Git/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Nginx/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Python/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Django/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Logging/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/db/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Docker/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/ClickHouse/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Ubuntu/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://sirxs.cn/tags/Honkit/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -310,7 +226,70 @@
   </url>
   
   <url>
+    <loc>https://sirxs.cn/tags/Git/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/db/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Docker/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/ClickHouse/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Ubuntu/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Nginx/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://sirxs.cn/tags/Nuitka/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Python/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -338,14 +317,49 @@
   </url>
   
   <url>
-    <loc>https://sirxs.cn/tags/Anaconda/</loc>
+    <loc>https://sirxs.cn/tags/Linux/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://sirxs.cn/tags/Linux/</loc>
+    <loc>https://sirxs.cn/tags/Vim/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/SSH/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Django/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Logging/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Anaconda/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -387,125 +401,6 @@
   </url>
   
   <url>
-    <loc>https://sirxs.cn/tags/Vim/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/SSH/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Docker-Toolbox/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Windows10/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E5%AE%B6%E5%BA%AD%E7%89%88/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Gunicorn/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Flask/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Centos/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Redis/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E9%9B%86%E7%BE%A4/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Windows/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/MySQL/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/CentOS/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://sirxs.cn/tags/Channels/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -534,6 +429,76 @@
   </url>
   
   <url>
+    <loc>https://sirxs.cn/tags/Gunicorn/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Flask/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Centos/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Windows/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Docker-Toolbox/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Windows10/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/%E5%AE%B6%E5%BA%AD%E7%89%88/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Redis/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/%E9%9B%86%E7%BE%A4/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://sirxs.cn/tags/Celery/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -554,17 +519,45 @@
     <priority>0.2</priority>
   </url>
   
-
-  
   <url>
-    <loc>https://sirxs.cn/categories/Hexo/</loc>
+    <loc>https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://sirxs.cn/categories/Django/</loc>
+    <loc>https://sirxs.cn/tags/%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/MySQL/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/CentOS/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://sirxs.cn/categories/Hexo/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -585,6 +578,20 @@
   </url>
   
   <url>
+    <loc>https://sirxs.cn/categories/Linux/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/categories/Django/</loc>
+    <lastmod>2023-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://sirxs.cn/categories/Anaconda/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -599,14 +606,14 @@
   </url>
   
   <url>
-    <loc>https://sirxs.cn/categories/Linux/</loc>
+    <loc>https://sirxs.cn/categories/Redis/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://sirxs.cn/categories/Redis/</loc>
+    <loc>https://sirxs.cn/categories/Celery/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -621,13 +628,6 @@
   
   <url>
     <loc>https://sirxs.cn/categories/MySQL/</loc>
-    <lastmod>2023-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/categories/Celery/</loc>
     <lastmod>2023-06-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
