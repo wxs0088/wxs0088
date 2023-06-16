@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-06-16T15:16:15.112Z</updated>
+  <updated>2023-06-16T15:23:10.022Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://sirxs.cn/2023/06/16/page-id-6/"/>
     <id>https://sirxs.cn/2023/06/16/page-id-6/</id>
     <published>2023-06-16T14:56:53.000Z</published>
-    <updated>2023-06-16T15:16:15.112Z</updated>
+    <updated>2023-06-16T15:23:10.022Z</updated>
     
     
       
@@ -34,7 +34,7 @@
     
     
     
-    <category term="Python" scheme="https://sirxs.cn/categories/Python/"/>
+    <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
@@ -234,9 +234,9 @@
     
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
     
@@ -263,9 +263,9 @@
     <category term="Linux" scheme="https://sirxs.cn/categories/Linux/"/>
     
     
-    <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
-    
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
+    
+    <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
