@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-06-16T15:23:10.022Z</updated>
+  <updated>2023-06-17T06:08:38.069Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>轻松无缝集成：在Windows上零压力安装Python 3.8，迎接前沿编程</title>
+    <link href="https://sirxs.cn/2023/06/17/page-id-7/"/>
+    <id>https://sirxs.cn/2023/06/17/page-id-7/</id>
+    <published>2023-06-17T05:57:52.000Z</published>
+    <updated>2023-06-17T06:08:38.069Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;序幕&quot;&gt;&lt;a href=&quot;#序幕&quot; class=&quot;headerlink&quot; title=&quot;序幕&quot;&gt;&lt;/a&gt;序幕&lt;/h3&gt;&lt;p&gt;作为一名程序员，选择适合自己的开发环境至关重要。本文将介绍如何在Windows操作系统上顺利安装Python</summary>
+        
+      
+    
+    
+    
+    <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Windows" scheme="https://sirxs.cn/tags/Windows/"/>
+    
+    <category term="安装" scheme="https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/"/>
+    
+    <category term="教程" scheme="https://sirxs.cn/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="笔记" scheme="https://sirxs.cn/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>Step-by-Step Guide: 在Ubuntu上安装Python3，为强大的编程提供支持</title>
@@ -37,9 +70,9 @@
     <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="安装" scheme="https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/"/>
     
@@ -102,9 +135,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -135,9 +168,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -232,9 +265,9 @@
     <category term="Anaconda" scheme="https://sirxs.cn/categories/Anaconda/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
@@ -263,9 +296,9 @@
     <category term="Linux" scheme="https://sirxs.cn/categories/Linux/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
@@ -385,9 +418,9 @@
     <category term="Nuitka" scheme="https://sirxs.cn/categories/Nuitka/"/>
     
     
-    <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
     
     <category term="C++" scheme="https://sirxs.cn/tags/C/"/>
     
