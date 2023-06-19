@@ -70,9 +70,9 @@
     <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="安装" scheme="https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/"/>
     
@@ -135,9 +135,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -168,9 +168,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -265,9 +265,9 @@
     <category term="Anaconda" scheme="https://sirxs.cn/categories/Anaconda/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
@@ -451,6 +451,8 @@
     <category term="Hexo" scheme="https://sirxs.cn/categories/Hexo/"/>
     
     
+    <category term="Git" scheme="https://sirxs.cn/tags/Git/"/>
+    
     <category term="Honkit" scheme="https://sirxs.cn/tags/Honkit/"/>
     
     <category term="静态网站" scheme="https://sirxs.cn/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"/>
@@ -461,8 +463,6 @@
     
     <category term="Node.js" scheme="https://sirxs.cn/tags/Node-js/"/>
     
-    <category term="Git" scheme="https://sirxs.cn/tags/Git/"/>
-    
   </entry>
   
   <entry>
@@ -470,7 +470,7 @@
     <link href="https://sirxs.cn/2023/04/14/tan-suo-celery/"/>
     <id>https://sirxs.cn/2023/04/14/tan-suo-celery/</id>
     <published>2023-04-14T14:38:40.000Z</published>
-    <updated>2023-04-22T04:35:29.201Z</updated>
+    <updated>2023-06-19T02:41:39.695Z</updated>
     
     
       
