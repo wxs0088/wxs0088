@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>未央之域</title>
+  <title>我吃海南椰</title>
   
-  <subtitle>未央之域</subtitle>
+  <subtitle>我吃海南椰</subtitle>
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
@@ -10,7 +10,7 @@
   <id>https://sirxs.cn/</id>
   
   <author>
-    <name>未央</name>
+    <name>海南椰</name>
     
   </author>
   
@@ -70,9 +70,9 @@
     <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="安装" scheme="https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/"/>
     
@@ -135,9 +135,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -168,9 +168,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -265,13 +265,13 @@
     <category term="Anaconda" scheme="https://sirxs.cn/categories/Anaconda/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
-    <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
+    
+    <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
   </entry>
   
@@ -418,9 +418,9 @@
     <category term="Nuitka" scheme="https://sirxs.cn/categories/Nuitka/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="C++" scheme="https://sirxs.cn/tags/C/"/>
     

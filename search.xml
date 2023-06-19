@@ -53,9 +53,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> Python </tag>
             
             <tag> 安装 </tag>
             
@@ -117,9 +117,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> Python </tag>
             
             <tag> Gunicorn </tag>
             
@@ -150,9 +150,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> Python </tag>
             
             <tag> Gunicorn </tag>
             
@@ -247,13 +247,13 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Ubuntu </tag>
             
-            <tag> Linux </tag>
+            <tag> Python </tag>
             
             <tag> Anaconda </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
@@ -400,9 +400,9 @@
       
         <tags>
             
-            <tag> Python </tag>
-            
             <tag> Nuitka </tag>
+            
+            <tag> Python </tag>
             
             <tag> C++ </tag>
             
