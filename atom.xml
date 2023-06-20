@@ -70,9 +70,9 @@
     <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="安装" scheme="https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/"/>
     
@@ -135,9 +135,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -168,9 +168,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -265,13 +265,13 @@
     <category term="Anaconda" scheme="https://sirxs.cn/categories/Anaconda/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
-    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    
+    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
     
   </entry>
   
@@ -298,9 +298,9 @@
     
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
-    <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
-    
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    
+    <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
     
     <category term="Vim" scheme="https://sirxs.cn/tags/Vim/"/>
     
@@ -418,9 +418,9 @@
     <category term="Nuitka" scheme="https://sirxs.cn/categories/Nuitka/"/>
     
     
-    <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
     
     <category term="C++" scheme="https://sirxs.cn/tags/C/"/>
     
@@ -453,13 +453,13 @@
     
     <category term="Git" scheme="https://sirxs.cn/tags/Git/"/>
     
+    <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
+    
     <category term="Honkit" scheme="https://sirxs.cn/tags/Honkit/"/>
     
     <category term="静态网站" scheme="https://sirxs.cn/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"/>
     
     <category term="电子书" scheme="https://sirxs.cn/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/"/>
-    
-    <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
     
     <category term="Node.js" scheme="https://sirxs.cn/tags/Node-js/"/>
     
