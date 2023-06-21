@@ -318,20 +318,20 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">教程</span>
-                            </a>
-                        
-                            <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                                <span class="chip bg-color">笔记</span>
-                            </a>
-                        
                             <a href="/tags/LLVM/">
                                 <span class="chip bg-color">LLVM</span>
                             </a>
                         
                             <a href="/tags/Clang/">
                                 <span class="chip bg-color">Clang</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%95%99%E7%A8%8B/">
+                                <span class="chip bg-color">教程</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">笔记</span>
                             </a>
                         
                             <a href="/tags/ClangChecker/">
@@ -413,7 +413,7 @@
 <p>ClangChecker是Clang的一个静态分析框架，可以用于检测C&#x2F;C++代码中的错误。ClangChecker的工作原理是：通过对源码进行语法分析，生成抽象语法树（AST），然后对AST进行遍历，检测错误。ClangChecker的检测能力可以通过拓展进行扩展，本文将介绍如何通过对ClangChecker拓展进行高级代码分析，提升漏洞检测和预防能力。</p>
 </li>
 <li><p>获取</p>
-<p>ClangChecker是LLVM的一部分，可以参考上一篇文章：<a href="">定制你的编译过程：像专业人士一样从源码构建和安装LLVM&amp;Clang</a>。</p>
+<p>ClangChecker是LLVM的一部分，可以参考上一篇文章：<a href="https://sirxs.cn/2023/06/21/page-id-8/">定制你的编译过程：像专业人士一样从源码构建和安装LLVM&amp;Clang</a>。</p>
 </li>
 <li><p>拓展</p>
 <p>ClangChecker的检测能力可以通过拓展进行扩展，本文将介绍如何通过对ClangChecker拓展进行高级代码分析，提升漏洞检测和预防能力。</p>
@@ -512,7 +512,7 @@ bool ento::shouldRegisterMainCallChecker(const CheckerManager &mgr) &#123;
 <p>add_clang_library(  # 省略 … MainCallChecker.cpp # 省略 …)</p>
 </li>
 <li><p>编译安装 Clang</p>
-<p>可以参考上一篇文章：<a href="">定制你的编译过程：像专业人士一样从源码构建和安装LLVM&amp;Clang</a>。</p>
+<p>可以参考上一篇文章：<a href="https://sirxs.cn/2023/06/21/page-id-8/">定制你的编译过程：像专业人士一样从源码构建和安装LLVM&amp;Clang</a>。</p>
 </li>
 <li><p>查看自定义的检查器</p>
 <pre class=" language-shell"><code class="language-shell">clang -cc1 -analyzer-checker-help-alpha | grep MainCall  alpha.core.MainCall      (Enable only for development!) Check for calls to main
@@ -608,20 +608,20 @@ bool ento::shouldRegisterMainCallChecker(const CheckerManager &mgr) &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">教程</span>
-                                </a>
-                            
-                                <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                                    <span class="chip bg-color">笔记</span>
-                                </a>
-                            
                                 <a href="/tags/LLVM/">
                                     <span class="chip bg-color">LLVM</span>
                                 </a>
                             
                                 <a href="/tags/Clang/">
                                     <span class="chip bg-color">Clang</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%95%99%E7%A8%8B/">
+                                    <span class="chip bg-color">教程</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">笔记</span>
                                 </a>
                             
                                 <a href="/tags/ClangChecker/">
@@ -722,20 +722,20 @@ bool ento::shouldRegisterMainCallChecker(const CheckerManager &mgr) &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">笔记</span>
-                    </a>
-                    
                     <a href="/tags/LLVM/">
                         <span class="chip bg-color">LLVM</span>
                     </a>
                     
                     <a href="/tags/Clang/">
                         <span class="chip bg-color">Clang</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">教程</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
                     </a>
                     
                     <a href="/tags/ClangChecker/">
@@ -798,18 +798,6 @@ bool ento::shouldRegisterMainCallChecker(const CheckerManager &mgr) &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AE%89%E8%A3%85/">
-                        <span class="chip bg-color">安装</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">笔记</span>
-                    </a>
-                    
                     <a href="/tags/LLVM/">
                         <span class="chip bg-color">LLVM</span>
                     </a>
@@ -820,6 +808,18 @@ bool ento::shouldRegisterMainCallChecker(const CheckerManager &mgr) &#123;
                     
                     <a href="/tags/%E7%BC%96%E8%AF%91/">
                         <span class="chip bg-color">编译</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E8%A3%85/">
+                        <span class="chip bg-color">安装</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">教程</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
                     </a>
                     
                 </div>
