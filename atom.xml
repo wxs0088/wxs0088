@@ -37,13 +37,13 @@
     <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="LLVM" scheme="https://sirxs.cn/tags/LLVM/"/>
-    
-    <category term="Clang" scheme="https://sirxs.cn/tags/Clang/"/>
-    
     <category term="教程" scheme="https://sirxs.cn/tags/%E6%95%99%E7%A8%8B/"/>
     
     <category term="笔记" scheme="https://sirxs.cn/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="LLVM" scheme="https://sirxs.cn/tags/LLVM/"/>
+    
+    <category term="Clang" scheme="https://sirxs.cn/tags/Clang/"/>
     
     <category term="ClangChecker" scheme="https://sirxs.cn/tags/ClangChecker/"/>
     
@@ -76,17 +76,17 @@
     <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="LLVM" scheme="https://sirxs.cn/tags/LLVM/"/>
-    
-    <category term="Clang" scheme="https://sirxs.cn/tags/Clang/"/>
-    
-    <category term="编译" scheme="https://sirxs.cn/tags/%E7%BC%96%E8%AF%91/"/>
-    
     <category term="安装" scheme="https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/"/>
     
     <category term="教程" scheme="https://sirxs.cn/tags/%E6%95%99%E7%A8%8B/"/>
     
     <category term="笔记" scheme="https://sirxs.cn/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+    <category term="LLVM" scheme="https://sirxs.cn/tags/LLVM/"/>
+    
+    <category term="Clang" scheme="https://sirxs.cn/tags/Clang/"/>
+    
+    <category term="编译" scheme="https://sirxs.cn/tags/%E7%BC%96%E8%AF%91/"/>
     
   </entry>
   
@@ -343,9 +343,9 @@
     
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
-    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
-    
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    
+    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
     
   </entry>
   
@@ -492,9 +492,9 @@
     <category term="Nuitka" scheme="https://sirxs.cn/categories/Nuitka/"/>
     
     
-    <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
     
     <category term="C++" scheme="https://sirxs.cn/tags/C/"/>
     
