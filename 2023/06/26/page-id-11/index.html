@@ -397,35 +397,35 @@
 </ul>
 <h3 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h3><ol>
 <li><p>配置虚拟机的网络为桥接模式</p>
-<p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310111001050.png" alt="image-20230310111001050"></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/image-20230310111001050.png" alt="image-20230310111001050"></p>
 </li>
 <li><p>进入虚拟机查看是否有网，发现ping不通说明没有网络</p>
-<p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310111238247.png" alt="image-20230310111238247"></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/image-20230310111238247.png" alt="image-20230310111238247"></p>
 </li>
 <li><p>使用 <code>nmcli</code> 命令查看一下网络设置，该命令会返回 4 列数据. 分别是 <code>NAME(联网代号)</code>, <code>UUID(识别码)</code>, <code>TYPE网卡类型</code>, <code>DEVICE(网卡名称)</code>.</p>
 <pre class=" language-shell"><code class="language-shell">nmcli connection show
 </code></pre>
-<p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310111342185.png" alt="image-20230310111342185"></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/image-20230310111342185.png" alt="image-20230310111342185"></p>
 </li>
 <li><p>修改网络配置文件，将onboot改为yes</p>
 <pre class=" language-shell"><code class="language-shell">sudo vi /etc/sysconfig/network-scripts/ifcfg-eth0
 </code></pre>
-<p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310111801979.png" alt="image-20230310111801979"></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/image-20230310111801979.png" alt="image-20230310111801979"></p>
 </li>
 <li><p>重启网卡，再次ping发现可以ping同了</p>
 <pre><code>systemctl restart network
 </code></pre>
-<p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310112110801.png" alt="image-20230310112110801"></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/image-20230310112110801.png" alt="image-20230310112110801"></p>
 </li>
 <li><p>安装<code>openssh-server&amp;openssl</code></p>
-<p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310112602994.png" alt="image-20230310112602994"></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/image-20230310112602994.png" alt="image-20230310112602994"></p>
 </li>
 <li><p>修改ssh配置文件</p>
-<p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310112812350.png" alt="image-20230310112812350"><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310112837191.png" alt="image-20230310112837191"></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/image-20230310112812350.png" alt="image-20230310112812350"><img src="https://wangxs020202.gitee.io/pbad/new/image-20230310112837191.png" alt="image-20230310112837191"></p>
 </li>
 <li><p>查看虚拟机ip并进行外部连接</p>
-<p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310112318919.png" alt="image-20230310112318919"></p>
-<p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310113606195.png" alt="image-20230310113606195"></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/image-20230310112318919.png" alt="image-20230310112318919"></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/image-20230310113606195.png" alt="image-20230310113606195"></p>
 </li>
 </ol>
 

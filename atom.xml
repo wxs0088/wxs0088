@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-06-26T03:21:08.572Z</updated>
+  <updated>2023-06-26T03:31:37.872Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://sirxs.cn/2023/06/26/page-id-11/"/>
     <id>https://sirxs.cn/2023/06/26/page-id-11/</id>
     <published>2023-06-26T03:13:56.000Z</published>
-    <updated>2023-06-26T03:21:08.572Z</updated>
+    <updated>2023-06-26T03:31:37.872Z</updated>
     
     
       
@@ -52,7 +52,7 @@
     <link href="https://sirxs.cn/2023/06/26/page-id-10/"/>
     <id>https://sirxs.cn/2023/06/26/page-id-10/</id>
     <published>2023-06-26T02:59:48.000Z</published>
-    <updated>2023-06-26T03:13:48.124Z</updated>
+    <updated>2023-06-26T03:31:07.883Z</updated>
     
     
       
@@ -432,9 +432,9 @@
     <category term="Linux" scheme="https://sirxs.cn/categories/Linux/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
