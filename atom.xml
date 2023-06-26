@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-06-21T03:35:22.735Z</updated>
+  <updated>2023-06-26T03:21:08.572Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>网络通畅，远程自如：UTM上安装CentOS 7.9后，轻松配置网络与SSH</title>
+    <link href="https://sirxs.cn/2023/06/26/page-id-11/"/>
+    <id>https://sirxs.cn/2023/06/26/page-id-11/</id>
+    <published>2023-06-26T03:13:56.000Z</published>
+    <updated>2023-06-26T03:21:08.572Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;序幕&quot;&gt;&lt;a href=&quot;#序幕&quot; class=&quot;headerlink&quot; title=&quot;序幕&quot;&gt;&lt;/a&gt;序幕&lt;/h3&gt;&lt;p&gt;上篇文章我们解决了&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Mac" scheme="https://sirxs.cn/categories/Mac/"/>
+    
+    
+    <category term="SSH" scheme="https://sirxs.cn/tags/SSH/"/>
+    
+    <category term="UTM" scheme="https://sirxs.cn/tags/UTM/"/>
+    
+    <category term="CentOS" scheme="https://sirxs.cn/tags/CentOS/"/>
+    
+    <category term="网络" scheme="https://sirxs.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>突破界限：通过UTM克服兼容性障碍，在MacBook上安装CentOS 7.9的逐步指南</title>
+    <link href="https://sirxs.cn/2023/06/26/page-id-10/"/>
+    <id>https://sirxs.cn/2023/06/26/page-id-10/</id>
+    <published>2023-06-26T02:59:48.000Z</published>
+    <updated>2023-06-26T03:13:48.124Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;序幕-背景&quot;&gt;&lt;a href=&quot;#序幕-背景&quot; class=&quot;headerlink&quot; title=&quot;序幕(背景)&quot;&gt;&lt;/a&gt;序幕(背景)&lt;/h3&gt;&lt;p&gt;最近在m1芯片的mac上使用Parallels</summary>
+        
+      
+    
+    
+    
+    <category term="Mac" scheme="https://sirxs.cn/categories/Mac/"/>
+    
+    
+    <category term="UTM" scheme="https://sirxs.cn/tags/UTM/"/>
+    
+    <category term="虚拟机" scheme="https://sirxs.cn/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+    <category term="CentOS" scheme="https://sirxs.cn/tags/CentOS/"/>
+    
+    <category term="Mac" scheme="https://sirxs.cn/tags/Mac/"/>
+    
+  </entry>
   
   <entry>
     <title>超越语法：利用ClangChecker拓展进行高级代码分析，提升漏洞检测和预防能力</title>
@@ -434,9 +496,9 @@
     <category term="MySQL" scheme="https://sirxs.cn/categories/MySQL/"/>
     
     
-    <category term="MySQL" scheme="https://sirxs.cn/tags/MySQL/"/>
-    
     <category term="CentOS" scheme="https://sirxs.cn/tags/CentOS/"/>
+    
+    <category term="MySQL" scheme="https://sirxs.cn/tags/MySQL/"/>
     
   </entry>
   
@@ -604,37 +666,6 @@
     <category term="高薪" scheme="https://sirxs.cn/tags/%E9%AB%98%E8%96%AA/"/>
     
     <category term="知乎" scheme="https://sirxs.cn/tags/%E7%9F%A5%E4%B9%8E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker搭建ClickHouse+Zookeeper集群</title>
-    <link href="https://sirxs.cn/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/"/>
-    <id>https://sirxs.cn/2023/04/14/docker-da-jian-clickhouse-zookeeper-ji-qun/</id>
-    <published>2023-04-14T05:58:45.000Z</published>
-    <updated>2023-05-19T13:29:43.586Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
-    
-    
-    <category term="db" scheme="https://sirxs.cn/tags/db/"/>
-    
-    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
-    
-    <category term="ClickHouse" scheme="https://sirxs.cn/tags/ClickHouse/"/>
-    
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
   </entry>
   

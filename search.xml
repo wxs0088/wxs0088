@@ -4,6 +4,68 @@
   
     
     <entry>
+      <title>网络通畅，远程自如：UTM上安装CentOS 7.9后，轻松配置网络与SSH</title>
+      <link href="/2023/06/26/page-id-11/"/>
+      <url>/2023/06/26/page-id-11/</url>
+      
+        <content type="html"><![CDATA[<h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p>上篇文章我们解决了<a href="https://sirxs.cn/2023/06/26/page-id-10/">在MacBook上安装CentOS 7.9</a>的问题，本文将介绍如何在UTM上安装CentOS 7.9后，如何轻松配置网络与SSH。</p><h3 id="UTM上安装CentOS-7-9"><a href="#UTM上安装CentOS-7-9" class="headerlink" title="UTM上安装CentOS 7.9"></a>UTM上安装CentOS 7.9</h3><ul><li>在UTM上安装CentOS 7.9，参考上一篇文章：<a href="https://sirxs.cn/2023/06/26/page-id-10/">在MacBook上安装CentOS 7.9</a>。</li></ul><h3 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h3><ol><li><p>配置虚拟机的网络为桥接模式</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310111001050.png" alt="image-20230310111001050"></p></li><li><p>进入虚拟机查看是否有网，发现ping不通说明没有网络</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310111238247.png" alt="image-20230310111238247"></p></li><li><p>使用 <code>nmcli</code> 命令查看一下网络设置，该命令会返回 4 列数据. 分别是 <code>NAME(联网代号)</code>, <code>UUID(识别码)</code>, <code>TYPE网卡类型</code>, <code>DEVICE(网卡名称)</code>.</p><pre class=" language-shell"><code class="language-shell">nmcli connection show</code></pre><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310111342185.png" alt="image-20230310111342185"></p></li><li><p>修改网络配置文件，将onboot改为yes</p><pre class=" language-shell"><code class="language-shell">sudo vi /etc/sysconfig/network-scripts/ifcfg-eth0</code></pre><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310111801979.png" alt="image-20230310111801979"></p></li><li><p>重启网卡，再次ping发现可以ping同了</p><pre><code>systemctl restart network</code></pre><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310112110801.png" alt="image-20230310112110801"></p></li><li><p>安装<code>openssh-server&amp;openssl</code></p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310112602994.png" alt="image-20230310112602994"></p></li><li><p>修改ssh配置文件</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310112812350.png" alt="image-20230310112812350"><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310112837191.png" alt="image-20230310112837191"></p></li><li><p>查看虚拟机ip并进行外部连接</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310112318919.png" alt="image-20230310112318919"></p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310113606195.png" alt="image-20230310113606195"></p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mac </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SSH </tag>
+            
+            <tag> UTM </tag>
+            
+            <tag> CentOS </tag>
+            
+            <tag> 网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>突破界限：通过UTM克服兼容性障碍，在MacBook上安装CentOS 7.9的逐步指南</title>
+      <link href="/2023/06/26/page-id-10/"/>
+      <url>/2023/06/26/page-id-10/</url>
+      
+        <content type="html"><![CDATA[<h3 id="序幕-背景"><a href="#序幕-背景" class="headerlink" title="序幕(背景)"></a>序幕(背景)</h3><p>最近在m1芯片的mac上使用Parallels Desktop安装centos7.9发现一个问题。在安装Centos7.9，开始安装的时候，显示这样的，enter了install Centos 7进去之后还会跳回这个界面，甚是无语。</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310103517510.png" alt="image-20230310103517510"></p><h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>在网上找了一圈，发现有人说是因为centos7.9的内核版本太低了，不支持m1芯片，需要升级内核版本。但是我在网上找了一圈，发现没有找到升级内核版本的方法，所以我就想到了用UTM来安装centos7.9，因为UTM是一个虚拟机，可以安装很多系统，而且可以自定义内核版本，所以我就想到了用UTM来安装centos7.9。</p><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>镜像：<a href="http://ftp.yz.yamagata-u.ac.jp/pub/linux/centos-altarch/7.9.2009/isos/aarch64/">CentOS-7-aarch64-Everything-2009.iso </a></p><p>工具：<a href="https://mac.getutm.app/">UTM</a></p><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol><li><p>创建虚拟机，并使用模拟</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310103615602.png" alt="image-20230310103615602"></p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310103633950.png" alt="image-20230310103633950"></p></li><li><p>选择操作系统，这里我们把之前下载的ISO导入</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310103649707.png" alt="image-20230310103649707"></p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310103722908.png" alt="image-20230310103722908"></p></li><li><p>硬件这里选择与ISO镜像对应的架构（我这里下载的是ARM64）</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310104117521.png" alt="image-20230310104117521"></p></li><li><p>设置虚拟机名称</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310103757135.png" alt="image-20230310103757135"></p></li><li><p>创建完成后启动虚拟机</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310103841339.png" alt="image-20230310103841339"></p></li><li><p>启动完成后选择install Centos 7直接进行安装，之后会进入系统语言选择的界面</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310104349733.png" alt="image-20230310104349733"></p></li><li><p>接下来会对一些配置进行检测，这里只需等待即可，当<strong>开始安装</strong>可以点击后，之间键入</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310104424687.png" alt="image-20230310104424687"></p></li><li><p>之后就是对系统的安装了，过程有点缓慢。我们可以对<strong>root密码以及用户</strong>做一些设置，等待即可。</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310104657926.png" alt="image-20230310104657926"></p></li><li><p>接下来直接重启</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310110219703.png" alt="image-20230310110219703"></p></li><li><p>若重启后还会进入系统安装的界面，将虚拟机内的磁盘进行调换或者删除第一个即可</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310110335738.png" alt="image-20230310110335738"></p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310110357905.png" alt="image-20230310110357905"></p></li><li><p>进入界面</p><p><img src="https://gitee.com/wangxs020202/work-notes/raw/main/use-images/image-20230310110702245.png" alt="image-20230310110702245"></p></li><li><p>进入系统后，我们可以看到内核版本是3.10.0-1160.11.1.el7.aarch64，这个版本是可以正常使用的，不会出现之前的问题。</p></li></ol><p>至此，我们就完成了在MacBook上安装CentOS 7.9的过程。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mac </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> UTM </tag>
+            
+            <tag> 虚拟机 </tag>
+            
+            <tag> CentOS </tag>
+            
+            <tag> Mac </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>超越语法：利用ClangChecker拓展进行高级代码分析，提升漏洞检测和预防能力</title>
       <link href="/2023/06/21/page-id-9/"/>
       <url>/2023/06/21/page-id-9/</url>
@@ -416,9 +478,9 @@
       
         <tags>
             
-            <tag> MySQL </tag>
-            
             <tag> CentOS </tag>
+            
+            <tag> MySQL </tag>
             
         </tags>
       
