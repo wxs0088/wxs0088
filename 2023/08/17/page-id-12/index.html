@@ -1,0 +1,1569 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="释放 Gunicorn、Nginx 和 Daphne 在服务器中对 Django 部署中的威力, 我吃海南椰">
+    <meta name="description" content="通过使用Gunicorn、Nginx 和 Daphne 来部署 Django 项目，可以大大提高网站的性能。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>释放 Gunicorn、Nginx 和 Daphne 在服务器中对 Django 部署中的威力 | 我吃海南椰</title>
+    <link rel="icon" type="image/png" href="/medias/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="我吃海南椰" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">我吃海南椰</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmmyProjectsark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">我吃海南椰</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmmyProjectsark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/wxs0088" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/wxs0088" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://wangxs020202.gitee.io/pbad/background/page_12.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">释放 Gunicorn、Nginx 和 Daphne 在服务器中对 Django 部署中的威力</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Nginx/">
+                                <span class="chip bg-color">Nginx</span>
+                            </a>
+                        
+                            <a href="/tags/Django/">
+                                <span class="chip bg-color">Django</span>
+                            </a>
+                        
+                            <a href="/tags/Gunicorn/">
+                                <span class="chip bg-color">Gunicorn</span>
+                            </a>
+                        
+                            <a href="/tags/Daphne/">
+                                <span class="chip bg-color">Daphne</span>
+                            </a>
+                        
+                            <a href="/tags/scoket/">
+                                <span class="chip bg-color">scoket</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%83%A8%E7%BD%B2/">
+                                <span class="chip bg-color">部署</span>
+                            </a>
+                        
+                            <a href="/tags/python/">
+                                <span class="chip bg-color">python</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Django/" class="post-category">
+                                Django
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-08-17
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-08-17
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    12 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h3 id="序幕"><a href="#序幕" class="headerlink" title="序幕"></a>序幕</h3><p>使用Gunicorn部署Django项目可以达到很好的效果，但是无法获取到后端的静态资源很是烦恼，本文将Gunicorn、Daphne做成系统的服务，再配合上Nginx，可以很好的解决这个问题。<br>接下来我们将一步步的来实现这个功能。</p>
+<h2 id="后端部署"><a href="#后端部署" class="headerlink" title="后端部署"></a>后端部署</h2><h3 id="一、安装依赖"><a href="#一、安装依赖" class="headerlink" title="一、安装依赖"></a>一、安装依赖</h3><pre class=" language-bash"><code class="language-bash">pip <span class="token function">install</span> -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+</code></pre>
+<h3 id="二、修改后端配置文件"><a href="#二、修改后端配置文件" class="headerlink" title="二、修改后端配置文件"></a>二、修改后端配置文件</h3><p><code>/Settings/base.py</code></p>
+<pre class=" language-bash"><code class="language-bash">DEBUG <span class="token operator">=</span> False
+IS_LINUX <span class="token operator">=</span> True
+</code></pre>
+<h3 id="三、swagger页面"><a href="#三、swagger页面" class="headerlink" title="三、swagger页面"></a>三、swagger页面</h3><ol>
+<li><p>启动后端（由于Gunicorn找不到静态CSS内容，这里使用manage启动）</p>
+<pre class=" language-bash"><code class="language-bash">python manange.py runserver 0.0.0.0:8000
+</code></pre>
+</li>
+<li><p>错误解决（由于版本不兼容需要手动修改swagger）</p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/p1.png" alt="p1"></p>
+<p>找到安装目录</p>
+<pre class=" language-bash"><code class="language-bash">pip show django-rest-swagger
+</code></pre>
+<p>修改index.html文件 第二行的<code>staticfiles</code>修改为<code>static</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> /usr/local/lib/python3.9/site-packages
+<span class="token function">cd</span> rest_framework_swagger/templates/rest_framework_swagger
+vim index.html
+</code></pre>
+<p>保存静态文件（后续nginx代理会用到）</p>
+<pre class=" language-bash"><code class="language-bash">python manage.py collectstatic
+</code></pre>
+</li>
+<li><p>重启服务</p>
+<pre class=" language-bash"><code class="language-bash">python manange.py runserver 0.0.0.0:8000
+</code></pre>
+</li>
+<li><p>查看效果（&#x2F;api&#x2F;docs）</p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/p2.png" alt="p2"></p>
+</li>
+</ol>
+<h3 id="四、为-Gunicorn-创建-systemd-Socket-和服务文件"><a href="#四、为-Gunicorn-创建-systemd-Socket-和服务文件" class="headerlink" title="四、为 Gunicorn 创建 systemd Socket 和服务文件"></a>四、为 Gunicorn 创建 systemd Socket 和服务文件</h3><ol>
+<li><p>以<code>sudo</code> 的权限为 Gunicorn 创建并打开一个 systemd 套接字文件</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> vim /etc/systemd/system/gunicorn.socket
+</code></pre>
+</li>
+<li><p>在文件中，创建一个<code>[Unit]</code> 部分来描述套接字，一个<code>[Socket]</code> 部分来定义套接字的位置，还有一个<code>[Install]</code> 部分来确保套接字在正确的时间被创建。</p>
+<pre class=" language-txt"><code class="language-txt">[Unit]
+Description=gunicorn socket
+
+[Socket]
+ListenStream=/run/gunicorn.sock
+
+[Install]
+WantedBy=sockets.target
+</code></pre>
+</li>
+<li><p>以<code>sudo</code> 的权限为 Gunicorn 创建并打开一个 systemd 服务文件。服务文件的名称应与扩展名的套接字文件名称一致。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> vim /etc/systemd/system/gunicorn.service
+</code></pre>
+</li>
+<li><p><code>[Unit]</code> 用于指定元数据和依赖关系。需要在这里写上你的服务的描述，并告诉init系统只有在达到联网目标后才启动这个服务。因为该服务依赖于套接字文件中的套接字，所以需要加入一个<code>Requires</code> 指令来表明这种关系。</p>
+<pre class=" language-txt"><code class="language-txt">[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+</code></pre>
+</li>
+<li><p><code>[Service]</code> 部分。需指定该进程的用户和组。必须指定Gunicorn可执行文件的完整路径。将进程绑定到在<code>/run</code> 目录中创建的Unix套接字上，以便进程能够与Nginx通信。将所有数据记录到标准输出，以便<code>journald</code> 进程能够收集Gunicorn日志。还可以在这里指定任何可选的Gunicorn调整。下面是一个指定三个工作进程的例子。</p>
+<pre class=" language-txt"><code class="language-txt">[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=root
+Group=apache
+WorkingDirectory=/BackendDir
+ExecStart=gunicorn \
+          --access-logfile - \
+          -k uvicorn.workers.UvicornWorker \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          BackendApp.asgi:application
+</code></pre>
+</li>
+<li><p><code>[Install]</code> 部分。这将告诉systemd，如果让这个服务在开机时启动，应该把它链接到什么地方。</p>
+<pre class=" language-txt"><code class="language-txt">[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=root
+Group=apache
+WorkingDirectory=/BackendDir
+ExecStart=gunicorn \
+          --access-logfile - \
+          -k uvicorn.workers.UvicornWorker \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          BackendApp.asgi:application
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+</li>
+<li><p>现在可以启用Gunicorn套接字。这将在<code>/run/gunicorn.sock</code> ，并在启动时创建套接字文件。 当有连接进入该套接字时，systemd 会自动启动<code>gunicorn.service</code> 来处理。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl start gunicorn.socket
+<span class="token function">sudo</span> systemctl <span class="token function">enable</span> gunicorn.socket
+</code></pre>
+</li>
+</ol>
+<h3 id="五、检查Gunicorn套接字文件的存在"><a href="#五、检查Gunicorn套接字文件的存在" class="headerlink" title="五、检查Gunicorn套接字文件的存在"></a>五、检查Gunicorn套接字文件的存在</h3><ol>
+<li><p>检查Gunicorn套接字文件的情况。首先，检查进程的状态，了解它是否能够启动。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl status gunicorn.socket
+</code></pre>
+<p><code>output</code></p>
+<pre class=" language-bash"><code class="language-bash">● gunicorn.socket - gunicorn socket
+     Loaded: loaded <span class="token punctuation">(</span>/etc/systemd/system/gunicorn.socket<span class="token punctuation">;</span> enabled<span class="token punctuation">;</span> preset: disabled<span class="token punctuation">)</span>
+     Active: active <span class="token punctuation">(</span>running<span class="token punctuation">)</span> since Mon 2023-08-14 15:40:25 CST<span class="token punctuation">;</span> 17h ago
+      Until: Mon 2023-08-14 15:40:25 CST<span class="token punctuation">;</span> 17h ago
+   Triggers: ● gunicorn.service
+     Listen: /run/gunicorn.sock <span class="token punctuation">(</span>Stream<span class="token punctuation">)</span>
+     CGroup: /system.slice/gunicorn.socket
+
+Aug 14 15:40:25 localhost systemd<span class="token punctuation">[</span>1<span class="token punctuation">]</span>: Listening on gunicorn socket.
+</code></pre>
+</li>
+<li><p>检查<code>/run</code> 目录下的<code>gunicorn.sock</code> 文件是否存在。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">file</span> /run/gunicorn.sock
+</code></pre>
+<p><code>output</code></p>
+<pre class=" language-bash"><code class="language-bash">/run/gunicorn.sock: socket
+</code></pre>
+</li>
+<li><p>如果<code>systemctl status</code> 命令表明发生了错误，或者在该目录中没有找到<code>gunicorn.sock</code> 文件，这表明Gunicorn套接字没有被正确创建。通过检查Gunicorn套接字的日志。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> journalctl -u gunicorn.socket
+</code></pre>
+<p><strong>在继续之前确保以上的步骤没有任何问题。</strong></p>
+</li>
+</ol>
+<h3 id="六、测试套接字的激活"><a href="#六、测试套接字的激活" class="headerlink" title="六、测试套接字的激活"></a>六、测试套接字的激活</h3><ol>
+<li><p>只启动了<code>gunicorn.socket</code> 单元，<code>gunicorn.service</code> 还没有被激活，因为套接字还没有收到任何连接。可以通过输入以下命令来检查这一点。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl status gunicorn
+</code></pre>
+<p><code>output</code></p>
+<pre class=" language-bash"><code class="language-bash">● gunicorn.service - gunicorn daemon
+   Loaded: loaded <span class="token punctuation">(</span>/etc/systemd/system/gunicorn.service<span class="token punctuation">;</span> disabled<span class="token punctuation">;</span> vendor preset: enabled<span class="token punctuation">)</span>
+   Active: inactive <span class="token punctuation">(</span>dead<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li><p>通过输入<code>curl</code> ，向套接字发送一个连接。</p>
+<pre class=" language-bash"><code class="language-bash">curl --unix-socket /run/gunicorn.sock localhost
+</code></pre>
+<p>应该在终端中收到来自你的应用程序的HTML输出。这表明Gunicorn已经启动并且能够为你的Django应用程序提供服务。</p>
+</li>
+<li><p>再次查看Gunicorn服务是否在运行。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl status gunicorn
+</code></pre>
+<p><code>output</code></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/p3.png" alt="p3"></p>
+</li>
+<li><p>如果<code>curl</code> 的输出或<code>systemctl status</code> 的输出表明发生了问题，请检查日志。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> journalctl -u gunicorn
+</code></pre>
+<p>检查你的<code>/etc/systemd/system/gunicorn.service</code> 文件是否有问题。如果对<code>/etc/systemd/system/gunicorn.service</code> 文件进行了修改，重新加载守护进程以重读服务定义。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl daemon-reload
+<span class="token function">sudo</span> systemctl restart gunicorn
+</code></pre>
+<p><strong>在继续之前确保以上的步骤没有任何问题。</strong></p>
+</li>
+</ol>
+<h3 id="七、配置Nginx以代理传递给Gunicorn"><a href="#七、配置Nginx以代理传递给Gunicorn" class="headerlink" title="七、配置Nginx以代理传递给Gunicorn"></a>七、配置Nginx以代理传递给Gunicorn</h3><p>至此Gunicorn已经设置好了，接下来需要配置Nginx将流量传递给该进程。</p>
+<ol>
+<li><p>在<code>Nginx</code>的配置目录下创建代理配置<code>proxy_params</code>文件（如果已存在跳过此步）</p>
+<pre class=" language-bash"><code class="language-bash">vim /etc/nginx/proxy_params
+</code></pre>
+<p>输入以下内容</p>
+<pre class=" language-txt"><code class="language-txt">proxy_set_header Host $http_host;
+
+proxy_set_header X-Real-IP $remote_addr;
+
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+proxy_connect_timeout 30;
+
+proxy_send_timeout 60;
+
+proxy_read_timeout 60;
+
+proxy_buffering on;
+
+proxy_buffer_size 32k;
+
+proxy_buffers 4 128k;
+</code></pre>
+</li>
+<li><p>创建后端配置文件<code>backend.conf</code></p>
+<pre class=" language-bash"><code class="language-bash">vim /etc/nginx/conf.d/backend.conf
+</code></pre>
+</li>
+<li><p>指定这个块应该监听正常的端口，并且应该响应服务器的域名或IP地址。</p>
+<pre class=" language-txt"><code class="language-txt">server &#123;
+    listen 89;
+    server_name localhost;
+&#125;
+</code></pre>
+</li>
+<li><p>忽略任何寻找favicon的问题，配置后端静态资源访问路径</p>
+<pre class=" language-txt"><code class="language-txt">server &#123;
+    listen 89;
+    server_name localhost;
+
+    location = /favicon.ico &#123; access_log off; log_not_found off; &#125;
+    location /static &#123;
+        root /BackendDir;
+    &#125;
+</code></pre>
+</li>
+<li><p>创建一个<code>location / &#123;&#125;</code> 块，以匹配所有其他请求。在这个位置，将包括Nginx的<code>proxy_params</code> 文件，然后你将把流量直接传递给Gunicorn套接字。</p>
+<pre class=" language-txt"><code class="language-txt">server &#123;
+    listen 89;
+    server_name localhost;
+
+    location = /favicon.ico &#123; access_log off; log_not_found off; &#125;
+    location /static &#123;
+        root /BackendDir;
+    &#125;
+
+    location / &#123;
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>测试Nginx配置是否有语法错误。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> nginx -t
+</code></pre>
+<p><code>output</code></p>
+<pre class=" language-bash"><code class="language-bash">nginx: the configuration <span class="token function">file</span> /etc/nginx/nginx.conf syntax is ok
+nginx: configuration <span class="token function">file</span> /etc/nginx/nginx.conf <span class="token function">test</span> is successfu
+</code></pre>
+<p>如果遇到错误，检查<code>/etc/nginx/conf.d/backend.conf</code>语法是否正确</p>
+</li>
+<li><p>重启<code>Nginx</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart nginx
+</code></pre>
+<p>现在应该可以域名或IP地址进入服务器，查看<code>django-admin</code>以及<code>swagger</code>页面是否可正常访问。</p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/p4.png" alt="p4"></p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/p5.png" alt="p5"></p>
+<p>如果页面还是无法正常访问，请检查项目目录下<code>static/</code>相关的静态文件是否存在。可通过以下命令查看<code>Nginx</code>的错误日志。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">less</span> /var/log/nginx/error.log
+</code></pre>
+</li>
+<li><p>检测接口是否可以正常访问</p>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/p6.png" alt="p6"></p>
+</li>
+</ol>
+<h3 id="八、为-Daphne创建服务文件"><a href="#八、为-Daphne创建服务文件" class="headerlink" title="八、为 Daphne创建服务文件"></a>八、为 Daphne创建服务文件</h3><ol>
+<li><p>以<code>sudo</code> 的权限为 daphne 创建并打开一个 systemd 套接字文件</p>
+<pre class=" language-bash"><code class="language-bash"> <span class="token function">sudo</span> vim /etc/systemd/system/daphne.service
+</code></pre>
+</li>
+<li><p>格式与Gunicorn一致，<strong>ExecStart</strong>使用<code>daphne</code>启动</p>
+<pre class=" language-txt"><code class="language-txt">[Unit]
+Description=WebSocket Daphne Service
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/BackendDir
+ExecStart=daphne -u /tmp/daphne.sock BackendApp.asgi:application
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+</li>
+<li><p>启动<code>Daphne</code>配置文件</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl start daphne.service
+<span class="token function">sudo</span> systemctl status daphne.service
+</code></pre>
+<p><code>output</code></p>
+<pre class=" language-bash"><code class="language-bash">● daphne.service - WebSocket Daphne Service
+     Loaded: loaded <span class="token punctuation">(</span>/etc/systemd/system/daphne.service<span class="token punctuation">;</span> disabled<span class="token punctuation">;</span> preset: disabled<span class="token punctuation">)</span>
+     Active: active <span class="token punctuation">(</span>running<span class="token punctuation">)</span> since Mon 2023-08-14 17:40:20 CST<span class="token punctuation">;</span> 17h ago
+   Main PID: 56416 <span class="token punctuation">(</span>daphne<span class="token punctuation">)</span>
+      Tasks: 2 <span class="token punctuation">(</span>limit: 45339<span class="token punctuation">)</span>
+     Memory: 50.6M
+        CPU: 20.584s
+     CGroup: /system.slice/daphne.service
+             └─56416 /usr/bin/python3 /usr/local/bin/daphne -u /tmp/daphne.sock BackendApp.asgi:application
+
+Aug 14 17:40:20 localhost systemd<span class="token punctuation">[</span>1<span class="token punctuation">]</span>: Started WebSocket Daphne Service.
+</code></pre>
+</li>
+</ol>
+<h3 id="九、配置Nginx以代理Daphne"><a href="#九、配置Nginx以代理Daphne" class="headerlink" title="九、配置Nginx以代理Daphne"></a>九、配置Nginx以代理Daphne</h3><ol>
+<li><p>修改后端<code>nginx</code>配置文件</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> vim /etc/nginx/conf.d/backend.conf
+</code></pre>
+</li>
+<li><p>添加<code>Daphne</code>代理配置</p>
+<pre class=" language-txt"><code class="language-txt">server &#123;
+    listen 89;
+    server_name localhost;
+
+    location = /favicon.ico &#123; access_log off; log_not_found off; &#125;
+    location /static &#123;
+        root /BackendDir;
+    &#125;
+
+    location / &#123;
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    &#125;
+    
+    location /ws/ &#123;
+         proxy_http_version 1.1;
+         proxy_set_header Upgrade $http_upgrade;
+         proxy_set_header Connection "upgrade";
+         proxy_redirect off;
+         proxy_pass http://unix:/tmp/daphne.sock;
+     &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>测试Nginx配置是否有语法错误。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> nginx -t
+</code></pre>
+<p><code>output</code></p>
+<pre class=" language-bash"><code class="language-bash">nginx: the configuration <span class="token function">file</span> /etc/nginx/nginx.conf syntax is ok
+nginx: configuration <span class="token function">file</span> /etc/nginx/nginx.conf <span class="token function">test</span> is successfu
+</code></pre>
+<p>如果遇到错误，检查<code>/etc/nginx/conf.d/backend.conf</code>语法是否正确</p>
+</li>
+<li><p>重启<code>Nginx</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart nginx
+</code></pre>
+</li>
+</ol>
+<h3 id="十、对后端代码进行编译加密"><a href="#十、对后端代码进行编译加密" class="headerlink" title="十、对后端代码进行编译加密"></a>十、对后端代码进行编译加密</h3><ol>
+<li><p>查看脚本参数</p>
+<pre class=" language-bash"><code class="language-bash"> python BackendDir/compile_pyc.py -h
+</code></pre>
+<p><code>output</code></p>
+<pre class=" language-bash"><code class="language-bash">在命令行中使用以下命令:
+        python compile_pyc.py clean_pyc PATH            <span class="token comment" spellcheck="true">#清除当前项目中所有的pyc文件</span>
+        python compile_pyc.py compile_to_pyc PATH               <span class="token comment" spellcheck="true">#生成pyc文件</span>
+        python compile_pyc.py remove_py PATH            <span class="token comment" spellcheck="true">#删除py文件</span>
+        python compile_pyc.py move_to_path PATH         <span class="token comment" spellcheck="true">#移动所有pyc文件至原位置</span>
+        python compile_pyc.py replace_name PATH         <span class="token comment" spellcheck="true">#修改文件名文件</span>
+        python compile_pyc.py remove_pycache_dir PATH           <span class="token comment" spellcheck="true">#清除当前项目中所有的__pycache__文件夹</span>
+        python compile_pyc.py one_step PATH             <span class="token comment" spellcheck="true">#清除已有的pyc => 加密 => 删除py => 移动至原位置 => 重命名 => 清除__pycache__文件夹</span>
+</code></pre>
+</li>
+<li><p>使用<code>one_step</code>对后端文件进行编译加密</p>
+<pre class=" language-bash"><code class="language-bash">python BackendDir/compile_pyc.py one_step BackendDir/
+</code></pre>
+</li>
+</ol>
+<h3 id="十一、故障排查"><a href="#十一、故障排查" class="headerlink" title="十一、故障排查"></a>十一、故障排查</h3><p>以下日志可能会有帮助。</p>
+<ul>
+<li>通过检查Nginx进程日志。<code>sudo journalctl -u nginx</code></li>
+<li>通过检查Nginx的访问日志。<code>sudo less /var/log/nginx/access.log</code></li>
+<li>通过检查Nginx的错误日志。<code>sudo less /var/log/nginx/error.log</code></li>
+<li>通过检查Gunicorn应用程序的日志。<code>sudo journalctl -u gunicorn</code></li>
+<li>通过检查Gunicorn套接字的日志。<code>sudo journalctl -u gunicorn.socket</code></li>
+<li>通过检查Daphne应用程序的日志。<code>sudo journalctl -u daphne</code></li>
+</ul>
+<p>更新配置或应用程序时，需要重新启动这些进程。</p>
+<p>如果更新了Django应用程序，可以通过重启Gunicorn进程。</p>
+<pre class=" language-Bash"><code class="language-Bash">sudo systemctl restart gunicorn
+</code></pre>
+<p>如果改变了Gunicorn的套接字或服务文件，请重新加载守护进程，并重启该进程。</p>
+<pre class=" language-Bash"><code class="language-Bash">sudo systemctl daemon-reloadsudo systemctl restart gunicorn.socket gunicorn.service
+</code></pre>
+<p>如果改变了Nginx服务器块的配置，测试配置，然后通过键入Nginx。</p>
+<pre class=" language-Bash"><code class="language-Bash">sudo nginx -t && sudo systemctl restart nginx
+</code></pre>
+<h2 id="前端部署"><a href="#前端部署" class="headerlink" title="前端部署"></a>前端部署</h2><h3 id="一、打包前端为静态文件"><a href="#一、打包前端为静态文件" class="headerlink" title="一、打包前端为静态文件"></a>一、打包前端为静态文件</h3><p><strong>在打包之前确保已安装并可执行前端代码的前端环境</strong></p>
+<ol>
+<li><p>在前端项目目录下，运行以下命令</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> run build:prod
+</code></pre>
+</li>
+<li><p>打包结束后会在项目目录下生成<code>dist</code>目录，目录结构大概如下</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@localhost dist<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># tree -d</span>
+<span class="token keyword">.</span>
+├── driver_png
+├── icon
+├── software_png
+└── static
+    ├── css
+    ├── fonts
+    ├── img
+    └── js
+</code></pre>
+</li>
+</ol>
+<h3 id="二、使用Nginx配置前端静态文件"><a href="#二、使用Nginx配置前端静态文件" class="headerlink" title="二、使用Nginx配置前端静态文件"></a>二、使用<code>Nginx</code>配置前端静态文件</h3><ol>
+<li><p>修改<code>/etc/nginx/conf.d/default.conf</code>文件（也可以在新增配置文件中添加）。监听正常的端口，并且应该响应服务器的域名或IP地址。</p>
+<pre class=" language-bash"><code class="language-bash">server <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;</span>
+    listen       88<span class="token punctuation">;</span>
+    server_name  localhost<span class="token punctuation">;</span>
+<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#125;</span>
+</code></pre>
+</li>
+<li><p>创建<code>location / &#123;&#125;</code> 块，代理前端静态文件，同时指定首页以及定义<code>try_files</code>。</p>
+<pre class=" language-txt"><code class="language-txt">server &#123;
+    listen       88;
+    server_name  localhost;
+
+    location / &#123;
+        root   /FrontendDistDir;
+        index  index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>配置接口代理，由于前端在打包时不会打包代理需要在<code>nginx</code>配置代理</p>
+<pre class=" language-txt"><code class="language-txt">server &#123;
+    listen       88;
+    server_name  localhost;
+
+    location / &#123;
+        root   /FrontendDistDir;
+        index  index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    &#125;
+
+    location ^~ /prod-api/fog/ &#123;
+        proxy_pass http://localhost/fog/;
+    &#125;
+
+    location ^~ /prod-api/ &#123;
+        proxy_pass http://localhost:89/api/;
+    &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>测试Nginx配置是否有语法错误。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> nginx -t
+</code></pre>
+<p><code>output</code></p>
+<pre class=" language-bash"><code class="language-bash">nginx: the configuration <span class="token function">file</span> /etc/nginx/nginx.conf syntax is ok
+nginx: configuration <span class="token function">file</span> /etc/nginx/nginx.conf <span class="token function">test</span> is successfu
+</code></pre>
+<p>如果遇到错误，检查<code>/etc/nginx/conf.d/default.conf</code>语法是否正确</p>
+</li>
+<li><p>重启<code>Nginx</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart nginx
+</code></pre>
+<p><img src="https://wangxs020202.gitee.io/pbad/new/p7.png" alt="p7"></p>
+</li>
+</ol>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">海南椰</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://sirxs.cn/2023/08/17/page-id-12/">https://sirxs.cn/2023/08/17/page-id-12/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">海南椰</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Nginx/">
+                                    <span class="chip bg-color">Nginx</span>
+                                </a>
+                            
+                                <a href="/tags/Django/">
+                                    <span class="chip bg-color">Django</span>
+                                </a>
+                            
+                                <a href="/tags/Gunicorn/">
+                                    <span class="chip bg-color">Gunicorn</span>
+                                </a>
+                            
+                                <a href="/tags/Daphne/">
+                                    <span class="chip bg-color">Daphne</span>
+                                </a>
+                            
+                                <a href="/tags/scoket/">
+                                    <span class="chip bg-color">scoket</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%83%A8%E7%BD%B2/">
+                                    <span class="chip bg-color">部署</span>
+                                </a>
+                            
+                                <a href="/tags/python/">
+                                    <span class="chip bg-color">python</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/08/17/page-id-12/">
+                    <div class="card-image">
+                        
+                        <img src="https://wangxs020202.gitee.io/pbad/background/page_12.png" class="responsive-img" alt="释放 Gunicorn、Nginx 和 Daphne 在服务器中对 Django 部署中的威力">
+                        
+                        <span class="card-title">释放 Gunicorn、Nginx 和 Daphne 在服务器中对 Django 部署中的威力</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            通过使用Gunicorn、Nginx 和 Daphne 来部署 Django 项目，可以大大提高网站的性能。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Django/" class="post-category">
+                                    Django
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Nginx/">
+                        <span class="chip bg-color">Nginx</span>
+                    </a>
+                    
+                    <a href="/tags/Django/">
+                        <span class="chip bg-color">Django</span>
+                    </a>
+                    
+                    <a href="/tags/Gunicorn/">
+                        <span class="chip bg-color">Gunicorn</span>
+                    </a>
+                    
+                    <a href="/tags/Daphne/">
+                        <span class="chip bg-color">Daphne</span>
+                    </a>
+                    
+                    <a href="/tags/scoket/">
+                        <span class="chip bg-color">scoket</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%83%A8%E7%BD%B2/">
+                        <span class="chip bg-color">部署</span>
+                    </a>
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/06/26/page-id-11/">
+                    <div class="card-image">
+                        
+                        <img src="https://wangxs020202.gitee.io/pbad/background/page_11.png" class="responsive-img" alt="网络通畅，远程自如：UTM上安装CentOS 7.9后，轻松配置网络与SSH">
+                        
+                        <span class="card-title">网络通畅，远程自如：UTM上安装CentOS 7.9后，轻松配置网络与SSH</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            本文将介绍如何在UTM上安装CentOS 7.9后，如何轻松配置网络与SSH。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Mac/" class="post-category">
+                                    Mac
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/SSH/">
+                        <span class="chip bg-color">SSH</span>
+                    </a>
+                    
+                    <a href="/tags/UTM/">
+                        <span class="chip bg-color">UTM</span>
+                    </a>
+                    
+                    <a href="/tags/CentOS/">
+                        <span class="chip bg-color">CentOS</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            <!-- 版权 -->
+
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023</span>
+            
+
+            <!-- _config配置的 author 可直接跳转到 about 页面
+                <a href="/about" target="_blank">海南椰</a>
+             -->
+            <!-- 简繁替换 -->
+            
+            <br>
+            <!-- 总字数 -->
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">29.4k</span>
+            
+
+            
+            
+            <!--  总访问量 -->
+            
+            <!-- 总访问人数 -->
+            
+            <br>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+                <span id="sitetime"> Loading ...</span>
+                <script>
+                    var calcSiteTime = function () {
+                        var seconds = 1000;
+                        var minutes = seconds * 60;
+                        var hours = minutes * 60;
+                        var days = hours * 24;
+                        var years = days * 365;
+                        var today = new Date();
+                        var startYear = "2023";
+                        var startMonth = "4";
+                        var startDate = "14";
+                        var startHour = "13";
+                        var startMinute = "58";
+                        var startSecond = "45";
+                        var todayYear = today.getFullYear();
+                        var todayMonth = today.getMonth() + 1;
+                        var todayDate = today.getDate();
+                        var todayHour = today.getHours();
+                        var todayMinute = today.getMinutes();
+                        var todaySecond = today.getSeconds();
+                        var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                        var diff = t2 - t1;
+                        var diffYears = Math.floor(diff / years);
+                        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+                        // 区分是否有年份.
+                        var language = 'zh-CN';
+                        if (startYear === String(todayYear)) {
+                            document.getElementById("year").innerHTML = todayYear;
+                            var daysTip = 'This site has been running for ' + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                daysTip = '本站已运行 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                daysTip = '本站已運行 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = daysTip;
+                        } else {
+                            document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                            var yearsAndDaysTip = 'This site has been running for ' + diffYears + ' years and '
+                                + diffDays + ' days';
+                            if (language === 'zh-CN') {
+                                yearsAndDaysTip = '本站已运行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            } else if (language === 'zh-HK') {
+                                yearsAndDaysTip = '本站已運行 ' + diffYears + ' 年 ' + diffDays + ' 天';
+                            }
+                            document.getElementById("sitetime").innerHTML = yearsAndDaysTip;
+                        }
+                    }
+
+                    calcSiteTime();
+                </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/wxs0088" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
