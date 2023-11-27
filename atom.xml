@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>我吃海南椰</title>
+  <title>叶子知道</title>
   
-  <subtitle>我吃海南椰</subtitle>
+  <subtitle>叶子知道</subtitle>
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
@@ -10,7 +10,7 @@
   <id>https://sirxs.cn/</id>
   
   <author>
-    <name>海南椰</name>
+    <name>叶子</name>
     
   </author>
   
@@ -243,9 +243,9 @@
     <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="安装" scheme="https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/"/>
     
@@ -308,9 +308,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -341,9 +341,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -438,9 +438,9 @@
     <category term="Anaconda" scheme="https://sirxs.cn/categories/Anaconda/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
@@ -469,9 +469,9 @@
     <category term="Linux" scheme="https://sirxs.cn/categories/Linux/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
