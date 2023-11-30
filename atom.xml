@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-08-17T11:34:10.607Z</updated>
+  <updated>2023-11-30T03:05:57.450Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>通过Certbot实现使用长期免费的HTTPS数字证书</title>
+    <link href="https://sirxs.cn/2023/11/30/page-id-13/"/>
+    <id>https://sirxs.cn/2023/11/30/page-id-13/</id>
+    <published>2023-11-30T02:41:16.000Z</published>
+    <updated>2023-11-30T03:05:57.450Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="SSL" scheme="https://sirxs.cn/categories/SSL/"/>
+    
+    
+    <category term="Nginx" scheme="https://sirxs.cn/tags/Nginx/"/>
+    
+    <category term="Certbot" scheme="https://sirxs.cn/tags/Certbot/"/>
+    
+    <category term="HTTPS" scheme="https://sirxs.cn/tags/HTTPS/"/>
+    
+    <category term="SSL" scheme="https://sirxs.cn/tags/SSL/"/>
+    
+    <category term="SSL证书" scheme="https://sirxs.cn/tags/SSL%E8%AF%81%E4%B9%A6/"/>
+    
+    <category term="Let&#39;s Encrypt" scheme="https://sirxs.cn/tags/Let-s-Encrypt/"/>
+    
+  </entry>
   
   <entry>
     <title>释放 Gunicorn、Nginx 和 Daphne 在服务器中对 Django 部署中的威力</title>
@@ -442,9 +477,9 @@
     
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
-    <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
-    
     <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
+    
+    <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
   </entry>
   
@@ -591,9 +626,9 @@
     <category term="Nuitka" scheme="https://sirxs.cn/categories/Nuitka/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="C++" scheme="https://sirxs.cn/tags/C/"/>
     
@@ -635,41 +670,6 @@
     <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
     
     <category term="Node.js" scheme="https://sirxs.cn/tags/Node-js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>探究Celery的分布式任务队列在Python应用中的优越性</title>
-    <link href="https://sirxs.cn/2023/04/14/tan-suo-celery/"/>
-    <id>https://sirxs.cn/2023/04/14/tan-suo-celery/</id>
-    <published>2023-04-14T14:38:40.000Z</published>
-    <updated>2023-06-19T02:41:39.695Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;一、Celery简介&quot;&gt;&lt;a href=&quot;#一、Celery简介&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Celery" scheme="https://sirxs.cn/categories/Celery/"/>
-    
-    
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
-    <category term="Django" scheme="https://sirxs.cn/tags/Django/"/>
-    
-    <category term="Flask" scheme="https://sirxs.cn/tags/Flask/"/>
-    
-    <category term="Celery" scheme="https://sirxs.cn/tags/Celery/"/>
-    
-    <category term="分布式任务队列" scheme="https://sirxs.cn/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97/"/>
-    
-    <category term="异步任务处理" scheme="https://sirxs.cn/tags/%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/"/>
     
   </entry>
   
