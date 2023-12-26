@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sirxs.cn/2023/08/17/page-id-12/</loc>
+    
+    <lastmod>2023-12-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sirxs.cn/2023/11/30/page-id-13/</loc>
     
     <lastmod>2023-12-26</lastmod>
@@ -14,15 +23,6 @@
     <loc>https://sirxs.cn/2023/12/26/page-id-14/</loc>
     
     <lastmod>2023-12-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/2023/08/17/page-id-12/</loc>
-    
-    <lastmod>2023-08-17</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -319,34 +319,6 @@
   </url>
   
   <url>
-    <loc>https://sirxs.cn/tags/Python/</loc>
-    <lastmod>2023-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Django/</loc>
-    <lastmod>2023-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2023-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Logging/</loc>
-    <lastmod>2023-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://sirxs.cn/tags/Honkit/</loc>
     <lastmod>2023-12-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -382,6 +354,34 @@
   </url>
   
   <url>
+    <loc>https://sirxs.cn/tags/Python/</loc>
+    <lastmod>2023-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Django/</loc>
+    <lastmod>2023-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2023-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://sirxs.cn/tags/Logging/</loc>
+    <lastmod>2023-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://sirxs.cn/tags/Nuitka/</loc>
     <lastmod>2023-12-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -410,6 +410,13 @@
   </url>
   
   <url>
+    <loc>https://sirxs.cn/tags/Anaconda/</loc>
+    <lastmod>2023-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://sirxs.cn/tags/Linux/</loc>
     <lastmod>2023-12-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -425,13 +432,6 @@
   
   <url>
     <loc>https://sirxs.cn/tags/SSH/</loc>
-    <lastmod>2023-12-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://sirxs.cn/tags/Anaconda/</loc>
     <lastmod>2023-12-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -839,14 +839,14 @@
   </url>
   
   <url>
-    <loc>https://sirxs.cn/categories/Linux/</loc>
+    <loc>https://sirxs.cn/categories/Anaconda/</loc>
     <lastmod>2023-12-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://sirxs.cn/categories/Anaconda/</loc>
+    <loc>https://sirxs.cn/categories/Linux/</loc>
     <lastmod>2023-12-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

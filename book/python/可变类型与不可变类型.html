@@ -1,0 +1,555 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>3、可变类型与不可变类型 · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 4.0.7">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="基础语法.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="介绍.html">
+            
+                <a href="介绍.html">
+            
+                    
+                    Python
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="环境搭建.html">
+            
+                <a href="环境搭建.html">
+            
+                    
+                    1、环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="基础语法.html">
+            
+                <a href="基础语法.html">
+            
+                    
+                    2、基础语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="可变类型与不可变类型.html">
+            
+                <a href="可变类型与不可变类型.html#可变与不可变">
+            
+                    
+                    3、可变类型与不可变类型
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.3.1" data-path="可变类型与不可变类型.html">
+            
+                <a href="可变类型与不可变类型.html#什么是内存">
+            
+                    
+                    3.1、什么是内存
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.2" data-path="可变类型与不可变类型.html">
+            
+                <a href="可变类型与不可变类型.html#可变类型">
+            
+                    
+                    3.2、可变类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3.3" data-path="可变类型与不可变类型.html">
+            
+                <a href="可变类型与不可变类型.html#不可变类型">
+            
+                    
+                    3.3、不可变类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="列表.html">
+            
+                <a href="列表.html#列表">
+            
+                    
+                    4、列表
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="列表.html">
+            
+                <a href="列表.html#创建列表">
+            
+                    
+                    4.1、创建列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="列表.html">
+            
+                <a href="列表.html#访问列表">
+            
+                    
+                    4.2、访问列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.3" data-path="列表.html">
+            
+                <a href="列表.html#修改列表">
+            
+                    
+                    4.3、修改列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.4" data-path="列表.html">
+            
+                <a href="列表.html#删除列表">
+            
+                    
+                    4.4、删除列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.5" data-path="列表.html">
+            
+                <a href="列表.html#其他方法">
+            
+                    
+                    4.5、其他方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3、可变类型与不可变类型</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="可变与不可变">可变与不可变</h1>
+<ul>
+<li><p>可变类型：列表，字典</p>
+</li>
+<li><p>不可变类型：数字，字符串，元组</p>
+</li>
+</ul>
+<p>这里的可变不可变，是指内存中的那块内容（value）是否可以被改变。如果是不可变类型，在对对象本身操作的时候，必须在内存中新申请一块区域(因为老区域#不可变#)。如果是可变类型，对对象操作的时候，不需要再在其他地方申请内存，只需要在此对象后面连续申请(+/-)即可，也就是它的address会保持不变，但区域会变长或者变短。</p>
+<h2 id="什么是内存">什么是内存</h2>
+<p>在python编程的时候，代码中的变量实际上都是存储在计算机内存中，当然这里指的内存在计算机中是虚拟的，你看不见摸不着！每一个内存都有一个对应的内存地址，讲到这里需要了解一个python内置函数id()，该函数可以用于获取内存地址！获取内存地址方法如下：</p>
+<pre><code class="lang-python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+
+    a = <span class="hljs-number">10</span>
+    b = <span class="hljs-number">20</span>
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;a的数据类型是：{} 地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">type</span>(a),<span class="hljs-built_in">id</span>(a)))
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;b的数据类型是：{} 地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">type</span>(b), <span class="hljs-built_in">id</span>(b)))
+</code></pre>
+<p>运行结果如下：</p>
+<pre><code class="lang-python">a的数据类型是：&lt;class &apos;int&apos;&gt; 地址：1994744256
+b的数据类型是：&lt;class &apos;int&apos;&gt; 地址：1994744576
+</code></pre>
+<p>上述代码定义了局部变量a和b，python会自动给局部变量分配内存，分别用来存放整数10和20，并通过内置函数id()获取内存地址！
+需要记住的是：<strong>每一个内存都有一个一个对应的内存地址，分配的内存在程序结束时由系统自动回收!</strong></p>
+<hr>
+<h2 id="可变类型">可变类型</h2>
+<p>当该数据类型对应的变量的值发生了变化时，如果它对应的内存地址不发生改变，那么这个数据类型就是 可变数据类型。当该数据类型对应的变量的值发生了变化时，如果它对应的内存地址不发生改变，那么这个数据类型就是 可变数据类型。</p>
+<h3 id="列表">列表</h3>
+<pre><code class="lang-python">a = <span class="hljs-built_in">list</span>()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;列表a修改之前地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+a.append(<span class="hljs-number">20</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;列表a修改之后地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+a.append(<span class="hljs-literal">False</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;列表a修改之后地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+a.append(<span class="hljs-string">&quot;hello&quot;</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;列表a修改之后地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+</code></pre>
+<p>运行结果如下：</p>
+<pre><code class="lang-python">列表a修改之前地址：<span class="hljs-number">2067294579016</span>
+列表a修改之后地址：<span class="hljs-number">2067294579016</span>
+列表a修改之后地址：<span class="hljs-number">2067294579016</span>
+列表a修改之后地址：<span class="hljs-number">2067294579016</span>
+</code></pre>
+<h3 id="字典">字典</h3>
+<pre><code class="lang-python">a = <span class="hljs-built_in">dict</span>()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;字典a修改之前地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+a[<span class="hljs-string">&quot;name&quot;</span>]=<span class="hljs-string">&quot;zhangsan&quot;</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;字典a修改之后地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+a[<span class="hljs-string">&quot;age&quot;</span>]=<span class="hljs-number">18</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;字典a修改之后地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+a[<span class="hljs-string">&quot;sing_dog&quot;</span>]=<span class="hljs-literal">True</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;字典a修改之后地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+</code></pre>
+<p>运行结果如下：</p>
+<pre><code class="lang-python">字典a修改之前地址：<span class="hljs-number">2067294527992</span>
+字典a修改之后地址：<span class="hljs-number">2067294527992</span>
+字典a修改之后地址：<span class="hljs-number">2067294527992</span>
+字典a修改之后地址：<span class="hljs-number">2067294527992</span>
+</code></pre>
+<hr>
+<h2 id="不可变类型">不可变类型</h2>
+<p>当该数据类型对应的变量的值发生了改变时，如果它对应的内存地址发生了改变，那么这个数据类型就是不可变数据类型。</p>
+<pre><code class="lang-python"><span class="hljs-comment">#整形变量</span>
+a = <span class="hljs-number">10</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;整形变量a修改之前地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+a = <span class="hljs-number">20</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;整形变量a修改之后地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;***&quot;</span>*<span class="hljs-number">20</span>)
+
+<span class="hljs-comment">#浮点数变量</span>
+a = <span class="hljs-number">10.5</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;浮点数变量a修改之前地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+a = <span class="hljs-number">20.2</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;浮点数变量a修改之后地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;***&quot;</span>*<span class="hljs-number">20</span>)
+
+
+<span class="hljs-comment">#字符串变量</span>
+a = <span class="hljs-string">&quot;hello&quot;</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;字符串变量a修改之前地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+a = <span class="hljs-string">&quot;world&quot;</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;字符串变量a修改之后地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;***&quot;</span>*<span class="hljs-number">20</span>)
+
+<span class="hljs-comment">#布尔值变量</span>
+a = <span class="hljs-literal">False</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;布尔值a修改之前地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+a = <span class="hljs-literal">True</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;布尔值a修改之后地址：{}&quot;</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>(a)))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;***&quot;</span>*<span class="hljs-number">20</span>)
+
+<span class="hljs-comment">#元组的数据不能修改，否则会报错</span>
+</code></pre>
+<p>运行结果如下：</p>
+<pre><code class="lang-python">整形变量a修改之前地址：<span class="hljs-number">1994744256</span>
+整形变量a修改之后地址：<span class="hljs-number">1994744576</span>
+************************************************************
+浮点数变量a修改之前地址：<span class="hljs-number">2713286559088</span>
+浮点数变量a修改之后地址：<span class="hljs-number">2713286559136</span>
+************************************************************
+字符串变量a修改之前地址：<span class="hljs-number">2713269294224</span>
+字符串变量a修改之后地址：<span class="hljs-number">2713269272112</span>
+************************************************************
+布尔值a修改之前地址：<span class="hljs-number">1994252480</span>
+布尔值a修改之后地址：<span class="hljs-number">1994252448</span>
+************************************************************
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="基础语法.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 2、基础语法">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3、可变类型与不可变类型","level":"1.2.3","depth":2,"previous":{"title":"2、基础语法","level":"1.2.2","depth":2,"path":"python/基础语法.md","ref":"python/基础语法.md","articles":[]},"articles":[{"title":"3.1、什么是内存","level":"1.2.3.1","depth":3,"anchor":"#什么是内存","path":"python/可变类型与不可变类型.md","ref":"python/可变类型与不可变类型.md#什么是内存","articles":[]},{"title":"3.2、可变类型","level":"1.2.3.2","depth":3,"anchor":"#可变类型","path":"python/可变类型与不可变类型.md","ref":"python/可变类型与不可变类型.md#可变类型","articles":[]},{"title":"3.3、不可变类型","level":"1.2.3.3","depth":3,"anchor":"#不可变类型","path":"python/可变类型与不可变类型.md","ref":"python/可变类型与不可变类型.md#不可变类型","articles":[]}],"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"python/可变类型与不可变类型.md","mtime":"2023-06-20T02:41:27.742Z","type":"markdown"},"gitbook":{"version":"4.0.7","time":"2023-06-20T02:52:08.682Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
