@@ -56,7 +56,7 @@
     <link href="https://sirxs.cn/2023/11/30/page-id-13/"/>
     <id>https://sirxs.cn/2023/11/30/page-id-13/</id>
     <published>2023-11-30T02:41:16.000Z</published>
-    <updated>2023-12-26T06:19:26.033Z</updated>
+    <updated>2023-12-26T06:25:07.141Z</updated>
     
     
       
@@ -107,9 +107,9 @@
     <category term="Django" scheme="https://sirxs.cn/categories/Django/"/>
     
     
-    <category term="Nginx" scheme="https://sirxs.cn/tags/Nginx/"/>
-    
     <category term="Django" scheme="https://sirxs.cn/tags/Django/"/>
+    
+    <category term="Nginx" scheme="https://sirxs.cn/tags/Nginx/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -330,7 +330,7 @@
     <link href="https://sirxs.cn/2023/06/14/page-id-5/"/>
     <id>https://sirxs.cn/2023/06/14/page-id-5/</id>
     <published>2023-06-14T01:49:44.000Z</published>
-    <updated>2023-06-14T02:54:11.137Z</updated>
+    <updated>2023-12-26T06:25:56.345Z</updated>
     
     
       
@@ -512,9 +512,9 @@
     
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
-    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
-    
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    
+    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
     
   </entry>
   

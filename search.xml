@@ -90,9 +90,9 @@
       
         <tags>
             
-            <tag> Nginx </tag>
-            
             <tag> Django </tag>
+            
+            <tag> Nginx </tag>
             
             <tag> Gunicorn </tag>
             
@@ -494,9 +494,9 @@
             
             <tag> Python </tag>
             
-            <tag> Anaconda </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Anaconda </tag>
             
         </tags>
       
@@ -676,8 +676,6 @@
       
         <tags>
             
-            <tag> Git </tag>
-            
             <tag> Honkit </tag>
             
             <tag> 静态网站 </tag>
@@ -687,6 +685,8 @@
             <tag> Shell </tag>
             
             <tag> Node.js </tag>
+            
+            <tag> Git </tag>
             
         </tags>
       
