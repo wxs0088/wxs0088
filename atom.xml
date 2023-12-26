@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-11-30T03:05:57.450Z</updated>
+  <updated>2023-12-26T05:19:31.676Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>线上炼丹，云端训练，基于Google Colab的深度学习环境搭建Bert-vits2</title>
+    <link href="https://sirxs.cn/2023/12/26/page-id-14/"/>
+    <id>https://sirxs.cn/2023/12/26/page-id-14/</id>
+    <published>2023-12-26T02:57:21.000Z</published>
+    <updated>2023-12-26T05:19:31.676Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Bert-vits2" scheme="https://sirxs.cn/categories/Bert-vits2/"/>
+    
+    
+    <category term="Bert-vits2" scheme="https://sirxs.cn/tags/Bert-vits2/"/>
+    
+    <category term="Google Colab" scheme="https://sirxs.cn/tags/Google-Colab/"/>
+    
+    <category term="深度学习" scheme="https://sirxs.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="机器学习" scheme="https://sirxs.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="人工智能" scheme="https://sirxs.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    <category term="语音合成" scheme="https://sirxs.cn/tags/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90/"/>
+    
+  </entry>
   
   <entry>
     <title>通过Certbot实现使用长期免费的HTTPS数字证书</title>
@@ -635,41 +670,6 @@
     <category term="PyQT5" scheme="https://sirxs.cn/tags/PyQT5/"/>
     
     <category term="PyInstaller" scheme="https://sirxs.cn/tags/PyInstaller/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo-matery主题添加Honkit电子书界面</title>
-    <link href="https://sirxs.cn/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/"/>
-    <id>https://sirxs.cn/2023/04/19/hexo-matery-zhu-ti-tian-jia-honkit-dian-zi-shu-jie-mian/</id>
-    <published>2023-04-19T07:09:27.000Z</published>
-    <updated>2023-05-19T13:31:36.597Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Hexo" scheme="https://sirxs.cn/categories/Hexo/"/>
-    
-    
-    <category term="Git" scheme="https://sirxs.cn/tags/Git/"/>
-    
-    <category term="Honkit" scheme="https://sirxs.cn/tags/Honkit/"/>
-    
-    <category term="静态网站" scheme="https://sirxs.cn/tags/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"/>
-    
-    <category term="电子书" scheme="https://sirxs.cn/tags/%E7%94%B5%E5%AD%90%E4%B9%A6/"/>
-    
-    <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
-    
-    <category term="Node.js" scheme="https://sirxs.cn/tags/Node-js/"/>
     
   </entry>
   
