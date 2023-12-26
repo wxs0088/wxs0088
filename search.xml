@@ -459,9 +459,9 @@
             
             <tag> Python </tag>
             
-            <tag> Anaconda </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Anaconda </tag>
             
         </tags>
       
@@ -608,9 +608,9 @@
       
         <tags>
             
-            <tag> Nuitka </tag>
-            
             <tag> Python </tag>
+            
+            <tag> Nuitka </tag>
             
             <tag> C++ </tag>
             
