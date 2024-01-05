@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2023-12-26T05:19:31.676Z</updated>
+  <updated>2024-01-05T07:01:50.865Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>容器中的洞察：使用 Docker-Compose 部署 Elasticsearch 和 Kibana</title>
+    <link href="https://sirxs.cn/2024/01/05/page-id-15/"/>
+    <id>https://sirxs.cn/2024/01/05/page-id-15/</id>
+    <published>2024-01-05T06:09:40.000Z</published>
+    <updated>2024-01-05T07:01:50.865Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Elasticsearch" scheme="https://sirxs.cn/categories/Elasticsearch/"/>
+    
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
+    
+    <category term="Elasticsearch" scheme="https://sirxs.cn/tags/Elasticsearch/"/>
+    
+    <category term="Kibana" scheme="https://sirxs.cn/tags/Kibana/"/>
+    
+    <category term="Docker-Compose" scheme="https://sirxs.cn/tags/Docker-Compose/"/>
+    
+    <category term="容器" scheme="https://sirxs.cn/tags/%E5%AE%B9%E5%99%A8/"/>
+    
+    <category term="搜索引擎" scheme="https://sirxs.cn/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/"/>
+    
+    <category term="智能客服" scheme="https://sirxs.cn/tags/%E6%99%BA%E8%83%BD%E5%AE%A2%E6%9C%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>线上炼丹，云端训练，基于Google Colab的深度学习环境搭建Bert-vits2</title>
@@ -107,9 +144,9 @@
     <category term="Django" scheme="https://sirxs.cn/categories/Django/"/>
     
     
-    <category term="Django" scheme="https://sirxs.cn/tags/Django/"/>
-    
     <category term="Nginx" scheme="https://sirxs.cn/tags/Nginx/"/>
+    
+    <category term="Django" scheme="https://sirxs.cn/tags/Django/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -637,39 +674,6 @@
     <category term="腾讯云" scheme="https://sirxs.cn/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/"/>
     
     <category term="博客" scheme="https://sirxs.cn/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决Python运行速度与依赖问题，亲测打包神器用Nuitka让你的应用程序起飞！</title>
-    <link href="https://sirxs.cn/2023/04/20/nuitkavspyinstaller/"/>
-    <id>https://sirxs.cn/2023/04/20/nuitkavspyinstaller/</id>
-    <published>2023-04-20T06:22:16.000Z</published>
-    <updated>2023-05-19T13:31:36.602Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Nuitka" scheme="https://sirxs.cn/categories/Nuitka/"/>
-    
-    
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
-    <category term="Nuitka" scheme="https://sirxs.cn/tags/Nuitka/"/>
-    
-    <category term="C++" scheme="https://sirxs.cn/tags/C/"/>
-    
-    <category term="PyQT5" scheme="https://sirxs.cn/tags/PyQT5/"/>
-    
-    <category term="PyInstaller" scheme="https://sirxs.cn/tags/PyInstaller/"/>
     
   </entry>
   
