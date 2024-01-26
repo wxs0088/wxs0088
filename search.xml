@@ -4,6 +4,43 @@
   
     
     <entry>
+      <title>在Ubuntu 20.04玩转Mysql8.0：安装、配置、使用、删除</title>
+      <link href="/2024/01/26/page-id-16/"/>
+      <url>/2024/01/26/page-id-16/</url>
+      
+        <content type="html"><![CDATA[<h3 id="一、写在前面"><a href="#一、写在前面" class="headerlink" title="一、写在前面"></a>一、写在前面</h3><p><code>Mysql</code>是一种关系型数据库管理系统，由瑞典MySQL AB 公司开发，目前属于 Oracle 旗下产品。<code>Mysql</code>是最流行的关系型数据库管理系统之一，它的主要功能是基于<br>SQL 的关系型数据库管理系统，支持多用户、多线程使用，可以在多种不同的操作系统上使用。本文将介绍如何在Ubuntu<br>20.04上安装、配置、使用、删除Mysql8.0。</p><h3 id="二、安装Mysql8-0"><a href="#二、安装Mysql8-0" class="headerlink" title="二、安装Mysql8.0"></a>二、安装Mysql8.0</h3><h4 id="2-1-安装Mysql8-0"><a href="#2-1-安装Mysql8-0" class="headerlink" title="2.1 安装Mysql8.0"></a>2.1 安装Mysql8.0</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> apt update<span class="token function">sudo</span> apt <span class="token function">install</span> mysql-server</code></pre><h3 id="三、配置Mysql8-0"><a href="#三、配置Mysql8-0" class="headerlink" title="三、配置Mysql8.0"></a>三、配置Mysql8.0</h3><h4 id="3-1-安全配置MySQL"><a href="#3-1-安全配置MySQL" class="headerlink" title="3.1 安全配置MySQL"></a>3.1 安全配置MySQL</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> mysql_secure_installation</code></pre><p><code>mysql_secure_installation</code>脚本设置的东西：更改root密码、移除MySQL的匿名用户、禁止root远程登录、删除test数据库和重新加载权限。<br>询问是否要更改root密码时，看情况是否需要更改；**循环是否禁止远程登录时，要输入NO，否则会导致后面用navicat远程连接mysql失败。<br>** 其余的问题直接回车，使用上面的这些选项可以提高MySQL的安全。</p><h3 id="四、使用Mysql8-0"><a href="#四、使用Mysql8-0" class="headerlink" title="四、使用Mysql8.0"></a>四、使用Mysql8.0</h3><h4 id="4-1-登录Mysql"><a href="#4-1-登录Mysql" class="headerlink" title="4.1 登录Mysql"></a>4.1 登录Mysql</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> mysql -u root -p</code></pre><p>如果您之前没有为<code>root</code>用户设置密码，则<code>-p</code>选项可能不需要。</p><h4 id="4-2-更改-root-用户的认证方法"><a href="#4-2-更改-root-用户的认证方法" class="headerlink" title="4.2 更改 root 用户的认证方法"></a>4.2 更改 root 用户的认证方法</h4><p>默认情况下，MySQL 使用<code>auth_socket</code>插件对<code>root</code>进行身份验证，这可能会阻止远程登录。要改为使用密码认证，请执行以下命令：</p><pre class=" language-bash"><code class="language-bash">ALTER USER <span class="token string">'root'</span>@<span class="token string">'localhost'</span> IDENTIFIED WITH <span class="token string">'mysql_native_password'</span> BY <span class="token string">'SSKS#dd'</span><span class="token punctuation">;</span>FLUSH PRIVILEGES<span class="token punctuation">;</span></code></pre><h4 id="4-3-创建一个允许远程访问的-root-用户"><a href="#4-3-创建一个允许远程访问的-root-用户" class="headerlink" title="4.3 创建一个允许远程访问的 root 用户"></a>4.3 创建一个允许远程访问的 root 用户</h4><p>接下来，创建一个与您的 root 用户相同权限的用户，但允许从任何主机连接。</p><pre class=" language-bash"><code class="language-bash">CREATE USER <span class="token string">'root'</span>@<span class="token string">'%'</span> IDENTIFIED BY <span class="token string">'SSKS#dd'</span><span class="token punctuation">;</span>GRANT ALL PRIVILEGES ON *.* TO <span class="token string">'root'</span>@<span class="token string">'%'</span> WITH GRANT OPTION<span class="token punctuation">;</span>FLUSH PRIVILEGES<span class="token punctuation">;</span></code></pre><h4 id="4-4-退出Mysql"><a href="#4-4-退出Mysql" class="headerlink" title="4.4 退出Mysql"></a>4.4 退出Mysql</h4><pre class=" language-bash"><code class="language-bash"><span class="token keyword">exit</span></code></pre><h4 id="4-5-修改-MySQL-配置以允许远程连接："><a href="#4-5-修改-MySQL-配置以允许远程连接：" class="headerlink" title="4.5 修改 MySQL 配置以允许远程连接："></a>4.5 修改 MySQL 配置以允许远程连接：</h4><p>编辑 MySQL 配置文件，通常在 &#x2F;etc&#x2F;mysql&#x2F;mysql.conf.d&#x2F;mysqld.cnf 或 &#x2F;etc&#x2F;mysql&#x2F;my.cnf。</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></pre><p>找到<code>bind-address</code>和<code>mysqlx-bind-address</code>项，把<code>127.0.0.1</code>更改为<code>0.0.0.0</code>或注释掉这两行，以允许从任何 IP 地址连接。</p><pre class=" language-bash"><code class="language-bash">bind-address <span class="token operator">=</span> 0.0.0.0mysqlx-bind-address     <span class="token operator">=</span> 0.0.0.0</code></pre><p>保存并关闭文件，然后重新启动 MySQL 服务。</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart mysql</code></pre><h3 id="五、防火墙设置"><a href="#五、防火墙设置" class="headerlink" title="五、防火墙设置"></a>五、防火墙设置</h3><h4 id="5-1-查看防火墙状态"><a href="#5-1-查看防火墙状态" class="headerlink" title="5.1 查看防火墙状态"></a>5.1 查看防火墙状态</h4><p>如果是刚建好的虚拟机，应该是不带防火墙的，需要先安装</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> firewalld</code></pre><h4 id="5-2-开放3306端口"><a href="#5-2-开放3306端口" class="headerlink" title="5.2 开放3306端口"></a>5.2 开放3306端口</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> firewall-cmd --zone<span class="token operator">=</span>public --add-port<span class="token operator">=</span>3306/tcp --permanent</code></pre><h4 id="5-3-重启防火墙"><a href="#5-3-重启防火墙" class="headerlink" title="5.3 重启防火墙"></a>5.3 重启防火墙</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> firewall-cmd --reload</code></pre><h3 id="5-4-查看端口开放状态"><a href="#5-4-查看端口开放状态" class="headerlink" title="5.4 查看端口开放状态"></a>5.4 查看端口开放状态</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> firewall-cmd --list-ports</code></pre><h3 id="六、测试Mysql"><a href="#六、测试Mysql" class="headerlink" title="六、测试Mysql"></a>六、测试Mysql</h3><h4 id="6-1-远程连接Mysql"><a href="#6-1-远程连接Mysql" class="headerlink" title="6.1 远程连接Mysql"></a>6.1 远程连接Mysql</h4><p>从另一台计算机上，尝试使用新设置的<code>root</code>用户和密码远程连接到<code>MySQL</code>服务器。</p><pre class=" language-bash"><code class="language-bash">mysql -h <span class="token punctuation">[</span>服务器IP地址<span class="token punctuation">]</span> -u root -p</code></pre><h3 id="七、删除Mysql8-0"><a href="#七、删除Mysql8-0" class="headerlink" title="七、删除Mysql8.0"></a>七、删除Mysql8.0</h3><h4 id="7-1-停止服务"><a href="#7-1-停止服务" class="headerlink" title="7.1 停止服务"></a>7.1 停止服务</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl stop mysql</code></pre><h4 id="7-2-卸载软件包"><a href="#7-2-卸载软件包" class="headerlink" title="7.2 卸载软件包"></a>7.2 卸载软件包</h4><p>使用<code>apt-get</code>命令卸载 MySQL 服务器及其相关软件包。</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> remove --purge mysql-server mysql-client mysql-common<span class="token function">sudo</span> <span class="token function">apt-get</span> autoremove<span class="token function">sudo</span> <span class="token function">apt-get</span> autoclean</code></pre><h4 id="7-3删除配置和数据文件"><a href="#7-3删除配置和数据文件" class="headerlink" title="7.3删除配置和数据文件"></a>7.3删除配置和数据文件</h4><p>删除 MySQL 的配置文件和数据目录。这一步是必要的，因为<code>apt-get remove --purge</code>可能不会删除所有文件。</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">rm</span> -rf /etc/mysql /var/lib/mysql<span class="token function">sudo</span> <span class="token function">rm</span> -rf /var/log/mysql</code></pre><h4 id="7-4-删除用户和组"><a href="#7-4-删除用户和组" class="headerlink" title="7.4 删除用户和组"></a>7.4 删除用户和组</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> deluser mysql<span class="token function">sudo</span> delgroup mysql</code></pre><h4 id="7-5-删除残留文件"><a href="#7-5-删除残留文件" class="headerlink" title="7.5 删除残留文件"></a>7.5 删除残留文件</h4><p>还可以使用<code>find</code>命令来查找系统中可能遗留的与 MySQL 相关的其他文件，并手动删除它们。</p><pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">find</span> / -iname <span class="token string">'mysql*'</span> -exec <span class="token function">rm</span> -rf <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;&amp;#125; \;</span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Ubuntu </tag>
+            
+            <tag> Mysql </tag>
+            
+            <tag> 数据库 </tag>
+            
+            <tag> 数据库管理 </tag>
+            
+            <tag> 数据库安装 </tag>
+            
+            <tag> 数据库配置 </tag>
+            
+            <tag> 数据库使用 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>容器中的洞察：使用 Docker-Compose 部署 Elasticsearch 和 Kibana</title>
       <link href="/2024/01/05/page-id-15/"/>
       <url>/2024/01/05/page-id-15/</url>
@@ -531,9 +568,9 @@
             
             <tag> Python </tag>
             
-            <tag> Anaconda </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Anaconda </tag>
             
         </tags>
       

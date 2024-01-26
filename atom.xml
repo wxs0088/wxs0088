@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2024-01-05T07:06:55.095Z</updated>
+  <updated>2024-01-26T02:22:13.334Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -17,11 +17,48 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>在Ubuntu 20.04玩转Mysql8.0：安装、配置、使用、删除</title>
+    <link href="https://sirxs.cn/2024/01/26/page-id-16/"/>
+    <id>https://sirxs.cn/2024/01/26/page-id-16/</id>
+    <published>2024-01-26T01:59:42.000Z</published>
+    <updated>2024-01-26T02:22:13.334Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot; title=&quot;一、写在前面&quot;&gt;&lt;/a&gt;一、写在前面&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Mysql&lt;/code&gt;是一种关系型数据库管理系统，由瑞典MySQL AB 公司开发，目前属于</summary>
+        
+      
+    
+    
+    
+    <category term="Mysql" scheme="https://sirxs.cn/categories/Mysql/"/>
+    
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
+    
+    <category term="Mysql" scheme="https://sirxs.cn/tags/Mysql/"/>
+    
+    <category term="数据库" scheme="https://sirxs.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    <category term="数据库管理" scheme="https://sirxs.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86/"/>
+    
+    <category term="数据库安装" scheme="https://sirxs.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E8%A3%85/"/>
+    
+    <category term="数据库配置" scheme="https://sirxs.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE/"/>
+    
+    <category term="数据库使用" scheme="https://sirxs.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>容器中的洞察：使用 Docker-Compose 部署 Elasticsearch 和 Kibana</title>
     <link href="https://sirxs.cn/2024/01/05/page-id-15/"/>
     <id>https://sirxs.cn/2024/01/05/page-id-15/</id>
     <published>2024-01-05T06:09:40.000Z</published>
-    <updated>2024-01-05T07:06:55.095Z</updated>
+    <updated>2024-01-26T02:04:42.159Z</updated>
     
     
       
@@ -549,9 +586,9 @@
     
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
-    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
-    
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    
+    <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
     
   </entry>
   
@@ -643,37 +680,6 @@
     <category term="CentOS" scheme="https://sirxs.cn/tags/CentOS/"/>
     
     <category term="MySQL" scheme="https://sirxs.cn/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>打造自己的博客天地：在腾讯云服务器上部署Hexo博客</title>
-    <link href="https://sirxs.cn/2023/04/21/clouddeploymentblog/"/>
-    <id>https://sirxs.cn/2023/04/21/clouddeploymentblog/</id>
-    <published>2023-04-21T06:48:23.000Z</published>
-    <updated>2023-04-22T04:34:27.629Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot; title=&quot;一、写在前面&quot;&gt;&lt;/a&gt;一、写在前面&lt;/h3&gt;&lt;p&gt;这个博客自创建以来也有差不多一周了，之前一直在使用GitHub Pages来搭建博客，但是由于GitHub</summary>
-        
-      
-    
-    
-    
-    <category term="Hexo" scheme="https://sirxs.cn/categories/Hexo/"/>
-    
-    
-    <category term="Git" scheme="https://sirxs.cn/tags/Git/"/>
-    
-    <category term="Nginx" scheme="https://sirxs.cn/tags/Nginx/"/>
-    
-    <category term="腾讯云" scheme="https://sirxs.cn/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/"/>
-    
-    <category term="博客" scheme="https://sirxs.cn/tags/%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   
