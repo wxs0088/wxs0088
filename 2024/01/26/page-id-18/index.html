@@ -505,7 +505,6 @@ cryptography<span class="token operator">==</span>41.0.3
 <h5 id="2-3-2-下载依赖包"><a href="#2-3-2-下载依赖包" class="headerlink" title="2.3.2 下载依赖包"></a>2.3.2 下载依赖包</h5><pre class=" language-bash"><code class="language-bash">pip <span class="token function">install</span> -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 </code></pre>
 <h4 id="2-4-数据库配置"><a href="#2-4-数据库配置" class="headerlink" title="2.4 数据库配置"></a>2.4 数据库配置</h4><p>在<code>Settings</code>文件夹下的<code>develop.py</code>和<code>produce.py</code>文件中配置数据库。</p>
-<p>配置如下：</p>
 <p>文件内容如下：</p>
 <p><code>develop.py</code></p>
 <pre class=" language-python"><code class="language-python"><span class="token triple-quoted-string string">"""
@@ -583,7 +582,7 @@ pymysql<span class="token punctuation">.</span>install_as_MySQLdb<span class="to
 <p>在<code>base.py</code>文件中添加如下内容：</p>
 <pre class=" language-python"><code class="language-python">AUTH_USER_MODEL <span class="token operator">=</span> <span class="token string">"users.User"</span>
 </code></pre>
-<h4 id="3-3-编写序列化器"><a href="#3-3-编写序列化器" class="headerlink" title="3.3 编写序列化器"></a>3.3 编写序列化器</h4><p>在<code>users</code>文件夹下创建<code>serializer.py</code>文件，编写如下内容：</p>
+<h4 id="3-2-编写序列化器"><a href="#3-2-编写序列化器" class="headerlink" title="3.2 编写序列化器"></a>3.2 编写序列化器</h4><p>在<code>users</code>文件夹下创建<code>serializer.py</code>文件，编写如下内容：</p>
 <pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> rest_framework <span class="token keyword">import</span> serializers
 <span class="token keyword">from</span> users<span class="token punctuation">.</span>models <span class="token keyword">import</span> User
 
@@ -595,7 +594,7 @@ pymysql<span class="token punctuation">.</span>install_as_MySQLdb<span class="to
         fields <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'id'</span><span class="token punctuation">,</span> <span class="token string">'username'</span><span class="token punctuation">,</span> <span class="token string">'mobile'</span><span class="token punctuation">,</span> <span class="token string">'email'</span><span class="token punctuation">,</span> <span class="token string">'is_staff'</span><span class="token punctuation">,</span> <span class="token string">'is_active'</span><span class="token punctuation">,</span> <span class="token string">'date_joined'</span><span class="token punctuation">,</span> <span class="token string">'last_login'</span><span class="token punctuation">]</span>
         depth <span class="token operator">=</span> <span class="token number">1</span>
 </code></pre>
-<h4 id="3-2-数据库迁移"><a href="#3-2-数据库迁移" class="headerlink" title="3.2 数据库迁移"></a>3.2 数据库迁移</h4><pre class=" language-bash"><code class="language-bash">python manage.py makemigrations
+<h4 id="3-3-数据库迁移"><a href="#3-3-数据库迁移" class="headerlink" title="3.3 数据库迁移"></a>3.3 数据库迁移</h4><pre class=" language-bash"><code class="language-bash">python manage.py makemigrations
 python manage.py migrate
 </code></pre>
 

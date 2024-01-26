@@ -54,7 +54,7 @@
     <link href="https://sirxs.cn/2024/01/26/page-id-18/"/>
     <id>https://sirxs.cn/2024/01/26/page-id-18/</id>
     <published>2024-01-26T03:18:50.000Z</published>
-    <updated>2024-01-26T08:14:05.041Z</updated>
+    <updated>2024-01-26T08:47:00.417Z</updated>
     
     
       
@@ -490,9 +490,9 @@
     <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="安装" scheme="https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/"/>
     
@@ -555,9 +555,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -588,9 +588,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -685,11 +685,11 @@
     <category term="Anaconda" scheme="https://sirxs.cn/categories/Anaconda/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
     
