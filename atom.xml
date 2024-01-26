@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2024-01-26T02:22:13.334Z</updated>
+  <updated>2024-01-26T03:00:22.424Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -17,11 +17,50 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>美多商城项目实战EP01：项目介绍，项目架构，项目准备</title>
+    <link href="https://sirxs.cn/2024/01/26/page-id-17/"/>
+    <id>https://sirxs.cn/2024/01/26/page-id-17/</id>
+    <published>2024-01-26T02:32:03.000Z</published>
+    <updated>2024-01-26T03:00:22.424Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="美多商城" scheme="https://sirxs.cn/categories/%E7%BE%8E%E5%A4%9A%E5%95%86%E5%9F%8E/"/>
+    
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Django" scheme="https://sirxs.cn/tags/Django/"/>
+    
+    <category term="美多商城" scheme="https://sirxs.cn/tags/%E7%BE%8E%E5%A4%9A%E5%95%86%E5%9F%8E/"/>
+    
+    <category term="Vue.js" scheme="https://sirxs.cn/tags/Vue-js/"/>
+    
+    <category term="项目实战" scheme="https://sirxs.cn/tags/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"/>
+    
+    <category term="项目准备" scheme="https://sirxs.cn/tags/%E9%A1%B9%E7%9B%AE%E5%87%86%E5%A4%87/"/>
+    
+    <category term="项目介绍" scheme="https://sirxs.cn/tags/%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/"/>
+    
+    <category term="项目架构" scheme="https://sirxs.cn/tags/%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
     <title>在Ubuntu 20.04玩转Mysql8.0：安装、配置、使用、删除</title>
     <link href="https://sirxs.cn/2024/01/26/page-id-16/"/>
     <id>https://sirxs.cn/2024/01/26/page-id-16/</id>
     <published>2024-01-26T01:59:42.000Z</published>
-    <updated>2024-01-26T02:22:13.334Z</updated>
+    <updated>2024-01-26T02:26:48.066Z</updated>
     
     
       
@@ -613,9 +652,9 @@
     <category term="Linux" scheme="https://sirxs.cn/categories/Linux/"/>
     
     
-    <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
-    
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
+    
+    <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
@@ -653,33 +692,6 @@
     <category term="日志记录" scheme="https://sirxs.cn/tags/%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95/"/>
     
     <category term="Logging" scheme="https://sirxs.cn/tags/Logging/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从零开始：在CentOS Stream 9上安装MySQL 8并启用远程root连接</title>
-    <link href="https://sirxs.cn/2023/04/22/an-zhuang-mysql/"/>
-    <id>https://sirxs.cn/2023/04/22/an-zhuang-mysql/</id>
-    <published>2023-04-22T10:04:55.000Z</published>
-    <updated>2023-04-22T10:58:35.863Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot; title=&quot;一、写在前面&quot;&gt;&lt;/a&gt;一、写在前面&lt;/h3&gt;&lt;p&gt;MySQL是一款开源的关系型数据库管理系统，由瑞典MySQL</summary>
-        
-      
-    
-    
-    
-    <category term="MySQL" scheme="https://sirxs.cn/categories/MySQL/"/>
-    
-    
-    <category term="CentOS" scheme="https://sirxs.cn/tags/CentOS/"/>
-    
-    <category term="MySQL" scheme="https://sirxs.cn/tags/MySQL/"/>
     
   </entry>
   
