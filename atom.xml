@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2024-01-26T03:05:37.204Z</updated>
+  <updated>2024-01-26T08:04:21.857Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -15,6 +15,70 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>美多商城项目实战EP03：JSON Web Tokens</title>
+    <link href="https://sirxs.cn/2024/01/26/page-id-19/"/>
+    <id>https://sirxs.cn/2024/01/26/page-id-19/</id>
+    <published>2024-01-26T07:49:02.000Z</published>
+    <updated>2024-01-26T08:04:21.857Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot; title=&quot;一、写在前面&quot;&gt;&lt;/a&gt;一、写在前面&lt;/h3&gt;&lt;p&gt;这篇文章主要是对&lt;code&gt;JSON Web</summary>
+        
+      
+    
+    
+    
+    <category term="美多商城" scheme="https://sirxs.cn/categories/%E7%BE%8E%E5%A4%9A%E5%95%86%E5%9F%8E/"/>
+    
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Django" scheme="https://sirxs.cn/tags/Django/"/>
+    
+    <category term="美多商城" scheme="https://sirxs.cn/tags/%E7%BE%8E%E5%A4%9A%E5%95%86%E5%9F%8E/"/>
+    
+    <category term="DRF" scheme="https://sirxs.cn/tags/DRF/"/>
+    
+    <category term="JWT" scheme="https://sirxs.cn/tags/JWT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>美多商城项目实战EP02：后端配置，用户部分-用户模型类</title>
+    <link href="https://sirxs.cn/2024/01/26/page-id-18/"/>
+    <id>https://sirxs.cn/2024/01/26/page-id-18/</id>
+    <published>2024-01-26T03:18:50.000Z</published>
+    <updated>2024-01-26T08:14:05.041Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="美多商城" scheme="https://sirxs.cn/categories/%E7%BE%8E%E5%A4%9A%E5%95%86%E5%9F%8E/"/>
+    
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Django" scheme="https://sirxs.cn/tags/Django/"/>
+    
+    <category term="美多商城" scheme="https://sirxs.cn/tags/%E7%BE%8E%E5%A4%9A%E5%95%86%E5%9F%8E/"/>
+    
+    <category term="DRF" scheme="https://sirxs.cn/tags/DRF/"/>
+    
+  </entry>
   
   <entry>
     <title>美多商城项目实战EP01：项目介绍，项目架构，项目准备</title>
@@ -290,9 +354,9 @@
     
     <category term="UTM" scheme="https://sirxs.cn/tags/UTM/"/>
     
-    <category term="CentOS" scheme="https://sirxs.cn/tags/CentOS/"/>
-    
     <category term="虚拟机" scheme="https://sirxs.cn/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+    <category term="CentOS" scheme="https://sirxs.cn/tags/CentOS/"/>
     
     <category term="Mac" scheme="https://sirxs.cn/tags/Mac/"/>
     
@@ -426,9 +490,9 @@
     <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="安装" scheme="https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/"/>
     
@@ -491,9 +555,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -524,9 +588,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -621,77 +685,13 @@
     <category term="Anaconda" scheme="https://sirxs.cn/categories/Anaconda/"/>
     
     
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
     <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
+    
+    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
     <category term="Anaconda" scheme="https://sirxs.cn/tags/Anaconda/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu 22.04 Server 安装实录：探索 Linux Server 世界的无限可能！</title>
-    <link href="https://sirxs.cn/2023/04/25/ubuntu22-04-server-an-zhuang/"/>
-    <id>https://sirxs.cn/2023/04/25/ubuntu22-04-server-an-zhuang/</id>
-    <published>2023-04-25T09:03:28.000Z</published>
-    <updated>2023-04-25T12:04:49.978Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot; title=&quot;一、写在前面&quot;&gt;&lt;/a&gt;一、写在前面&lt;/h3&gt;&lt;p&gt;Ubuntu 22.04</summary>
-        
-      
-    
-    
-    
-    <category term="Linux" scheme="https://sirxs.cn/categories/Linux/"/>
-    
-    
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
-    <category term="Shell" scheme="https://sirxs.cn/tags/Shell/"/>
-    
-    <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
-    
-    <category term="Vim" scheme="https://sirxs.cn/tags/Vim/"/>
-    
-    <category term="SSH" scheme="https://sirxs.cn/tags/SSH/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在Python世界中游刃有余：如何灵活运用Django日志记录功能</title>
-    <link href="https://sirxs.cn/2023/04/24/logging/"/>
-    <id>https://sirxs.cn/2023/04/24/logging/</id>
-    <published>2023-04-24T06:35:18.000Z</published>
-    <updated>2023-04-24T12:22:22.196Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;一、写在前面&quot;&gt;&lt;a href=&quot;#一、写在前面&quot; class=&quot;headerlink&quot; title=&quot;一、写在前面&quot;&gt;&lt;/a&gt;一、写在前面&lt;/h3&gt;&lt;p&gt;Django 是一个流行的 Python Web</summary>
-        
-      
-    
-    
-    
-    <category term="Django" scheme="https://sirxs.cn/categories/Django/"/>
-    
-    
-    <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
-    
-    <category term="Django" scheme="https://sirxs.cn/tags/Django/"/>
-    
-    <category term="日志记录" scheme="https://sirxs.cn/tags/%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95/"/>
-    
-    <category term="Logging" scheme="https://sirxs.cn/tags/Logging/"/>
     
   </entry>
   
