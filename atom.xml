@@ -6,7 +6,7 @@
   <link href="https://sirxs.cn/atom.xml" rel="self"/>
   
   <link href="https://sirxs.cn/"/>
-  <updated>2024-01-26T03:00:22.424Z</updated>
+  <updated>2024-01-26T03:05:37.204Z</updated>
   <id>https://sirxs.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://sirxs.cn/2024/01/26/page-id-17/"/>
     <id>https://sirxs.cn/2024/01/26/page-id-17/</id>
     <published>2024-01-26T02:32:03.000Z</published>
-    <updated>2024-01-26T03:00:22.424Z</updated>
+    <updated>2024-01-26T03:05:37.204Z</updated>
     
     
       
@@ -290,9 +290,9 @@
     
     <category term="UTM" scheme="https://sirxs.cn/tags/UTM/"/>
     
-    <category term="虚拟机" scheme="https://sirxs.cn/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
-    
     <category term="CentOS" scheme="https://sirxs.cn/tags/CentOS/"/>
+    
+    <category term="虚拟机" scheme="https://sirxs.cn/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     
     <category term="Mac" scheme="https://sirxs.cn/tags/Mac/"/>
     
@@ -426,9 +426,9 @@
     <category term="笔记" scheme="https://sirxs.cn/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="安装" scheme="https://sirxs.cn/tags/%E5%AE%89%E8%A3%85/"/>
     
@@ -491,9 +491,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -524,9 +524,9 @@
     <category term="Docker" scheme="https://sirxs.cn/categories/Docker/"/>
     
     
-    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Docker" scheme="https://sirxs.cn/tags/Docker/"/>
     
     <category term="Gunicorn" scheme="https://sirxs.cn/tags/Gunicorn/"/>
     
@@ -621,9 +621,9 @@
     <category term="Anaconda" scheme="https://sirxs.cn/categories/Anaconda/"/>
     
     
-    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
-    
     <category term="Python" scheme="https://sirxs.cn/tags/Python/"/>
+    
+    <category term="Ubuntu" scheme="https://sirxs.cn/tags/Ubuntu/"/>
     
     <category term="Linux" scheme="https://sirxs.cn/tags/Linux/"/>
     
